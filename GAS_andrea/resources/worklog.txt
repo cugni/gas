@@ -1,0 +1,4 @@
+30/06
+. Ho modificato anche web.xml (preffisso "pages" al posto di "form")
+. Sto cercando di non usare più la Session e di utilizzare solo il ModelAndView per
+trasportare i dati, ma ci sono problemi con i "redirect:/" che dobbiamo usare per forza.
