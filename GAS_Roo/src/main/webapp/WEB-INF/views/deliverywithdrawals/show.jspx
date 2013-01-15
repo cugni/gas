@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_it_polito_ai_gas_business_DeliveryWithdrawal" object="${deliverywithdrawal}" path="/deliverywithdrawals" z="TLz3bwRWCo2736fzBRF3anjtPqI=">
+        <field:display field="order" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_order" object="${deliverywithdrawal}" z="tWpVYslCoLT6fptxvP5B3x5X0Lc="/>
+        <field:display date="true" dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" object="${deliverywithdrawal}" z="SMapKO9c0diNAUg1YDkk6Mm4Azo="/>
+        <field:display date="true" dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" object="${deliverywithdrawal}" z="gesaUu499AijsN8veVchRTqdrB4="/>
+        <field:display field="collector" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_collector" object="${deliverywithdrawal}" z="NyI0lv4RVYFsUBoRO0eLBgktfuI="/>
+    </page:show>
+</div>

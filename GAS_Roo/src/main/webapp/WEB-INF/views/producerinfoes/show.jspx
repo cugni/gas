@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_it_polito_ai_gas_business_ProducerInfo" object="${producerinfo}" path="/producerinfoes" z="4VwS3b+GziE3Pttd+wwXzRswSEA=">
+        <field:display field="companyName" id="s_it_polito_ai_gas_business_ProducerInfo_companyName" object="${producerinfo}" z="WB5Peu57jPIOi8Sy3XHWx+mMlUE="/>
+        <field:display field="description" id="s_it_polito_ai_gas_business_ProducerInfo_description" object="${producerinfo}" z="+lbFuj4KBvfNlCplCOrSatqthAY="/>
+        <field:display field="contact" id="s_it_polito_ai_gas_business_ProducerInfo_contact" object="${producerinfo}" z="KfJwevH22A4yg4217nS4tXSYeIY="/>
+        <field:display field="address" id="s_it_polito_ai_gas_business_ProducerInfo_address" object="${producerinfo}" z="R4XbFvNcv1hwU7ErhlAnaSgTOaU="/>
+        <field:display field="phoneNumber" id="s_it_polito_ai_gas_business_ProducerInfo_phoneNumber" object="${producerinfo}" z="SzFm8U+qB/C2pSAYBAUovh8xNSE="/>
+        <field:display field="faxNumber" id="s_it_polito_ai_gas_business_ProducerInfo_faxNumber" object="${producerinfo}" z="4ogUu3k88RJyl1ReqyH4Fk5mbCY="/>
+        <field:display field="email" id="s_it_polito_ai_gas_business_ProducerInfo_email" object="${producerinfo}" z="au2615R1WGgc2Vx5aOrW7Nwz5F4="/>
+        <field:display field="delegate" id="s_it_polito_ai_gas_business_ProducerInfo_delegate" object="${producerinfo}" z="OWAh07hxoE3NIMcA+6njDUZiy2k="/>
+        <field:display field="paymentMode" id="s_it_polito_ai_gas_business_ProducerInfo_paymentMode" object="${producerinfo}" z="SaXIoynCi9aWi6qVCrOQrgJcSao="/>
+    </page:show>
+</div>

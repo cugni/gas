@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="deliveryWithdrawal" path="/deliverywithdrawals" versionField="none" z="HMAMmuF6dhD9fXiqrvKbyCa8JCY=">
+        <field:input field="order" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_order" required="true" validationMessageCode="field_invalid_integer" z="1rakcuoH/KcIIUPA4br7rzg4Cwo="/>
+        <field:datetime dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" z="7P5tp8JJdjlbKxr5kcV2pzLTiXg="/>
+        <field:datetime dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" z="+nGKCFcohFBoEYeXU8OaSzxrq0k="/>
+        <field:input field="collector" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_collector" validationMessageCode="field_invalid_integer" z="8RYE66UP5M+qW/A9c2D/lQpT1XA="/>
+    </form:update>
+</div>

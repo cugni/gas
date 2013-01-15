@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_it_polito_ai_gas_business_ProducerInfo" items="${producerinfoes}" z="KJ8zUalZfnXv6raI4b0wXbcbQU4=">
+        <table:table data="${producerinfoes}" id="l_it_polito_ai_gas_business_ProducerInfo" path="/producerinfoes" z="beKjU01qTFF5e8TuKaWGyGoSxL0=">
+            <table:column id="c_it_polito_ai_gas_business_ProducerInfo_companyName" property="companyName" z="eFQKbAZB90wS1QHE2vfWk45w/UA="/>
+            <table:column id="c_it_polito_ai_gas_business_ProducerInfo_description" property="description" z="hOa6pN55kZVf5Jxz9LWcxqgAyTQ="/>
+            <table:column id="c_it_polito_ai_gas_business_ProducerInfo_contact" property="contact" z="lSqHyx8hGJtI/QxcoM9AI6roJPU="/>
+            <table:column id="c_it_polito_ai_gas_business_ProducerInfo_address" property="address" z="RKICoTAv8Z/bHHBukJZUglwDGVA="/>
+            <table:column id="c_it_polito_ai_gas_business_ProducerInfo_phoneNumber" property="phoneNumber" z="NvdGkwHZ/rFLvNHDA26Xq3neX88="/>
+            <table:column id="c_it_polito_ai_gas_business_ProducerInfo_faxNumber" property="faxNumber" z="zRScZKfVUq+bA2oNf9E5plhFd2s="/>
+        </table:table>
+    </page:list>
+</div>

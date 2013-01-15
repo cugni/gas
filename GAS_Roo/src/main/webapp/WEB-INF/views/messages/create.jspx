@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create compositePkField="id" id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages" render="${empty dependencies}" z="lDOCruqJqA3q4aLhcIXXmhRWezI=">
+        <field:datetime dateTimePattern="${message_id.date_date_format}" disableFormBinding="true" field="id.date" id="c_it_polito_ai_gas_business_Message_id_date" required="true" z="tWJaro+FU7vfnSfhVayB0SEUyHY="/>
+        <field:input disableFormBinding="true" field="id.user" id="c_it_polito_ai_gas_business_Message_id_user" required="true" z="pZvciUSX0wafoEohhVKts1WCDN4="/>
+        <field:input disableFormBinding="true" field="id.order" id="c_it_polito_ai_gas_business_Message_id_order" required="true" validationMessageCode="field_invalid_integer" z="EnsdI5pz9yLFxgWVCx/GmnuIvPs="/>
+        <field:input field="text" id="c_it_polito_ai_gas_business_Message_text" z="4/xnrYCPXi0m4xMtuQGUv6ltTVQ="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_Message" render="${not empty dependencies}" z="1UHIX48+074TJb1fZXvOk7aDWEg="/>
+</div>

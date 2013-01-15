@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_it_polito_ai_gas_business_Proposal" modelAttribute="proposal" path="/proposals" versionField="none" z="Xs5ibr0vYmkZ1/Z/W70wRqmXWtM=">
+        <field:simple field="messages" id="c_it_polito_ai_gas_business_Proposal_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="5J2WCKDPi7DjHkjMFsa403lVD7k="/>
+        <field:input field="product" id="c_it_polito_ai_gas_business_Proposal_product" required="true" validationMessageCode="field_invalid_integer" z="vyMMXxlKupgIdiO4Lp8v3ZAzg2w="/>
+        <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="c_it_polito_ai_gas_business_Proposal_startDate" required="true" z="nINGIAMKmTOgFJpozmEfv2XDKeg="/>
+        <field:datetime dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="c_it_polito_ai_gas_business_Proposal_endDate" required="true" z="VvtsT5saLLDRsue3Nx8m5ekBG2A="/>
+        <field:checkbox field="minReached" id="c_it_polito_ai_gas_business_Proposal_minReached" z="oW9wFJjCQMAr9irytCGdVG3jdBI="/>
+    </form:update>
+</div>
