@@ -1,35 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0"
+xmlns:sec="http://www.springframework.org/security/tags">
+
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+    
+    <sec:authorize access="isAuthenticated()">
+    
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-        <menu:category id="c_message" z="2mg8OfqheWP/rnVu0slpEU516Yk=">
-            <menu:item id="i_message_new" messageCode="global_menu_new" url="/messages?form" z="6ME+t1wCXxIe0ueapV28lZ5YUi0="/>
-            <menu:item id="i_message_list" messageCode="global_menu_list" url="/messages?page=1&amp;size=${empty param.size ? 10 : param.size}" z="eGv0nXC/JpwInH30nZdjM2e3PxE="/>
+    
+       	<menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
+       	<div  style="display:none">
+            <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="user-managed"/>
+        </div>
+            <menu:item id="i_user_list" messageCode="global_menu_list" url="/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4MY4uybxa60Q1G2rlI5bOwg+sm0="/>
         </menu:category>
-        <menu:category id="c_deliverywithdrawal" z="pfzMi+rrfaZJBFKaIBIceKa95jw=">
-            <menu:item id="i_deliverywithdrawal_new" messageCode="global_menu_new" url="/deliverywithdrawals?form" z="BJocOTOtZbwWNEVU06eKLNESIng="/>
-            <menu:item id="i_deliverywithdrawal_list" messageCode="global_menu_list" url="/deliverywithdrawals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4J0C0mBWyKRdNuuUDn1YDtx2zZA="/>
+    
+        <sec:authorize ifAnyGranted="ROLE_PRODUCER, ROLE_DELEGATE">
+        <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
+        <sec:authorize ifAnyGranted="ROLE_PRODUCER">
+            <menu:item id="i_product_new" messageCode="global_menu_new" url="/products?form" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
+        </sec:authorize>
+            <menu:item id="i_product_list" messageCode="global_menu_list" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
         </menu:category>
+        </sec:authorize>
+    
+        <menu:category id="c_proposal" z="suzPKqOAINWcaCELmLNnlmO5HIM=">
+        <sec:authorize ifAnyGranted="ROLE_DELEGATE">
+            <menu:item id="i_proposal_new" messageCode="global_menu_new" url="/proposals?form" z="dsS+JjvocEnj9TGNqsXDaUWebHc="/>
+        </sec:authorize>
+            <menu:item id="i_proposal_list" messageCode="global_menu_list" url="/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bgO342A33knxIja47cd67OrK6DU="/>
+        </menu:category>
+        
+       	<sec:authorize ifAnyGranted="ROLE_USER, ROLE_DELEGATE">
         <menu:category id="c_purchaserequest" z="XBOLdVNVLUzW6xxe6OxC3MCcDYA=">
             <menu:item id="i_purchaserequest_new" messageCode="global_menu_new" url="/purchaserequests?form" z="sGELPVkO9hJn9lrYtf+0BVTQ5to="/>
             <menu:item id="i_purchaserequest_list" messageCode="global_menu_list" url="/purchaserequests?page=1&amp;size=${empty param.size ? 10 : param.size}" z="1j1KAIHqiRpnCeUb8O/AaqoBx2w="/>
         </menu:category>
-        <menu:category id="c_proposal" z="suzPKqOAINWcaCELmLNnlmO5HIM=">
-            <menu:item id="i_proposal_new" messageCode="global_menu_new" url="/proposals?form" z="dsS+JjvocEnj9TGNqsXDaUWebHc="/>
-            <menu:item id="i_proposal_list" messageCode="global_menu_list" url="/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="bgO342A33knxIja47cd67OrK6DU="/>
+        </sec:authorize>
+        
+        <div  style="display:none">
+        <menu:category id="c_deliverywithdrawal" z="pfzMi+rrfaZJBFKaIBIceKa95jw=">
+            <menu:item id="i_deliverywithdrawal_new" messageCode="global_menu_new" url="/deliverywithdrawals?form" z="BJocOTOtZbwWNEVU06eKLNESIng="/>
+            <menu:item id="i_deliverywithdrawal_list" messageCode="global_menu_list" url="/deliverywithdrawals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4J0C0mBWyKRdNuuUDn1YDtx2zZA="/>
         </menu:category>
-        <menu:category id="c_users" z="Ysam8XVhG5uotPoUGGxkia1RE/s=">
-            <menu:item id="i_users_new" messageCode="global_menu_new" url="/userses?form" z="utrdLkYms6xk5f4IDxc9zrg5FWs="/>
-            <menu:item id="i_users_list" messageCode="global_menu_list" url="/userses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="tqSwojZmRduyx4xtHWcJzgbgtJk="/>
+        <menu:category id="c_message" z="2mg8OfqheWP/rnVu0slpEU516Yk=">
+            <menu:item id="i_message_new" messageCode="global_menu_new" url="/messages?form" z="6ME+t1wCXxIe0ueapV28lZ5YUi0="/>
+            <menu:item id="i_message_list" messageCode="global_menu_list" url="/messages?page=1&amp;size=${empty param.size ? 10 : param.size}" z="eGv0nXC/JpwInH30nZdjM2e3PxE="/>
         </menu:category>
         <menu:category id="c_producerinfo" z="ioGKJX8EiMM2xRZrxLLlFB0x1xI=">
             <menu:item id="i_producerinfo_new" messageCode="global_menu_new" url="/producerinfoes?form" z="I6APDRz4VlQ78bGjbMxC9FpGrRc="/>
             <menu:item id="i_producerinfo_list" messageCode="global_menu_list" url="/producerinfoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Op6H4S+HKa6jD3liqTvbwK53jNg="/>
         </menu:category>
-        <menu:category id="c_products" z="iyOPDE7OphIFZLa8VEmJPk9HKk0=">
-            <menu:item id="i_products_new" messageCode="global_menu_new" url="/productses?form" z="tjv6bj7IdIaUqxIFWZ16Tqnjl8A="/>
-            <menu:item id="i_products_list" messageCode="global_menu_list" url="/productses?page=1&amp;size=${empty param.size ? 10 : param.size}" z="7rXdeB0KMaFTV4klipEgMqeNLjg="/>
-        </menu:category>
+        </div>
+        
     </menu:menu>
+    
+    </sec:authorize>
 </div>

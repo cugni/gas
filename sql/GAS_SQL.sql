@@ -30,9 +30,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GAS`.`users`
+-- Table `GAS`.`user`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `GAS`.`users` (
+CREATE  TABLE IF NOT EXISTS `GAS`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `username` VARCHAR(45) NOT NULL ,
   `password` VARCHAR(32) NOT NULL ,
@@ -51,9 +51,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `GAS`.`products`
+-- Table `GAS`.`product`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `GAS`.`products` (
+CREATE  TABLE IF NOT EXISTS `GAS`.`product` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(30) NOT NULL ,
   `cost` FLOAT NOT NULL ,
@@ -117,13 +117,13 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `GAS`.`purchase_request` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `order` INT(11) NOT NULL ,
+  `proposal` INT(11) NOT NULL ,
   `acquirer` INT NOT NULL ,
   `quantity` FLOAT NOT NULL ,
-  `received` TINYINT(1) NULL DEFAULT true ,
+  `received` TINYINT(1) NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
   INDEX `FKC307E7E3894EE92E` (`acquirer` ASC) ,
-  INDEX `fk_purchase_orders_orders1_idx` (`order` ASC) ,
+  INDEX `fk_purchase_orders_orders1_idx` (`proposal` ASC) ,
   INDEX `diobono_idx` (`acquirer` ASC) )
 ENGINE = MyISAM
 DEFAULT CHARACTER SET = latin1;
@@ -142,7 +142,7 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`message` (
   INDEX `fk_order_idx` (`order` ASC) ,
   CONSTRAINT `fk_user`
     FOREIGN KEY (`user` )
-    REFERENCES `GAS`.`users` (`id` )
+    REFERENCES `GAS`.`user` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_order`

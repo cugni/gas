@@ -3,10 +3,10 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="purchaseRequest" path="/purchaserequests" render="${empty dependencies}" z="df6Q7IID4jwS1aCnwu4EW7Fxgz0=">
-        <field:input field="order" id="c_it_polito_ai_gas_business_PurchaseRequest_order" required="true" validationMessageCode="field_invalid_integer" z="2PMoxNMzf7ZO9Qk4wEXpvBflWl4="/>
-        <field:input field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" required="true" validationMessageCode="field_invalid_integer" z="G1dFUL6a8tNxPW6wAkQQ5+gjQAU="/>
         <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="v3l/+NVnP1eoLrfrXh32zGQdX7E="/>
         <field:checkbox field="received" id="c_it_polito_ai_gas_business_PurchaseRequest_received" z="lT9FWm5UdQQedbYFRPVGO4a48/A="/>
+        <field:input field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" required="true" validationMessageCode="field_invalid_integer" z="X2kFmr4Sjh4KgbBuBZ6FrX5SLp0="/>
+        <field:input field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" required="true" validationMessageCode="field_invalid_integer" z="G1dFUL6a8tNxPW6wAkQQ5+gjQAU="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_PurchaseRequest" render="${not empty dependencies}" z="GVUGrOJY7g2fdrFq6viGusjVl4E="/>
 </div>

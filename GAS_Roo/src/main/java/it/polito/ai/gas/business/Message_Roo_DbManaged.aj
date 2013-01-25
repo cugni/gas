@@ -5,7 +5,7 @@ package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.Users;
+import it.polito.ai.gas.business.User;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,23 +13,15 @@ import javax.persistence.ManyToOne;
 privileged aspect Message_Roo_DbManaged {
     
     @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    private Users Message.user;
-    
-    @ManyToOne
     @JoinColumn(name = "order", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     private Proposal Message.order;
     
+    @ManyToOne
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    private User Message.user;
+    
     @Column(name = "text", length = 255)
     private String Message.text;
-    
-    public Users Message.getUser() {
-        return user;
-    }
-    
-    public void Message.setUser(Users user) {
-        this.user = user;
-    }
     
     public Proposal Message.getOrder() {
         return order;
@@ -37,6 +29,14 @@ privileged aspect Message_Roo_DbManaged {
     
     public void Message.setOrder(Proposal order) {
         this.order = order;
+    }
+    
+    public User Message.getUser() {
+        return user;
+    }
+    
+    public void Message.setUser(User user) {
+        this.user = user;
     }
     
     public String Message.getText() {

@@ -9,9 +9,9 @@ import javax.validation.constraints.NotNull;
 
 privileged aspect PurchaseRequest_Roo_DbManaged {
     
-    @Column(name = "order")
+    @Column(name = "proposal")
     @NotNull
-    private Integer PurchaseRequest.order;
+    private Integer PurchaseRequest.proposal;
     
     @Column(name = "acquirer")
     @NotNull
@@ -24,12 +24,12 @@ privileged aspect PurchaseRequest_Roo_DbManaged {
     @Column(name = "received")
     private Boolean PurchaseRequest.received;
     
-    public Integer PurchaseRequest.getOrder() {
-        return order;
+    public Integer PurchaseRequest.getProposal() {
+        return proposal;
     }
     
-    public void PurchaseRequest.setOrder(Integer order) {
-        this.order = order;
+    public void PurchaseRequest.setProposal(Integer proposal) {
+        this.proposal = proposal;
     }
     
     public Integer PurchaseRequest.getAcquirer() {

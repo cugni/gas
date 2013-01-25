@@ -4,10 +4,10 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_PurchaseRequest" items="${purchaserequests}" z="WFKonsm3vX831PIig1sEGWQcy2Y=">
         <table:table data="${purchaserequests}" id="l_it_polito_ai_gas_business_PurchaseRequest" path="/purchaserequests" z="9Xz/OvH1OO7WbKyRyznHjdOQ1n4=">
-            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_order" property="order" z="QPl61pEZajZ1cWH3c8kI/LdyKwI="/>
-            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" property="acquirer" z="OY0hYhaO9bXCD+FHE3ooMDgIwHA="/>
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" property="quantity" z="6ICz5xrbH62cWVZd1s84ji819RI="/>
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_received" property="received" z="ytSV/g4lqThuEzDyixblENt+Lq8="/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" property="proposal" z="P+7CMc8tp9TQ0k0dBs5vm68vgMc="/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" property="acquirer" z="OY0hYhaO9bXCD+FHE3ooMDgIwHA="/>
         </table:table>
     </page:list>
 </div>

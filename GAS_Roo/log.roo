@@ -1,27 +1,42 @@
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-14 23:50:11
-project --topLevelPackage it.polito.ai.gas --projectName GAS_Roo --java 6 --packaging JAR
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-14 23:50:40
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-14 23:50:48
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-22 16:21:14
+project --topLevelPackage it.polito.ai.gas --projectName Fuck_Roo --java 6 --packaging JAR
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-22 16:21:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-22 16:21:23
 jpa setup --provider HIBERNATE --database MYSQL
 // [failed] database reverse engineer --schema GAS --package ~.business
-// [failed] database introspect --schema GAS
 osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
 osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
 osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
 addon install id --searchResultId 01
 database reverse engineer --schema GAS --package ~.business
 web mvc setup
-web mvc all --package ~.web
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-15 12:14:56
-database reverse engineer --schema GAS --package ~.business
-web mvc all --package ~.web
-web mvc all --package ~.web
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-database reverse engineer --schema GAS --package ~.business
-web mvc all --package ~.web
+web mvc all --package ~.controller
+security setup
+finder add --finderName findUserByUsername --class it.polito.ai.gas.business.User
+finder add --finderName findUserByUsername
+finder add --class it.polito.ai.gas.business.User --finderName findUserByUsername
+finder list
+finder add --finderName findUsersByUsernameEquals
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-23 15:03:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-23 20:10:36
+backup
+json all
+web mvc json all 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-24 11:17:45
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-24 15:01:58
+// [failed] development mode --enabled true
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-24 22:17:30
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-24 23:41:58
+// [failed] web mvc view --title Home --viewName home --path /
+// [failed] web mvc view --title Home --viewName home --path /home
+// [failed] web mvc view --title Welcome --viewName welcome --path /welcome
+backup
+// [failed] database reverse engineer --schema GAS --package ~.business
+test integration --entity ~.business.PurchaseRequest
+test integration
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-25 16:39:29
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-25 16:39:37
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-25 16:49:50
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-25 16:49:58

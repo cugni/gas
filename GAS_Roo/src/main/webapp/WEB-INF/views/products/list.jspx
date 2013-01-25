@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_it_polito_ai_gas_business_Product" items="${products}" z="MCgnS2kPes1jRjmzIw6QYmB4524=">
+        <table:table data="${products}" id="l_it_polito_ai_gas_business_Product" path="/products" z="/E+j+uOUCwogpdvOuNP/VsV2JPU=">
+            <table:column id="c_it_polito_ai_gas_business_Product_name" property="name" z="8c7jv/a3sT1VafZqqPWrKpYk+LU="/>
+            <table:column id="c_it_polito_ai_gas_business_Product_cost" property="cost" z="7f/G6HDNUb3Fy6QVsXIpyAVrjr0="/>
+            <table:column id="c_it_polito_ai_gas_business_Product_units" property="units" z="FGPn1ro6UeZForBylmt2tZSfln8="/>
+            <table:column id="c_it_polito_ai_gas_business_Product_quantity" property="quantity" z="UVYZcAE2dlxuSWhklIgwVsK+QZw="/>
+            <table:column id="c_it_polito_ai_gas_business_Product_producer" property="producer" z="7TzFxd2qgTeh6UWL6fXQyUQfx70="/>
+            <table:column id="c_it_polito_ai_gas_business_Product_description" property="description" z="Qpg4S/a9AisWRx4odT/+VxQlnpI="/>
+        </table:table>
+    </page:list>
+</div>
