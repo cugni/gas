@@ -7,6 +7,10 @@
     <version>0.1.0.BUILD-SNAPSHOT</version>
     <name>GAS_Roo</name>
     <properties>
+  
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <maven.compiler.source>1.6</maven.compiler.source>
+ 
         <aspectj.version>1.7.0.RC1</aspectj.version>
         <java.version>6</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -143,11 +147,6 @@
             <artifactId>spring-aspects</artifactId>
             <version>${spring.version}</version>
         </dependency>
-    <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.18</version>
-        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -238,7 +237,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-    <dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
@@ -296,12 +295,12 @@
             <artifactId>commons-codec</artifactId>
             <version>1.5</version>
         </dependency>
-    <dependency>
+        <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
             <version>2.2.2</version>
         </dependency>
-    <dependency>
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>${spring-security.version}</version>
@@ -334,9 +333,14 @@
             <version>${spring-security.version}</version>
         </dependency>
         <dependency>
-        	<groupId>org.tuckey</groupId>
-        	<artifactId>urlrewritefilter</artifactId>
-        	<version>4.0.4</version>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>4.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.18</version>
         </dependency>
     </dependencies>
     <build>
@@ -491,7 +495,8 @@
                         <contextPath>/${project.name}</contextPath>
                     </webAppConfig>
                 </configuration>
-            </plugin>
-        </plugins>
+                </plugin>
+				 
+         </plugins>
     </build>
 </project>

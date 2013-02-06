@@ -4,9 +4,11 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.MessagePK;
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 privileged aspect Message_Roo_Jpa_Entity {
@@ -15,14 +17,16 @@ privileged aspect Message_Roo_Jpa_Entity {
     
     declare @type: Message: @Table(name = "message");
     
-    @EmbeddedId
-    private MessagePK Message.id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer Message.id;
     
-    public MessagePK Message.getId() {
+    public Integer Message.getId() {
         return this.id;
     }
     
-    public void Message.setId(MessagePK id) {
+    public void Message.setId(Integer id) {
         this.id = id;
     }
     

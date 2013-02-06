@@ -4,7 +4,6 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.MessagePK;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,7 +28,7 @@ privileged aspect Message_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT o FROM Message o", Message.class).getResultList();
     }
     
-    public static Message Message.findMessage(MessagePK id) {
+    public static Message Message.findMessage(Integer id) {
         if (id == null) return null;
         return entityManager().find(Message.class, id);
     }

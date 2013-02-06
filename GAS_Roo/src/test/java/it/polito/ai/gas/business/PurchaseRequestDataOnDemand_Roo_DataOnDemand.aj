@@ -3,8 +3,10 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.PurchaseRequestDataOnDemand;
+import it.polito.ai.gas.business.User;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,12 +34,12 @@ privileged aspect PurchaseRequestDataOnDemand_Roo_DataOnDemand {
     }
     
     public void PurchaseRequestDataOnDemand.setAcquirer(PurchaseRequest obj, int index) {
-        Integer acquirer = new Integer(index);
+        User acquirer = null;
         obj.setAcquirer(acquirer);
     }
     
     public void PurchaseRequestDataOnDemand.setProposal(PurchaseRequest obj, int index) {
-        Integer proposal = new Integer(index);
+        Proposal proposal = null;
         obj.setProposal(proposal);
     }
     

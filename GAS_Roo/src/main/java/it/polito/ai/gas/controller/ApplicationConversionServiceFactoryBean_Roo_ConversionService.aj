@@ -5,14 +5,12 @@ package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.MessagePK;
 import it.polito.ai.gas.business.ProducerInfo;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.ApplicationConversionServiceFactoryBean;
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
@@ -48,14 +46,14 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Message, String> ApplicationConversionServiceFactoryBean.getMessageToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Message, java.lang.String>() {
             public String convert(Message message) {
-                return new StringBuilder().append(message.getText()).toString();
+                return new StringBuilder().append(message.getDate()).append(' ').append(message.getText()).toString();
             }
         };
     }
     
-    public Converter<MessagePK, Message> ApplicationConversionServiceFactoryBean.getIdToMessageConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.MessagePK, it.polito.ai.gas.business.Message>() {
-            public it.polito.ai.gas.business.Message convert(it.polito.ai.gas.business.MessagePK id) {
+    public Converter<Integer, Message> ApplicationConversionServiceFactoryBean.getIdToMessageConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.Message>() {
+            public it.polito.ai.gas.business.Message convert(java.lang.Integer id) {
                 return Message.findMessage(id);
             }
         };
@@ -64,7 +62,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<String, Message> ApplicationConversionServiceFactoryBean.getStringToMessageConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.Message>() {
             public it.polito.ai.gas.business.Message convert(String id) {
-                return getObject().convert(getObject().convert(id, MessagePK.class), Message.class);
+                return getObject().convert(getObject().convert(id, Integer.class), Message.class);
             }
         };
     }
@@ -120,7 +118,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Proposal, String> ApplicationConversionServiceFactoryBean.getProposalToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Proposal, java.lang.String>() {
             public String convert(Proposal proposal) {
-                return new StringBuilder().append(proposal.getProduct()).append(' ').append(proposal.getStartDate()).append(' ').append(proposal.getEndDate()).toString();
+                return new StringBuilder().append(proposal.getStartDate()).append(' ').append(proposal.getEndDate()).toString();
             }
         };
     }
@@ -144,7 +142,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<PurchaseRequest, String> ApplicationConversionServiceFactoryBean.getPurchaseRequestToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.PurchaseRequest, java.lang.String>() {
             public String convert(PurchaseRequest purchaseRequest) {
-                return new StringBuilder().append(purchaseRequest.getProposal()).append(' ').append(purchaseRequest.getAcquirer()).append(' ').append(purchaseRequest.getQuantity()).toString();
+                return new StringBuilder().append(purchaseRequest.getQuantity()).toString();
             }
         };
     }
@@ -168,7 +166,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<User, String> ApplicationConversionServiceFactoryBean.getUserToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.User, java.lang.String>() {
             public String convert(User user) {
-                return new StringBuilder().append(user.getUsername()).append(' ').append(user.getPassword()).append(' ').append(user.getRole()).append(' ').append(user.getName()).toString();
+                return new StringBuilder().append(user.getUsername()).append(' ').append(user.getPassword()).append(' ').append(user.getName()).append(' ').append(user.getSurname()).toString();
             }
         };
     }
@@ -185,22 +183,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.User>() {
             public it.polito.ai.gas.business.User convert(String id) {
                 return getObject().convert(getObject().convert(id, Integer.class), User.class);
-            }
-        };
-    }
-    
-    public Converter<String, MessagePK> ApplicationConversionServiceFactoryBean.getJsonToMessagePKConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.MessagePK>() {
-            public MessagePK convert(String encodedJson) {
-                return MessagePK.fromJsonToMessagePK(new String(Base64.decodeBase64(encodedJson)));
-            }
-        };
-    }
-    
-    public Converter<MessagePK, String> ApplicationConversionServiceFactoryBean.getMessagePKToJsonConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.MessagePK, java.lang.String>() {
-            public String convert(MessagePK messagePK) {
-                return Base64.encodeBase64URLSafeString(messagePK.toJson().getBytes());
             }
         };
     }
@@ -227,8 +209,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getUserToStringConverter());
         registry.addConverter(getIdToUserConverter());
         registry.addConverter(getStringToUserConverter());
-        registry.addConverter(getJsonToMessagePKConverter());
-        registry.addConverter(getMessagePKToJsonConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

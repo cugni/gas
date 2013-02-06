@@ -4,10 +4,14 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.PurchaseRequest;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,9 +23,12 @@ privileged aspect Proposal_Roo_DbManaged {
     @OneToMany(mappedBy = "order")
     private Set<Message> Proposal.messages;
     
-    @Column(name = "product")
-    @NotNull
-    private Integer Proposal.product;
+    @OneToMany(mappedBy = "proposal")
+    private Set<PurchaseRequest> Proposal.purchaseRequests;
+    
+    @ManyToOne
+    @JoinColumn(name = "product", referencedColumnName = "id", nullable = false)
+    private Product Proposal.product;
     
     @Column(name = "start_date")
     @NotNull
@@ -47,11 +54,19 @@ privileged aspect Proposal_Roo_DbManaged {
         this.messages = messages;
     }
     
-    public Integer Proposal.getProduct() {
+    public Set<PurchaseRequest> Proposal.getPurchaseRequests() {
+        return purchaseRequests;
+    }
+    
+    public void Proposal.setPurchaseRequests(Set<PurchaseRequest> purchaseRequests) {
+        this.purchaseRequests = purchaseRequests;
+    }
+    
+    public Product Proposal.getProduct() {
         return product;
     }
     
-    public void Proposal.setProduct(Integer product) {
+    public void Proposal.setProduct(Product product) {
         this.product = product;
     }
     

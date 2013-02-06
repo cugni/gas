@@ -4,7 +4,6 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.MessagePK;
 import it.polito.ai.gas.controller.MessageController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -20,7 +19,7 @@ privileged aspect MessageController_Roo_Controller_Json {
     
     @RequestMapping(value = "/{id}", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> MessageController.showJson(@PathVariable("id") MessagePK id) {
+    public ResponseEntity<String> MessageController.showJson(@PathVariable("id") Integer id) {
         Message message = Message.findMessage(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
@@ -82,7 +81,7 @@ privileged aspect MessageController_Roo_Controller_Json {
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<String> MessageController.deleteFromJson(@PathVariable("id") MessagePK id) {
+    public ResponseEntity<String> MessageController.deleteFromJson(@PathVariable("id") Integer id) {
         Message message = Message.findMessage(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");

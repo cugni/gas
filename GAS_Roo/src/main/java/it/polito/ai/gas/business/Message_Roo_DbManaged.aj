@@ -6,22 +6,41 @@ package it.polito.ai.gas.business;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Message_Roo_DbManaged {
     
     @ManyToOne
-    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    private Proposal Message.order;
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
+    private User Message.user;
     
     @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    private User Message.user;
+    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
+    private Proposal Message.order;
+    
+    @Column(name = "date")
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(style = "M-")
+    private Date Message.date;
     
     @Column(name = "text", length = 255)
     private String Message.text;
+    
+    public User Message.getUser() {
+        return user;
+    }
+    
+    public void Message.setUser(User user) {
+        this.user = user;
+    }
     
     public Proposal Message.getOrder() {
         return order;
@@ -31,12 +50,12 @@ privileged aspect Message_Roo_DbManaged {
         this.order = order;
     }
     
-    public User Message.getUser() {
-        return user;
+    public Date Message.getDate() {
+        return date;
     }
     
-    public void Message.setUser(User user) {
-        this.user = user;
+    public void Message.setDate(Date date) {
+        this.date = date;
     }
     
     public String Message.getText() {

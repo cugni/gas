@@ -8,8 +8,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(identifierType = MessagePK.class, versionField = "", table = "message")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
+@RooJpaActiveRecord(versionField = "", table = "message")
 public class Message {
 }

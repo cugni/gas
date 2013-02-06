@@ -4,7 +4,9 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.controller.ProposalController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -98,6 +100,8 @@ privileged aspect ProposalController_Roo_Controller {
         uiModel.addAttribute("proposal", proposal);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
     }
     
     String ProposalController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

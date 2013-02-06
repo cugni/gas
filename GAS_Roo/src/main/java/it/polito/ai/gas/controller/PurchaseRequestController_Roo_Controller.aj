@@ -3,7 +3,9 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.PurchaseRequestController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
@@ -86,6 +88,8 @@ privileged aspect PurchaseRequestController_Roo_Controller {
     
     void PurchaseRequestController.populateEditForm(Model uiModel, PurchaseRequest purchaseRequest) {
         uiModel.addAttribute("purchaseRequest", purchaseRequest);
+        uiModel.addAttribute("proposals", Proposal.findAllProposals());
+        uiModel.addAttribute("users", User.findAllUsers());
     }
     
     String PurchaseRequestController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

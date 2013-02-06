@@ -4,9 +4,12 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.UserType;
 import it.polito.ai.gas.controller.UserController;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -97,6 +100,8 @@ privileged aspect UserController_Roo_Controller {
         uiModel.addAttribute("user", user);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
+        uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }
     
     String UserController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

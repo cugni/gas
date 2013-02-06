@@ -40,3 +40,90 @@ exit
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-01-25 16:49:50
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-01-25 16:49:58
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 19:41:58
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 19:48:35
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 19:48:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 19:50:12
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 19:50:21
+help class
+help enum 
+enum type --class ~.business.UserType 
+focus --class ~.business.User
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 20:13:46
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 20:22:24
+focus --class ~.business.User
+// [failed] field reference --fieldName role --type ~.business.UserType
+// [failed] field enum --fieldName role --type ~.business.UserType
+field enum --fieldName role --type ~.business.UserType --permitReservedWords 
+// [failed] field reference --fieldName role --type ~.business.UserType
+field enum --fieldName role --type ~.business.UserType --permitReservedWords 
+focus --class ~.business.PurchaseRequest
+field reference --fieldName proposal --type ~.business.Proposal 
+field enum --fieldName acquirer --type ~.business.User 
+help database introspect 
+// [failed] database introspect --schema GAS
+// [failed] database reverse engineer --schema GAS
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+// [failed] database introspect --schema no-schema-required 
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+ addon install id --searchResultId 01
+database introspect --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+web mvc all --package it.polito.ai.gas.controller
+database reverse engineer --schema GAS
+web mvc all --package it.polito.ai.gas.controller
+focus --class ~.business.PurchaseRequest
+// [failed] field reference --fieldName acquirer --type ~.business.User
+field reference --fieldName acquirer --type ~.business.User
+web mvc all --package it.polito.ai.gas.controller
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 21:36:10
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 21:38:25
+help
+jpa setup --database MSSQL --provider HIBERNATE 
+help web mvc setup
+web mvc install language --code it
+web mvc language es
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.jtds
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.jtds
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 1
+addon install id --searchResultId 0
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 22:00:16
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 22:00:20
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+// [failed] addon install id --searchResultId 01
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 22:00:30
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 22:07:46
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 22:12:24
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 22:12:31
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-06 22:21:37
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-06 22:22:24
+// [failed] database reverse engineer --schema GAS --testAutomatically 
+// [failed] database introspect --schema GAS
+// [failed] database introspect --schema unable-to-obtain-connection 
+jpa setup --database MYSQL --provider HIBERNATE 
+database reverse engineer --schema GAS --testAutomatically 
+database reverse engineer --schema no-schema-required 
+database introspect --schema no-schema-required 
+database introspect --schema GAS
+database introspect --schema GAS
+database reverse engineer --schema GAS --testAutomatically 

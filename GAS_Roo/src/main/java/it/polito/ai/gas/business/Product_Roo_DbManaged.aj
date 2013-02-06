@@ -4,14 +4,20 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.Proposal;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Product_Roo_DbManaged {
+    
+    @OneToMany(mappedBy = "product")
+    private Set<Proposal> Product.proposals;
     
     @Column(name = "name", length = 30)
     @NotNull
@@ -69,6 +75,14 @@ privileged aspect Product_Roo_DbManaged {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(style = "M-")
     private Date Product.availableTo;
+    
+    public Set<Proposal> Product.getProposals() {
+        return proposals;
+    }
+    
+    public void Product.setProposals(Set<Proposal> proposals) {
+        this.proposals = proposals;
+    }
     
     public String Product.getName() {
         return name;

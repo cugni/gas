@@ -4,5 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages" versionField="none" z="jhDymm2FRjQCnxkJNe6tTCmL7kM=">
         <field:input field="text" id="c_it_polito_ai_gas_business_Message_text" z="4/xnrYCPXi0m4xMtuQGUv6ltTVQ="/>
+        <field:select field="user" id="c_it_polito_ai_gas_business_Message_user" itemValue="id" items="${users}" path="/users" z="ghGhMgBgkoE535sCZWng4f2mwVY="/>
+        <field:select field="order" id="c_it_polito_ai_gas_business_Message_order" itemValue="id" items="${proposals}" path="/proposals" z="tkNFVZ0wDcFccs9vSa6CeIMx01s="/>
+        <field:datetime dateTimePattern="${message_date_date_format}" field="date" id="c_it_polito_ai_gas_business_Message_date" required="true" z="6als+ifCXjzXw25b8bnM270HccU="/>
     </form:update>
 </div>

@@ -4,15 +4,14 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.MessagePK;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.MessageController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.ConversionService;
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,14 +23,6 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect MessageController_Roo_Controller {
     
-    private ConversionService MessageController.conversionService;
-    
-    @Autowired
-    public MessageController.new(ConversionService conversionService) {
-        super();
-        this.conversionService = conversionService;
-    }
-
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String MessageController.create(@Valid Message message, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -40,7 +31,7 @@ privileged aspect MessageController_Roo_Controller {
         }
         uiModel.asMap().clear();
         message.persist();
-        return "redirect:/messages/" + encodeUrlPathSegment(conversionService.convert(message.getId(), String.class), httpServletRequest);
+        return "redirect:/messages/" + encodeUrlPathSegment(message.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
@@ -50,9 +41,10 @@ privileged aspect MessageController_Roo_Controller {
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String MessageController.show(@PathVariable("id") MessagePK id, Model uiModel) {
+    public String MessageController.show(@PathVariable("id") Integer id, Model uiModel) {
+        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("message", Message.findMessage(id));
-        uiModel.addAttribute("itemId", conversionService.convert(id, String.class));
+        uiModel.addAttribute("itemId", id);
         return "messages/show";
     }
     
@@ -67,6 +59,7 @@ privileged aspect MessageController_Roo_Controller {
         } else {
             uiModel.addAttribute("messages", Message.findAllMessages());
         }
+        addDateTimeFormatPatterns(uiModel);
         return "messages/list";
     }
     
@@ -78,17 +71,17 @@ privileged aspect MessageController_Roo_Controller {
         }
         uiModel.asMap().clear();
         message.merge();
-        return "redirect:/messages/" + encodeUrlPathSegment(conversionService.convert(message.getId(), String.class), httpServletRequest);
+        return "redirect:/messages/" + encodeUrlPathSegment(message.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String MessageController.updateForm(@PathVariable("id") MessagePK id, Model uiModel) {
+    public String MessageController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Message.findMessage(id));
         return "messages/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String MessageController.delete(@PathVariable("id") MessagePK id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String MessageController.delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Message message = Message.findMessage(id);
         message.remove();
         uiModel.asMap().clear();
@@ -97,8 +90,13 @@ privileged aspect MessageController_Roo_Controller {
         return "redirect:/messages";
     }
     
+    void MessageController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("message_date_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    }
+    
     void MessageController.populateEditForm(Model uiModel, Message message) {
         uiModel.addAttribute("message", message);
+        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposals", Proposal.findAllProposals());
         uiModel.addAttribute("users", User.findAllUsers());
     }

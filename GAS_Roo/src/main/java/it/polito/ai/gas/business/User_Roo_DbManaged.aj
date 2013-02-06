@@ -4,6 +4,7 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
@@ -19,17 +20,16 @@ privileged aspect User_Roo_DbManaged {
     @OneToMany(mappedBy = "user")
     private Set<Message> User.messages;
     
-    @Column(name = "username", length = 45)
+    @OneToMany(mappedBy = "acquirer")
+    private Set<PurchaseRequest> User.purchaseRequests;
+    
+    @Column(name = "username", length = 45, unique = true)
     @NotNull
     private String User.username;
     
     @Column(name = "password", length = 32)
     @NotNull
     private String User.password;
-    
-    @Column(name = "role")
-    @NotNull
-    private Integer User.role;
     
     @Column(name = "name", length = 20)
     @NotNull
@@ -59,6 +59,14 @@ privileged aspect User_Roo_DbManaged {
         this.messages = messages;
     }
     
+    public Set<PurchaseRequest> User.getPurchaseRequests() {
+        return purchaseRequests;
+    }
+    
+    public void User.setPurchaseRequests(Set<PurchaseRequest> purchaseRequests) {
+        this.purchaseRequests = purchaseRequests;
+    }
+    
     public String User.getUsername() {
         return username;
     }
@@ -73,14 +81,6 @@ privileged aspect User_Roo_DbManaged {
     
     public void User.setPassword(String password) {
         this.password = password;
-    }
-    
-    public Integer User.getRole() {
-        return role;
-    }
-    
-    public void User.setRole(Integer role) {
-        this.role = role;
     }
     
     public String User.getName() {

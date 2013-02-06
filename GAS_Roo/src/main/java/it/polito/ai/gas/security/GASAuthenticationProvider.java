@@ -52,17 +52,17 @@ AbstractUserDetailsAuthenticationProvider {
 	    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 	    switch(found.getRole())
 	    {
-	    	case 0: // User
+	    	case ROLE_DELEGATE: // User
+	    		authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
+	    		 
+	    	case ROLE_USER: // Delegate
 	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
+	          
 	    		break;
-	    	case 1: // Delegate
-	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
-	            authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
-	    		break;
-	    	case 2: // Producer
+	    	case ROLE_PRODUCER: // Producer
 	            authorities.add(new GrantedAuthorityImpl("ROLE_PRODUCER"));
 	    		break;
-	    	case 3: // Admin
+	    	case ROLE_ADMIN: // Admin
 	    		// ? ->
 	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
 	            authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
