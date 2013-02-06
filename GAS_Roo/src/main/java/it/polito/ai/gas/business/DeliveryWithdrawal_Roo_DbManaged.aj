@@ -4,18 +4,25 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.User;
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     
-    @Column(name = "order")
-    @NotNull
-    private Integer DeliveryWithdrawal.order;
+    @ManyToOne
+    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
+    private Proposal DeliveryWithdrawal.order;
+    
+    @ManyToOne
+    @JoinColumn(name = "collector", referencedColumnName = "id")
+    private User DeliveryWithdrawal.collector;
     
     @Column(name = "delivery_date")
     @Temporal(TemporalType.DATE)
@@ -27,15 +34,20 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     @DateTimeFormat(style = "M-")
     private Date DeliveryWithdrawal.withdrawalDate;
     
-    @Column(name = "collector")
-    private Integer DeliveryWithdrawal.collector;
-    
-    public Integer DeliveryWithdrawal.getOrder() {
+    public Proposal DeliveryWithdrawal.getOrder() {
         return order;
     }
     
-    public void DeliveryWithdrawal.setOrder(Integer order) {
+    public void DeliveryWithdrawal.setOrder(Proposal order) {
         this.order = order;
+    }
+    
+    public User DeliveryWithdrawal.getCollector() {
+        return collector;
+    }
+    
+    public void DeliveryWithdrawal.setCollector(User collector) {
+        this.collector = collector;
     }
     
     public Date DeliveryWithdrawal.getDeliveryDate() {
@@ -52,14 +64,6 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     
     public void DeliveryWithdrawal.setWithdrawalDate(Date withdrawalDate) {
         this.withdrawalDate = withdrawalDate;
-    }
-    
-    public Integer DeliveryWithdrawal.getCollector() {
-        return collector;
-    }
-    
-    public void DeliveryWithdrawal.setCollector(Integer collector) {
-        this.collector = collector;
     }
     
 }

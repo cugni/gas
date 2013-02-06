@@ -7,7 +7,7 @@
         <field:input field="cost" id="c_it_polito_ai_gas_business_Product_cost" required="true" validationMessageCode="field_invalid_number" z="fFymewZS4RDus8qqMoGMTjzuuqM="/>
         <field:input field="units" id="c_it_polito_ai_gas_business_Product_units" required="true" z="Q5Jj1Z4AysZuU4AfKr3qpl6kUsI="/>
         <field:input field="quantity" id="c_it_polito_ai_gas_business_Product_quantity" required="true" validationMessageCode="field_invalid_number" z="8/HT2S+5Ul9eQ6CaP3QpwfEd4CM="/>
-        <field:input field="producer" id="c_it_polito_ai_gas_business_Product_producer" required="true" validationMessageCode="field_invalid_integer" z="ovh41EitcWqJJfNJXlpZiVMHhAo="/>
+        <field:select field="producer" id="c_it_polito_ai_gas_business_Product_producer" itemValue="id" items="${users}" path="/users" z="66u26gXCzwFGtJHynkjZ3rTluZE="/>
         <field:input field="description" id="c_it_polito_ai_gas_business_Product_description" required="true" z="QnpzrITQ9ofVyTC8C3l6cR4QZUw="/>
         <field:input field="dimensions" id="c_it_polito_ai_gas_business_Product_dimensions" required="true" z="FZXUlZwoIdoi1HfQe9Q5iUQr9Hw="/>
         <field:input field="transportCost" id="c_it_polito_ai_gas_business_Product_transportCost" required="true" validationMessageCode="field_invalid_number" z="dYHaF5Bth8zBp035bqT0HW/l04Y="/>

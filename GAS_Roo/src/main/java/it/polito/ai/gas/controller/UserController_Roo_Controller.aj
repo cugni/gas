@@ -3,7 +3,10 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.Producer;
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.business.UserType;
@@ -99,7 +102,10 @@ privileged aspect UserController_Roo_Controller {
     void UserController.populateEditForm(Model uiModel, User user) {
         uiModel.addAttribute("user", user);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
         uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("producers", Producer.findAllProducers());
+        uiModel.addAttribute("products", Product.findAllProducts());
         uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
         uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }

@@ -3,11 +3,20 @@
 
 package it.polito.ai.gas.controller;
 
-import it.polito.ai.gas.business.ProducerInfo;
+import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.Producer;
+import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.UserType;
 import it.polito.ai.gas.controller.ProducerInfoController;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,25 +29,26 @@ import org.springframework.web.util.WebUtils;
 privileged aspect ProducerInfoController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String ProducerInfoController.create(@Valid ProducerInfo producerInfo, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String ProducerInfoController.create(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, producerInfo);
+            populateEditForm(uiModel, producer);
             return "producerinfoes/create";
         }
         uiModel.asMap().clear();
-        producerInfo.persist();
-        return "redirect:/producerinfoes/" + encodeUrlPathSegment(producerInfo.getId().toString(), httpServletRequest);
+        producer.persist();
+        return "redirect:/producerinfoes/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String ProducerInfoController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new ProducerInfo());
+        populateEditForm(uiModel, new Producer());
         return "producerinfoes/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ProducerInfoController.show(@PathVariable("id") Integer id, Model uiModel) {
-        uiModel.addAttribute("producerinfo", ProducerInfo.findProducerInfo(id));
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("producer", Producer.findProducer(id));
         uiModel.addAttribute("itemId", id);
         return "producerinfoes/show";
     }
@@ -48,44 +58,57 @@ privileged aspect ProducerInfoController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("producerinfoes", ProducerInfo.findProducerInfoEntries(firstResult, sizeNo));
-            float nrOfPages = (float) ProducerInfo.countProducerInfoes() / sizeNo;
+            uiModel.addAttribute("producers", Producer.findProducerEntries(firstResult, sizeNo));
+            float nrOfPages = (float) Producer.countProducers() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("producerinfoes", ProducerInfo.findAllProducerInfoes());
+            uiModel.addAttribute("producers", Producer.findAllProducers());
         }
+        addDateTimeFormatPatterns(uiModel);
         return "producerinfoes/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String ProducerInfoController.update(@Valid ProducerInfo producerInfo, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String ProducerInfoController.update(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, producerInfo);
+            populateEditForm(uiModel, producer);
             return "producerinfoes/update";
         }
         uiModel.asMap().clear();
-        producerInfo.merge();
-        return "redirect:/producerinfoes/" + encodeUrlPathSegment(producerInfo.getId().toString(), httpServletRequest);
+        producer.merge();
+        return "redirect:/producerinfoes/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String ProducerInfoController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
-        populateEditForm(uiModel, ProducerInfo.findProducerInfo(id));
+        populateEditForm(uiModel, Producer.findProducer(id));
         return "producerinfoes/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String ProducerInfoController.delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        ProducerInfo producerInfo = ProducerInfo.findProducerInfo(id);
-        producerInfo.remove();
+        Producer producer = Producer.findProducer(id);
+        producer.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
         return "redirect:/producerinfoes";
     }
     
-    void ProducerInfoController.populateEditForm(Model uiModel, ProducerInfo producerInfo) {
-        uiModel.addAttribute("producerInfo", producerInfo);
+    void ProducerInfoController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("producer_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    }
+    
+    void ProducerInfoController.populateEditForm(Model uiModel, Producer producer) {
+        uiModel.addAttribute("producer", producer);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
+        uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("producers", Producer.findAllProducers());
+        uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
+        uiModel.addAttribute("users", User.findAllUsers());
+        uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }
     
     String ProducerInfoController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

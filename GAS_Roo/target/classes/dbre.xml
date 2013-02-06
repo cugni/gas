@@ -10,6 +10,14 @@
         <column name="delivery_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="withdrawal_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="collector" primaryKey="false" required="false" scale="0" size="10" type="4,INT"/>
+        <foreign-key foreignTable="proposal" name="order" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="order"/>
+        </foreign-key>
+        <foreign-key foreignTable="user" name="collector" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="collector"/>
+        </foreign-key>
         <unique name="PRIMARY">
             <unique-column name="id"/>
         </unique>
@@ -26,7 +34,7 @@
     <table name="message">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
         <column name="date" primaryKey="false" required="true" scale="0" size="10" type="91,DATE"/>
-        <column name="user" primaryKey="false" required="true" scale="0" size="20" type="12,VARCHAR"/>
+        <column name="user" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="order" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="text" primaryKey="false" required="false" scale="0" size="255" type="12,VARCHAR"/>
         <foreign-key foreignTable="user" name="fk_user" onDelete="none" onUpdate="none">
@@ -47,7 +55,7 @@
             <index-column name="order"/>
         </index>
     </table>
-    <table name="producer_info">
+    <table name="producer">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
         <column name="company_name" primaryKey="false" required="false" scale="0" size="40" type="12,VARCHAR"/>
         <column name="description" primaryKey="false" required="false" scale="0" size="40" type="12,VARCHAR"/>
@@ -58,6 +66,10 @@
         <column name="email" primaryKey="false" required="false" scale="0" size="30" type="12,VARCHAR"/>
         <column name="delegate" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="payment_mode" primaryKey="false" required="false" scale="0" size="20" type="12,VARCHAR"/>
+        <foreign-key foreignTable="user" name="fk_producer_info_users1" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="delegate"/>
+        </foreign-key>
         <unique name="PRIMARY">
             <unique-column name="id"/>
         </unique>
@@ -67,7 +79,7 @@
         <index name="FK586D393B21540C57">
             <index-column name="delegate"/>
         </index>
-        <index name="fk_producer_info_users1_idx">
+        <index name="fk_producer_users1_idx">
             <index-column name="delegate"/>
         </index>
     </table>
@@ -87,6 +99,10 @@
         <column name="max_to_buy_user" primaryKey="false" required="true" scale="0" size="12" type="7,FLOAT"/>
         <column name="available_from" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="available_to" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
+        <foreign-key foreignTable="user" name="fk_products_users" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="producer"/>
+        </foreign-key>
         <foreign-key foreignTable="proposal" name="fk_orders_products1" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>
             <reference foreign="product" local="id"/>
@@ -116,6 +132,10 @@
         <foreign-key foreignTable="product" name="fk_orders_products1" onDelete="none" onUpdate="none">
             <option key="exported" value="false"/>
             <reference foreign="id" local="product"/>
+        </foreign-key>
+        <foreign-key foreignTable="delivery_withdrawal" name="order" onDelete="none" onUpdate="none">
+            <option key="exported" value="true"/>
+            <reference foreign="order" local="id"/>
         </foreign-key>
         <foreign-key foreignTable="message" name="fk_order" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>
@@ -166,15 +186,26 @@
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
         <column name="username" primaryKey="false" required="true" scale="0" size="45" type="12,VARCHAR"/>
         <column name="password" primaryKey="false" required="true" scale="0" size="32" type="12,VARCHAR"/>
-        <column name="role" primaryKey="false" required="true" scale="0" size="20" type="12,VARCHAR"/>
+        <column name="role" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="name" primaryKey="false" required="true" scale="0" size="20" type="12,VARCHAR"/>
         <column name="surname" primaryKey="false" required="true" scale="0" size="20" type="12,VARCHAR"/>
         <column name="birth_date" primaryKey="false" required="true" scale="0" size="10" type="91,DATE"/>
-        <column name="producer_info" primaryKey="false" required="false" scale="0" size="10" type="4,INT"/>
         <column name="approved" primaryKey="false" required="false" scale="0" size="0" type="-7,BIT"/>
+        <foreign-key foreignTable="delivery_withdrawal" name="collector" onDelete="none" onUpdate="none">
+            <option key="exported" value="true"/>
+            <reference foreign="collector" local="id"/>
+        </foreign-key>
         <foreign-key foreignTable="message" name="fk_user" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>
             <reference foreign="user" local="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="producer" name="fk_producer_info_users1" onDelete="none" onUpdate="none">
+            <option key="exported" value="true"/>
+            <reference foreign="delegate" local="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="product" name="fk_products_users" onDelete="none" onUpdate="none">
+            <option key="exported" value="true"/>
+            <reference foreign="producer" local="id"/>
         </foreign-key>
         <foreign-key foreignTable="purchase_request" name="diamine" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>
@@ -186,14 +217,5 @@
         <unique name="username_UNIQUE">
             <unique-column name="username"/>
         </unique>
-        <index name="FK6A68E0899FFCF4F">
-            <index-column name="producer_info"/>
-        </index>
-        <index name="FK6A68E082C7914A2">
-            <index-column name="producer_info"/>
-        </index>
-        <index name="producer info_idx">
-            <index-column name="producer_info"/>
-        </index>
     </table>
 </database>

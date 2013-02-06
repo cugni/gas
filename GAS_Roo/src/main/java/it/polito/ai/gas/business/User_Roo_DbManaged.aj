@@ -3,7 +3,10 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.Producer;
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
@@ -17,8 +20,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect User_Roo_DbManaged {
     
+    @OneToMany(mappedBy = "collector")
+    private Set<DeliveryWithdrawal> User.deliveryWithdrawals;
+    
     @OneToMany(mappedBy = "user")
     private Set<Message> User.messages;
+    
+    @OneToMany(mappedBy = "delegate")
+    private Set<Producer> User.producers;
+    
+    @OneToMany(mappedBy = "producer")
+    private Set<Product> User.products;
     
     @OneToMany(mappedBy = "acquirer")
     private Set<PurchaseRequest> User.purchaseRequests;
@@ -45,11 +57,16 @@ privileged aspect User_Roo_DbManaged {
     @DateTimeFormat(style = "M-")
     private Date User.birthDate;
     
-    @Column(name = "producer_info")
-    private Integer User.producerInfo;
-    
     @Column(name = "approved")
     private Boolean User.approved;
+    
+    public Set<DeliveryWithdrawal> User.getDeliveryWithdrawals() {
+        return deliveryWithdrawals;
+    }
+    
+    public void User.setDeliveryWithdrawals(Set<DeliveryWithdrawal> deliveryWithdrawals) {
+        this.deliveryWithdrawals = deliveryWithdrawals;
+    }
     
     public Set<Message> User.getMessages() {
         return messages;
@@ -57,6 +74,22 @@ privileged aspect User_Roo_DbManaged {
     
     public void User.setMessages(Set<Message> messages) {
         this.messages = messages;
+    }
+    
+    public Set<Producer> User.getProducers() {
+        return producers;
+    }
+    
+    public void User.setProducers(Set<Producer> producers) {
+        this.producers = producers;
+    }
+    
+    public Set<Product> User.getProducts() {
+        return products;
+    }
+    
+    public void User.setProducts(Set<Product> products) {
+        this.products = products;
     }
     
     public Set<PurchaseRequest> User.getPurchaseRequests() {
@@ -105,14 +138,6 @@ privileged aspect User_Roo_DbManaged {
     
     public void User.setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
-    }
-    
-    public Integer User.getProducerInfo() {
-        return producerInfo;
-    }
-    
-    public void User.setProducerInfo(Integer producerInfo) {
-        this.producerInfo = producerInfo;
     }
     
     public Boolean User.getApproved() {

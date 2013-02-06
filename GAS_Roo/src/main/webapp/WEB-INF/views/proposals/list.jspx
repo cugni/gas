@@ -7,7 +7,6 @@
             <table:column id="c_it_polito_ai_gas_business_Proposal_product" property="product" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>
             <table:column date="true" dateTimePattern="${proposal_startdate_date_format}" id="c_it_polito_ai_gas_business_Proposal_startDate" property="startDate" z="P6HutKXugIutHXmGNJ3GvCGmCZE="/>
             <table:column date="true" dateTimePattern="${proposal_enddate_date_format}" id="c_it_polito_ai_gas_business_Proposal_endDate" property="endDate" z="sFDHumKaKX9SqdAulwCq6MizeMk="/>
-            <table:column id="c_it_polito_ai_gas_business_Proposal_minReached" property="minReached" z="81vs5orzfZQDgc/uG23flvWqE4k="/>
         </table:table>
     </page:list>
 </div>

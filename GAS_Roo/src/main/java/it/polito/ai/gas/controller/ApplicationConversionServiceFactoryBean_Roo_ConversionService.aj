@@ -5,7 +5,7 @@ package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.ProducerInfo;
+import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
@@ -22,7 +22,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<DeliveryWithdrawal, String> ApplicationConversionServiceFactoryBean.getDeliveryWithdrawalToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.DeliveryWithdrawal, java.lang.String>() {
             public String convert(DeliveryWithdrawal deliveryWithdrawal) {
-                return new StringBuilder().append(deliveryWithdrawal.getOrder()).append(' ').append(deliveryWithdrawal.getDeliveryDate()).append(' ').append(deliveryWithdrawal.getWithdrawalDate()).append(' ').append(deliveryWithdrawal.getCollector()).toString();
+                return new StringBuilder().append(deliveryWithdrawal.getDeliveryDate()).append(' ').append(deliveryWithdrawal.getWithdrawalDate()).toString();
             }
         };
     }
@@ -67,26 +67,26 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<ProducerInfo, String> ApplicationConversionServiceFactoryBean.getProducerInfoToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.ProducerInfo, java.lang.String>() {
-            public String convert(ProducerInfo producerInfo) {
-                return new StringBuilder().append(producerInfo.getCompanyName()).append(' ').append(producerInfo.getDescription()).append(' ').append(producerInfo.getContact()).append(' ').append(producerInfo.getAddress()).toString();
+    public Converter<Producer, String> ApplicationConversionServiceFactoryBean.getProducerToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Producer, java.lang.String>() {
+            public String convert(Producer producer) {
+                return new StringBuilder().append(producer.getUsername()).append(' ').append(producer.getPassword()).append(' ').append(producer.getName()).append(' ').append(producer.getSurname()).toString();
             }
         };
     }
     
-    public Converter<Integer, ProducerInfo> ApplicationConversionServiceFactoryBean.getIdToProducerInfoConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.ProducerInfo>() {
-            public it.polito.ai.gas.business.ProducerInfo convert(java.lang.Integer id) {
-                return ProducerInfo.findProducerInfo(id);
+    public Converter<Integer, Producer> ApplicationConversionServiceFactoryBean.getIdToProducerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.Producer>() {
+            public it.polito.ai.gas.business.Producer convert(java.lang.Integer id) {
+                return Producer.findProducer(id);
             }
         };
     }
     
-    public Converter<String, ProducerInfo> ApplicationConversionServiceFactoryBean.getStringToProducerInfoConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.ProducerInfo>() {
-            public it.polito.ai.gas.business.ProducerInfo convert(String id) {
-                return getObject().convert(getObject().convert(id, Integer.class), ProducerInfo.class);
+    public Converter<String, Producer> ApplicationConversionServiceFactoryBean.getStringToProducerConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.Producer>() {
+            public it.polito.ai.gas.business.Producer convert(String id) {
+                return getObject().convert(getObject().convert(id, Integer.class), Producer.class);
             }
         };
     }
@@ -194,9 +194,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getMessageToStringConverter());
         registry.addConverter(getIdToMessageConverter());
         registry.addConverter(getStringToMessageConverter());
-        registry.addConverter(getProducerInfoToStringConverter());
-        registry.addConverter(getIdToProducerInfoConverter());
-        registry.addConverter(getStringToProducerInfoConverter());
+        registry.addConverter(getProducerToStringConverter());
+        registry.addConverter(getIdToProducerConverter());
+        registry.addConverter(getStringToProducerConverter());
         registry.addConverter(getProductToStringConverter());
         registry.addConverter(getIdToProductConverter());
         registry.addConverter(getStringToProductConverter());

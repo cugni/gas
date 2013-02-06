@@ -3,6 +3,7 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
@@ -19,6 +20,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Proposal_Roo_DbManaged {
+    
+    @OneToMany(mappedBy = "order")
+    private Set<DeliveryWithdrawal> Proposal.deliveryWithdrawals;
     
     @OneToMany(mappedBy = "order")
     private Set<Message> Proposal.messages;
@@ -45,6 +49,14 @@ privileged aspect Proposal_Roo_DbManaged {
     @Column(name = "min_reached")
     @NotNull
     private boolean Proposal.minReached;
+    
+    public Set<DeliveryWithdrawal> Proposal.getDeliveryWithdrawals() {
+        return deliveryWithdrawals;
+    }
+    
+    public void Proposal.setDeliveryWithdrawals(Set<DeliveryWithdrawal> deliveryWithdrawals) {
+        this.deliveryWithdrawals = deliveryWithdrawals;
+    }
     
     public Set<Message> Proposal.getMessages() {
         return messages;

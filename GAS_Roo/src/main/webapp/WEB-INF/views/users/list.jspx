@@ -6,9 +6,6 @@
         <table:table data="${users}" id="l_it_polito_ai_gas_business_User" path="/users" z="SMzHymDdfI2+caufHVdU824Phj8=">
             <!-- <table:column id="c_it_polito_ai_gas_business_User_password" property="password" z="8gq1QvUEfeA+VZ+CWXDR8XEV7QM="/> -->
             <table:column id="c_it_polito_ai_gas_business_User_username" property="username" z="mXPs+h4XXGJow36lZZwNvV0lo6E="/>
-            <table:column id="c_it_polito_ai_gas_business_User_password" property="password" z="8gq1QvUEfeA+VZ+CWXDR8XEV7QM="/>
-            <table:column id="c_it_polito_ai_gas_business_User_name" property="name" z="+HlZttDQMgX36+Dyk6cvucK9l6o="/>
-            <table:column id="c_it_polito_ai_gas_business_User_surname" property="surname" z="aGwT29BiB8Nll0Yo9BPZlNmHOQQ="/>
         </table:table>
     </page:list>
 </div>

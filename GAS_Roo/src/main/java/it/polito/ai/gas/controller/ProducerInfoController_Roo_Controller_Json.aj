@@ -3,7 +3,7 @@
 
 package it.polito.ai.gas.controller;
 
-import it.polito.ai.gas.business.ProducerInfo;
+import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.controller.ProducerInfoController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -20,13 +20,13 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     @RequestMapping(value = "/{id}", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> ProducerInfoController.showJson(@PathVariable("id") Integer id) {
-        ProducerInfo producerInfo = ProducerInfo.findProducerInfo(id);
+        Producer producer = Producer.findProducer(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        if (producerInfo == null) {
+        if (producer == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<String>(producerInfo.toJson(), headers, HttpStatus.OK);
+        return new ResponseEntity<String>(producer.toJson(), headers, HttpStatus.OK);
     }
     
     @RequestMapping(headers = "Accept=application/json")
@@ -34,14 +34,14 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     public ResponseEntity<String> ProducerInfoController.listJson() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        List<ProducerInfo> result = ProducerInfo.findAllProducerInfoes();
-        return new ResponseEntity<String>(ProducerInfo.toJsonArray(result), headers, HttpStatus.OK);
+        List<Producer> result = Producer.findAllProducers();
+        return new ResponseEntity<String>(Producer.toJsonArray(result), headers, HttpStatus.OK);
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> ProducerInfoController.createFromJson(@RequestBody String json) {
-        ProducerInfo producerInfo = ProducerInfo.fromJsonToProducerInfo(json);
-        producerInfo.persist();
+        Producer producer = Producer.fromJsonToProducer(json);
+        producer.persist();
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
@@ -49,8 +49,8 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> ProducerInfoController.createFromJsonArray(@RequestBody String json) {
-        for (ProducerInfo producerInfo: ProducerInfo.fromJsonArrayToProducerInfoes(json)) {
-            producerInfo.persist();
+        for (Producer producer: Producer.fromJsonArrayToProducers(json)) {
+            producer.persist();
         }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
@@ -61,8 +61,8 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     public ResponseEntity<String> ProducerInfoController.updateFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        ProducerInfo producerInfo = ProducerInfo.fromJsonToProducerInfo(json);
-        if (producerInfo.merge() == null) {
+        Producer producer = Producer.fromJsonToProducer(json);
+        if (producer.merge() == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<String>(headers, HttpStatus.OK);
@@ -72,8 +72,8 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     public ResponseEntity<String> ProducerInfoController.updateFromJsonArray(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        for (ProducerInfo producerInfo: ProducerInfo.fromJsonArrayToProducerInfoes(json)) {
-            if (producerInfo.merge() == null) {
+        for (Producer producer: Producer.fromJsonArrayToProducers(json)) {
+            if (producer.merge() == null) {
                 return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
             }
         }
@@ -82,13 +82,13 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
     public ResponseEntity<String> ProducerInfoController.deleteFromJson(@PathVariable("id") Integer id) {
-        ProducerInfo producerInfo = ProducerInfo.findProducerInfo(id);
+        Producer producer = Producer.findProducer(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-        if (producerInfo == null) {
+        if (producer == null) {
             return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
         }
-        producerInfo.remove();
+        producer.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
     

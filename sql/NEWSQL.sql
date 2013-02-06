@@ -7,31 +7,6 @@ CREATE SCHEMA IF NOT EXISTS `GAS` DEFAULT CHARACTER SET latin1 ;
 USE `GAS` ;
 
 -- -----------------------------------------------------
--- Table `GAS`.`producer_info`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `GAS`.`producer_info` ;
-
-CREATE  TABLE IF NOT EXISTS `GAS`.`producer_info` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `company_name` VARCHAR(40) NULL DEFAULT NULL ,
-  `description` VARCHAR(40) NULL DEFAULT NULL ,
-  `contact` VARCHAR(20) NULL DEFAULT NULL ,
-  `address` VARCHAR(40) NULL DEFAULT NULL ,
-  `phone_number` VARCHAR(15) NULL DEFAULT NULL ,
-  `fax_number` VARCHAR(15) NULL DEFAULT NULL ,
-  `email` VARCHAR(30) NULL DEFAULT NULL ,
-  `delegate` INT NOT NULL ,
-  `payment_mode` VARCHAR(20) NULL DEFAULT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `FK586D393B3F42C404` (`delegate` ASC) ,
-  INDEX `FK586D393B21540C57` (`delegate` ASC) ,
-  INDEX `fk_producer_info_users1_idx` (`delegate` ASC) )
-ENGINE = MyISAM
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `GAS`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `GAS`.`user` ;
@@ -44,14 +19,10 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`user` (
   `name` VARCHAR(20) NOT NULL ,
   `surname` VARCHAR(20) NOT NULL ,
   `birth_date` DATE NOT NULL ,
-  `producer_info` INT(11) NULL DEFAULT NULL ,
   `approved` TINYINT(1) NULL DEFAULT false ,
   PRIMARY KEY (`id`) ,
-  INDEX `FK6A68E0899FFCF4F` (`producer_info` ASC) ,
-  INDEX `FK6A68E082C7914A2` (`producer_info` ASC) ,
-  INDEX `producer info_idx` (`producer_info` ASC) ,
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) )
-ENGINE = MyISAM
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -80,8 +51,13 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`product` (
   INDEX `FKC42BD16457C99462` (`producer` ASC) ,
   INDEX `FKC42BD164D298B611` (`producer` ASC) ,
   INDEX `FKC42BD164B4A9FE64` (`producer` ASC) ,
-  INDEX `fk_products_users_idx` (`producer` ASC) )
-ENGINE = MyISAM
+  INDEX `fk_products_users_idx` (`producer` ASC) ,
+  CONSTRAINT `fk_products_users`
+    FOREIGN KEY (`producer` )
+    REFERENCES `GAS`.`user` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
@@ -123,8 +99,48 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`delivery_withdrawal` (
   PRIMARY KEY (`id`) ,
   INDEX `FKB14A75E060C1FB5F` (`collector` ASC) ,
   INDEX `order_idx` (`order` ASC) ,
-  INDEX `collector_idx` (`collector` ASC) )
-ENGINE = MyISAM
+  INDEX `collector_idx` (`collector` ASC) ,
+  CONSTRAINT `order`
+    FOREIGN KEY (`order` )
+    REFERENCES `GAS`.`proposal` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `collector`
+    FOREIGN KEY (`collector` )
+    REFERENCES `GAS`.`user` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `GAS`.`producer`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `GAS`.`producer` ;
+
+CREATE  TABLE IF NOT EXISTS `GAS`.`producer` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `company_name` VARCHAR(40) NULL DEFAULT NULL ,
+  `description` VARCHAR(40) NULL DEFAULT NULL ,
+  `contact` VARCHAR(20) NULL DEFAULT NULL ,
+  `address` VARCHAR(40) NULL DEFAULT NULL ,
+  `phone_number` VARCHAR(15) NULL DEFAULT NULL ,
+  `fax_number` VARCHAR(15) NULL DEFAULT NULL ,
+  `email` VARCHAR(30) NULL DEFAULT NULL ,
+  `delegate` INT NOT NULL ,
+  `payment_mode` VARCHAR(20) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `FK586D393B3F42C404` (`delegate` ASC) ,
+  INDEX `FK586D393B21540C57` (`delegate` ASC) ,
+  INDEX `fk_producer_users1_idx` (`delegate` ASC) ,
+  CONSTRAINT `fk_producer_info_users1`
+    FOREIGN KEY (`delegate` )
+    REFERENCES `GAS`.`user` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = latin1;
 
 

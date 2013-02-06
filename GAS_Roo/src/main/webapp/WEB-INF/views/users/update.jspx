@@ -11,7 +11,9 @@
         <field:input field="name" id="c_it_polito_ai_gas_business_User_name" required="true" z="Qd0STxJsC8qbikimVCtHnu913aA="/>
         <field:input field="surname" id="c_it_polito_ai_gas_business_User_surname" required="true" z="6RZ0vG9oj8ZJ1mubyNU6BlrqeAQ="/>
         <field:datetime dateTimePattern="${user_birthdate_date_format}" field="birthDate" id="c_it_polito_ai_gas_business_User_birthDate" required="true" z="jNTHEPcjkQdiPeh0KxMf48jZGgU="/>
-        <field:input field="producerInfo" id="c_it_polito_ai_gas_business_User_producerInfo" validationMessageCode="field_invalid_integer" z="4YbtMw6D6g/VqcwDMjLf7pTeyBs="/>
         <field:checkbox field="approved" id="c_it_polito_ai_gas_business_User_approved" z="c8IHjgvgtj1NDGWn2dx3XExSteQ="/>
+        <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_User_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" z="C8Nnht+XtgPBV3QlXQztjRGBh3k="/>
+        <field:simple field="producers" id="c_it_polito_ai_gas_business_User_producers" messageCode="entity_reference_not_managed" messageCodeAttribute="Producer" z="uoM3kP4voJzfuC2oRRKisEtkgec="/>
+        <field:simple field="products" id="c_it_polito_ai_gas_business_User_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="lXL6+wiof55bTXTXRevOLufGkHU="/>
     </form:update>
 </div>

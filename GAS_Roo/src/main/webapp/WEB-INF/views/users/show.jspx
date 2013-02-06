@@ -9,7 +9,6 @@
         <field:display field="name" id="s_it_polito_ai_gas_business_User_name" object="${user}" z="CIOy90VGUrO36kk/OidDSd/Xy18="/>
         <field:display field="surname" id="s_it_polito_ai_gas_business_User_surname" object="${user}" z="wMLDAlD0oBmNmVssG1xsxAeKK94="/>
         <field:display date="true" dateTimePattern="${user_birthdate_date_format}" field="birthDate" id="s_it_polito_ai_gas_business_User_birthDate" object="${user}" z="OQIY/Z3ecyJsQ3W8Y2IJZt2CyWo="/>
-        <field:display field="producerInfo" id="s_it_polito_ai_gas_business_User_producerInfo" object="${user}" z="oZF6lKFwjMakl3Ty73E1UU+2obI="/>
         <field:display field="approved" id="s_it_polito_ai_gas_business_User_approved" object="${user}" z="oeUAgpzbNvIMWs4b3fyb26xAfmE="/>
     </page:show>
 </div>
