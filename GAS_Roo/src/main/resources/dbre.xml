@@ -3,20 +3,20 @@
     <option key="moduleName" value=""/>
     <option key="activeRecord" value="true"/>
     <option key="includeNonPortableAttributes" value="false"/>
-    <option key="testAutomatically" value="true"/>
+    <option key="testAutomatically" value="false"/>
     <table name="delivery_withdrawal">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
         <column name="order" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="delivery_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="withdrawal_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="collector" primaryKey="false" required="false" scale="0" size="10" type="4,INT"/>
-        <foreign-key foreignTable="proposal" name="order" onDelete="none" onUpdate="none">
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="order"/>
-        </foreign-key>
         <foreign-key foreignTable="user" name="collector" onDelete="none" onUpdate="none">
             <option key="exported" value="false"/>
             <reference foreign="id" local="collector"/>
+        </foreign-key>
+        <foreign-key foreignTable="proposal" name="order" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="order"/>
         </foreign-key>
         <unique name="PRIMARY">
             <unique-column name="id"/>
@@ -37,13 +37,13 @@
         <column name="user" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="order" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="text" primaryKey="false" required="false" scale="0" size="255" type="12,VARCHAR"/>
-        <foreign-key foreignTable="user" name="fk_user" onDelete="none" onUpdate="none">
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="user"/>
-        </foreign-key>
         <foreign-key foreignTable="proposal" name="fk_order" onDelete="none" onUpdate="none">
             <option key="exported" value="false"/>
             <reference foreign="id" local="order"/>
+        </foreign-key>
+        <foreign-key foreignTable="user" name="fk_user" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="user"/>
         </foreign-key>
         <unique name="PRIMARY">
             <unique-column name="id"/>
@@ -161,13 +161,13 @@
         <column name="acquirer" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="quantity" primaryKey="false" required="true" scale="0" size="12" type="7,FLOAT"/>
         <column name="received" primaryKey="false" required="false" scale="0" size="0" type="-7,BIT"/>
-        <foreign-key foreignTable="proposal" name="fk_purchase_orders_orders1" onDelete="none" onUpdate="none">
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="proposal"/>
-        </foreign-key>
         <foreign-key foreignTable="user" name="diamine" onDelete="none" onUpdate="none">
             <option key="exported" value="false"/>
             <reference foreign="id" local="acquirer"/>
+        </foreign-key>
+        <foreign-key foreignTable="proposal" name="fk_purchase_orders_orders1" onDelete="none" onUpdate="none">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="proposal"/>
         </foreign-key>
         <unique name="PRIMARY">
             <unique-column name="id"/>
