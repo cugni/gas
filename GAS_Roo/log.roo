@@ -147,3 +147,7 @@ addon install id --searchResultId 01
 database reverse engineer --schema GAS
 database reverse engineer --schema GAS
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 13:13:21
+web mvc view --path /user --title Register --viewName register
+web mvc view --path user --title Register --viewName register
+web mvc view --path users --title Register --viewName register
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 14:17:11

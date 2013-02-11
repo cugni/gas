@@ -46,18 +46,20 @@
                     <menu:item id="i_message_new" messageCode="global_menu_new" url="/messages?form" z="6ME+t1wCXxIe0ueapV28lZ5YUi0="/>
                     <menu:item id="i_message_list" messageCode="global_menu_list" url="/messages?page=1&amp;size=${empty param.size ? 10 : param.size}" z="eGv0nXC/JpwInH30nZdjM2e3PxE="/>
                 </menu:category>
-                <menu:category id="c_producerinfo" z="ioGKJX8EiMM2xRZrxLLlFB0x1xI=">
-                    <menu:item id="i_producerinfo_new" messageCode="global_menu_new" url="/producerinfoes?form" z="I6APDRz4VlQ78bGjbMxC9FpGrRc="/>
-                    <menu:item id="i_producerinfo_list" messageCode="global_menu_list" url="/producerinfoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Op6H4S+HKa6jD3liqTvbwK53jNg="/>
+                <menu:category id="c_producer" z="ioGKJX8EiMM2xRZrxLLlFB0x1xI=">
+                    <menu:item id="i_producer_new" messageCode="global_menu_new" url="/producers?form" z="I6APDRz4VlQ78bGjbMxC9FpGrRc="/>
+                    <menu:item id="i_producer_list" messageCode="global_menu_list" url="/producers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Op6H4S+HKa6jD3liqTvbwK53jNg="/>
                 </menu:category>
             </div>
             <menu:category id="c_producer" z="KeWK2wm/jJeEIu2+gOkYbZDbXr8=">
-                <menu:item id="i_producer_new" messageCode="global_menu_new" url="/producerinfoes?form" z="czgJoTF6rtEuH1zOgHRBmH+6MX0="/>
-                <menu:item id="i_producer_list" messageCode="global_menu_list" url="/producerinfoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="crV2ek+qiwz70Swfk6D1eL4OeGU="/>
+                <menu:item id="i_producer_new" messageCode="global_menu_new" url="/producers?form" z="czgJoTF6rtEuH1zOgHRBmH+6MX0="/>
+                <menu:item id="i_producer_list" messageCode="global_menu_list" url="/producers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="crV2ek+qiwz70Swfk6D1eL4OeGU="/>
             </menu:category>
             <menu:category id="c_view" z="HjmI4Chx/kBYfS/6HjBLbCA+XpU=">
                 <menu:item id="i_view__userregister_id" messageCode="global_generic" url="/user/register" z="5dhkTOEibCr0rJjWdZIxWYIYCck="/>
                 <menu:item id="i_view_register_id" messageCode="global_generic" url="/register" z="Nwqyvtg5D2KmlOU1fCd8YXGBqMM="/>
+                <menu:item id="i_view___userregister_id" messageCode="global_generic" url="//user/register" z="U7p1X5PyMZw4fLpeFYaq4ccEN+8="/>
+                <menu:item id="i_view__usersregister_id" messageCode="global_generic" url="/users/register" z="7vh93+NlCARbRvUlATOIabuJrpI="/>
             </menu:category>
         </menu:menu>
     </sec:authorize>

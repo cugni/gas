@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RooWebJson(jsonObject = User.class)
 public class UserController {
 	
-	@RequestMapping(params = "register-form", produces = "text/html")
+	@RequestMapping(params = "register", produces = "text/html")
     public String createRegisterForm(Model uiModel) {
         populateEditForm(uiModel, new User());
         return "users/register";

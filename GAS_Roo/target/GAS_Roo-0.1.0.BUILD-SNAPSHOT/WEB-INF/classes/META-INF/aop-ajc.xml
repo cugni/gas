@@ -11,6 +11,7 @@
 <aspect name="it.polito.ai.gas.controller.ProductController_Roo_Controller_Json"/>
 <aspect name="it.polito.ai.gas.business.PurchaseRequest_Roo_Json"/>
 <aspect name="it.polito.ai.gas.business.User_Roo_ToString"/>
+<aspect name="it.polito.ai.gas.controller.ProducerController_Roo_Controller_Json"/>
 <aspect name="it.polito.ai.gas.business.DeliveryWithdrawal_Roo_DbManaged"/>
 <aspect name="it.polito.ai.gas.business.User_Roo_Jpa_ActiveRecord"/>
 <aspect name="it.polito.ai.gas.controller.ApplicationConversionServiceFactoryBean_Roo_ConversionService"/>
@@ -41,14 +42,13 @@
 <aspect name="it.polito.ai.gas.business.Product_Roo_Jpa_Entity"/>
 <aspect name="it.polito.ai.gas.business.PurchaseRequest_Roo_DbManaged"/>
 <aspect name="it.polito.ai.gas.business.Product_Roo_Json"/>
-<aspect name="it.polito.ai.gas.controller.ProducerInfoController_Roo_Controller_Json"/>
 <aspect name="it.polito.ai.gas.business.DeliveryWithdrawal_Roo_Configurable"/>
 <aspect name="it.polito.ai.gas.business.Product_Roo_DbManaged"/>
 <aspect name="it.polito.ai.gas.business.PurchaseRequest_Roo_Jpa_Entity"/>
 <aspect name="it.polito.ai.gas.business.Product_Roo_Jpa_ActiveRecord"/>
+<aspect name="it.polito.ai.gas.controller.ProducerController_Roo_Controller"/>
 <aspect name="it.polito.ai.gas.business.DeliveryWithdrawal_Roo_ToString"/>
 <aspect name="it.polito.ai.gas.business.DeliveryWithdrawal_Roo_Jpa_ActiveRecord"/>
-<aspect name="it.polito.ai.gas.controller.ProducerInfoController_Roo_Controller"/>
 <aspect name="it.polito.ai.gas.business.Proposal_Roo_DbManaged"/>
 <aspect name="it.polito.ai.gas.business.Message_Roo_Jpa_ActiveRecord"/>
 <aspect name="it.polito.ai.gas.business.Producer_Roo_Configurable"/>

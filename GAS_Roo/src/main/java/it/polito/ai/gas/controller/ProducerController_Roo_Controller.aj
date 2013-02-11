@@ -10,7 +10,7 @@ import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.business.UserType;
-import it.polito.ai.gas.controller.ProducerInfoController;
+import it.polito.ai.gas.controller.ProducerController;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
@@ -26,35 +26,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-privileged aspect ProducerInfoController_Roo_Controller {
+privileged aspect ProducerController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String ProducerInfoController.create(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String ProducerController.create(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, producer);
-            return "producerinfoes/create";
+            return "producers/create";
         }
         uiModel.asMap().clear();
         producer.persist();
-        return "redirect:/producerinfoes/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
+        return "redirect:/producers/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
-    public String ProducerInfoController.createForm(Model uiModel) {
+    public String ProducerController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Producer());
-        return "producerinfoes/create";
+        return "producers/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String ProducerInfoController.show(@PathVariable("id") Integer id, Model uiModel) {
+    public String ProducerController.show(@PathVariable("id") Integer id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("producer", Producer.findProducer(id));
         uiModel.addAttribute("itemId", id);
-        return "producerinfoes/show";
+        return "producers/show";
     }
     
     @RequestMapping(produces = "text/html")
-    public String ProducerInfoController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String ProducerController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
@@ -65,41 +65,41 @@ privileged aspect ProducerInfoController_Roo_Controller {
             uiModel.addAttribute("producers", Producer.findAllProducers());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "producerinfoes/list";
+        return "producers/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String ProducerInfoController.update(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String ProducerController.update(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, producer);
-            return "producerinfoes/update";
+            return "producers/update";
         }
         uiModel.asMap().clear();
         producer.merge();
-        return "redirect:/producerinfoes/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
+        return "redirect:/producers/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String ProducerInfoController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
+    public String ProducerController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Producer.findProducer(id));
-        return "producerinfoes/update";
+        return "producers/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String ProducerInfoController.delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String ProducerController.delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Producer producer = Producer.findProducer(id);
         producer.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/producerinfoes";
+        return "redirect:/producers";
     }
     
-    void ProducerInfoController.addDateTimeFormatPatterns(Model uiModel) {
+    void ProducerController.addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("producer_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    void ProducerInfoController.populateEditForm(Model uiModel, Producer producer) {
+    void ProducerController.populateEditForm(Model uiModel, Producer producer) {
         uiModel.addAttribute("producer", producer);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
@@ -111,7 +111,7 @@ privileged aspect ProducerInfoController_Roo_Controller {
         uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }
     
-    String ProducerInfoController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    String ProducerController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;

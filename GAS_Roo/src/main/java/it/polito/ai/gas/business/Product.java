@@ -12,5 +12,4 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 public class Product {
-
 }

@@ -4,7 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Producer;
-import it.polito.ai.gas.controller.ProducerInfoController;
+import it.polito.ai.gas.controller.ProducerController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-privileged aspect ProducerInfoController_Roo_Controller_Json {
+privileged aspect ProducerController_Roo_Controller_Json {
     
     @RequestMapping(value = "/{id}", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> ProducerInfoController.showJson(@PathVariable("id") Integer id) {
+    public ResponseEntity<String> ProducerController.showJson(@PathVariable("id") Integer id) {
         Producer producer = Producer.findProducer(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
@@ -31,7 +31,7 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     
     @RequestMapping(headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> ProducerInfoController.listJson() {
+    public ResponseEntity<String> ProducerController.listJson() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         List<Producer> result = Producer.findAllProducers();
@@ -39,7 +39,7 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     }
     
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> ProducerInfoController.createFromJson(@RequestBody String json) {
+    public ResponseEntity<String> ProducerController.createFromJson(@RequestBody String json) {
         Producer producer = Producer.fromJsonToProducer(json);
         producer.persist();
         HttpHeaders headers = new HttpHeaders();
@@ -48,7 +48,7 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
-    public ResponseEntity<String> ProducerInfoController.createFromJsonArray(@RequestBody String json) {
+    public ResponseEntity<String> ProducerController.createFromJsonArray(@RequestBody String json) {
         for (Producer producer: Producer.fromJsonArrayToProducers(json)) {
             producer.persist();
         }
@@ -58,7 +58,7 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     }
     
     @RequestMapping(method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> ProducerInfoController.updateFromJson(@RequestBody String json) {
+    public ResponseEntity<String> ProducerController.updateFromJson(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         Producer producer = Producer.fromJsonToProducer(json);
@@ -69,7 +69,7 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     }
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> ProducerInfoController.updateFromJsonArray(@RequestBody String json) {
+    public ResponseEntity<String> ProducerController.updateFromJsonArray(@RequestBody String json) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         for (Producer producer: Producer.fromJsonArrayToProducers(json)) {
@@ -81,7 +81,7 @@ privileged aspect ProducerInfoController_Roo_Controller_Json {
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
-    public ResponseEntity<String> ProducerInfoController.deleteFromJson(@PathVariable("id") Integer id) {
+    public ResponseEntity<String> ProducerController.deleteFromJson(@PathVariable("id") Integer id) {
         Producer producer = Producer.findProducer(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");

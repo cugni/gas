@@ -16,7 +16,6 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Product.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ApplicationConversionServiceFactoryBean.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Proposal_Roo_Jpa_Entity.aj
-/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerInfoController_Roo_Controller.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Producer_Roo_DbManaged.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Proposal_Roo_Jpa_ActiveRecord.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/DeliveryWithdrawal_Roo_Jpa_ActiveRecord.aj
@@ -30,6 +29,7 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Message_Roo_Configurable.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProductController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProposalController_Roo_Controller.aj
+/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerController_Roo_Controller.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/PurchaseRequest_Roo_Configurable.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ApplicationConversionServiceFactoryBean_Roo_ConversionService.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Product_Roo_Jpa_Entity.aj
@@ -37,7 +37,6 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Proposal.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Proposal_Roo_Json.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Producer_Roo_Json.aj
-/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerInfoController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/UserController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Producer_Roo_Jpa_Entity.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/DeliveryWithdrawalController_Roo_Controller_Json.aj
@@ -54,12 +53,13 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/PurchaseRequest_Roo_ToString.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/User.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Product_Roo_Jpa_ActiveRecord.aj
+/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerController_Roo_Controller_Json.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Producer_Roo_ToString.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProductController_Roo_Controller_Json.aj
-/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerInfoController_Roo_Controller_Json.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/PurchaseRequest_Roo_JavaBean.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProductController_Roo_Controller.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Message_Roo_DbManaged.aj
+/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/PurchaseRequest.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/User_Roo_Finder.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/MessageController_Roo_Controller_Json.aj
