@@ -16,4 +16,7 @@
 <definition extends="default" name="users/register">
         <put-attribute name="body" value="/WEB-INF/views/users/register.jspx"/>
     </definition>
+<definition extends="default" name="users/success">
+        <put-attribute name="body" value="/WEB-INF/views/users/success.jspx"/>
+    </definition>
 </tiles-definitions>

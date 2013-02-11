@@ -151,3 +151,7 @@ web mvc view --path /user --title Register --viewName register
 web mvc view --path user --title Register --viewName register
 web mvc view --path users --title Register --viewName register
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 14:17:11
+web mvc view --path user --viewName success --title Success
+web mvc view --path users --viewName success --title Success
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 15:43:18
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-11 16:01:42

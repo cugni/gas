@@ -37,6 +37,7 @@ public class UserController {
         }
         uiModel.asMap().clear();
         user.persist();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        uiModel.addAttribute("username", user.getUsername());
+        return "redirect:/users/success";
     }
 }
