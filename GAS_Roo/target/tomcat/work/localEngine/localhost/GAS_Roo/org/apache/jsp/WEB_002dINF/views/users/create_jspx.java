@@ -18,9 +18,9 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     _jspx_dependants.add("/WEB-INF/tags/form/fields/input.tagx");
     _jspx_dependants.add("/WEB-INF/tags/form/fields/select.tagx");
     _jspx_dependants.add("/WEB-INF/tags/form/fields/reference.tagx");
+    _jspx_dependants.add("/WEB-INF/tags/form/fields/simple.tagx");
     _jspx_dependants.add("/WEB-INF/tags/form/fields/datetime.tagx");
     _jspx_dependants.add("/WEB-INF/tags/form/fields/checkbox.tagx");
-    _jspx_dependants.add("/WEB-INF/tags/form/fields/simple.tagx");
     _jspx_dependants.add("/WEB-INF/tags/form/dependency.tagx");
   }
 
@@ -115,15 +115,161 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     _jspx_th_field_005finput_005f0.setJspContext(_jspx_page_context);
     _jspx_th_field_005finput_005f0.setParent(_jspx_parent);
     // /WEB-INF/views/users/create.jspx(6,136) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f0.setZ("6QO2uQk2hNhRwRalFQ+E3gvtC7k=");
+    _jspx_th_field_005finput_005f0.setZ("user-managed");
+    // /WEB-INF/views/users/create.jspx(6,136) name = type type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005finput_005f0.setType("password");
     // /WEB-INF/views/users/create.jspx(6,136) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f0.setRequired(new Boolean(true));
     // /WEB-INF/views/users/create.jspx(6,136) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f0.setId("c_it_polito_ai_gas_business_User_username");
+    _jspx_th_field_005finput_005f0.setId("c_it_polito_ai_gas_business_User_password");
     // /WEB-INF/views/users/create.jspx(6,136) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f0.setField("username");
+    _jspx_th_field_005finput_005f0.setField("password");
     _jspx_th_field_005finput_005f0.doTag();
     org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005finput_005f0);
+    return false;
+  }
+
+  private boolean _jspx_meth_field_005fselect_005f0(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  field:select
+    org.apache.jsp.tag.web.form.fields.select_tagx _jspx_th_field_005fselect_005f0 = new org.apache.jsp.tag.web.form.fields.select_tagx();
+    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fselect_005f0);
+    _jspx_th_field_005fselect_005f0.setJspContext(_jspx_page_context);
+    _jspx_th_field_005fselect_005f0.setParent(_jspx_parent);
+    // /WEB-INF/views/users/create.jspx(7,151) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fselect_005f0.setZ("fZr67+GcShvk0ju8KE2uWBxRa+I=");
+    // /WEB-INF/views/users/create.jspx(7,151) name = path type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fselect_005f0.setPath("usertypes");
+    // /WEB-INF/views/users/create.jspx(7,151) name = items type = java.util.Collection reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fselect_005f0.setItems((java.util.Collection) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${usertypes}", java.util.Collection.class, (PageContext)_jspx_page_context, null, false));
+    // /WEB-INF/views/users/create.jspx(7,151) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fselect_005f0.setId("c_it_polito_ai_gas_business_User_role");
+    // /WEB-INF/views/users/create.jspx(7,151) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fselect_005f0.setField("role");
+    _jspx_th_field_005fselect_005f0.doTag();
+    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fselect_005f0);
+    return false;
+  }
+
+  private boolean _jspx_meth_field_005fsimple_005f0(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  field:simple
+    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f0 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
+    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f0);
+    _jspx_th_field_005fsimple_005f0.setJspContext(_jspx_page_context);
+    _jspx_th_field_005fsimple_005f0.setParent(_jspx_parent);
+    // /WEB-INF/views/users/create.jspx(8,229) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f0.setZ("C8Nnht+XtgPBV3QlXQztjRGBh3k=");
+    // /WEB-INF/views/users/create.jspx(8,229) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f0.setMessageCodeAttribute("Delivery Withdrawal");
+    // /WEB-INF/views/users/create.jspx(8,229) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f0.setMessageCode("entity_reference_not_managed");
+    // /WEB-INF/views/users/create.jspx(8,229) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f0.setId("c_it_polito_ai_gas_business_User_deliveryWithdrawals");
+    // /WEB-INF/views/users/create.jspx(8,229) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f0.setField("deliveryWithdrawals");
+    _jspx_th_field_005fsimple_005f0.doTag();
+    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f0);
+    return false;
+  }
+
+  private boolean _jspx_meth_field_005fsimple_005f1(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  field:simple
+    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f1 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
+    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f1);
+    _jspx_th_field_005fsimple_005f1.setJspContext(_jspx_page_context);
+    _jspx_th_field_005fsimple_005f1.setParent(_jspx_parent);
+    // /WEB-INF/views/users/create.jspx(9,195) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f1.setZ("O0TNGe5HeAPMh6A82bRhCeWgje0=");
+    // /WEB-INF/views/users/create.jspx(9,195) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f1.setMessageCodeAttribute("Message");
+    // /WEB-INF/views/users/create.jspx(9,195) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f1.setMessageCode("entity_reference_not_managed");
+    // /WEB-INF/views/users/create.jspx(9,195) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f1.setId("c_it_polito_ai_gas_business_User_messages");
+    // /WEB-INF/views/users/create.jspx(9,195) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f1.setField("messages");
+    _jspx_th_field_005fsimple_005f1.doTag();
+    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f1);
+    return false;
+  }
+
+  private boolean _jspx_meth_field_005fsimple_005f2(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  field:simple
+    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f2 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
+    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f2);
+    _jspx_th_field_005fsimple_005f2.setJspContext(_jspx_page_context);
+    _jspx_th_field_005fsimple_005f2.setParent(_jspx_parent);
+    // /WEB-INF/views/users/create.jspx(10,198) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f2.setZ("uoM3kP4voJzfuC2oRRKisEtkgec=");
+    // /WEB-INF/views/users/create.jspx(10,198) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f2.setMessageCodeAttribute("Producer");
+    // /WEB-INF/views/users/create.jspx(10,198) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f2.setMessageCode("entity_reference_not_managed");
+    // /WEB-INF/views/users/create.jspx(10,198) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f2.setId("c_it_polito_ai_gas_business_User_producers");
+    // /WEB-INF/views/users/create.jspx(10,198) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f2.setField("producers");
+    _jspx_th_field_005fsimple_005f2.doTag();
+    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f2);
+    return false;
+  }
+
+  private boolean _jspx_meth_field_005fsimple_005f3(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  field:simple
+    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f3 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
+    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f3);
+    _jspx_th_field_005fsimple_005f3.setJspContext(_jspx_page_context);
+    _jspx_th_field_005fsimple_005f3.setParent(_jspx_parent);
+    // /WEB-INF/views/users/create.jspx(11,195) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f3.setZ("lXL6+wiof55bTXTXRevOLufGkHU=");
+    // /WEB-INF/views/users/create.jspx(11,195) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f3.setMessageCodeAttribute("Product");
+    // /WEB-INF/views/users/create.jspx(11,195) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f3.setMessageCode("entity_reference_not_managed");
+    // /WEB-INF/views/users/create.jspx(11,195) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f3.setId("c_it_polito_ai_gas_business_User_products");
+    // /WEB-INF/views/users/create.jspx(11,195) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f3.setField("products");
+    _jspx_th_field_005fsimple_005f3.doTag();
+    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f3);
+    return false;
+  }
+
+  private boolean _jspx_meth_field_005fsimple_005f4(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
+          throws Throwable {
+    PageContext pageContext = _jspx_page_context;
+    JspWriter out = _jspx_page_context.getOut();
+    //  field:simple
+    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f4 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
+    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f4);
+    _jspx_th_field_005fsimple_005f4.setJspContext(_jspx_page_context);
+    _jspx_th_field_005fsimple_005f4.setParent(_jspx_parent);
+    // /WEB-INF/views/users/create.jspx(12,220) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f4.setZ("7PTJjWmxCOSq5kTqCCvU2ZSJoCM=");
+    // /WEB-INF/views/users/create.jspx(12,220) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f4.setMessageCodeAttribute("Purchase Request");
+    // /WEB-INF/views/users/create.jspx(12,220) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f4.setMessageCode("entity_reference_not_managed");
+    // /WEB-INF/views/users/create.jspx(12,220) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f4.setId("c_it_polito_ai_gas_business_User_purchaseRequests");
+    // /WEB-INF/views/users/create.jspx(12,220) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005fsimple_005f4.setField("purchaseRequests");
+    _jspx_th_field_005fsimple_005f4.doTag();
+    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f4);
     return false;
   }
 
@@ -136,16 +282,14 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005finput_005f1);
     _jspx_th_field_005finput_005f1.setJspContext(_jspx_page_context);
     _jspx_th_field_005finput_005f1.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(7,136) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f1.setZ("user-managed");
-    // /WEB-INF/views/users/create.jspx(7,136) name = type type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f1.setType("password");
-    // /WEB-INF/views/users/create.jspx(7,136) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(13,136) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005finput_005f1.setZ("6QO2uQk2hNhRwRalFQ+E3gvtC7k=");
+    // /WEB-INF/views/users/create.jspx(13,136) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f1.setRequired(new Boolean(true));
-    // /WEB-INF/views/users/create.jspx(7,136) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f1.setId("c_it_polito_ai_gas_business_User_password");
-    // /WEB-INF/views/users/create.jspx(7,136) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005finput_005f1.setField("password");
+    // /WEB-INF/views/users/create.jspx(13,136) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005finput_005f1.setId("c_it_polito_ai_gas_business_User_username");
+    // /WEB-INF/views/users/create.jspx(13,136) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    _jspx_th_field_005finput_005f1.setField("username");
     _jspx_th_field_005finput_005f1.doTag();
     org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005finput_005f1);
     return false;
@@ -160,13 +304,13 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005finput_005f2);
     _jspx_th_field_005finput_005f2.setJspContext(_jspx_page_context);
     _jspx_th_field_005finput_005f2.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(8,128) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(14,128) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f2.setZ("Qd0STxJsC8qbikimVCtHnu913aA=");
-    // /WEB-INF/views/users/create.jspx(8,128) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(14,128) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f2.setRequired(new Boolean(true));
-    // /WEB-INF/views/users/create.jspx(8,128) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(14,128) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f2.setId("c_it_polito_ai_gas_business_User_name");
-    // /WEB-INF/views/users/create.jspx(8,128) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(14,128) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f2.setField("name");
     _jspx_th_field_005finput_005f2.doTag();
     org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005finput_005f2);
@@ -182,40 +326,16 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005finput_005f3);
     _jspx_th_field_005finput_005f3.setJspContext(_jspx_page_context);
     _jspx_th_field_005finput_005f3.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(9,134) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(15,134) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f3.setZ("6RZ0vG9oj8ZJ1mubyNU6BlrqeAQ=");
-    // /WEB-INF/views/users/create.jspx(9,134) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(15,134) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f3.setRequired(new Boolean(true));
-    // /WEB-INF/views/users/create.jspx(9,134) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(15,134) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f3.setId("c_it_polito_ai_gas_business_User_surname");
-    // /WEB-INF/views/users/create.jspx(9,134) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(15,134) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005finput_005f3.setField("surname");
     _jspx_th_field_005finput_005f3.doTag();
     org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005finput_005f3);
-    return false;
-  }
-
-  private boolean _jspx_meth_field_005fselect_005f0(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  field:select
-    org.apache.jsp.tag.web.form.fields.select_tagx _jspx_th_field_005fselect_005f0 = new org.apache.jsp.tag.web.form.fields.select_tagx();
-    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fselect_005f0);
-    _jspx_th_field_005fselect_005f0.setJspContext(_jspx_page_context);
-    _jspx_th_field_005fselect_005f0.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(10,151) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fselect_005f0.setZ("fZr67+GcShvk0ju8KE2uWBxRa+I=");
-    // /WEB-INF/views/users/create.jspx(10,151) name = path type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fselect_005f0.setPath("usertypes");
-    // /WEB-INF/views/users/create.jspx(10,151) name = items type = java.util.Collection reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fselect_005f0.setItems((java.util.Collection) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${usertypes}", java.util.Collection.class, (PageContext)_jspx_page_context, null, false));
-    // /WEB-INF/views/users/create.jspx(10,151) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fselect_005f0.setId("c_it_polito_ai_gas_business_User_role");
-    // /WEB-INF/views/users/create.jspx(10,151) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fselect_005f0.setField("role");
-    _jspx_th_field_005fselect_005f0.doTag();
-    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fselect_005f0);
     return false;
   }
 
@@ -228,15 +348,15 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fdatetime_005f0);
     _jspx_th_field_005fdatetime_005f0.setJspContext(_jspx_page_context);
     _jspx_th_field_005fdatetime_005f0.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(11,189) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(16,189) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fdatetime_005f0.setZ("jNTHEPcjkQdiPeh0KxMf48jZGgU=");
-    // /WEB-INF/views/users/create.jspx(11,189) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(16,189) name = required type = java.lang.Boolean reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fdatetime_005f0.setRequired(new Boolean(true));
-    // /WEB-INF/views/users/create.jspx(11,189) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(16,189) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fdatetime_005f0.setId("c_it_polito_ai_gas_business_User_birthDate");
-    // /WEB-INF/views/users/create.jspx(11,189) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(16,189) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fdatetime_005f0.setField("birthDate");
-    // /WEB-INF/views/users/create.jspx(11,189) name = dateTimePattern type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(16,189) name = dateTimePattern type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fdatetime_005f0.setDateTimePattern((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${user_birthdate_date_format}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
     _jspx_th_field_005fdatetime_005f0.doTag();
     org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fdatetime_005f0);
@@ -252,134 +372,14 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fcheckbox_005f0);
     _jspx_th_field_005fcheckbox_005f0.setJspContext(_jspx_page_context);
     _jspx_th_field_005fcheckbox_005f0.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(12,123) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(17,123) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fcheckbox_005f0.setZ("c8IHjgvgtj1NDGWn2dx3XExSteQ=");
-    // /WEB-INF/views/users/create.jspx(12,123) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(17,123) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fcheckbox_005f0.setId("c_it_polito_ai_gas_business_User_approved");
-    // /WEB-INF/views/users/create.jspx(12,123) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
+    // /WEB-INF/views/users/create.jspx(17,123) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
     _jspx_th_field_005fcheckbox_005f0.setField("approved");
     _jspx_th_field_005fcheckbox_005f0.doTag();
     org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fcheckbox_005f0);
-    return false;
-  }
-
-  private boolean _jspx_meth_field_005fsimple_005f0(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  field:simple
-    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f0 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
-    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f0);
-    _jspx_th_field_005fsimple_005f0.setJspContext(_jspx_page_context);
-    _jspx_th_field_005fsimple_005f0.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(13,195) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f0.setZ("O0TNGe5HeAPMh6A82bRhCeWgje0=");
-    // /WEB-INF/views/users/create.jspx(13,195) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f0.setMessageCodeAttribute("Message");
-    // /WEB-INF/views/users/create.jspx(13,195) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f0.setMessageCode("entity_reference_not_managed");
-    // /WEB-INF/views/users/create.jspx(13,195) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f0.setId("c_it_polito_ai_gas_business_User_messages");
-    // /WEB-INF/views/users/create.jspx(13,195) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f0.setField("messages");
-    _jspx_th_field_005fsimple_005f0.doTag();
-    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f0);
-    return false;
-  }
-
-  private boolean _jspx_meth_field_005fsimple_005f1(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  field:simple
-    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f1 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
-    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f1);
-    _jspx_th_field_005fsimple_005f1.setJspContext(_jspx_page_context);
-    _jspx_th_field_005fsimple_005f1.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(14,220) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f1.setZ("7PTJjWmxCOSq5kTqCCvU2ZSJoCM=");
-    // /WEB-INF/views/users/create.jspx(14,220) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f1.setMessageCodeAttribute("Purchase Request");
-    // /WEB-INF/views/users/create.jspx(14,220) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f1.setMessageCode("entity_reference_not_managed");
-    // /WEB-INF/views/users/create.jspx(14,220) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f1.setId("c_it_polito_ai_gas_business_User_purchaseRequests");
-    // /WEB-INF/views/users/create.jspx(14,220) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f1.setField("purchaseRequests");
-    _jspx_th_field_005fsimple_005f1.doTag();
-    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f1);
-    return false;
-  }
-
-  private boolean _jspx_meth_field_005fsimple_005f2(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  field:simple
-    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f2 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
-    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f2);
-    _jspx_th_field_005fsimple_005f2.setJspContext(_jspx_page_context);
-    _jspx_th_field_005fsimple_005f2.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(15,229) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f2.setZ("C8Nnht+XtgPBV3QlXQztjRGBh3k=");
-    // /WEB-INF/views/users/create.jspx(15,229) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f2.setMessageCodeAttribute("Delivery Withdrawal");
-    // /WEB-INF/views/users/create.jspx(15,229) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f2.setMessageCode("entity_reference_not_managed");
-    // /WEB-INF/views/users/create.jspx(15,229) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f2.setId("c_it_polito_ai_gas_business_User_deliveryWithdrawals");
-    // /WEB-INF/views/users/create.jspx(15,229) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f2.setField("deliveryWithdrawals");
-    _jspx_th_field_005fsimple_005f2.doTag();
-    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f2);
-    return false;
-  }
-
-  private boolean _jspx_meth_field_005fsimple_005f3(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  field:simple
-    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f3 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
-    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f3);
-    _jspx_th_field_005fsimple_005f3.setJspContext(_jspx_page_context);
-    _jspx_th_field_005fsimple_005f3.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(16,198) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f3.setZ("uoM3kP4voJzfuC2oRRKisEtkgec=");
-    // /WEB-INF/views/users/create.jspx(16,198) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f3.setMessageCodeAttribute("Producer");
-    // /WEB-INF/views/users/create.jspx(16,198) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f3.setMessageCode("entity_reference_not_managed");
-    // /WEB-INF/views/users/create.jspx(16,198) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f3.setId("c_it_polito_ai_gas_business_User_producers");
-    // /WEB-INF/views/users/create.jspx(16,198) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f3.setField("producers");
-    _jspx_th_field_005fsimple_005f3.doTag();
-    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f3);
-    return false;
-  }
-
-  private boolean _jspx_meth_field_005fsimple_005f4(javax.servlet.jsp.tagext.JspTag _jspx_parent, PageContext _jspx_page_context)
-          throws Throwable {
-    PageContext pageContext = _jspx_page_context;
-    JspWriter out = _jspx_page_context.getOut();
-    //  field:simple
-    org.apache.jsp.tag.web.form.fields.simple_tagx _jspx_th_field_005fsimple_005f4 = new org.apache.jsp.tag.web.form.fields.simple_tagx();
-    org.apache.jasper.runtime.AnnotationHelper.postConstruct(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f4);
-    _jspx_th_field_005fsimple_005f4.setJspContext(_jspx_page_context);
-    _jspx_th_field_005fsimple_005f4.setParent(_jspx_parent);
-    // /WEB-INF/views/users/create.jspx(17,195) name = z type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f4.setZ("lXL6+wiof55bTXTXRevOLufGkHU=");
-    // /WEB-INF/views/users/create.jspx(17,195) name = messageCodeAttribute type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f4.setMessageCodeAttribute("Product");
-    // /WEB-INF/views/users/create.jspx(17,195) name = messageCode type = java.lang.String reqTime = true required = false fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f4.setMessageCode("entity_reference_not_managed");
-    // /WEB-INF/views/users/create.jspx(17,195) name = id type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f4.setId("c_it_polito_ai_gas_business_User_products");
-    // /WEB-INF/views/users/create.jspx(17,195) name = field type = java.lang.String reqTime = true required = true fragment = false deferredValue = false expectedTypeName = java.lang.String deferredMethod = false methodSignature = null
-    _jspx_th_field_005fsimple_005f4.setField("products");
-    _jspx_th_field_005fsimple_005f4.doTag();
-    org.apache.jasper.runtime.AnnotationHelper.preDestroy(_jsp_annotationprocessor, _jspx_th_field_005fsimple_005f4);
     return false;
   }
 
@@ -420,17 +420,7 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
     {
       if (_jspx_meth_field_005finput_005f0(_jspx_parent, _jspx_page_context))
         return true;
-      if (_jspx_meth_field_005finput_005f1(_jspx_parent, _jspx_page_context))
-        return true;
-      if (_jspx_meth_field_005finput_005f2(_jspx_parent, _jspx_page_context))
-        return true;
-      if (_jspx_meth_field_005finput_005f3(_jspx_parent, _jspx_page_context))
-        return true;
       if (_jspx_meth_field_005fselect_005f0(_jspx_parent, _jspx_page_context))
-        return true;
-      if (_jspx_meth_field_005fdatetime_005f0(_jspx_parent, _jspx_page_context))
-        return true;
-      if (_jspx_meth_field_005fcheckbox_005f0(_jspx_parent, _jspx_page_context))
         return true;
       if (_jspx_meth_field_005fsimple_005f0(_jspx_parent, _jspx_page_context))
         return true;
@@ -441,6 +431,16 @@ public final class create_jspx extends org.apache.jasper.runtime.HttpJspBase
       if (_jspx_meth_field_005fsimple_005f3(_jspx_parent, _jspx_page_context))
         return true;
       if (_jspx_meth_field_005fsimple_005f4(_jspx_parent, _jspx_page_context))
+        return true;
+      if (_jspx_meth_field_005finput_005f1(_jspx_parent, _jspx_page_context))
+        return true;
+      if (_jspx_meth_field_005finput_005f2(_jspx_parent, _jspx_page_context))
+        return true;
+      if (_jspx_meth_field_005finput_005f3(_jspx_parent, _jspx_page_context))
+        return true;
+      if (_jspx_meth_field_005fdatetime_005f0(_jspx_parent, _jspx_page_context))
+        return true;
+      if (_jspx_meth_field_005fcheckbox_005f0(_jspx_parent, _jspx_page_context))
         return true;
       return false;
     }

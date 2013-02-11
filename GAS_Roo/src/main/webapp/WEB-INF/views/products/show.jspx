@@ -17,5 +17,6 @@
         <field:display field="maxToBuyUser" id="s_it_polito_ai_gas_business_Product_maxToBuyUser" object="${product}" z="Nwd+A8FuwqQeHPtBrx0p+ZNWyV8="/>
         <field:display date="true" dateTimePattern="${product_availablefrom_date_format}" field="availableFrom" id="s_it_polito_ai_gas_business_Product_availableFrom" object="${product}" z="jOYq5ZpYhFbE3vGOJ/2/0rCHz3k="/>
         <field:display date="true" dateTimePattern="${product_availableto_date_format}" field="availableTo" id="s_it_polito_ai_gas_business_Product_availableTo" object="${product}" z="l0S3i/048DMw+a3fxL/EMepCaxA="/>
+        <field:display field="secondoname" id="s_it_polito_ai_gas_business_Product_secondoname" object="${product}" z="dndHvz2bXNtQe1s7UjyNoJGh2kY="/>
     </page:show>
 </div>

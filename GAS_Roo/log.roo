@@ -131,3 +131,19 @@ database reverse engineer --schema GAS --testAutomatically
 database reverse engineer --schema GAS --testAutomatically 
 database reverse engineer --schema GAS --testAutomatically 
 database reverse engineer --schema GAS --testAutomatically 
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-07 19:25:26
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-07 20:29:04
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 00:37:09
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-11 00:42:13
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 13:04:16
+// [failed] database reverse engineer --schema GAS
+addon info id --searchResultId 01
+addon info id --searchResultId 1
+// [failed] database reverse engineer --schema GAS
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+database reverse engineer --schema GAS
+database reverse engineer --schema GAS
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 13:13:21

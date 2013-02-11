@@ -6,7 +6,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_User" 
-    modelAttribute="user" path="/register" render="${empty dependencies}" z="xzyLBkjvse+WfX5b6GHRwHm+iwA=">
+    modelAttribute="user" path="register" render="${empty dependencies}" z="xzyLBkjvse+WfX5b6GHRwHm+iwA=">
         <field:input field="username" id="c_it_polito_ai_gas_business_User_username" required="true" z="6QO2uQk2hNhRwRalFQ+E3gvtC7k="/>
        <field:input field="password" id="c_it_polito_ai_gas_business_User_password" required="true" type="password" z="user-managed"/>
        <field:input field="name" id="c_it_polito_ai_gas_business_User_name" required="true" z="Qd0STxJsC8qbikimVCtHnu913aA="/>

@@ -20,7 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RooWebJson(jsonObject = User.class)
 public class UserController {
 	
-	@RequestMapping(value="/register",method = RequestMethod.POST, produces = "text/html")
+	@RequestMapping(params = "register-form", produces = "text/html")
+    public String createRegisterForm(Model uiModel) {
+        populateEditForm(uiModel, new User());
+        return "users/register";
+    }
+	@RequestMapping(value="register",method = RequestMethod.POST, produces = "text/html")
 	   public String register(@Valid User user, 
 			   BindingResult bindingResult, Model uiModel,
 			   HttpServletRequest httpServletRequest) {
@@ -28,10 +33,10 @@ public class UserController {
 		user.setRole(UserType.ROLE_USER);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
-            return "/register";
+            return "users/register";
         }
         uiModel.asMap().clear();
         user.persist();
-        return "redirect:/register/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
     }
 }

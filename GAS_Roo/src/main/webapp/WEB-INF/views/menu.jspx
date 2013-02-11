@@ -2,14 +2,21 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:sec="http://www.springframework.org/security/tags" id="menu" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+    <sec:authorize access="!isAuthenticated()">
+        <div style="display:none">
+            <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?register" z="user-managed"/>
+        </div>
+    </sec:authorize>
     <sec:authorize access="isAuthenticated()">
         <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-            <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
-                <div style="display:none">
-                    <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="user-managed"/>
-                </div>
-                <menu:item id="i_user_list" messageCode="global_menu_list" url="/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4MY4uybxa60Q1G2rlI5bOwg+sm0="/>
-            </menu:category>
+            <sec:authorize ifAllGranted="ROLE_ADMIN">
+                <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
+                    <div style="display:none">
+                        <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="user-managed"/>
+                    </div>
+                    <menu:item id="i_user_list" messageCode="global_menu_list" url="/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4MY4uybxa60Q1G2rlI5bOwg+sm0="/>
+                </menu:category>
+            </sec:authorize>
             <sec:authorize ifAnyGranted="ROLE_PRODUCER, ROLE_DELEGATE">
                 <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
                     <sec:authorize ifAnyGranted="ROLE_PRODUCER">
@@ -47,6 +54,10 @@
             <menu:category id="c_producer" z="KeWK2wm/jJeEIu2+gOkYbZDbXr8=">
                 <menu:item id="i_producer_new" messageCode="global_menu_new" url="/producerinfoes?form" z="czgJoTF6rtEuH1zOgHRBmH+6MX0="/>
                 <menu:item id="i_producer_list" messageCode="global_menu_list" url="/producerinfoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="crV2ek+qiwz70Swfk6D1eL4OeGU="/>
+            </menu:category>
+            <menu:category id="c_view" z="HjmI4Chx/kBYfS/6HjBLbCA+XpU=">
+                <menu:item id="i_view__userregister_id" messageCode="global_generic" url="/user/register" z="5dhkTOEibCr0rJjWdZIxWYIYCck="/>
+                <menu:item id="i_view_register_id" messageCode="global_generic" url="/register" z="Nwqyvtg5D2KmlOU1fCd8YXGBqMM="/>
             </menu:category>
         </menu:menu>
     </sec:authorize>
