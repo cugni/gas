@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.DeliveryWithdrawalController;
@@ -98,6 +99,7 @@ privileged aspect DeliveryWithdrawalController_Roo_Controller {
     void DeliveryWithdrawalController.populateEditForm(Model uiModel, DeliveryWithdrawal deliveryWithdrawal) {
         uiModel.addAttribute("deliveryWithdrawal", deliveryWithdrawal);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("proposals", Proposal.findAllProposals());
         uiModel.addAttribute("users", User.findAllUsers());
     }

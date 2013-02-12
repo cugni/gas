@@ -9,6 +9,14 @@ import javax.persistence.TypedQuery;
 
 privileged aspect User_Roo_Finder {
     
+    public static TypedQuery<User> User.findUsersByApprovedNot(Boolean approved) {
+        if (approved == null) throw new IllegalArgumentException("The approved argument is required");
+        EntityManager em = User.entityManager();
+        TypedQuery<User> q = em.createQuery("SELECT o FROM User AS o WHERE o.approved IS NOT :approved", User.class);
+        q.setParameter("approved", approved);
+        return q;
+    }
+    
     public static TypedQuery<User> User.findUsersByUsernameEquals(String username) {
         if (username == null || username.length() == 0) throw new IllegalArgumentException("The username argument is required");
         EntityManager em = User.entityManager();

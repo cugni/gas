@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
@@ -103,6 +104,7 @@ privileged aspect UserController_Roo_Controller {
         uiModel.addAttribute("user", user);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
+        uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("producers", Producer.findAllProducers());
         uiModel.addAttribute("products", Product.findAllProducts());

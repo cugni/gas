@@ -4,25 +4,31 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "collector", referencedColumnName = "id")
-    private User DeliveryWithdrawal.collector;
+    @OneToMany(mappedBy = "deliveryWithdrawal")
+    private Set<Event> DeliveryWithdrawal.events;
     
     @ManyToOne
     @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
     private Proposal DeliveryWithdrawal.order;
+    
+    @ManyToOne
+    @JoinColumn(name = "collector", referencedColumnName = "id")
+    private User DeliveryWithdrawal.collector;
     
     @Column(name = "delivery_date")
     @Temporal(TemporalType.DATE)
@@ -34,12 +40,12 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     @DateTimeFormat(style = "M-")
     private Date DeliveryWithdrawal.withdrawalDate;
     
-    public User DeliveryWithdrawal.getCollector() {
-        return collector;
+    public Set<Event> DeliveryWithdrawal.getEvents() {
+        return events;
     }
     
-    public void DeliveryWithdrawal.setCollector(User collector) {
-        this.collector = collector;
+    public void DeliveryWithdrawal.setEvents(Set<Event> events) {
+        this.events = events;
     }
     
     public Proposal DeliveryWithdrawal.getOrder() {
@@ -48,6 +54,14 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     
     public void DeliveryWithdrawal.setOrder(Proposal order) {
         this.order = order;
+    }
+    
+    public User DeliveryWithdrawal.getCollector() {
+        return collector;
+    }
+    
+    public void DeliveryWithdrawal.setCollector(User collector) {
+        this.collector = collector;
     }
     
     public Date DeliveryWithdrawal.getDeliveryDate() {

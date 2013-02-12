@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_Producer" items="${producers}" z="ulx60BASY9WUhzSHPPVJr1DOSvU=">
         <table:table data="${producers}" id="l_it_polito_ai_gas_business_Producer" path="/producers" z="NZhHIhOqRY8ynPi8LLe4uOiSiCc=">
-            <table:column id="c_it_polito_ai_gas_business_Producer_username" property="username" z="21b4BWKXMXl5e9fC7ENE78FxpbU="/>
+            <table:column id="c_it_polito_ai_gas_business_Producer_events" property="events" z="Rp2wscR6eMzsf/W+lybpYVyL0s8="/>
         </table:table>
     </page:list>
 </div>

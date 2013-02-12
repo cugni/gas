@@ -11,5 +11,5 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord(versionField = "", table = "product")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
-public class Product {
+public class Product implements InterceptPersist {
 }

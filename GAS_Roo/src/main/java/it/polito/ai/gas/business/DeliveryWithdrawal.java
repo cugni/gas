@@ -11,5 +11,5 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord(versionField = "", table = "delivery_withdrawal")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
-public class DeliveryWithdrawal {
+public class DeliveryWithdrawal implements InterceptPersist {
 }

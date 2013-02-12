@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
@@ -101,6 +102,7 @@ privileged aspect ProposalController_Roo_Controller {
         uiModel.addAttribute("proposal", proposal);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
+        uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("products", Product.findAllProducts());
         uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());

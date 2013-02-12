@@ -4,7 +4,9 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_it_polito_ai_gas_business_User" modelAttribute="user" path="/users" versionField="none" z="Fo6BXM81nZPReuWDJDNcOI4Wg98=">
         <field:select field="role" id="c_it_polito_ai_gas_business_User_role" items="${usertypes}" path="usertypes" z="fZr67+GcShvk0ju8KE2uWBxRa+I="/>
+        <field:select field="events" id="c_it_polito_ai_gas_business_User_events" itemValue="id" items="${events}" multiple="true" path="/events" z="fzKZfRfcP1GnA0uXBU77jWrAlJM="/>
         <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_User_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" z="C8Nnht+XtgPBV3QlXQztjRGBh3k="/>
+        <field:simple field="events_" id="c_it_polito_ai_gas_business_User_events_" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="A7yTjERYitydWfm+hjagWY5ZDoM="/>
         <field:simple field="messages" id="c_it_polito_ai_gas_business_User_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="O0TNGe5HeAPMh6A82bRhCeWgje0="/>
         <field:simple field="producers" id="c_it_polito_ai_gas_business_User_producers" messageCode="entity_reference_not_managed" messageCodeAttribute="Producer" z="uoM3kP4voJzfuC2oRRKisEtkgec="/>
         <field:simple field="products" id="c_it_polito_ai_gas_business_User_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="lXL6+wiof55bTXTXRevOLufGkHU="/>

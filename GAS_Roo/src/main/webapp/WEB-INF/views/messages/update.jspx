@@ -7,5 +7,6 @@
         <field:select field="user" id="c_it_polito_ai_gas_business_Message_user" itemValue="id" items="${users}" path="/users" z="ghGhMgBgkoE535sCZWng4f2mwVY="/>
         <field:select field="order" id="c_it_polito_ai_gas_business_Message_order" itemValue="id" items="${proposals}" path="/proposals" z="tkNFVZ0wDcFccs9vSa6CeIMx01s="/>
         <field:datetime dateTimePattern="${message_date_date_format}" field="date" id="c_it_polito_ai_gas_business_Message_date" required="true" z="6als+ifCXjzXw25b8bnM270HccU="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Message_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="ndaCXnVbJ15vK+A8Gf+trLqc3VE="/>
     </form:update>
 </div>

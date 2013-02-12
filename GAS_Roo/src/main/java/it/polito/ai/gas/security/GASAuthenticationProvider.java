@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 	TUTORIAL: http://sujitpal.blogspot.it/2010/07/ktm-customizing-roo-security.html
 */
 
+@SuppressWarnings("deprecation")
 public class GASAuthenticationProvider extends 
 AbstractUserDetailsAuthenticationProvider {
 
@@ -46,6 +47,9 @@ AbstractUserDetailsAuthenticationProvider {
 		
 	    if (!found.getPassword().equals(password))
 	          throw new BadCredentialsException("Invalid Password");
+
+	    if (!found.getApproved())
+	          throw new BadCredentialsException("User not approved");
 
 	    // Login OK!
 	    

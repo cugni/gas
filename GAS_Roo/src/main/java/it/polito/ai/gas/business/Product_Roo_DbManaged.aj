@@ -3,6 +3,7 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
@@ -18,6 +19,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Product_Roo_DbManaged {
+    
+    @OneToMany(mappedBy = "product")
+    private Set<Event> Product.events;
     
     @OneToMany(mappedBy = "product")
     private Set<Proposal> Product.proposals;
@@ -78,6 +82,14 @@ privileged aspect Product_Roo_DbManaged {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(style = "M-")
     private Date Product.availableTo;
+    
+    public Set<Event> Product.getEvents() {
+        return events;
+    }
+    
+    public void Product.setEvents(Set<Event> events) {
+        this.events = events;
+    }
     
     public Set<Proposal> Product.getProposals() {
         return proposals;

@@ -93,6 +93,14 @@ privileged aspect UserController_Roo_Controller_Json {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
     
+    @RequestMapping(params = "find=ByApprovedNot", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> UserController.jsonFindUsersByApprovedNot(@RequestParam(value = "approved", required = false) Boolean approved) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(User.toJsonArray(User.findUsersByApprovedNot(approved == null ? Boolean.FALSE : approved).getResultList()), headers, HttpStatus.OK);
+    }
+    
     @RequestMapping(params = "find=ByUsernameEquals", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> UserController.jsonFindUsersByUsernameEquals(@RequestParam("username") String username) {

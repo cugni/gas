@@ -4,6 +4,7 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
@@ -23,6 +24,9 @@ privileged aspect Proposal_Roo_DbManaged {
     
     @OneToMany(mappedBy = "order")
     private Set<DeliveryWithdrawal> Proposal.deliveryWithdrawals;
+    
+    @OneToMany(mappedBy = "proposal")
+    private Set<Event> Proposal.events;
     
     @OneToMany(mappedBy = "order")
     private Set<Message> Proposal.messages;
@@ -56,6 +60,14 @@ privileged aspect Proposal_Roo_DbManaged {
     
     public void Proposal.setDeliveryWithdrawals(Set<DeliveryWithdrawal> deliveryWithdrawals) {
         this.deliveryWithdrawals = deliveryWithdrawals;
+    }
+    
+    public Set<Event> Proposal.getEvents() {
+        return events;
+    }
+    
+    public void Proposal.setEvents(Set<Event> events) {
+        this.events = events;
     }
     
     public Set<Message> Proposal.getMessages() {

@@ -3,13 +3,16 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -17,13 +20,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Message_Roo_DbManaged {
     
-    @ManyToOne
-    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
-    private Proposal Message.order;
+    @OneToMany(mappedBy = "message")
+    private Set<Event> Message.events;
     
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
     private User Message.user;
+    
+    @ManyToOne
+    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
+    private Proposal Message.order;
     
     @Column(name = "date")
     @NotNull
@@ -34,12 +40,12 @@ privileged aspect Message_Roo_DbManaged {
     @Column(name = "text", length = 255)
     private String Message.text;
     
-    public Proposal Message.getOrder() {
-        return order;
+    public Set<Event> Message.getEvents() {
+        return events;
     }
     
-    public void Message.setOrder(Proposal order) {
-        this.order = order;
+    public void Message.setEvents(Set<Event> events) {
+        this.events = events;
     }
     
     public User Message.getUser() {
@@ -48,6 +54,14 @@ privileged aspect Message_Roo_DbManaged {
     
     public void Message.setUser(User user) {
         this.user = user;
+    }
+    
+    public Proposal Message.getOrder() {
+        return order;
+    }
+    
+    public void Message.setOrder(Proposal order) {
+        this.order = order;
     }
     
     public Date Message.getDate() {

@@ -11,5 +11,5 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @RooJpaActiveRecord(versionField = "", table = "message")
-public class Message {
+public class Message implements InterceptPersist {
 }

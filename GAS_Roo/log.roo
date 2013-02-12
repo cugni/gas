@@ -155,3 +155,34 @@ web mvc view --path user --viewName success --title Success
 web mvc view --path users --viewName success --title Success
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 15:43:18
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-11 16:01:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-11 18:27:17
+hint
+ focus --class ~.business.User
+finder list
+finder add --finderName findUsersByApprovedNot
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-12 14:12:58
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-12 14:13:24
+// [failed] database reverse engineer --schema GAS
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+// [failed] database reverse engineer --schema GAS
+// [failed] database reverse engineer --schema GAS
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+// [failed] database reverse engineer --schema GAS
+// [failed] database reverse engineer --schema GAS
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-12 14:19:46
+// [failed] database reverse engineer --schema GAS
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+database reverse engineer --schema GAS
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-12 14:21:03
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-12 15:43:43
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-12 17:20:04
+database reverse engineer --schema GAS

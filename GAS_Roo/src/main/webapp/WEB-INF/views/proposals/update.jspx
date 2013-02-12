@@ -10,5 +10,6 @@
         <field:checkbox field="minReached" id="c_it_polito_ai_gas_business_Proposal_minReached" z="oW9wFJjCQMAr9irytCGdVG3jdBI="/>
         <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_Proposal_purchaseRequests" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request" z="59TXQbSh7eLgkYL0+Zid+kO6WKQ="/>
         <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_Proposal_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" z="YEE64zhwUYcsmlcfBHpx6LbwLdY="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Proposal_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="Pmqh8A/g0LMZVhCiwZ2+tn9lOCc="/>
     </form:update>
 </div>

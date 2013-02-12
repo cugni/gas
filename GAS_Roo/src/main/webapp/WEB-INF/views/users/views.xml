@@ -19,4 +19,10 @@
 <definition extends="default" name="users/success">
         <put-attribute name="body" value="/WEB-INF/views/users/success.jspx"/>
     </definition>
+<definition extends="default" name="users/approve">
+        <put-attribute name="body" value="/WEB-INF/views/users/approve.jspx"/>
+    </definition>
+<definition extends="default" name="users/approvesuccess">
+        <put-attribute name="body" value="/WEB-INF/views/users/approvesuccess.jspx"/>
+    </definition>
 </tiles-definitions>

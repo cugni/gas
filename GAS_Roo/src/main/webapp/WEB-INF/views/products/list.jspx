@@ -7,7 +7,6 @@
             <table:column id="c_it_polito_ai_gas_business_Product_name" property="name" z="8c7jv/a3sT1VafZqqPWrKpYk+LU="/>
             <table:column id="c_it_polito_ai_gas_business_Product_cost" property="cost" z="7f/G6HDNUb3Fy6QVsXIpyAVrjr0="/>
             <table:column id="c_it_polito_ai_gas_business_Product_units" property="units" z="FGPn1ro6UeZForBylmt2tZSfln8="/>
-            <table:column id="c_it_polito_ai_gas_business_Product_quantity" property="quantity" z="UVYZcAE2dlxuSWhklIgwVsK+QZw="/>
             <table:column id="c_it_polito_ai_gas_business_Product_producer" property="producer" z="7TzFxd2qgTeh6UWL6fXQyUQfx70="/>
         </table:table>
     </page:list>

@@ -4,6 +4,7 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
@@ -12,6 +13,7 @@ import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,8 +22,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect User_Roo_DbManaged {
     
+    @ManyToMany(mappedBy = "users")
+    private Set<Event> User.events;
+    
     @OneToMany(mappedBy = "collector")
     private Set<DeliveryWithdrawal> User.deliveryWithdrawals;
+    
+    @OneToMany(mappedBy = "user")
+    private Set<Event> User.events_;
     
     @OneToMany(mappedBy = "user")
     private Set<Message> User.messages;
@@ -60,12 +68,28 @@ privileged aspect User_Roo_DbManaged {
     @Column(name = "approved")
     private Boolean User.approved;
     
+    public Set<Event> User.getEvents() {
+        return events;
+    }
+    
+    public void User.setEvents(Set<Event> events) {
+        this.events = events;
+    }
+    
     public Set<DeliveryWithdrawal> User.getDeliveryWithdrawals() {
         return deliveryWithdrawals;
     }
     
     public void User.setDeliveryWithdrawals(Set<DeliveryWithdrawal> deliveryWithdrawals) {
         this.deliveryWithdrawals = deliveryWithdrawals;
+    }
+    
+    public Set<Event> User.getEvents_() {
+        return events_;
+    }
+    
+    public void User.setEvents_(Set<Event> events_) {
+        this.events_ = events_;
     }
     
     public Set<Message> User.getMessages() {

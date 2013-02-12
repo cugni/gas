@@ -24,5 +24,7 @@
         <field:input field="faxNumber" id="c_it_polito_ai_gas_business_Producer_faxNumber" z="2u1GSEoffY6sebl89Hsq27TADEQ="/>
         <field:input field="email" id="c_it_polito_ai_gas_business_Producer_email" validationMessageCode="field_invalid_email" z="4TtFIsXaAzcWhia7yP4fZg2vH3I="/>
         <field:input field="paymentMode" id="c_it_polito_ai_gas_business_Producer_paymentMode" z="rKoJ2kVdUFWeua+EqDUpz1MEGAE="/>
+        <field:select field="events" id="c_it_polito_ai_gas_business_Producer_events" itemValue="id" items="${events}" multiple="true" path="/events" z="MiZ5r/6kgL+nGZ7QLwIDXEP8IT4="/>
+        <field:simple field="events_" id="c_it_polito_ai_gas_business_Producer_events_" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="WZNZVe+JV61AOcvSFdsq00rg/84="/>
     </form:update>
 </div>

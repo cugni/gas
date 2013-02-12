@@ -19,5 +19,6 @@
         <field:display field="faxNumber" id="s_it_polito_ai_gas_business_Producer_faxNumber" object="${producer}" z="n1VNYYnaw2axNHAfGOvs7xGJEKU="/>
         <field:display field="email" id="s_it_polito_ai_gas_business_Producer_email" object="${producer}" z="DTnh3RgIAOHHQeSysCjqr65wkM4="/>
         <field:display field="paymentMode" id="s_it_polito_ai_gas_business_Producer_paymentMode" object="${producer}" z="Gmi2+xoTrJ0sE+kKjkDo3n5z3J4="/>
+        <field:display field="events" id="s_it_polito_ai_gas_business_Producer_events" object="${producer}" z="Giq4V2aW20riHsL930rKZ3YEfrM="/>
     </page:show>
 </div>

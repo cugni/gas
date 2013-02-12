@@ -38,12 +38,6 @@ privileged aspect User_Roo_Jpa_ActiveRecord {
     }
     
     @Transactional
-    public void User.persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
-    
-    @Transactional
     public void User.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {

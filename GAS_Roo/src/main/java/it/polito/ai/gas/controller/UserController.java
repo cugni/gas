@@ -11,8 +11,14 @@ import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 
 @RequestMapping("/users")
 @Controller
@@ -20,12 +26,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RooWebJson(jsonObject = User.class)
 public class UserController {
 	
-	@RequestMapping(params = "register", produces = "text/html")
+    @RequestMapping(value = "approve", produces = "text/html")
+    public String approveForm(Model uiModel) {
+    	Query query = User.findUsersByApprovedNot(true);
+        uiModel.addAttribute("users", query.getResultList());
+        
+        addDateTimeFormatPatterns(uiModel);
+        return "users/approve";
+    }
+    @RequestMapping(value = "approve/{id}", produces = "text/html")
+    public String approve(@PathVariable("id") Integer id, Model uiModel) {
+        User user = User.findUser(id);
+        user.setApproved(true);
+        user.merge();
+        
+        uiModel.asMap().clear();
+        
+        uiModel.addAttribute("user", user);
+        return "users/approvesuccess";
+    }
+    
+	@RequestMapping(value = "{id}/success")
+    public String success(@PathVariable("id") Integer id, Model uiModel) {
+        //addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("user", User.findUser(id));
+        uiModel.addAttribute("itemId", id);
+		return "users/success";
+	}
+	
+	@RequestMapping(value = "register", produces = "text/html")
     public String createRegisterForm(Model uiModel) {
         populateEditForm(uiModel, new User());
         return "users/register";
     }
-	@RequestMapping(value="register",method = RequestMethod.POST, produces = "text/html")
+	@RequestMapping(value = "register", method = RequestMethod.POST, produces = "text/html")
 	   public String register(@Valid User user, 
 			   BindingResult bindingResult, Model uiModel,
 			   HttpServletRequest httpServletRequest) {
@@ -35,9 +69,11 @@ public class UserController {
             populateEditForm(uiModel, user);
             return "users/register";
         }
-        uiModel.asMap().clear();
+
         user.persist();
-        uiModel.addAttribute("username", user.getUsername());
-        return "redirect:/users/success";
+        //uiModel.addAttribute("username", user.getUsername());
+        return "redirect:/users/"
+        	+ encodeUrlPathSegment(user.getId().toString(), httpServletRequest)
+        	+ "/success";
     }
 }

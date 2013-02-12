@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0"
+xmlns:sec="http://www.springframework.org/security/tags" >
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_User" items="${users}" z="yctnmanSVS885yjGBBh6vHSflvg=">
-        <table:table data="${users}" id="l_it_polito_ai_gas_business_User" path="/users" z="SMzHymDdfI2+caufHVdU824Phj8=">
-            <!-- <table:column id="c_it_polito_ai_gas_business_User_password" property="password" z="8gq1QvUEfeA+VZ+CWXDR8XEV7QM="/> -->
-            <table:column id="c_it_polito_ai_gas_business_User_username" property="username" z="mXPs+h4XXGJow36lZZwNvV0lo6E="/>
+    
+    <sec:authorize ifAnyGranted="ROLE_ADMIN">
+       	<table:table data="${users}" id="l_it_polito_ai_gas_business_User" path="/users" z="SMzHymDdfI2+caufHVdU824Phj8=">
+        	<table:column id="c_it_polito_ai_gas_business_User_username" property="username"/>
         </table:table>
+    </sec:authorize>
+    
+    <sec:authorize ifNotGranted="ROLE_ADMIN">
+        <table:table data="${users}" id="l_it_polito_ai_gas_business_User" path="/users" z="SMzHymDdfI2+caufHVdU824Phj8="
+        delete="false" update="false" create="false">
+        	<table:column id="c_it_polito_ai_gas_business_User_username" property="username"/>
+        </table:table>
+    </sec:authorize>
+    
     </page:list>
 </div>

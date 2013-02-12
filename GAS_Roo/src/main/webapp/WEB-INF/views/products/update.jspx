@@ -18,5 +18,6 @@
         <field:datetime dateTimePattern="${product_availablefrom_date_format}" field="availableFrom" id="c_it_polito_ai_gas_business_Product_availableFrom" z="plARCfRAbVv+Mc4/etYj/HWqKz4="/>
         <field:datetime dateTimePattern="${product_availableto_date_format}" field="availableTo" id="c_it_polito_ai_gas_business_Product_availableTo" z="9zpmgNPdJUPkuYhkxaKmeNvjEH4="/>
         <field:simple field="proposals" id="c_it_polito_ai_gas_business_Product_proposals" messageCode="entity_reference_not_managed" messageCodeAttribute="Proposal" z="fwmRbM7Q27tTzqF/dSh+tVxzRao="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Product_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="mkV2WjHWa0BWrR8CCqX4dCcE2gY="/>
     </form:update>
 </div>

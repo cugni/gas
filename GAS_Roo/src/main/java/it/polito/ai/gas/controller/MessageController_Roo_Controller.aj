@@ -3,6 +3,7 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
@@ -97,6 +98,7 @@ privileged aspect MessageController_Roo_Controller {
     void MessageController.populateEditForm(Model uiModel, Message message) {
         uiModel.addAttribute("message", message);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("proposals", Proposal.findAllProposals());
         uiModel.addAttribute("users", User.findAllUsers());
     }
