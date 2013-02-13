@@ -200,6 +200,78 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`message` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `GAS`.`event`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `GAS`.`event` ;
+
+CREATE  TABLE IF NOT EXISTS `GAS`.`event` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `date` DATETIME NOT NULL ,
+  `type` INT NOT NULL ,
+  `user` INT NULL ,
+  `proposal` INT(11) NULL ,
+  `delivery_withdrawal` INT(11) NULL ,
+  `message` INT NULL ,
+  `product` INT(11) NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_event_user1_idx` (`user` ASC) ,
+  INDEX `fk_event_proposal1_idx` (`proposal` ASC) ,
+  INDEX `fk_event_delivery_withdrawal1_idx` (`delivery_withdrawal` ASC) ,
+  INDEX `fk_event_message1_idx` (`message` ASC) ,
+  INDEX `fk_event_product1_idx` (`product` ASC) ,
+  CONSTRAINT `fk_event_user1`
+    FOREIGN KEY (`user` )
+    REFERENCES `GAS`.`user` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_proposal1`
+    FOREIGN KEY (`proposal` )
+    REFERENCES `GAS`.`proposal` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_delivery_withdrawal1`
+    FOREIGN KEY (`delivery_withdrawal` )
+    REFERENCES `GAS`.`delivery_withdrawal` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_message1`
+    FOREIGN KEY (`message` )
+    REFERENCES `GAS`.`message` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_product1`
+    FOREIGN KEY (`product` )
+    REFERENCES `GAS`.`product` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `GAS`.`notification`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `GAS`.`notification` ;
+
+CREATE  TABLE IF NOT EXISTS `GAS`.`notification` (
+  `event_id` INT NOT NULL ,
+  `user_id` INT NOT NULL ,
+  INDEX `fk_notification_event1_idx` (`event_id` ASC) ,
+  INDEX `fk_notification_user1_idx` (`user_id` ASC) ,
+  PRIMARY KEY (`event_id`, `user_id`) ,
+  CONSTRAINT `fk_notification_event1`
+    FOREIGN KEY (`event_id` )
+    REFERENCES `GAS`.`event` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_notification_user1`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `GAS`.`user` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

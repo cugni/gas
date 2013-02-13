@@ -1,11 +1,9 @@
 package it.polito.ai.gas.business;
 
-import java.util.Calendar;
 import static it.polito.ai.gas.business.EventType.*;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.Query;
+import java.util.Calendar;
+
 import javax.persistence.TypedQuery;
 
 
@@ -23,15 +21,14 @@ public aspect Event_Pointcut {
 		// setto i destinatari(e.setUsers())
 		
         if (obj instanceof User) {
+        	 // destinatari
+            TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
+            if(q.getResultList()==null)return;
         	// Caso: Nuovo utente -> notifico agli admin
         	
         	// fonte
             e.setUser((User) obj);
-            
-            // destinatari
-            TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
-            e.getUsers().addAll(q.getResultList());
-            
+            e.getUsers().addAll(q.getResultList());            
             e.setType(NEW_USER); // da cambiare
         }
         
@@ -39,19 +36,20 @@ public aspect Event_Pointcut {
         	// Caso: Nuovo prodotto -> notifico ai delegati incaricati
         	
         	// fonte
+        	 TypedQuery<User> q = User.findUsersByRole(UserType.ROLE_DELEGATE);
+             if(q.==null)return;
         	e.setProduct((Product) obj);
-        	
-            // destinatari
-            TypedQuery<User> q = User.findUsersByRole(UserType.ROLE_DELEGATE);
-            HashSet<User> delegates = new HashSet<User>();
+        	// destinatari
+                  
+            
             for(User delegate : q.getResultList())
             {
             	if (delegate.getProducers().contains(
             			((Product) obj).getProducer()))
-            		delegates.add(delegate);
+            		e.getUsers().add(delegate);
             }
             
-            e.setUsers(delegates);
+            
             
             e.setType(NEW_PRODUCT); // da cambiare
         }
@@ -59,8 +57,6 @@ public aspect Event_Pointcut {
         if (obj instanceof Message) {
         	// Caso: Nuovo messaggio -> notifico ai collegati alla proposal
         	Message m=(Message)obj;
-        	
-        	
         	// fonte
         	e.setMessage((Message) obj);
            for(PurchaseRequest p :    m.getOrder().getPurchaseRequests())

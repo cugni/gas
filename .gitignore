@@ -8,3 +8,6 @@
 .metadata/
 
 .DS_Store
+
+Servers/*
+GAS_Roo/target/*

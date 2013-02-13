@@ -1,5 +1,6 @@
 package it.polito.ai.gas.business;
 
+import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
@@ -10,19 +11,23 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@SuppressWarnings("serial")
 @RooJavaBean
 @RooToString
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
-@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
-public class User implements InterceptPersist {
+@RooJpaActiveRecord(versionField = "", table = "user", 
+finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
+public class User  implements InterceptPersist {
 
     @Enumerated
     private UserType role;
+  
 
     public static TypedQuery<it.polito.ai.gas.business.User> findUserNotNotified(Event e) {
         EntityManager em = User.entityManager();
