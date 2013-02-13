@@ -3,6 +3,7 @@ package it.polito.ai.gas.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import it.polito.ai.gas.business.User;
@@ -41,8 +42,14 @@ AbstractUserDetailsAuthenticationProvider {
 	    if (!StringUtils.hasText(password)) {
 	      throw new BadCredentialsException("Please enter password");
 	    }
-
-	    Query query = User.findUsersByUsernameEquals(username);
+	    
+	    Query query;
+	    try
+	    {
+	    	query = User.findUsersByUsernameEquals(username);
+	    } catch(NoResultException e ) {
+	    	throw new BadCredentialsException("Invalid Password");
+	    }
 	    User found = (User) query.getSingleResult();
 		
 	    if (!found.getPassword().equals(password))
