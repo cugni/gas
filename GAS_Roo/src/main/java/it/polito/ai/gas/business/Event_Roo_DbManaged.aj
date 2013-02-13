@@ -53,10 +53,6 @@ privileged aspect Event_Roo_DbManaged {
     @DateTimeFormat(style = "M-")
     private Date Event.date;
     
-    @Column(name = "type")
-    @NotNull
-    private Integer Event.type;
-    
     public Set<User> Event.getUsers() {
         return users;
     }
@@ -111,14 +107,6 @@ privileged aspect Event_Roo_DbManaged {
     
     public void Event.setDate(Date date) {
         this.date = date;
-    }
-    
-    public Integer Event.getType() {
-        return type;
-    }
-    
-    public void Event.setType(Integer type) {
-        this.type = type;
     }
     
 }

@@ -75,8 +75,10 @@
         <!-- delete -->
         <intercept-url pattern="/users/[0-9]+" method="DELETE" access="hasRole('ROLE_ADMIN')"/>
         
-        
-        
+        <!-- approve
+        <intercept-url pattern="/users/approve(/[0-9]*)?" access="hasRole('ROLE_ADMIN')"/>
+         -->
+         
         <intercept-url pattern="/choices/.*" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/member/.*" access="isAuthenticated()" />
         <intercept-url pattern="/resources/.*" access="permitAll" />

@@ -1,10 +1,12 @@
 package it.polito.ai.gas.business;
 
 import java.util.Calendar;
+import static it.polito.ai.gas.business.EventType.*;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 
 public aspect Event_Pointcut {
@@ -27,10 +29,10 @@ public aspect Event_Pointcut {
             e.setUser((User) obj);
             
             // destinatari
-            Query q = User.findUsersByRole(UserType.ROLE_ADMIN);
-            e.setUsers((Set<User>) q.getResultList());
+            TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
+            e.getUsers().addAll(q.getResultList());
             
-            e.setType(0); // da cambiare
+            e.setType(NEW_USER); // da cambiare
         }
         
         if (obj instanceof Product) {
@@ -40,9 +42,9 @@ public aspect Event_Pointcut {
         	e.setProduct((Product) obj);
         	
             // destinatari
-            Query q = User.findUsersByRole(UserType.ROLE_DELEGATE);
+            TypedQuery<User> q = User.findUsersByRole(UserType.ROLE_DELEGATE);
             HashSet<User> delegates = new HashSet<User>();
-            for(User delegate : (Set<User>) q.getResultList())
+            for(User delegate : q.getResultList())
             {
             	if (delegate.getProducers().contains(
             			((Product) obj).getProducer()))
@@ -51,7 +53,7 @@ public aspect Event_Pointcut {
             
             e.setUsers(delegates);
             
-            e.setType(0); // da cambiare
+            e.setType(NEW_PRODUCT); // da cambiare
         }
         
         if (obj instanceof Message) {
@@ -68,7 +70,7 @@ public aspect Event_Pointcut {
             
          
             
-            e.setType(0); // da cambiare
+            e.setType(NEW_MESSAGE); // da cambiare
         }
         
         e.setDate(Calendar.getInstance().getTime());		
