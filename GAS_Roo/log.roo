@@ -186,3 +186,8 @@ database reverse engineer --schema GAS
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-12 15:43:43
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-12 17:20:04
 database reverse engineer --schema GAS
+focus --class ~.business.User
+finder list
+finder add findUsersByRole
+focus --class ~.business.Proposal
+finder list

@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
-@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot" })
+@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
 public class User implements InterceptPersist {
 
     @Enumerated
@@ -31,7 +31,6 @@ public class User implements InterceptPersist {
         return q;
     }
 
-    // prima era in User_Roo_Jpa_ActiveRecord.aj
     @Transactional(propagation = Propagation.NESTED)
     public void persist() {
         if (this.entityManager == null) this.entityManager = entityManager();

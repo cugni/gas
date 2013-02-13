@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.UserType;
 import it.polito.ai.gas.controller.UserController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -99,6 +100,14 @@ privileged aspect UserController_Roo_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         return new ResponseEntity<String>(User.toJsonArray(User.findUsersByApprovedNot(approved == null ? Boolean.FALSE : approved).getResultList()), headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(params = "find=ByRole", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> UserController.jsonFindUsersByRole(@RequestParam("role") UserType role) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(User.toJsonArray(User.findUsersByRole(role).getResultList()), headers, HttpStatus.OK);
     }
     
     @RequestMapping(params = "find=ByUsernameEquals", headers = "Accept=application/json")

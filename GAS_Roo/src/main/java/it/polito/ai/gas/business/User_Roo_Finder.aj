@@ -4,6 +4,7 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.UserType;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -14,6 +15,14 @@ privileged aspect User_Roo_Finder {
         EntityManager em = User.entityManager();
         TypedQuery<User> q = em.createQuery("SELECT o FROM User AS o WHERE o.approved IS NOT :approved", User.class);
         q.setParameter("approved", approved);
+        return q;
+    }
+    
+    public static TypedQuery<User> User.findUsersByRole(UserType role) {
+        if (role == null) throw new IllegalArgumentException("The role argument is required");
+        EntityManager em = User.entityManager();
+        TypedQuery<User> q = em.createQuery("SELECT o FROM User AS o WHERE o.role = :role", User.class);
+        q.setParameter("role", role);
         return q;
     }
     

@@ -22,10 +22,6 @@ privileged aspect Event_Roo_Jpa_Entity {
     @Column(name = "id")
     private Integer Event.id;
     
-    public Event.new() {
-        super();
-    }
-
     public Integer Event.getId() {
         return this.id;
     }
