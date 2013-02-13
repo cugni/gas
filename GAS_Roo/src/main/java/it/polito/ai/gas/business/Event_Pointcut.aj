@@ -56,21 +56,17 @@ public aspect Event_Pointcut {
         
         if (obj instanceof Message) {
         	// Caso: Nuovo messaggio -> notifico ai collegati alla proposal
+        	Message m=(Message)obj;
+        	
         	
         	// fonte
         	e.setMessage((Message) obj);
-            
-            // destinatari
-        	HashSet<User> users = new HashSet<User>();
-        	
-            for(User user : User.findAllUsers())
+           for(PurchaseRequest p :    m.getOrder().getPurchaseRequests())
             {
-            	for(PurchaseRequest pr : user.getPurchaseRequests())
-            		if (((Message) obj).getOrder() == pr.getProposal())
-            			users.add(user);
+            	e.getUsers().add(p.getAcquirer());
             }
             
-            e.setUsers(users);
+         
             
             e.setType(0); // da cambiare
         }
