@@ -1,5 +1,6 @@
 package it.polito.ai.gas.business;
 
+
 import static it.polito.ai.gas.business.EventType.NEW_DELIVERY;
 import static it.polito.ai.gas.business.EventType.NEW_MESSAGE;
 import static it.polito.ai.gas.business.EventType.NEW_PRODUCT;
@@ -11,15 +12,9 @@ import java.util.Calendar;
 import java.util.HashSet;
 
 
-import javax.persistence.Query;
-
 import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
-
-import it.polito.ai.gas.Utils;
-
-import com.google.common.collect.Sets;
 
 
 
@@ -34,7 +29,6 @@ public aspect Event_Pointcut {
 		 : interceptPersist(obj) {		
 		
 		Event e = new Event();
-	 
 
 		// setto la fonte (e.setUser() oppure e.setProduct() oppure ...)
 		// setto i destinatari(e.setUsers())
@@ -47,8 +41,7 @@ public aspect Event_Pointcut {
         	
         	// fonte
             e.setUser((User) obj);
-            
-            e.setUsers(new HashSet(q.getResultList() ));            
+            e.getUsers().addAll(q.getResultList());            
             e.setType(NEW_USER); // da cambiare
         }
         else if (obj instanceof Product) {
@@ -60,7 +53,7 @@ public aspect Event_Pointcut {
         	e.setProduct((Product) obj);
         	// destinatari
                   
-            e.setUsers(Utils.merge(e.getUsers()));
+            
             for(User delegate : q.getResultList())
             {
             	if (delegate.getProducers().contains(
@@ -74,11 +67,11 @@ public aspect Event_Pointcut {
         }
         else if (obj instanceof Message) {
         	// Caso: Nuovo messaggio -> notifico ai collegati alla proposal
-        	Message m = (Message)obj;
+
+
+        	Message m=(Message)obj;
         	// fonte
         	e.setMessage((Message) obj);
-            
-            e.setUsers(Utils.merge(e.getUsers()));
            for(PurchaseRequest p : m.getOrder().getPurchaseRequests())
             {
             	e.getUsers().add(p.getAcquirer());
@@ -102,8 +95,7 @@ public aspect Event_Pointcut {
         }
         else if (obj instanceof PurchaseRequest) {
         	PurchaseRequest pr = (PurchaseRequest) obj;
-            
-            e.setUsers(Utils.merge(e.getUsers()));
+        	
         	e.getUsers().add(pr.getProposal().getProduct().getProducer().getDelegate());
         	
         	e.setType(NEW_PURCHASE_REQUEST);
