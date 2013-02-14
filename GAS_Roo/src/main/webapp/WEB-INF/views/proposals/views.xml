@@ -13,6 +13,9 @@
 <definition extends="default" name="proposals/createfromproduct">
         <put-attribute name="body" value="/WEB-INF/views/proposals/createfromproduct.jspx"/>
     </definition>
+<definition extends="default" name="proposals/chat">
+        <put-attribute name="body" value="/WEB-INF/views/proposals/chat.jspx"/>
+    </definition>
 <definition extends="default" name="proposals/update">
         <put-attribute name="body" value="/WEB-INF/views/proposals/update.jspx"/>
     </definition>
