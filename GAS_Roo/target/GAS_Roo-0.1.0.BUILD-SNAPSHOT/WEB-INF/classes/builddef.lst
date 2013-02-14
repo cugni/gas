@@ -25,6 +25,7 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/UserController_Roo_Controller_Json.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Message_Roo_Json.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/User_Roo_DbManaged.aj
+/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/EventController_Roo_Controller.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Event.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/PurchaseRequestController_Roo_Controller.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Event_Roo_JavaBean.aj
@@ -32,6 +33,7 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Message_Roo_Configurable.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProductController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProposalController_Roo_Controller.aj
+/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/EventController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ProducerController_Roo_Controller.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/PurchaseRequest_Roo_Configurable.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/ApplicationConversionServiceFactoryBean_Roo_ConversionService.aj
@@ -42,6 +44,7 @@ UTF-8
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Producer_Roo_Json.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/controller/UserController.java
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/InterceptPersist.java
+/home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Message_Roo_Finder.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Event_Roo_ToString.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Event_Pointcut.aj
 /home/ccugnasc/workspace/gas/GAS_Roo/src/main/java/it/polito/ai/gas/business/Producer_Roo_Jpa_Entity.aj

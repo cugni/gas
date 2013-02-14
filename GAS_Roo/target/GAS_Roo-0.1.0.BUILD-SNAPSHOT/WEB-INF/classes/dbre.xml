@@ -152,6 +152,10 @@
             <option key="exported" value="false"/>
             <reference foreign="id" local="delegate"/>
         </foreign-key>
+        <foreign-key foreignTable="product" name="fk_products_users" onDelete="none" onUpdate="none">
+            <option key="exported" value="true"/>
+            <reference foreign="producer" local="id"/>
+        </foreign-key>
         <unique name="PRIMARY">
             <unique-column name="id"/>
         </unique>
@@ -181,7 +185,7 @@
         <column name="max_to_buy_user" primaryKey="false" required="true" scale="0" size="12" type="7,FLOAT"/>
         <column name="available_from" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="available_to" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
-        <foreign-key foreignTable="user" name="fk_products_users" onDelete="none" onUpdate="none">
+        <foreign-key foreignTable="producer" name="fk_products_users" onDelete="none" onUpdate="none">
             <option key="exported" value="false"/>
             <reference foreign="id" local="producer"/>
         </foreign-key>
@@ -203,9 +207,6 @@
             <index-column name="producer"/>
         </index>
         <index name="FKC42BD164B4A9FE64">
-            <index-column name="producer"/>
-        </index>
-        <index name="fk_products_users_idx">
             <index-column name="producer"/>
         </index>
     </table>
@@ -300,10 +301,6 @@
         <foreign-key foreignTable="producer" name="fk_producer_info_users1" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>
             <reference foreign="delegate" local="id"/>
-        </foreign-key>
-        <foreign-key foreignTable="product" name="fk_products_users" onDelete="none" onUpdate="none">
-            <option key="exported" value="true"/>
-            <reference foreign="producer" local="id"/>
         </foreign-key>
         <foreign-key foreignTable="purchase_request" name="diamine" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>

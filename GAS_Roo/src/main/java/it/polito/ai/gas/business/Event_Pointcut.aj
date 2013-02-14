@@ -6,9 +6,10 @@ import static it.polito.ai.gas.business.EventType.NEW_PRODUCT;
 import static it.polito.ai.gas.business.EventType.NEW_PROPOSAL;
 import static it.polito.ai.gas.business.EventType.NEW_PURCHASE_REQUEST;
 import static it.polito.ai.gas.business.EventType.NEW_USER;
-import static com.google.common.base.Preconditions.*;
+*;
 
 import java.util.Calendar;
+import java.util.HashSet;
 
 
 import javax.persistence.Query;
@@ -16,6 +17,10 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import antlr.Utils;
+
+import com.google.common.collect.Sets;
 
 
 
@@ -44,7 +49,7 @@ public aspect Event_Pointcut {
         	// fonte
             e.setUser((User) obj);
             
-            e.setUsers(checkNotNull(q.getResultList(),"la lista torna null"));            
+            e.setUsers(new HashSet(q.getResultList() ));            
             e.setType(NEW_USER); // da cambiare
         }
         else if (obj instanceof Product) {
@@ -56,7 +61,7 @@ public aspect Event_Pointcut {
         	e.setProduct((Product) obj);
         	// destinatari
                   
-            
+            e.setUser(Utils.merge(e.getUsers()));
             for(User delegate : q.getResultList())
             {
             	if (delegate.getProducers().contains(
@@ -73,6 +78,8 @@ public aspect Event_Pointcut {
         	Message m = (Message)obj;
         	// fonte
         	e.setMessage((Message) obj);
+            
+            e.setUser(Utils.merge(e.getUsers()));
            for(PurchaseRequest p : m.getOrder().getPurchaseRequests())
             {
             	e.getUsers().add(p.getAcquirer());
@@ -96,7 +103,8 @@ public aspect Event_Pointcut {
         }
         else if (obj instanceof PurchaseRequest) {
         	PurchaseRequest pr = (PurchaseRequest) obj;
-        	
+            
+            e.setUser(Utils.merge(e.getUsers()));
         	e.getUsers().add(pr.getProposal().getProduct().getProducer().getDelegate());
         	
         	e.setType(NEW_PURCHASE_REQUEST);
