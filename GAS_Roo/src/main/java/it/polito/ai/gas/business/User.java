@@ -33,5 +33,4 @@ public class User implements InterceptPersist {
         q.setParameter("event", e.getId());
         return q;
     }
-
 }

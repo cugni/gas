@@ -50,4 +50,17 @@ public class ProposalController {
         uiModel.addAttribute("messages", Message.findMessagesByOrder(p));
         return "proposals/chat";
     }
+    
+    @RequestMapping(value = "/{id}/chat", produces = "text/html", method = RequestMethod.POST)   
+    public String chatWrite(@Valid Message message,@PathVariable("id") Integer id,BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    	Proposal p = Proposal.findProposal(id);
+    	if (bindingResult.hasErrors()) {
+            uiModel.addAttribute("messages", Message.findMessagesByOrder(p));
+            return "proposals/chat";
+        }
+        
+        uiModel.asMap().clear();
+        message.persist();
+        return "redirect:/proposals/" + id +"/chat";
+    }
 }

@@ -7,6 +7,9 @@ import static it.polito.ai.gas.business.EventType.NEW_PROPOSAL;
 import static it.polito.ai.gas.business.EventType.NEW_PURCHASE_REQUEST;
 import static it.polito.ai.gas.business.EventType.NEW_USER;
 
+import java.util.Calendar;
+import java.util.List;
+
 
 import javax.persistence.Query;
 
@@ -34,12 +37,13 @@ public aspect Event_Pointcut {
         if (obj instanceof User) {
         	 // destinatari
             TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
-            if(q.getResultList().size()==0)return;
+            if (q.getResultList().size()==0 || q.getResultList() == null)
+            	return;
         	// Caso: Nuovo utente -> notifico agli admin
         	
         	// fonte
             e.setUser((User) obj);
-            e.getUsers().addAll(q.getResultList());            
+            e.getUsers().addAll( q.getResultList(););            
             e.setType(NEW_USER); // da cambiare
         }
         else if (obj instanceof Product) {
@@ -58,7 +62,6 @@ public aspect Event_Pointcut {
             			((Product) obj).getProducer()))
             		e.getUsers().add(delegate);
             }
-            
             
             
             e.setType(NEW_PRODUCT); // da cambiare
