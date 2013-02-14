@@ -1,0 +1,9 @@
+<aspectj>
+<aspects>
+<aspect name="it.polito.ai.gas.business.PurchaseRequestIntegrationTest_Roo_Configurable"/>
+<aspect name="it.polito.ai.gas.business.PurchaseRequestDataOnDemand_Roo_Configurable"/>
+<aspect name="it.polito.ai.gas.business.PurchaseRequestDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="it.polito.ai.gas.business.PurchaseRequestIntegrationTest_Roo_IntegrationTest"/>
+</aspects>
+</aspectj>
+

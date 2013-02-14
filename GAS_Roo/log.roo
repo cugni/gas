@@ -191,12 +191,26 @@ finder list
 finder add findUsersByRole
 focus --class ~.business.Proposal
 finder list
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-13 14:41:13
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-13 15:15:51
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-13 16:30:36
-help
-hint
-hint
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-13 18:40:11
-// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-14 16:26:08
-hint
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-13 16:12:38
+focus --class ~.business.Message
+finder list
+finder add findMessagesByOrder
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-13 18:00:15
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-13 18:35:45
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-13 21:50:18
+web mvc all --package ~.controller
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-14 15:59:04
+// [failed] database reverse engineer --schema GAS
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+// [failed] database reverse engineer --schema GAS
+osgi obr url add --url http://spring-roo-repository.springsource.org/repository.xml
+osgi obr start --bundleSymbolicName org.springframework.roo.wrapping.mysql-connector-java
+osgi obr url remove --url http://spring-roo-repository.springsource.org/repository.xml
+addon install id --searchResultId 01
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2013-02-14 16:02:49
+database reverse engineer --schema GAS
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2013-02-14 16:50:32

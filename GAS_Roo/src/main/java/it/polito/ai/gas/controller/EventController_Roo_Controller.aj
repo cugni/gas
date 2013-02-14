@@ -5,12 +5,12 @@ package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Event;
+import it.polito.ai.gas.business.EventType;
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.Producer;
-import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
-import it.polito.ai.gas.business.UserType;
-import it.polito.ai.gas.controller.UserController;
+import it.polito.ai.gas.controller.EventController;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
@@ -26,91 +26,91 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-privileged aspect UserController_Roo_Controller {
+privileged aspect EventController_Roo_Controller {
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String UserController.create(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String EventController.create(@Valid Event event, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, user);
-            return "users/create";
+            populateEditForm(uiModel, event);
+            return "events/create";
         }
         uiModel.asMap().clear();
-        user.persist();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        event.persist();
+        return "redirect:/events/" + encodeUrlPathSegment(event.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
-    public String UserController.createForm(Model uiModel) {
-        populateEditForm(uiModel, new User());
-        return "users/create";
+    public String EventController.createForm(Model uiModel) {
+        populateEditForm(uiModel, new Event());
+        return "events/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String UserController.show(@PathVariable("id") Integer id, Model uiModel) {
+    public String EventController.show(@PathVariable("id") Integer id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("user", User.findUser(id));
+        uiModel.addAttribute("event", Event.findEvent(id));
         uiModel.addAttribute("itemId", id);
-        return "users/show";
+        return "events/show";
     }
     
     @RequestMapping(produces = "text/html")
-    public String UserController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+    public String EventController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("users", User.findUserEntries(firstResult, sizeNo));
-            float nrOfPages = (float) User.countUsers() / sizeNo;
+            uiModel.addAttribute("events", Event.findEventEntries(firstResult, sizeNo));
+            float nrOfPages = (float) Event.countEvents() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("users", User.findAllUsers());
+            uiModel.addAttribute("events", Event.findAllEvents());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "users/list";
+        return "events/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String UserController.update(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String EventController.update(@Valid Event event, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, user);
-            return "users/update";
+            populateEditForm(uiModel, event);
+            return "events/update";
         }
         uiModel.asMap().clear();
-        user.merge();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        event.merge();
+        return "redirect:/events/" + encodeUrlPathSegment(event.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String UserController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
-        populateEditForm(uiModel, User.findUser(id));
-        return "users/update";
+    public String EventController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
+        populateEditForm(uiModel, Event.findEvent(id));
+        return "events/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String UserController.delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        User user = User.findUser(id);
-        user.remove();
+    public String EventController.delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+        Event event = Event.findEvent(id);
+        event.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/users";
+        return "redirect:/events";
     }
     
-    void UserController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("user_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    void EventController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("event_date_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
     
-    void UserController.populateEditForm(Model uiModel, User user) {
-        uiModel.addAttribute("user", user);
+    void EventController.populateEditForm(Model uiModel, Event event) {
+        uiModel.addAttribute("event", event);
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
-        uiModel.addAttribute("events", Event.findAllEvents());
+        uiModel.addAttribute("eventtypes", Arrays.asList(EventType.values()));
         uiModel.addAttribute("messages", Message.findAllMessages());
-        uiModel.addAttribute("producers", Producer.findAllProducers());
-        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
-        uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
+        uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("proposals", Proposal.findAllProposals());
+        uiModel.addAttribute("users", User.findAllUsers());
     }
     
-    String UserController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
+    String EventController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
             enc = WebUtils.DEFAULT_CHARACTER_ENCODING;

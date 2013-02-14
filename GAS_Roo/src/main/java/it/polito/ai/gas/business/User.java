@@ -34,9 +34,4 @@ public class User implements InterceptPersist {
         return q;
     }
 
-    @Transactional(propagation = Propagation.NESTED)
-    public void persist() {
-        if (this.entityManager == null) this.entityManager = entityManager();
-        this.entityManager.persist(this);
-    }
 }

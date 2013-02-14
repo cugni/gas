@@ -5,10 +5,11 @@
     <form:create id="fc_it_polito_ai_gas_business_Proposal" modelAttribute="proposal" path="/proposals" render="${empty dependencies}" z="4aXU6G9FlgCx5yJ1F0YED8A2OH4=">
         <field:simple field="messages" id="c_it_polito_ai_gas_business_Proposal_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="5J2WCKDPi7DjHkjMFsa403lVD7k="/>
 
-        <field:select field="product"
-        id="c_it_polito_ai_gas_business_Proposal_product"
-		itemValue="id" items="${products}" path="/products" z="Ue6+Lx5nY7DCB9hgu8+Ihb/zRGk="/>
-
+       	<b>
+       		<field:display field="name" id="c_it_polito_ai_gas_business_Product_name" object="${product}" z="xQ1TEW3B/zJTTzR0XR9r8eLRZDc="/>
+       	</b>
+        <field:select 
+        field="product" id="c_it_polito_ai_gas_business_Proposal_product" itemValue="id" items="${products}" path="/products" z="Ue6+Lx5nY7DCB9hgu8+Ihb/zRGk="/>
        
         <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="c_it_polito_ai_gas_business_Proposal_startDate" required="true" z="nINGIAMKmTOgFJpozmEfv2XDKeg="/>
         <field:datetime dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="c_it_polito_ai_gas_business_Proposal_endDate" required="true" z="VvtsT5saLLDRsue3Nx8m5ekBG2A="/>

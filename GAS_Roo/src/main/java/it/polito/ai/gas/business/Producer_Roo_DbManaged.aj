@@ -4,12 +4,18 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Producer;
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.User;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 privileged aspect Producer_Roo_DbManaged {
+    
+    @OneToMany(mappedBy = "producer")
+    private Set<Product> Producer.products;
     
     @ManyToOne
     @JoinColumn(name = "delegate", referencedColumnName = "id", nullable = false)
@@ -38,6 +44,14 @@ privileged aspect Producer_Roo_DbManaged {
     
     @Column(name = "payment_mode", length = 20)
     private String Producer.paymentMode;
+    
+    public Set<Product> Producer.getProducts() {
+        return products;
+    }
+    
+    public void Producer.setProducts(Set<Product> products) {
+        this.products = products;
+    }
     
     public User Producer.getDelegate() {
         return delegate;

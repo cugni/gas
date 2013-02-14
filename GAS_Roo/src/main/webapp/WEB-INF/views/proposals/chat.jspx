@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_it_polito_ai_gas_business_Proposal" object="${proposal}" path="/proposals" z="BFW27yaPb86cj8tqA3Yufv7jmZU=">
+        <table:table data="${messages}" id="l_it_polito_ai_gas_business_Message" path="/proposals" z="AE14t5G1eNO4CbfrSgwObIlG1mk=">
+            <table:column id="c_it_polito_ai_gas_business_Message_user" property="user" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>
+            <table:column date="true" dateTimePattern="${proposal_startdate_date_format}" id="c_it_polito_ai_gas_business_Message_date" property="date" z="P6HutKXugIutHXmGNJ3GvCGmCZE="/>
+            <table:column id="c_it_polito_ai_gas_business_Message_text" property="text" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>            
+        </table:table>
+    </page:show>
+    
+    
+</div>
