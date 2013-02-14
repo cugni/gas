@@ -7,8 +7,8 @@ import static it.polito.ai.gas.business.EventType.NEW_PROPOSAL;
 import static it.polito.ai.gas.business.EventType.NEW_PURCHASE_REQUEST;
 import static it.polito.ai.gas.business.EventType.NEW_USER;
 
-import java.util.Calendar;
-import java.util.HashSet;
+
+import javax.persistence.Query;
 
 import javax.persistence.TypedQuery;
 
@@ -32,41 +32,40 @@ public aspect Event_Pointcut {
 		// setto i destinatari(e.setUsers())
 		
         if (obj instanceof User) {
+        	 // destinatari
+            TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
+            if(q.getResultList().size()==0)return;
         	// Caso: Nuovo utente -> notifico agli admin
         	
         	// fonte
             e.setUser((User) obj);
-            
-            // destinatari
-            TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
-            e.getUsers().addAll(q.getResultList());
-            
+            e.getUsers().addAll(q.getResultList());            
             e.setType(NEW_USER); // da cambiare
         }
         else if (obj instanceof Product) {
         	// Caso: Nuovo prodotto -> notifico ai delegati incaricati
         	
         	// fonte
+        	 TypedQuery<User> q = User.findUsersByRole(UserType.ROLE_DELEGATE);
+             if(q.getResultList().size()==0)return;
         	e.setProduct((Product) obj);
-        	
-            // destinatari
-            TypedQuery<User> q = User.findUsersByRole(UserType.ROLE_DELEGATE);
-            HashSet<User> delegates = new HashSet<User>();
+        	// destinatari
+                  
+            
             for(User delegate : q.getResultList())
             {
             	if (delegate.getProducers().contains(
             			((Product) obj).getProducer()))
-            		delegates.add(delegate);
+            		e.getUsers().add(delegate);
             }
             
-            e.setUsers(delegates);
+            
             
             e.setType(NEW_PRODUCT); // da cambiare
         }
         else if (obj instanceof Message) {
         	// Caso: Nuovo messaggio -> notifico ai collegati alla proposal
         	Message m = (Message)obj;
-        	
         	// fonte
         	e.setMessage((Message) obj);
            for(PurchaseRequest p : m.getOrder().getPurchaseRequests())

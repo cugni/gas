@@ -1,5 +1,6 @@
 package it.polito.ai.gas.business;
 
+import java.util.Collection;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
@@ -10,9 +11,11 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+@SuppressWarnings("serial")
 @RooJavaBean
 @RooToString
 @RooDbManaged(automaticallyDelete = true)
