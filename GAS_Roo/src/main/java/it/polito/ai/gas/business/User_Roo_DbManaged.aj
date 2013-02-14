@@ -7,7 +7,6 @@ import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Producer;
-import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
@@ -36,9 +35,6 @@ privileged aspect User_Roo_DbManaged {
     
     @OneToMany(mappedBy = "delegate")
     private Set<Producer> User.producers;
-    
-    @OneToMany(mappedBy = "producer")
-    private Set<Product> User.products;
     
     @OneToMany(mappedBy = "acquirer")
     private Set<PurchaseRequest> User.purchaseRequests;
@@ -106,14 +102,6 @@ privileged aspect User_Roo_DbManaged {
     
     public void User.setProducers(Set<Producer> producers) {
         this.producers = producers;
-    }
-    
-    public Set<Product> User.getProducts() {
-        return products;
-    }
-    
-    public void User.setProducts(Set<Product> products) {
-        this.products = products;
     }
     
     public Set<PurchaseRequest> User.getPurchaseRequests() {

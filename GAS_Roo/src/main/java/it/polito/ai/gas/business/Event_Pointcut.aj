@@ -1,12 +1,19 @@
 package it.polito.ai.gas.business;
 
-import java.util.Calendar;
-import static it.polito.ai.gas.business.EventType.*;
-import java.util.HashSet;
-import java.util.Set;
+import static it.polito.ai.gas.business.EventType.NEW_DELIVERY;
+import static it.polito.ai.gas.business.EventType.NEW_MESSAGE;
+import static it.polito.ai.gas.business.EventType.NEW_PRODUCT;
+import static it.polito.ai.gas.business.EventType.NEW_PROPOSAL;
+import static it.polito.ai.gas.business.EventType.NEW_PURCHASE_REQUEST;
+import static it.polito.ai.gas.business.EventType.NEW_USER;
 
-import javax.persistence.Query;
+import java.util.Calendar;
+import java.util.HashSet;
+
 import javax.persistence.TypedQuery;
+
+import org.springframework.transaction.annotation.Transactional;
+
 
 
 public aspect Event_Pointcut {
@@ -15,7 +22,9 @@ public aspect Event_Pointcut {
 		execution(void InterceptPersist.persist()) && this(obj);
 	
 	// EVENTI PERSIST
-	after (InterceptPersist obj) : interceptPersist(obj) {		
+	@Transactional
+	after (InterceptPersist obj)
+		 : interceptPersist(obj) {		
 		
 		Event e = new Event();
 
@@ -34,8 +43,7 @@ public aspect Event_Pointcut {
             
             e.setType(NEW_USER); // da cambiare
         }
-        
-        if (obj instanceof Product) {
+        else if (obj instanceof Product) {
         	// Caso: Nuovo prodotto -> notifico ai delegati incaricati
         	
         	// fonte
@@ -55,26 +63,47 @@ public aspect Event_Pointcut {
             
             e.setType(NEW_PRODUCT); // da cambiare
         }
-        
-        if (obj instanceof Message) {
+        else if (obj instanceof Message) {
         	// Caso: Nuovo messaggio -> notifico ai collegati alla proposal
-        	Message m=(Message)obj;
-        	
+        	Message m = (Message)obj;
         	
         	// fonte
         	e.setMessage((Message) obj);
-           for(PurchaseRequest p :    m.getOrder().getPurchaseRequests())
+           for(PurchaseRequest p : m.getOrder().getPurchaseRequests())
             {
             	e.getUsers().add(p.getAcquirer());
             }
             
-         
-            
             e.setType(NEW_MESSAGE); // da cambiare
         }
+        else if (obj instanceof Proposal) {
+        	e.getUsers().addAll(User.findAllUsers());
+        	
+        	e.setType(NEW_PROPOSAL);
+        }
+        else if (obj instanceof DeliveryWithdrawal) {
+        	DeliveryWithdrawal dw = (DeliveryWithdrawal) obj;
+        	for(PurchaseRequest pr : dw.getOrder().getPurchaseRequests())
+        	{
+        		e.getUsers().add(pr.getAcquirer());
+        	}
+        	
+        	e.setType(NEW_DELIVERY);
+        }
+        else if (obj instanceof PurchaseRequest) {
+        	PurchaseRequest pr = (PurchaseRequest) obj;
+        	
+        	e.getUsers().add(pr.getProposal().getProduct().getProducer().getDelegate());
+        	
+        	e.setType(NEW_PURCHASE_REQUEST);
+        }
         
-        e.setDate(Calendar.getInstance().getTime());		
+        else {
+        	throw new IllegalArgumentException("Couldn't find a match for the object.");
+        }
         
+        
+        e.setDate(Calendar.getInstance().getTime());
         e.persist();
 	}
 

@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/producers")
 @Controller
-@RooWebScaffold(path = "producers",
-formBackingObject = Producer.class)
+@RooWebScaffold(path = "producers", formBackingObject = Producer.class)
 @RooWebJson(jsonObject = Producer.class)
 public class ProducerController {
 }

@@ -10,6 +10,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
-@RooJpaActiveRecord(versionField = "", table = "message")
+@RooJpaActiveRecord(versionField = "", table = "message", finders = { "findMessagesByOrder" })
 public class Message implements InterceptPersist {
 }

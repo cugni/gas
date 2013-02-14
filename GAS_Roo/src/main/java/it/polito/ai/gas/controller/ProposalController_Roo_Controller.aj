@@ -37,6 +37,12 @@ privileged aspect ProposalController_Roo_Controller {
         return "redirect:/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
     
+    @RequestMapping(params = "form", produces = "text/html")
+    public String ProposalController.createForm(Model uiModel) {
+        populateEditForm(uiModel, new Proposal());
+        return "proposals/create";
+    }
+    
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ProposalController.show(@PathVariable("id") Integer id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
