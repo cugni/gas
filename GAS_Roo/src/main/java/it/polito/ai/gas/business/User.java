@@ -21,13 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
-@RooJpaActiveRecord(versionField = "", table = "user", 
-finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
-public class User  implements InterceptPersist {
+@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
+public class User implements InterceptPersist {
 
     @Enumerated
     private UserType role;
-  
 
     public static TypedQuery<it.polito.ai.gas.business.User> findUserNotNotified(Event e) {
         EntityManager em = User.entityManager();

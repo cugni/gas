@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import it.polito.ai.gas.business.User;
 
@@ -15,6 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 /* 
@@ -34,6 +36,7 @@ AbstractUserDetailsAuthenticationProvider {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	protected UserDetails retrieveUser(String username,
 			UsernamePasswordAuthenticationToken authentication)
 			throws AuthenticationException {
@@ -43,14 +46,16 @@ AbstractUserDetailsAuthenticationProvider {
 	      throw new BadCredentialsException("Please enter password");
 	    }
 	    
-	    Query query;
-	    try
-	    {
-	    	query = User.findUsersByUsernameEquals(username);
-	    } catch(NoResultException e ) {
-	    	throw new BadCredentialsException("Invalid Password");
-	    }
-	    User found = (User) query.getSingleResult();
+	    
+	  
+	    
+	    	TypedQuery<User> qu=User.findUsersByUsernameEquals(username) ;
+	    	if(qu.getResultList().size()==0){
+	    		throw new BadCredentialsException("Invalid Password");
+	    	}
+	    	  User found = qu.getSingleResult();
+	    
+	  
 		
 	    if (!found.getPassword().equals(password))
 	          throw new BadCredentialsException("Invalid Password");

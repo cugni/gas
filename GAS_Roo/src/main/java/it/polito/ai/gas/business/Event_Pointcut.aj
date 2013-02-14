@@ -23,7 +23,7 @@ public aspect Event_Pointcut {
         if (obj instanceof User) {
         	 // destinatari
             TypedQuery<User>  q = User.findUsersByRole(UserType.ROLE_ADMIN);
-            if(q.getResultList()==null)return;
+            if(q.getResultList().size()==0)return;
         	// Caso: Nuovo utente -> notifico agli admin
         	
         	// fonte
@@ -37,7 +37,7 @@ public aspect Event_Pointcut {
         	
         	// fonte
         	 TypedQuery<User> q = User.findUsersByRole(UserType.ROLE_DELEGATE);
-             if(q.==null)return;
+             if(q.getResultList().size()==0)return;
         	e.setProduct((Product) obj);
         	// destinatari
                   

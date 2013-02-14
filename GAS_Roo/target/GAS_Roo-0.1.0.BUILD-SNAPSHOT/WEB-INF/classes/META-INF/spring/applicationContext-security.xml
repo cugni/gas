@@ -97,7 +97,6 @@
     <beans:bean id="GASAuthenticationProvider" 
       class="it.polito.ai.gas.security.GASAuthenticationProvider">
 	</beans:bean>
-<!-- 	<beans:bean id="DaoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"></beans:bean> -->
 	
     <authentication-manager alias="authenticationManager">
     	<authentication-provider ref="GASAuthenticationProvider"/>
