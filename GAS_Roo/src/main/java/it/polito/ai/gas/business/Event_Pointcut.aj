@@ -6,6 +6,9 @@ import static it.polito.ai.gas.business.EventType.NEW_PRODUCT;
 import static it.polito.ai.gas.business.EventType.NEW_PROPOSAL;
 import static it.polito.ai.gas.business.EventType.NEW_PURCHASE_REQUEST;
 import static it.polito.ai.gas.business.EventType.NEW_USER;
+import static com.google.common.base.Preconditions.*;
+
+import java.util.Calendar;
 
 
 import javax.persistence.Query;
@@ -27,6 +30,7 @@ public aspect Event_Pointcut {
 		 : interceptPersist(obj) {		
 		
 		Event e = new Event();
+	 
 
 		// setto la fonte (e.setUser() oppure e.setProduct() oppure ...)
 		// setto i destinatari(e.setUsers())
@@ -39,7 +43,8 @@ public aspect Event_Pointcut {
         	
         	// fonte
             e.setUser((User) obj);
-            e.getUsers().addAll(q.getResultList());            
+            
+            e.setUsers(checkNotNull(q.getResultList(),"la lista torna null"));            
             e.setType(NEW_USER); // da cambiare
         }
         else if (obj instanceof Product) {
