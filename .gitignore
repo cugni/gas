@@ -1,5 +1,5 @@
 *.class
-
+GAS_Andrea/build/
 # Package Files #
 *.jar
 *.war
