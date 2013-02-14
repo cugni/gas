@@ -67,9 +67,7 @@ public aspect Event_Pointcut {
             			((Product) obj).getProducer()))
             		e.getUsers().add(delegate);
             }
-            
-            
-            
+                        
             e.setType(NEW_PRODUCT); // da cambiare
         }
         else if (obj instanceof Message) {
@@ -78,16 +76,17 @@ public aspect Event_Pointcut {
         	// fonte
         	e.setMessage((Message) obj);
             
-            e.setUsers(Utils.merge(e.getUsers()));
-           for(PurchaseRequest p : m.getOrder().getPurchaseRequests())
-            {
-            	e.getUsers().add(p.getAcquirer());
-            }
+            //e.setUsers(Utils.merge(e.getUsers()));
+        	if (m.getOrder() != null)
+        	if (m.getOrder().getPurchaseRequests() != null)
+	            for(PurchaseRequest p : m.getOrder().getPurchaseRequests())
+	            	e.setUsers(Utils.merge(e.getUsers(), p.getAcquirer()));
             
-            e.setType(NEW_MESSAGE); // da cambiare
+            e.setType(NEW_MESSAGE);
         }
         else if (obj instanceof Proposal) {
-        	e.getUsers().addAll(User.findAllUsers());
+        	e.setProposal((Proposal) obj);
+        	e.setUsers(Utils.merge(e.getUsers(), User.findAllUsers()));
         	
         	e.setType(NEW_PROPOSAL);
         }
