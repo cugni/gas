@@ -65,9 +65,9 @@
         <!--
 			Entity: USER
 		-->
-		<!-- create 
+
 		<intercept-url pattern="/users\?form" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <intercept-url pattern="/users" method="POST" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/> -->
+        <intercept-url pattern="/users" method="POST" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <!-- read/list -->
         <!-- update -->
         <intercept-url pattern="/users/[0-9]+\?form" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>

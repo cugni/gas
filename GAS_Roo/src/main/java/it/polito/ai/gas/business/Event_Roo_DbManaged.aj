@@ -9,7 +9,7 @@ import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -50,8 +50,8 @@ privileged aspect Event_Roo_DbManaged {
     @Column(name = "date")
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "M-")
-    private Date Event.date;
+    @DateTimeFormat(style = "MM")
+    private Calendar Event.date;
     
     public Set<User> Event.getUsers() {
         return users;
@@ -101,11 +101,11 @@ privileged aspect Event_Roo_DbManaged {
         this.product = product;
     }
     
-    public Date Event.getDate() {
+    public Calendar Event.getDate() {
         return date;
     }
     
-    public void Event.setDate(Date date) {
+    public void Event.setDate(Calendar date) {
         this.date = date;
     }
     

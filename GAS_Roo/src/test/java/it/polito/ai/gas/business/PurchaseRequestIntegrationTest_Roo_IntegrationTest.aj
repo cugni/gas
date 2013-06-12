@@ -24,7 +24,7 @@ privileged aspect PurchaseRequestIntegrationTest_Roo_IntegrationTest {
     declare @type: PurchaseRequestIntegrationTest: @Transactional;
     
     @Autowired
-    private PurchaseRequestDataOnDemand PurchaseRequestIntegrationTest.dod;
+    PurchaseRequestDataOnDemand PurchaseRequestIntegrationTest.dod;
     
     @Test
     public void PurchaseRequestIntegrationTest.testCountPurchaseRequests() {

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RooWebScaffold(path = "users", formBackingObject = User.class)
 @RooWebJson(jsonObject = User.class)
-public class UserController {
+public class    UserController {
 
     @RequestMapping(value = "approve", produces = "text/html")
     public String approveForm(Model uiModel) {

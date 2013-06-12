@@ -9,7 +9,7 @@
         <field:display field="deliveryWithdrawal" id="s_it_polito_ai_gas_business_Event_deliveryWithdrawal" object="${event}" z="wPPpNtgqLg8f1LmtHracCsAEzto="/>
         <field:display field="message" id="s_it_polito_ai_gas_business_Event_message" object="${event}" z="lI/h4Nz+9FWVUofUbGy/bpXgxBw="/>
         <field:display field="product" id="s_it_polito_ai_gas_business_Event_product" object="${event}" z="Er1IbFkjVfoBn7z80kljs9/I+zs="/>
-        <field:display date="true" dateTimePattern="${event_date_date_format}" field="date" id="s_it_polito_ai_gas_business_Event_date" object="${event}" z="ZIS0hA4bpb2dQ8C+US5op2sulrc="/>
+        <field:display calendar="true" dateTimePattern="${event_date_date_format}" field="date" id="s_it_polito_ai_gas_business_Event_date" object="${event}" z="cyr4NqPpvEoew7+GSNNgJl6c1Sw="/>
         <field:display field="type" id="s_it_polito_ai_gas_business_Event_type" object="${event}" z="HkNgW/n5IIax145lVr+lPllno3s="/>
     </page:show>
 </div>

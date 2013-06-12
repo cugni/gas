@@ -113,7 +113,7 @@ public aspect Event_Pointcut {
         }
         
         
-        e.setDate(Calendar.getInstance().getTime());
+        e.setDate(Calendar.getInstance());
         e.persist();
 	}
 
