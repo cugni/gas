@@ -9,18 +9,20 @@ version="2.0">
 
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_it_polito_ai_gas_business_Proposal" object="${proposal}" path="/proposals" z="BFW27yaPb86cj8tqA3Yufv7jmZU=">
-        <table:table data="${messages}" id="l_it_polito_ai_gas_business_Message" path="/proposals" z="AE14t5G1eNO4CbfrSgwObIlG1mk=">
+    <!-- 
+        <table:table data="${old_messages}" id="l_it_polito_ai_gas_business_Message" path="/messages" z="AE14t5G1eNO4CbfrSgwObIlG1mk=">
             <table:column id="c_it_polito_ai_gas_business_Message_user" property="user" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>
             <table:column date="true" dateTimePattern="${proposal_startdate_date_format}" id="c_it_polito_ai_gas_business_Message_date" property="date" z="P6HutKXugIutHXmGNJ3GvCGmCZE="/>
             <table:column id="c_it_polito_ai_gas_business_Message_text" property="text" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>            
         </table:table>
-    </page:show>
+-->
     
-    <form:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages" render="${empty dependencies}" z="pMDYQ0QLt9DxDT4uleVAfp2mqsQ=">
-        <field:display field="order" id="s_it_polito_ai_gas_business_Message_order" object="${message}" z="6cpbawps8U37MHI/agId0YeYsAo="/>
-        <field:display field="user" id="s_it_polito_ai_gas_business_Message_user" object="${message}" z="XrU/S34MXJWRHKRq8flJotlif4Q="/>
-        <field:datetime dateTimePattern="${message_date_date_format}" field="date" id="c_it_polito_ai_gas_business_Message_date" required="true" z="6als+ifCXjzXw25b8bnM270HccU="/>
+    <form:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="proposals/" render="${empty dependencies}" z="pMDYQ0QLt9DxDT4uleVAfp2mqsQ=">
+        <field:display id="c_it_polito_ai_gas_business_Message_order" object="${message}" field="order"/>
+        <field:display id="c_it_polito_ai_gas_business_Message_user" object="${message}" field="user"/>
+        
+        <field:datetime dateTimePattern="${message_date_date_format}" field="date" 
+        id="c_it_polito_ai_gas_business_Message_date" required="true" z="6als+ifCXjzXw25b8bnM270HccU="/>
         <field:input field="text" id="c_it_polito_ai_gas_business_Message_text" z="4/xnrYCPXi0m4xMtuQGUv6ltTVQ="/>
        
     </form:create>
