@@ -28,10 +28,14 @@ public class GASAuthenticationProvider extends
 AbstractUserDetailsAuthenticationProvider {
 
 	@Override
-	protected void additionalAuthenticationChecks(UserDetails arg0,
-			UsernamePasswordAuthenticationToken arg1)
+	protected void additionalAuthenticationChecks(UserDetails found,
+			UsernamePasswordAuthenticationToken authentication)
 			throws AuthenticationException {
-		// TODO Auto-generated method stub
+		
+		   if (!found.getPassword().equals(authentication.getCredentials()))
+		          throw new BadCredentialsException("Username/password combination not valid");
+		    if (!found.isEnabled())
+		          throw new BadCredentialsException("User not yet approved");
 		
 	}
 
@@ -45,53 +49,13 @@ AbstractUserDetailsAuthenticationProvider {
 	    if (!StringUtils.hasText(password)) {
 	      throw new BadCredentialsException("Please enter password");
 	    }
-	    
-	    
-	  
-	    
-	    	TypedQuery<User> qu=User.findUsersByUsernameEquals(username) ;
-	    	if(qu.getResultList().size()==0){
-	    		throw new BadCredentialsException("Invalid Password");
+	    TypedQuery<User> qu=User.findUsersByUsernameEquals(username) ;
+	    if(qu.getResultList().size()==0){
+	    		throw new BadCredentialsException("Username/password combination not valid");
 	    	}
 	    	  User found = qu.getSingleResult();
-	    
-	  
-		
-	    if (!found.getPassword().equals(password))
-	          throw new BadCredentialsException("Invalid Password");
-
-	    if (!found.getApproved())
-	          throw new BadCredentialsException("User not approved");
-
-	    // Login OK!
-	    
-	    List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-	    switch(found.getRole())
-	    {
-	    	case ROLE_DELEGATE: // User
-	    		authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
-	    		 
-	    	case ROLE_USER: // Delegate
-	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
-	          
-	    		break;
-	    	case ROLE_PRODUCER: // Producer
-	            authorities.add(new GrantedAuthorityImpl("ROLE_PRODUCER"));
-	    		break;
-	    	case ROLE_ADMIN: // Admin
-	    		// ? ->
-	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
-	            authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
-	            authorities.add(new GrantedAuthorityImpl("ROLE_PRODUCER"));
-	            // <- ?
-	            authorities.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
-	    		break;
-	    	default:
-	    		break;
-	    }
-	    
-	    return new org.springframework.security.core.userdetails.User(
-	    					username, password, authorities);
+	 
+	    return found;
 	}
 
 }

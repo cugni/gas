@@ -1,6 +1,9 @@
 package it.polito.ai.gas.business;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
@@ -11,7 +14,9 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
-@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
-public class User implements UserDetails, InterceptPersist {
+@RooJpaActiveRecord(versionField = "", 
+table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
+public class User implements InterceptPersist, UserDetails {
 
     @Enumerated
     private UserType role;
@@ -35,28 +41,63 @@ public class User implements UserDetails, InterceptPersist {
         return q;
     }
 
-    @Override
-    public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
+ 
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+	    switch(this.getRole())	    {
+	    	case ROLE_DELEGATE: // User
+	    		authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
+	    		 
+	    	case ROLE_USER: // Delegate
+	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
+	          
+	    		break;
+	    	case ROLE_PRODUCER: // Producer
+	            authorities.add(new GrantedAuthorityImpl("ROLE_PRODUCER"));
+	    		break;
+	    	case ROLE_ADMIN: // Admin
+	    		// ? ->
+	            authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
+	            authorities.add(new GrantedAuthorityImpl("ROLE_DELEGATE"));
+	            authorities.add(new GrantedAuthorityImpl("ROLE_PRODUCER"));
+	            // <- ?
+	            authorities.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
+	    		break;
+	    	default:
+	    		break;
+	    }
+	    return authorities;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
+	 
 
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	/***
+	 * Le nostre password non scadono mai. 
+	 */
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	public boolean isEnabled() {
+		return this.getApproved();
+	}
+	public String toString(){
+		return this.getUsername();
+	}
+
+	 
+
+	 
+ 
 }
