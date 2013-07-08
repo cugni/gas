@@ -23,7 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SuppressWarnings("serial")
 @RooJavaBean
-@RooToString
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -79,6 +78,7 @@ public class User implements InterceptPersist, UserDetails {
         return this.getApproved();
     }
 
+    @Override
     public String toString() {
         return this.getUsername();
     }

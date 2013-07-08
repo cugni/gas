@@ -3,11 +3,11 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages" render="${empty dependencies}" z="pMDYQ0QLt9DxDT4uleVAfp2mqsQ=">
+        <field:textarea field="text" id="c_it_polito_ai_gas_business_Message_text" z="F7mkglZIAnJx97u8ciTfiCCl2R8="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Message_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="ndaCXnVbJ15vK+A8Gf+trLqc3VE="/>
         <field:select field="user" id="c_it_polito_ai_gas_business_Message_user" itemValue="id" items="${users}" path="/users" z="ghGhMgBgkoE535sCZWng4f2mwVY="/>
         <field:select field="order" id="c_it_polito_ai_gas_business_Message_order" itemValue="id" items="${proposals}" path="/proposals" z="tkNFVZ0wDcFccs9vSa6CeIMx01s="/>
         <field:datetime dateTimePattern="${message_date_date_format}" field="date" id="c_it_polito_ai_gas_business_Message_date" required="true" z="6als+ifCXjzXw25b8bnM270HccU="/>
-        <field:input field="text" id="c_it_polito_ai_gas_business_Message_text" z="4/xnrYCPXi0m4xMtuQGUv6ltTVQ="/>
-        <field:simple field="events" id="c_it_polito_ai_gas_business_Message_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="ndaCXnVbJ15vK+A8Gf+trLqc3VE="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_Message" render="${not empty dependencies}" z="1UHIX48+074TJb1fZXvOk7aDWEg="/>
 </div>

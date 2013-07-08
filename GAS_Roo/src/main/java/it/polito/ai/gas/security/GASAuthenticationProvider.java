@@ -2,6 +2,8 @@ package it.polito.ai.gas.security;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
@@ -26,6 +28,7 @@ import org.springframework.util.StringUtils;
 @SuppressWarnings("deprecation")
 public class GASAuthenticationProvider extends 
 AbstractUserDetailsAuthenticationProvider {
+    private final static Logger log= Logger.getLogger(GASAuthenticationProvider.class.getName()) ;
 
 	@Override
 	protected void additionalAuthenticationChecks(UserDetails found,
@@ -54,6 +57,7 @@ AbstractUserDetailsAuthenticationProvider {
 	    		throw new BadCredentialsException("Username/password combination not valid");
 	    	}
 	    	  User found = qu.getSingleResult();
+                                    log.log(Level.INFO,"Request of logging for the user{0}", found);
 	 
 	    return found;
 	}

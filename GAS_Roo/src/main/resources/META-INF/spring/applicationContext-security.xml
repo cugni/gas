@@ -39,8 +39,9 @@
 			Entity: PROPOSAL
 		-->
 		<!-- create -->
+        <intercept-url pattern="/proposals.+"   access="hasRole('ROLE_DELEGATE')"/>
 		<intercept-url pattern="/proposals\?form" access="hasRole('ROLE_DELEGATE')"/>
-        <intercept-url pattern="/proposals" method="POST" access="hasRole('ROLE_DELEGATE')"/>
+
         <!-- read/list (tutti?) -->
         <!-- update -->
         <intercept-url pattern="/proposals/[0-9]+\?form" access="hasRole('ROLE_DELEGATE')"/>
@@ -65,15 +66,15 @@
         <!--
 			Entity: USER
 		-->
-
-		<intercept-url pattern="/users\?form" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <intercept-url pattern="/users" method="POST" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <!-- read/list -->
-        <!-- update -->
+        <intercept-url pattern="/profile.*" access="isAuthenticated()" />
+		<intercept-url pattern="/users.*" access="hasAnyRole( 'ROLE_ADMIN')"/>
+      <!--  <intercept-url pattern="/users" method="POST" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        &lt;!&ndash; read/list &ndash;&gt;
+        &lt;!&ndash; update &ndash;&gt;
         <intercept-url pattern="/users/[0-9]+\?form" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/users/[0-9]+" method="PUT" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <!-- delete -->
-        <intercept-url pattern="/users/[0-9]+" method="DELETE" access="hasRole('ROLE_ADMIN')"/>
+        &lt;!&ndash; delete &ndash;&gt;
+        <intercept-url pattern="/users/[0-9]+" method="DELETE" access="hasRole('ROLE_ADMIN')"/>-->
         
         <!-- approve
         <intercept-url pattern="/users/approve(/[0-9]*)?" access="hasRole('ROLE_ADMIN')"/>

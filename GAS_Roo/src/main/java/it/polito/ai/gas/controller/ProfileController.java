@@ -32,65 +32,50 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
-@RequestMapping("/profile/**")
+@RequestMapping("/profile")
 @Controller
 public class ProfileController {
 	@Autowired
 	@Qualifier("authenticationManager")
 	protected AuthenticationManager authenticationManager;
 
-    @RequestMapping(method = RequestMethod.POST, value = "{id}")
-    public void post(@PathVariable Long id, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
-    }
 
-    @RequestMapping
-    public String index() {
-        return "profile/index";
-    }
-    @RequestMapping(params = "form", produces = "text/html")
-    public String createForm(Model uiModel) {
-        populateEditForm(uiModel, new User());
-        return "users/create";
-    }
-    
     @RequestMapping(value = "/", produces = "text/html")
     public String show(  Model uiModel) {
     	UserDetails userDetails =
     			 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("user", userDetails);
-      
-        return "users/show";
+        return "profile/show";
     }
     void addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("user_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
+
+    @RequestMapping( params = "form", produces = "text/html")
+    public String updateForm(Model uiModel) {
+        UserDetails userDetails =
+                (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        populateEditForm(uiModel, userDetails);
+        return "profile/update";
+    }
+
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
-            return "users/update";
+            return "profile/update";
         }
         uiModel.asMap().clear();
         user.merge();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        return "redirect:/profile/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
     }
 
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
-        populateEditForm(uiModel, User.findUser(id));
-        return "users/update";
-    }
-    void populateEditForm(Model uiModel, User user) {
+
+    void populateEditForm(Model uiModel, UserDetails user) {
         uiModel.addAttribute("user", user);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
-        uiModel.addAttribute("events", Event.findAllEvents());
-        uiModel.addAttribute("messages", Message.findAllMessages());
-        uiModel.addAttribute("producers", Producer.findAllProducers());
-        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
-        uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
-    }
+  }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();

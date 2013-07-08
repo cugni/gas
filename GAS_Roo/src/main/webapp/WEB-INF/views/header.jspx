@@ -1,4 +1,9 @@
-<div id="header" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+<div id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sec="http://www.springframework.org/security/tags"
+     version="2.0">
   <jsp:directive.page contentType="text/html;charset=UTF-8" />
   <jsp:output omit-xml-declaration="yes" />
 
@@ -8,4 +13,16 @@
   <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
     <img src="${banner}" />
   </a>
+
+
+ <sec:authorize access="isAuthenticated()">
+        <sec:authentication var="principal" property="principal" />
+       <div>
+              <h3>
+        <spring:message code="welcome_msg_foruser" text="Welcome!"      arguments="${principal.username},${principal.role}"
+
+                />
+              </h3>
+       </div>
+    </sec:authorize>
 </div> 

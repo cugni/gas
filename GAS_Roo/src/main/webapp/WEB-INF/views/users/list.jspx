@@ -4,15 +4,17 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_User" items="${users}" z="yctnmanSVS885yjGBBh6vHSflvg=">
         <sec:authorize ifAnyGranted="ROLE_ADMIN">
-            <table:table data="${users}" id="l_it_polito_ai_gas_business_User" path="/users" z="SMzHymDdfI2+caufHVdU824Phj8=">
+            <table:table data="${users}" id="l_it_polito_ai_gas_business_User" path="/users" z="user-managed">
                 <table:column id="c_it_polito_ai_gas_business_User_username" property="username"/>
-                <table:column id="c_it_polito_ai_gas_business_User_events" property="events" z="ZxIWmLWEdhGqBuBu/ooCT2tFhBA="/>
+                <table:column id="c_it_polito_ai_gas_business_User_name" property="name" z="user-managed"/>
+                <table:column id="c_it_polito_ai_gas_business_User_role" property="role" z="user-managed"/>
+                <table:column render="false" id="c_it_polito_ai_gas_business_User_events" property="events" z="user-managed"/>
             </table:table>
         </sec:authorize>
-        <sec:authorize ifNotGranted="ROLE_ADMIN">
+       <!-- <sec:authorize ifNotGranted="ROLE_ADMIN">
             <table:table create="false" data="${users}" delete="false" id="l_it_polito_ai_gas_business_User" path="/users" update="false" z="SMzHymDdfI2+caufHVdU824Phj8=">
                 <table:column id="c_it_polito_ai_gas_business_User_username" property="username"/>
             </table:table>
-        </sec:authorize>
+        </sec:authorize>-->
     </page:list>
 </div>

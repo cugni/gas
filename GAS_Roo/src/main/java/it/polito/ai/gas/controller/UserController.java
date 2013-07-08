@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,7 @@ public class    UserController {
         return "users/approve";
     }
 
+    @PreAuthorize("ROLE_ADMIN")
     @RequestMapping(value = "approve/{id}", produces = "text/html")
     public String approve(@PathVariable("id") Integer id, Model uiModel) {
         User user = User.findUser(id);

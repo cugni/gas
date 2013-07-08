@@ -7,9 +7,12 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
 @RooJpaActiveRecord(versionField = "", table = "product")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 public class Product implements InterceptPersist {
+
+    public String toString() {
+        return this.getProducer().getName() + "-" + this.getName();
+    }
 }

@@ -37,9 +37,6 @@ privileged aspect Message_Roo_DbManaged {
     @DateTimeFormat(style = "M-")
     private Date Message.date;
     
-    @Column(name = "text", length = 255)
-    private String Message.text;
-    
     public Set<Event> Message.getEvents() {
         return events;
     }
@@ -70,14 +67,6 @@ privileged aspect Message_Roo_DbManaged {
     
     public void Message.setDate(Date date) {
         this.date = date;
-    }
-    
-    public String Message.getText() {
-        return text;
-    }
-    
-    public void Message.setText(String text) {
-        this.text = text;
     }
     
 }

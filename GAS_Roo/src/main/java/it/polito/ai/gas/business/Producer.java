@@ -8,10 +8,13 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooToString
+
 @RooJpaActiveRecord(versionField = "", table = "producer")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @PrimaryKeyJoinColumn(name = "id")
 public class Producer extends User {
+    public String toString(){
+       return this.getCompanyName();
+    }
 }
