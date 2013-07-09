@@ -25,24 +25,24 @@ privileged aspect PurchaseRequestController_Roo_Controller {
     public String PurchaseRequestController.create(@Valid PurchaseRequest purchaseRequest, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, purchaseRequest);
-            return "purchaserequests/create";
+            return "admin/purchaserequests/create";
         }
         uiModel.asMap().clear();
         purchaseRequest.persist();
-        return "redirect:/purchaserequests/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
+        return "redirect:/admin/purchaserequests/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String PurchaseRequestController.createForm(Model uiModel) {
         populateEditForm(uiModel, new PurchaseRequest());
-        return "purchaserequests/create";
+        return "admin/purchaserequests/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String PurchaseRequestController.show(@PathVariable("id") Integer id, Model uiModel) {
         uiModel.addAttribute("purchaserequest", PurchaseRequest.findPurchaseRequest(id));
         uiModel.addAttribute("itemId", id);
-        return "purchaserequests/show";
+        return "admin/purchaserequests/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -56,24 +56,24 @@ privileged aspect PurchaseRequestController_Roo_Controller {
         } else {
             uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
         }
-        return "purchaserequests/list";
+        return "admin/purchaserequests/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String PurchaseRequestController.update(@Valid PurchaseRequest purchaseRequest, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, purchaseRequest);
-            return "purchaserequests/update";
+            return "admin/purchaserequests/update";
         }
         uiModel.asMap().clear();
         purchaseRequest.merge();
-        return "redirect:/purchaserequests/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
+        return "redirect:/admin/purchaserequests/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String PurchaseRequestController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, PurchaseRequest.findPurchaseRequest(id));
-        return "purchaserequests/update";
+        return "admin/purchaserequests/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -83,7 +83,7 @@ privileged aspect PurchaseRequestController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/purchaserequests";
+        return "redirect:/admin/purchaserequests";
     }
     
     void PurchaseRequestController.populateEditForm(Model uiModel, PurchaseRequest purchaseRequest) {

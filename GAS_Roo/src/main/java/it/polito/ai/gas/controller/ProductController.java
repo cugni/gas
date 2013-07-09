@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/products")
+@RequestMapping("/admin/products")
 @Controller
-@RooWebScaffold(path = "products", formBackingObject = Product.class)
+@RooWebScaffold(path = "admin/products", formBackingObject = Product.class)
 @RooWebJson(jsonObject = Product.class)
 public class ProductController {
 }

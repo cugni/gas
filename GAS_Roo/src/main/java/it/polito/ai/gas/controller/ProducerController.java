@@ -6,9 +6,9 @@ import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/producers")
+@RequestMapping("/admin/producers")
 @Controller
-@RooWebScaffold(path = "producers", formBackingObject = Producer.class)
+@RooWebScaffold(path = "admin/producers", formBackingObject = Producer.class)
 @RooWebJson(jsonObject = Producer.class)
 public class ProducerController {
 }

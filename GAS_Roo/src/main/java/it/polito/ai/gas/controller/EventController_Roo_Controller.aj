@@ -32,17 +32,17 @@ privileged aspect EventController_Roo_Controller {
     public String EventController.create(@Valid Event event, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, event);
-            return "events/create";
+            return "admin/events/create";
         }
         uiModel.asMap().clear();
         event.persist();
-        return "redirect:/events/" + encodeUrlPathSegment(event.getId().toString(), httpServletRequest);
+        return "redirect:/admin/events/" + encodeUrlPathSegment(event.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String EventController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Event());
-        return "events/create";
+        return "admin/events/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -50,7 +50,7 @@ privileged aspect EventController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("event", Event.findEvent(id));
         uiModel.addAttribute("itemId", id);
-        return "events/show";
+        return "admin/events/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -65,24 +65,24 @@ privileged aspect EventController_Roo_Controller {
             uiModel.addAttribute("events", Event.findAllEvents());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "events/list";
+        return "admin/events/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String EventController.update(@Valid Event event, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, event);
-            return "events/update";
+            return "admin/events/update";
         }
         uiModel.asMap().clear();
         event.merge();
-        return "redirect:/events/" + encodeUrlPathSegment(event.getId().toString(), httpServletRequest);
+        return "redirect:/admin/events/" + encodeUrlPathSegment(event.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String EventController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Event.findEvent(id));
-        return "events/update";
+        return "admin/events/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -92,7 +92,7 @@ privileged aspect EventController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/events";
+        return "redirect:/admin/events";
     }
     
     void EventController.addDateTimeFormatPatterns(Model uiModel) {

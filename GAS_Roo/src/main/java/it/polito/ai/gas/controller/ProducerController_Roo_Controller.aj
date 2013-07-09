@@ -33,17 +33,17 @@ privileged aspect ProducerController_Roo_Controller {
     public String ProducerController.create(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, producer);
-            return "producers/create";
+            return "admin/producers/create";
         }
         uiModel.asMap().clear();
         producer.persist();
-        return "redirect:/producers/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
+        return "redirect:/admin/producers/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String ProducerController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Producer());
-        return "producers/create";
+        return "admin/producers/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -51,7 +51,7 @@ privileged aspect ProducerController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("producer", Producer.findProducer(id));
         uiModel.addAttribute("itemId", id);
-        return "producers/show";
+        return "admin/producers/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -66,24 +66,24 @@ privileged aspect ProducerController_Roo_Controller {
             uiModel.addAttribute("producers", Producer.findAllProducers());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "producers/list";
+        return "admin/producers/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String ProducerController.update(@Valid Producer producer, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, producer);
-            return "producers/update";
+            return "admin/producers/update";
         }
         uiModel.asMap().clear();
         producer.merge();
-        return "redirect:/producers/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
+        return "redirect:/admin/producers/" + encodeUrlPathSegment(producer.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String ProducerController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Producer.findProducer(id));
-        return "producers/update";
+        return "admin/producers/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -93,7 +93,7 @@ privileged aspect ProducerController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/producers";
+        return "redirect:/admin/producers";
     }
     
     void ProducerController.addDateTimeFormatPatterns(Model uiModel) {

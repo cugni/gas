@@ -6,9 +6,9 @@ import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/purchaserequests")
+@RequestMapping("/admin/purchaserequests")
 @Controller
-@RooWebScaffold(path = "purchaserequests", formBackingObject = PurchaseRequest.class)
+@RooWebScaffold(path = "admin/purchaserequests", formBackingObject = PurchaseRequest.class)
 @RooWebJson(jsonObject = PurchaseRequest.class)
 public class PurchaseRequestController {
 }

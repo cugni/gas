@@ -32,17 +32,17 @@ privileged aspect UserController_Roo_Controller {
     public String UserController.create(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
-            return "users/create";
+            return "admin/users/create";
         }
         uiModel.asMap().clear();
         user.persist();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        return "redirect:/admin/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String UserController.createForm(Model uiModel) {
         populateEditForm(uiModel, new User());
-        return "users/create";
+        return "admin/users/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -50,7 +50,7 @@ privileged aspect UserController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("user", User.findUser(id));
         uiModel.addAttribute("itemId", id);
-        return "users/show";
+        return "admin/users/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -65,24 +65,24 @@ privileged aspect UserController_Roo_Controller {
             uiModel.addAttribute("users", User.findAllUsers());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "users/list";
+        return "admin/users/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String UserController.update(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
-            return "users/update";
+            return "admin/users/update";
         }
         uiModel.asMap().clear();
         user.merge();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        return "redirect:/admin/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String UserController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, User.findUser(id));
-        return "users/update";
+        return "admin/users/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -92,7 +92,7 @@ privileged aspect UserController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/users";
+        return "redirect:/admin/users";
     }
     
     void UserController.addDateTimeFormatPatterns(Model uiModel) {

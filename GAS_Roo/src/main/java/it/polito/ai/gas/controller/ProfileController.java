@@ -40,7 +40,7 @@ public class ProfileController {
 	protected AuthenticationManager authenticationManager;
 
 
-    @RequestMapping(value = "/", produces = "text/html")
+    @RequestMapping( produces = "text/html")
     public String show(  Model uiModel) {
     	UserDetails userDetails =
     			 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

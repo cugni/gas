@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.ProposalController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect ProposalController_Roo_Controller_Json {
@@ -90,6 +92,14 @@ privileged aspect ProposalController_Roo_Controller_Json {
         }
         proposal.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(params = "find=ByDelegate", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> ProposalController.jsonFindProposalsByDelegate(@RequestParam("delegate") User delegate) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(Proposal.toJsonArray(Proposal.findProposalsByDelegate(delegate).getResultList()), headers, HttpStatus.OK);
     }
     
 }

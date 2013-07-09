@@ -27,6 +27,7 @@
     
     <c:if test="${empty disabled}">
       <c:set value="false" var="disabled" />
+      <c:set value="false" var="disabled" />
     </c:if>
     
     <c:if test="${empty label}">

@@ -1,5 +1,8 @@
 package it.polito.ai.gas;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,4 +53,6 @@ public class Utils {
 			s.add(obj);
 		return s;
 	}
+
+
 }

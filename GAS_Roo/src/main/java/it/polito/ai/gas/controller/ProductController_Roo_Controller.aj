@@ -28,17 +28,17 @@ privileged aspect ProductController_Roo_Controller {
     public String ProductController.create(@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, product);
-            return "products/create";
+            return "admin/products/create";
         }
         uiModel.asMap().clear();
         product.persist();
-        return "redirect:/products/" + encodeUrlPathSegment(product.getId().toString(), httpServletRequest);
+        return "redirect:/admin/products/" + encodeUrlPathSegment(product.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String ProductController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Product());
-        return "products/create";
+        return "admin/products/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -46,7 +46,7 @@ privileged aspect ProductController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("product", Product.findProduct(id));
         uiModel.addAttribute("itemId", id);
-        return "products/show";
+        return "admin/products/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -61,24 +61,24 @@ privileged aspect ProductController_Roo_Controller {
             uiModel.addAttribute("products", Product.findAllProducts());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "products/list";
+        return "admin/products/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String ProductController.update(@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, product);
-            return "products/update";
+            return "admin/products/update";
         }
         uiModel.asMap().clear();
         product.merge();
-        return "redirect:/products/" + encodeUrlPathSegment(product.getId().toString(), httpServletRequest);
+        return "redirect:/admin/products/" + encodeUrlPathSegment(product.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String ProductController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Product.findProduct(id));
-        return "products/update";
+        return "admin/products/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -88,7 +88,7 @@ privileged aspect ProductController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
     
     void ProductController.addDateTimeFormatPatterns(Model uiModel) {

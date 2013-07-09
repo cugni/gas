@@ -28,17 +28,17 @@ privileged aspect DeliveryWithdrawalController_Roo_Controller {
     public String DeliveryWithdrawalController.create(@Valid DeliveryWithdrawal deliveryWithdrawal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, deliveryWithdrawal);
-            return "deliverywithdrawals/create";
+            return "admin/deliverywithdrawals/create";
         }
         uiModel.asMap().clear();
         deliveryWithdrawal.persist();
-        return "redirect:/deliverywithdrawals/" + encodeUrlPathSegment(deliveryWithdrawal.getId().toString(), httpServletRequest);
+        return "redirect:/admin/deliverywithdrawals/" + encodeUrlPathSegment(deliveryWithdrawal.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String DeliveryWithdrawalController.createForm(Model uiModel) {
         populateEditForm(uiModel, new DeliveryWithdrawal());
-        return "deliverywithdrawals/create";
+        return "admin/deliverywithdrawals/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -46,7 +46,7 @@ privileged aspect DeliveryWithdrawalController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("deliverywithdrawal", DeliveryWithdrawal.findDeliveryWithdrawal(id));
         uiModel.addAttribute("itemId", id);
-        return "deliverywithdrawals/show";
+        return "admin/deliverywithdrawals/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -61,24 +61,24 @@ privileged aspect DeliveryWithdrawalController_Roo_Controller {
             uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "deliverywithdrawals/list";
+        return "admin/deliverywithdrawals/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String DeliveryWithdrawalController.update(@Valid DeliveryWithdrawal deliveryWithdrawal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, deliveryWithdrawal);
-            return "deliverywithdrawals/update";
+            return "admin/deliverywithdrawals/update";
         }
         uiModel.asMap().clear();
         deliveryWithdrawal.merge();
-        return "redirect:/deliverywithdrawals/" + encodeUrlPathSegment(deliveryWithdrawal.getId().toString(), httpServletRequest);
+        return "redirect:/admin/deliverywithdrawals/" + encodeUrlPathSegment(deliveryWithdrawal.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String DeliveryWithdrawalController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, DeliveryWithdrawal.findDeliveryWithdrawal(id));
-        return "deliverywithdrawals/update";
+        return "admin/deliverywithdrawals/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -88,7 +88,7 @@ privileged aspect DeliveryWithdrawalController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/deliverywithdrawals";
+        return "redirect:/admin/deliverywithdrawals";
     }
     
     void DeliveryWithdrawalController.addDateTimeFormatPatterns(Model uiModel) {

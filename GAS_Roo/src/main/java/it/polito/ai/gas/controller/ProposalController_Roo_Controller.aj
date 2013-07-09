@@ -9,8 +9,11 @@ import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.ProposalController;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
@@ -30,17 +33,22 @@ privileged aspect ProposalController_Roo_Controller {
     public String ProposalController.create(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
-            return "proposals/create";
+            return "admin/proposals/create";
         }
         uiModel.asMap().clear();
         proposal.persist();
-        return "redirect:/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
+        return "redirect:/admin/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String ProposalController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Proposal());
-        return "proposals/create";
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (User.countUsers() == 0) {
+            dependencies.add(new String[] { "user", "/admin/users" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
+        return "admin/proposals/create";
     }
     
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -48,7 +56,7 @@ privileged aspect ProposalController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposal(id));
         uiModel.addAttribute("itemId", id);
-        return "proposals/show";
+        return "admin/proposals/show";
     }
     
     @RequestMapping(produces = "text/html")
@@ -63,24 +71,24 @@ privileged aspect ProposalController_Roo_Controller {
             uiModel.addAttribute("proposals", Proposal.findAllProposals());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "proposals/list";
+        return "admin/proposals/list";
     }
     
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String ProposalController.update(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
-            return "proposals/update";
+            return "admin/proposals/update";
         }
         uiModel.asMap().clear();
         proposal.merge();
-        return "redirect:/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
+        return "redirect:/admin/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String ProposalController.updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Proposal.findProposal(id));
-        return "proposals/update";
+        return "admin/proposals/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -90,7 +98,7 @@ privileged aspect ProposalController_Roo_Controller {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/proposals";
+        return "redirect:/admin/proposals";
     }
     
     void ProposalController.addDateTimeFormatPatterns(Model uiModel) {
@@ -106,6 +114,7 @@ privileged aspect ProposalController_Roo_Controller {
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("products", Product.findAllProducts());
         uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
+        uiModel.addAttribute("users", User.findAllUsers());
     }
     
     String ProposalController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

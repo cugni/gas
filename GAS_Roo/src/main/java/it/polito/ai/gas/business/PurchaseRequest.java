@@ -9,9 +9,9 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(versionField = "", table = "purchase_request")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
+@RooJpaActiveRecord(versionField = "", table = "purchase_request", finders = { "findPurchaseRequestsByAcquirer" })
 public class PurchaseRequest {
 
     @ManyToOne

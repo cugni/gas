@@ -6,9 +6,9 @@ import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/deliverywithdrawals")
+@RequestMapping("/admin/deliverywithdrawals")
 @Controller
-@RooWebScaffold(path = "deliverywithdrawals", formBackingObject = DeliveryWithdrawal.class)
+@RooWebScaffold(path = "admin/deliverywithdrawals", formBackingObject = DeliveryWithdrawal.class)
 @RooWebJson(jsonObject = DeliveryWithdrawal.class)
 public class DeliveryWithdrawalController {
 }

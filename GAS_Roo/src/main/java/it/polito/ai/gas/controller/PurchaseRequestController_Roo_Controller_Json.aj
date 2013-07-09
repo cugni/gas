@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.PurchaseRequestController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect PurchaseRequestController_Roo_Controller_Json {
@@ -90,6 +92,14 @@ privileged aspect PurchaseRequestController_Roo_Controller_Json {
         }
         purchaseRequest.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(params = "find=ByAcquirer", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> PurchaseRequestController.jsonFindPurchaseRequestsByAcquirer(@RequestParam("acquirer") User acquirer) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(PurchaseRequest.toJsonArray(PurchaseRequest.findPurchaseRequestsByAcquirer(acquirer).getResultList()), headers, HttpStatus.OK);
     }
     
 }

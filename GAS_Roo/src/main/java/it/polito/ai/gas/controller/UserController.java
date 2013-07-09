@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@RequestMapping("/users")
+@RequestMapping("/admin/users")
 @Controller
-@RooWebScaffold(path = "users", formBackingObject = User.class)
+@RooWebScaffold(path = "admin/users", formBackingObject = User.class)
 @RooWebJson(jsonObject = User.class)
 public class    UserController {
 
@@ -28,10 +28,9 @@ public class    UserController {
         Query query = User.findUsersByApprovedNot(true);
         uiModel.addAttribute("users", query.getResultList());
         addDateTimeFormatPatterns(uiModel);
-        return "users/approve";
+        return "admin/users/approve";
     }
 
-    @PreAuthorize("ROLE_ADMIN")
     @RequestMapping(value = "approve/{id}", produces = "text/html")
     public String approve(@PathVariable("id") Integer id, Model uiModel) {
         User user = User.findUser(id);
@@ -39,20 +38,20 @@ public class    UserController {
         user.merge();
         uiModel.asMap().clear();
         uiModel.addAttribute("user", user);
-        return "users/approvesuccess";
+        return "admin/users/approvesuccess";
     }
 
     @RequestMapping("{id}/success")
     public String success(@PathVariable("id") Integer id, Model uiModel) {
         uiModel.addAttribute("user", User.findUser(id));
         uiModel.addAttribute("itemId", id);
-        return "users/success";
+        return "admin/users/success";
     }
 
     @RequestMapping(value = "register", produces = "text/html")
     public String createRegisterForm(Model uiModel) {
         populateEditForm(uiModel, new User());
-        return "users/register";
+        return "admin/users/register";
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST, produces = "text/html")
@@ -61,7 +60,7 @@ public class    UserController {
         user.setRole(UserType.ROLE_USER);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
-            return "users/register";
+            return "admin/users/register";
         }
         user.persist();
         return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest) + "/success";

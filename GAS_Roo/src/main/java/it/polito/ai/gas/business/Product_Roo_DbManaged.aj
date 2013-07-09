@@ -46,10 +46,6 @@ privileged aspect Product_Roo_DbManaged {
     @NotNull
     private Float Product.quantity;
     
-    @Column(name = "description", length = 50)
-    @NotNull
-    private String Product.description;
-    
     @Column(name = "dimensions", length = 10)
     @NotNull
     private String Product.dimensions;
@@ -137,14 +133,6 @@ privileged aspect Product_Roo_DbManaged {
     
     public void Product.setQuantity(Float quantity) {
         this.quantity = quantity;
-    }
-    
-    public String Product.getDescription() {
-        return description;
-    }
-    
-    public void Product.setDescription(String description) {
-        this.description = description;
     }
     
     public String Product.getDimensions() {

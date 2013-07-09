@@ -51,9 +51,9 @@ public class User implements InterceptPersist, UserDetails {
                 authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));
                 break;
             case ROLE_ADMIN:
-                authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+               /* authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
-                authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));
+                authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));*/
                 authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                 break;
             default:
