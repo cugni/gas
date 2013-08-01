@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import javax.persistence.PrimaryKeyJoinColumn;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;

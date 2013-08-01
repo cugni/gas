@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -41,7 +40,7 @@ public class User implements InterceptPersist, UserDetails {
 
     public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-        switch(this.getRole()) {
+        switch((this.getRole())) {
             case ROLE_DELEGATE:
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
             case ROLE_USER:
@@ -51,13 +50,12 @@ public class User implements InterceptPersist, UserDetails {
                 authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));
                 break;
             case ROLE_ADMIN:
-               /* authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-                authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
-                authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));*/
+                /* authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
+                 authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));*/
                 authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                 break;
             default:
-                break;
         }
         return authorities;
     }

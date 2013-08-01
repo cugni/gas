@@ -16,12 +16,20 @@ privileged aspect Proposal_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
+    public String Proposal.toJson(String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
+    }
+    
     public static Proposal Proposal.fromJsonToProposal(String json) {
         return new JSONDeserializer<Proposal>().use(null, Proposal.class).deserialize(json);
     }
     
     public static String Proposal.toJsonArray(Collection<Proposal> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
+    }
+    
+    public static String Proposal.toJsonArray(Collection<Proposal> collection, String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<Proposal> Proposal.fromJsonArrayToProposals(String json) {

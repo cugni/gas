@@ -3,11 +3,11 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_DeliveryWithdrawal" items="${deliverywithdrawals}" z="l/BV2+UGcUWJTmqXory3/4sbdXw=">
-        <table:table data="${deliverywithdrawals}" id="l_it_polito_ai_gas_business_DeliveryWithdrawal" path="/deliverywithdrawals" z="4UPg25WvzX9HMIINZhOVGzODYok=">
+        <table:table data="${deliverywithdrawals}" id="l_it_polito_ai_gas_business_DeliveryWithdrawal" path="/admin/deliverywithdrawals" z="CNOZ3cGaBJX62jBgm5MLJEk1EcQ=">
             <table:column id="c_it_polito_ai_gas_business_DeliveryWithdrawal_order" property="order" z="fk9s+7mES87aZk38Kp7xYfV10OI="/>
+            <table:column id="c_it_polito_ai_gas_business_DeliveryWithdrawal_collector" property="collector" z="c7vswCYVmKMuapacOCGn3P04P5g="/>
             <table:column date="true" dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" property="deliveryDate" z="UfkxLR9jHwsLemBkNAsK1eaFyJ8="/>
             <table:column date="true" dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" property="withdrawalDate" z="wVLp9cvouvssB3/RqzBuBbNr/Iw="/>
-            <table:column id="c_it_polito_ai_gas_business_DeliveryWithdrawal_collector" property="collector" z="c7vswCYVmKMuapacOCGn3P04P5g="/>
         </table:table>
     </page:list>
 </div>

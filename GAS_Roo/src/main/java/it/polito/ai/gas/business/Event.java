@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;

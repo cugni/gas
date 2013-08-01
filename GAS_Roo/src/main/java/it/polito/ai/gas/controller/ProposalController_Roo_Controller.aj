@@ -45,7 +45,7 @@ privileged aspect ProposalController_Roo_Controller {
         populateEditForm(uiModel, new Proposal());
         List<String[]> dependencies = new ArrayList<String[]>();
         if (User.countUsers() == 0) {
-            dependencies.add(new String[] { "user", "/admin/users" });
+            dependencies.add(new String[] { "user", "admin/users" });
         }
         uiModel.addAttribute("dependencies", dependencies);
         return "admin/proposals/create";

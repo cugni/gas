@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import javax.validation.constraints.Size;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;

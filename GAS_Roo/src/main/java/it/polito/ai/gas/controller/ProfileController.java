@@ -1,7 +1,11 @@
 package it.polito.ai.gas.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Event;
@@ -45,6 +49,7 @@ public class ProfileController {
     	UserDetails userDetails =
     			 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         addDateTimeFormatPatterns(uiModel);
+
         uiModel.addAttribute("user", userDetails);
         return "profile/show";
     }
@@ -61,19 +66,42 @@ public class ProfileController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String update( Model uiModel, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
+        /*
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
             return "profile/update";
         }
+         */
+        User updated = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Map<String,String> userParams = httpServletRequest.getParameterMap() ;
+        updated.setUsername(userParams.get("username"));
+        updated.setName(userParams.get("name"));
+        updated.setSurname(userParams.get("surname"));
+
+        /*
+        try {
+            updated.setBirthDate(new SimpleDateFormat("YYYY-MM-DD").parse(userParams.get("birthDate")));
+        } catch (ParseException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+        User updated = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // settiamo i parametri cambiabili nella form...
+        updated.setPassword(user.getPassword());
+        updated.setName(user.getName());
+        updated.setSurname(user.getSurname());
+        updated.setBirthDate(user.getBirthDate());
+         */
         uiModel.asMap().clear();
-        user.merge();
-        return "redirect:/profile/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
+        updated.merge().persist();
+        return "redirect:/profile/" + encodeUrlPathSegment(updated.getId().toString(), httpServletRequest);
     }
 
-
     void populateEditForm(Model uiModel, UserDetails user) {
-        uiModel.addAttribute("user", user);
+        uiModel.addAttribute("username", user.getUsername());
+        uiModel.addAttribute("name", ((User) user).getName());
+        uiModel.addAttribute("surname", ((User) user).getSurname());
         addDateTimeFormatPatterns(uiModel);
   }
     

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="GAS_Roo:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="GAS_Roo-0.1.0.BUILD-SNAPSHOT.war">
+      <element id="artifact" artifact-name="GAS_Roo:war exploded" />
+    </root>
+  </artifact>
+</component>

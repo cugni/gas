@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_it_polito_ai_gas_business_PurchaseRequest" object="${purchaserequest}" path="/purchaserequests" z="YYiYfzTvkCd7JXQMKVfdknnVNpU=">
+    <page:show id="ps_it_polito_ai_gas_business_PurchaseRequest" object="${purchaserequest}" path="/admin/purchaserequests" z="pYdQ/Bi8JqyEwZDb5J+smxEpN/E=">
         <field:display field="quantity" id="s_it_polito_ai_gas_business_PurchaseRequest_quantity" object="${purchaserequest}" z="eDy093BaGQ+VaTijq3F7lp0IBRE="/>
         <field:display field="received" id="s_it_polito_ai_gas_business_PurchaseRequest_received" object="${purchaserequest}" z="7GaAUzfpRE6ckg5ghlzK8H48WCA="/>
         <field:display field="proposal" id="s_it_polito_ai_gas_business_PurchaseRequest_proposal" object="${purchaserequest}" z="PE0tAZhzFmvVObXpkLEoYkFsm2U="/>

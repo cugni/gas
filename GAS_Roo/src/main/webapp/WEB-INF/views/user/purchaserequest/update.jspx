@@ -5,7 +5,7 @@
     <form:update id="fu_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="purchaseRequest" path="/user/purchaserequest" versionField="none" z="pUaw6nvylKm2BAEe10/JrkpWcQU=">
         <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="v3l/+NVnP1eoLrfrXh32zGQdX7E="/>
         <field:checkbox field="received" id="c_it_polito_ai_gas_business_PurchaseRequest_received" z="lT9FWm5UdQQedbYFRPVGO4a48/A="/>
-        <field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/proposals" z="OS4PGWnwbtaIS42x5b/QxHsJVK4="/>
-        <field:select field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" itemValue="id" items="${users}" path="//admin/users" z="ojigZVLbz2qFv16VhMOWr94w3z4="/>
+        <field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="zwBNHAJfFO0Xjbd86WsA+8L9fj8="/>
+        <field:select field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" itemValue="id" items="${users}" path="/admin/users" z="p8DA7DBBQM6jazzaP1xdBFYQKQs="/>
     </form:update>
 </div>

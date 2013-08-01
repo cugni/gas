@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.dbre.RooDbManaged;

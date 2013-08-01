@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_User" items="${users}" z="yctnmanSVS885yjGBBh6vHSflvg=">
 
-        <table:tableapprove data="${users}" id="l_it_polito_ai_gas_business_User" path="/users/approve" z="SMzHymDdfI2+caufHVdU824Phj8="
+        <table:tableapprove data="${users}" id="l_it_polito_ai_gas_business_User" path="approve" z="SMzHymDdfI2+caufHVdU824Phj8="
         	delete="false" update="false" create="false">
             <!-- <table:column id="c_it_polito_ai_gas_business_User_password" property="password" z="8gq1QvUEfeA+VZ+CWXDR8XEV7QM="/> -->
             <table:column id="c_it_polito_ai_gas_business_User_username" property="username" z="mXPs+h4XXGJow36lZZwNvV0lo6E="/>

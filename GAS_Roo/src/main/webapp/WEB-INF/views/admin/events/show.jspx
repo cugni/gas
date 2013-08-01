@@ -2,7 +2,7 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_it_polito_ai_gas_business_Event" object="${event}" path="/events" z="JnhNuoAMQh2eLjxOVBiBpBIB0cI=">
+    <page:show id="ps_it_polito_ai_gas_business_Event" object="${event}" path="/admin/events" z="icD5i/Oa0wJYDuBnhz+v0p/GRh0=">
         <field:display field="users" id="s_it_polito_ai_gas_business_Event_users" object="${event}" z="CJV2t40H+TVahh7m5dGX5lUifDk="/>
         <field:display field="user" id="s_it_polito_ai_gas_business_Event_user" object="${event}" z="GVVl9LmoiA7jwuLcDx3+7KJrh5E="/>
         <field:display field="proposal" id="s_it_polito_ai_gas_business_Event_proposal" object="${event}" z="0Mevx1lUqA3bquOxp2q6JhCJZgo="/>
