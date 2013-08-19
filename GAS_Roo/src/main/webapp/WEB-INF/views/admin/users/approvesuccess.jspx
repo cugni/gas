@@ -8,7 +8,6 @@
     
     <field:display field="role" id="s_it_polito_ai_gas_business_User_role" object="${user}" z="6cpiezJj3B1/4reFZXU67m+fOB0="/>
     <field:display field="username" id="s_it_polito_ai_gas_business_User_username" object="${user}" z="Lk/0227RaPKeQRyeW9NcB4pQd2s="/>
-    <field:display field="password" id="s_it_polito_ai_gas_business_User_password" object="${user}" z="krVPUWWsyAz3ZBzYKBnoddRJCfM="/>
     <field:display field="name" id="s_it_polito_ai_gas_business_User_name" object="${user}" z="CIOy90VGUrO36kk/OidDSd/Xy18="/>
     <field:display field="surname" id="s_it_polito_ai_gas_business_User_surname" object="${user}" z="wMLDAlD0oBmNmVssG1xsxAeKK94="/>
     <field:display date="true" dateTimePattern="${user_birthdate_date_format}" field="birthDate" id="s_it_polito_ai_gas_business_User_birthDate" object="${user}" z="OQIY/Z3ecyJsQ3W8Y2IJZt2CyWo="/>
