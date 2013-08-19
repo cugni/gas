@@ -61,22 +61,20 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 -- Table `GAS`.`proposal`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `GAS`.`proposal` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `product` INT(11) NOT NULL ,
-  `start_date` DATE NOT NULL ,
-  `end_date` DATE NOT NULL ,
-  `min_reached` TINYINT(1) NOT NULL DEFAULT false ,
-  PRIMARY KEY (`id`) ,
-  INDEX `FKC3DF62E54FECA577` (`product` ASC) ,
-  INDEX `fk_orders_products1_idx` (`product` ASC) ,
-  CONSTRAINT `fk_orders_products1`
-    FOREIGN KEY (`product` )
-    REFERENCES `GAS`.`product` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+CREATE TABLE `proposal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `product` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `min_reached` tinyint(1) NOT NULL DEFAULT '0',
+  `delegate` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKC3DF62E54FECA577` (`product`),
+  KEY `fk_orders_products1_idx` (`product`),
+  KEY `fk_orders_delegates_idx` (`delegate`),
+  CONSTRAINT `fk_orders_delegates` FOREIGN KEY (`delegate`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orders_products1` FOREIGN KEY (`product`) REFERENCES `product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 -- -----------------------------------------------------
