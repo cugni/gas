@@ -7,10 +7,4 @@
 <definition extends="default" name="admin/products/show">
         <put-attribute name="body" value="/WEB-INF/views/admin/products/show.jspx"/>
     </definition>
-<definition extends="default" name="admin/products/create">
-        <put-attribute name="body" value="/WEB-INF/views/admin/products/create.jspx"/>
-    </definition>
-<definition extends="default" name="admin/products/update">
-        <put-attribute name="body" value="/WEB-INF/views/admin/products/update.jspx"/>
-    </definition>
 </tiles-definitions>

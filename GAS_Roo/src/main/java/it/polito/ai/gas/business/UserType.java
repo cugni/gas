@@ -6,4 +6,5 @@ public enum UserType {
 	ROLE_DELEGATE,
 	ROLE_PRODUCER,
 	ROLE_ADMIN
+
 }

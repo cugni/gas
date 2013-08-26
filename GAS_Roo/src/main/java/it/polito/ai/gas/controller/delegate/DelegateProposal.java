@@ -19,15 +19,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 
-@RequestMapping("/delegate/proposal")
+@RequestMapping("/delegate/proposals")
 @Controller
-@RooWebScaffold(path = "delegate/proposal", formBackingObject = Proposal.class)
+@RooWebScaffold(path = "delegate/proposals", formBackingObject = Proposal.class)
 public class DelegateProposal {
     public Proposal checkRights(Proposal proposal){
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(!user.equals(proposal.getDelegate()))
-            throw new SecurityException("An user can modify only his own purchase requests");
+            throw new SecurityException("A delegate  can only modify his own proposal");
         return proposal;
     }
 
@@ -38,7 +38,7 @@ public class DelegateProposal {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposalsByDelegate(user).getResultList());
         uiModel.addAttribute("itemId", id);
-        return "delegate/proposal/show";
+        return "delegate/proposals/show";
     }
     void addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("proposal_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
@@ -56,16 +56,14 @@ public class DelegateProposal {
             uiModel.addAttribute("proposals", Proposal.findAllProposals());
         }
         addDateTimeFormatPatterns(uiModel);
-        return "delegate/proposal/list";
+        return "delegate/proposals/list";
     }
     void populateEditForm(Model uiModel, Proposal proposal) {
         uiModel.addAttribute("proposal", proposal);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
         uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("products", Product.findAllProducts());
-        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
 
     }
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
@@ -73,16 +71,20 @@ public class DelegateProposal {
         checkRights(proposal);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
-            return "delegate/proposal/update";
+            return "delegate/proposals/update";
         }
+        User  user  =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        proposal.setDelegate(user);
+
         uiModel.asMap().clear();
         proposal.merge();
-        return "redirect:/delegate/proposal/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
+        return "redirect:/delegate/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel,checkRights(Proposal.findProposal(id)));
-        return "delegate/proposal/update";
+        return "delegate/proposals/update";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
