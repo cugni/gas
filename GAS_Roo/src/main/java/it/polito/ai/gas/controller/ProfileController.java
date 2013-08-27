@@ -23,6 +23,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,6 +31,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +41,7 @@ import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/profile")
 @Controller
+
 public class ProfileController {
 	@Autowired
 	@Qualifier("authenticationManager")
@@ -59,51 +63,47 @@ public class ProfileController {
 
     @RequestMapping( params = "form", produces = "text/html")
     public String updateForm(Model uiModel) {
-        UserDetails userDetails =
-                (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        populateEditForm(uiModel, userDetails);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //devo avere una copia con solo i parametri che mi servono
+        User modelUser = new User();
+        modelUser.setUsername(currentUser.getUsername());
+        modelUser.setBirthDate(currentUser.getBirthDate());
+        modelUser.setName(currentUser.getName());
+        modelUser.setSurname(currentUser.getSurname());
+
+
+        populateEditForm(uiModel, modelUser);
         return "profile/update";
     }
 
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String update( Model uiModel, BindingResult bindingResult, HttpServletRequest httpServletRequest) {
-        /*
+    public String update(@ModelAttribute("modelUser") User modelUser, Model uiModel,  BindingResult bindingResult, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, user);
+            populateEditForm(uiModel, modelUser);
             return "profile/update";
         }
-         */
-        User updated = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Map<String,String> userParams = httpServletRequest.getParameterMap() ;
-        updated.setUsername(userParams.get("username"));
-        updated.setName(userParams.get("name"));
-        updated.setSurname(userParams.get("surname"));
 
-        /*
-        try {
-            updated.setBirthDate(new SimpleDateFormat("YYYY-MM-DD").parse(userParams.get("birthDate")));
-        } catch (ParseException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        User newUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // cambio i campi che si potevano modificare...
+        newUser.setUsername(modelUser.getUsername());
+        newUser.setName(modelUser.getName());
+        newUser.setSurname(modelUser.getSurname());
+        newUser.setBirthDate(modelUser.getBirthDate());
 
-        User updated = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        // settiamo i parametri cambiabili nella form...
-        updated.setPassword(user.getPassword());
-        updated.setName(user.getName());
-        updated.setSurname(user.getSurname());
-        updated.setBirthDate(user.getBirthDate());
-         */
         uiModel.asMap().clear();
-        updated.merge().persist();
-        return "redirect:/profile/" + encodeUrlPathSegment(updated.getId().toString(), httpServletRequest);
+        newUser.merge().persist();
+        return "redirect:/profile";
     }
 
-    void populateEditForm(Model uiModel, UserDetails user) {
+    void populateEditForm(Model uiModel, User user) {
+        /*
         uiModel.addAttribute("username", user.getUsername());
         uiModel.addAttribute("name", ((User) user).getName());
         uiModel.addAttribute("surname", ((User) user).getSurname());
+        */
         addDateTimeFormatPatterns(uiModel);
-  }
+        uiModel.addAttribute("modelUser", user);
+    }
     
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
