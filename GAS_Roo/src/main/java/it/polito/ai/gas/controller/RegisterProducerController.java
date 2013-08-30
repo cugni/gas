@@ -35,10 +35,11 @@ public class RegisterProducerController {
             populateEditForm(uiModel, producer);
             return "/registerProducer/form";
         }
+
+        producer.setRole(UserType.ROLE_PRODUCER);
         producer.persist();
 
         User user = User.findUser(producer.getId());
-
 
         uiModel.asMap().clear();
         uiModel.addAttribute("user", user);
