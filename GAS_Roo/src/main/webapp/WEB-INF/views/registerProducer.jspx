@@ -7,7 +7,7 @@
           <jsp:output omit-xml-declaration="yes"/>
 
 
-    <form:create id="fc_it_polito_ai_gas_business_Producer" modelAttribute="producer" path="/admin/producers" render="${empty dependencies}" z="52lnvq6U7vG0aw5Tp4QYnQoMe+o=">
+    <form:create id="fc_it_polito_ai_gas_business_Producer" modelAttribute="producer" path="/registerProducer" render="${empty dependencies}" z="52lnvq6U7vG0aw5Tp4QYnQoMe+o=">
         <field:select field="events" id="c_it_polito_ai_gas_business_Producer_events" itemValue="id" items="${events}" multiple="true" path="/admin/events" z="uMLv/aGBmCGKq1TDvWsUL66HhNE="/>
         <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_Producer_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" z="/flHVSVIxgDuiOP3EEWdspi2Vqc="/>
         <field:simple field="events_" id="c_it_polito_ai_gas_business_Producer_events_" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="WZNZVe+JV61AOcvSFdsq00rg/84="/>
