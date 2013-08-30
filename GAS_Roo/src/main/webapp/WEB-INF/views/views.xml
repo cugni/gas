@@ -22,13 +22,13 @@
         <put-attribute name="body" value="/WEB-INF/views/login.jspx"/>
     </definition>
 
-    <definition extends="public" name="register/form">
+    <definition extends="public" name="/register/form">
         <put-attribute name="body" value="/WEB-INF/views/register.jspx"/>
     </definition>
-    <definition extends="public" name="registerProducer/form">
+    <definition extends="public" name="/registerProducer/form">
         <put-attribute name="body" value="/WEB-INF/views/registerProducer.jspx"/>
     </definition>
-    <definition extends="public" name="success">
+    <definition extends="public" name="/success">
         <put-attribute name="body" value="/WEB-INF/views/success.jspx"/>
     </definition>
 </tiles-definitions>
