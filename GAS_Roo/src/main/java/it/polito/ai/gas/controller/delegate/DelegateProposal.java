@@ -81,10 +81,29 @@ public class DelegateProposal {
         proposal.merge();
         return "redirect:/delegate/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
+    public String create(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        checkRights(proposal);
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, proposal);
+            return "delegate/proposals/update";
+        }
+        User  user  =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        proposal.setDelegate(user);
+        uiModel.asMap().clear();
+        proposal.persist();
+        return "redirect:/delegate/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
+    }
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel,checkRights(Proposal.findProposal(id)));
         return "delegate/proposals/update";
+    }
+    @RequestMapping(params = "form", produces = "text/html")
+    public String createForm(Model uiModel) {
+        populateEditForm(uiModel, new Proposal());
+        return "delegate/proposals/create";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")

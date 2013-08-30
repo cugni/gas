@@ -7,10 +7,8 @@
     <version>0.1.0.BUILD-SNAPSHOT</version>
     <name>GAS_Roo</name>
     <properties>
-  
     <maven.compiler.target>1.6</maven.compiler.target>
     <maven.compiler.source>1.6</maven.compiler.source>
- 
         <aspectj.version>1.7.0.RC1</aspectj.version>
         <java.version>6</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
