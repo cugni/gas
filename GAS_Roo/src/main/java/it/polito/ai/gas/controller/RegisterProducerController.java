@@ -56,7 +56,7 @@ public class RegisterProducerController {
         uiModel.addAttribute("producers", Producer.findAllProducers());
         uiModel.addAttribute("products", Product.findAllProducts());
         uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
-        uiModel.addAttribute("users", User.findAllUsers());
+        uiModel.addAttribute("users", User.findUsersByRole(UserType.ROLE_DELEGATE).getResultList());
         uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }
 
