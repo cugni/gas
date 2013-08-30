@@ -15,7 +15,6 @@
         <field:input field="surname" id="c_it_polito_ai_gas_business_Producer_surname" required="true" z="i/g/WWRadedJQ4G/3/ahUNK2f9E="/>
         <field:datetime dateTimePattern="${producer_birthdate_date_format}" field="birthDate" id="c_it_polito_ai_gas_business_Producer_birthDate" required="true" z="B482gO4yMNetm8UaQvWsoygEItg="/>
 
-        <field:simple field="products" id="c_it_polito_ai_gas_business_Producer_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="9gfQMd/FKySpmmiV8ALQLOW0dsY="/>
         <field:select field="delegate" id="c_it_polito_ai_gas_business_Producer_delegate" itemValue="id" items="${users}" path="/admin/users" z="bE11X9fWo3tgX34Z00rVj7Xusuo="/>
         <field:input field="companyName" id="c_it_polito_ai_gas_business_Producer_companyName" z="rAL7X1/tLFMo4VrDCNTwzDG5ae0="/>
         <field:input field="description" id="c_it_polito_ai_gas_business_Producer_description" z="zGQpjWdS5UclQazwyIZ3DaNF9ys="/>

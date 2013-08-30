@@ -11,7 +11,10 @@
         <field:input field="name" id="c_it_polito_ai_gas_business_User_name" required="true" z="Qd0STxJsC8qbikimVCtHnu913aA="/>
         <field:input field="surname" id="c_it_polito_ai_gas_business_User_surname" required="true" z="6RZ0vG9oj8ZJ1mubyNU6BlrqeAQ="/>
         <field:datetime dateTimePattern="${user_birthdate_date_format}" field="birthDate" id="c_it_polito_ai_gas_business_User_birthDate" required="true" z="jNTHEPcjkQdiPeh0KxMf48jZGgU="/>
-    </form:create>
+
+        <field:select field="role" id="c_it_polito_ai_gas_business_User_role" items="${usertypes}" path="usertypes" z="fZr67+GcShvk0ju8KE2uWBxRa+I="/>
+
+            </form:create>
           <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_User" render="${not empty dependencies}" z="x5H5rNjKgI6o7EGiX9kTtw3IzGI="/>
 
         </div>

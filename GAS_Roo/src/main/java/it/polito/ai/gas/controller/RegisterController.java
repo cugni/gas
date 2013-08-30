@@ -16,6 +16,7 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @RequestMapping("/register")
@@ -33,7 +34,7 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String register(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         user.setApproved(false);
-         user.setRole(UserType.ROLE_USER);
+
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
             return "/register/form";
@@ -58,7 +59,10 @@ public class RegisterController {
         uiModel.addAttribute("messages", Message.findAllMessages());
         uiModel.addAttribute("producers", Producer.findAllProducers());
         uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
-        uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
+        ArrayList<UserType> roles = new ArrayList<UserType>();
+        roles.add(0, UserType.ROLE_USER);
+        roles.add(1, UserType.ROLE_DELEGATE);
+        uiModel.addAttribute("usertypes", roles);
     }
 
     void addDateTimeFormatPatterns(Model uiModel) {
