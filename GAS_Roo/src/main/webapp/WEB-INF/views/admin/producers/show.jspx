@@ -2,17 +2,13 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_it_polito_ai_gas_business_Producer" object="${producer}" path="/admin/producers" z="m12IOZZNzvI6gD2Qk/hrai7/Asg=">
-        <field:display field="events" id="s_it_polito_ai_gas_business_Producer_events" object="${producer}" z="Giq4V2aW20riHsL930rKZ3YEfrM="/>
+    <page:show id="ps_it_polito_ai_gas_business_Producer" object="${producer}" path="/admin/producers" z="user-managed">
+        <field:display field="companyName" id="s_it_polito_ai_gas_business_Producer_companyName" object="${producer}" z="1HSxLU3OI5M57yIWvxLiLw5hyG8="/>
         <field:display field="username" id="s_it_polito_ai_gas_business_Producer_username" object="${producer}" z="sN7WvWe7En92TWyK5sjyuv95hB8="/>
-        <field:display field="password" id="s_it_polito_ai_gas_business_Producer_password" object="${producer}" z="B/aztvzaNwVxVyA1uojbJLqD6qk="/>
         <field:display field="name" id="s_it_polito_ai_gas_business_Producer_name" object="${producer}" z="z3zm05yDID1fB1r1QvJEnCOCwRk="/>
         <field:display field="surname" id="s_it_polito_ai_gas_business_Producer_surname" object="${producer}" z="WllVwNtwgbubjOwOcSnDCgRTz7o="/>
         <field:display date="true" dateTimePattern="${producer_birthdate_date_format}" field="birthDate" id="s_it_polito_ai_gas_business_Producer_birthDate" object="${producer}" z="VUqemFnsOQbJ/xOCf7CZq2dweX0="/>
-        <field:display field="approved" id="s_it_polito_ai_gas_business_Producer_approved" object="${producer}" z="Y87iHJHJbnVbjD64VwzVui32JJ4="/>
-        <field:display field="role" id="s_it_polito_ai_gas_business_Producer_role" object="${producer}" z="3CPqhOfaaWvAuGdrdDrvGDZGJsk="/>
         <field:display field="delegate" id="s_it_polito_ai_gas_business_Producer_delegate" object="${producer}" z="06Rv50r/4YZu1ANopJLxcxR87V0="/>
-        <field:display field="companyName" id="s_it_polito_ai_gas_business_Producer_companyName" object="${producer}" z="1HSxLU3OI5M57yIWvxLiLw5hyG8="/>
         <field:display field="description" id="s_it_polito_ai_gas_business_Producer_description" object="${producer}" z="HCIp+RU5Y48PJFm7W6u6Z2wj/fw="/>
         <field:display field="contact" id="s_it_polito_ai_gas_business_Producer_contact" object="${producer}" z="CsiX0/vF55+4070FHe/939eNAW8="/>
         <field:display field="address" id="s_it_polito_ai_gas_business_Producer_address" object="${producer}" z="hwpBZvdFEiZG9a6LICLvhOuFjJg="/>

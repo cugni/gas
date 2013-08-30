@@ -3,8 +3,9 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_Producer" items="${producers}" z="ulx60BASY9WUhzSHPPVJr1DOSvU=">
-        <table:table data="${producers}" id="l_it_polito_ai_gas_business_Producer" path="/admin/producers" z="V2P8iNuyyTGboYBC3onC7QcfFrg=">
-            <table:column id="c_it_polito_ai_gas_business_Producer_events" property="events" z="Rp2wscR6eMzsf/W+lybpYVyL0s8="/>
+        <table:table data="${producers}" id="l_it_polito_ai_gas_business_Producer" path="/admin/producers" z="user-managed">
+            <table:column id="c_it_polito_ai_gas_business_Producer_companyname" property="companyName" z="user-managed"/>
+            <table:column id="c_it_polito_ai_gas_business_Producer_username" property="username" z="user-managed"/>
         </table:table>
     </page:list>
 </div>

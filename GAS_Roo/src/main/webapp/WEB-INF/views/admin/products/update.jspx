@@ -3,9 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_it_polito_ai_gas_business_Product" modelAttribute="product" path="/admin/products" versionField="none" z="XEcBAaWcXBteFNI4f03PWTGH30Y=">
-        <field:simple field="events" id="c_it_polito_ai_gas_business_Product_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="mkV2WjHWa0BWrR8CCqX4dCcE2gY="/>
-        <field:simple field="proposals" id="c_it_polito_ai_gas_business_Product_proposals" messageCode="entity_reference_not_managed" messageCodeAttribute="Proposal" z="fwmRbM7Q27tTzqF/dSh+tVxzRao="/>
-        <field:select field="producer" id="c_it_polito_ai_gas_business_Product_producer" itemValue="id" items="${producers}" path="/admin/producers" z="3Aoiv8wC+ybDoXePYO6tDEjtpGw="/>
         <field:input field="name" id="c_it_polito_ai_gas_business_Product_name" required="true" z="rdLP6NAfGDC2+e2L1F8CwpjJXrU="/>
         <field:input field="cost" id="c_it_polito_ai_gas_business_Product_cost" required="true" validationMessageCode="field_invalid_number" z="fFymewZS4RDus8qqMoGMTjzuuqM="/>
         <field:input field="units" id="c_it_polito_ai_gas_business_Product_units" required="true" z="Q5Jj1Z4AysZuU4AfKr3qpl6kUsI="/>
