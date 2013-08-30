@@ -19,7 +19,7 @@
         <sec:authentication var="principal" property="principal" />
        <div>
               <h3>
-        <spring:message code="welcome_msg_foruser" text="Welcome!"      arguments="${principal.username},${principal.role}"
+        <spring:message code="welcome_msg_foruser" text="Welcome!" arguments="${principal.username},${principal.role.toString()}"
 
                 />
               </h3>

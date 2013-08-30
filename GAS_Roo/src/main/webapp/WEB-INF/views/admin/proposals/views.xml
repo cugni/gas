@@ -13,4 +13,7 @@
 <definition extends="default" name="admin/proposals/update">
         <put-attribute name="body" value="/WEB-INF/views/admin/proposals/update.jspx"/>
     </definition>
+<definition extends="default" name="admin/proposals/list">
+        <put-attribute name="body" value="/WEB-INF/views/admin/proposals/list.jspx"/>
+    </definition>
 </tiles-definitions>

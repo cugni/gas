@@ -74,6 +74,7 @@
           <value>/WEB-INF/views/admin/**/views.xml</value>
           <value>/WEB-INF/views/user/**/views.xml</value>
           <value>/WEB-INF/views/delegate/**/views.xml</value>
+          <value>/WEB-INF/views/producer/**/views.xml</value>
           <value>/WEB-INF/views/profile/**/views.xml</value>
 
       </list>

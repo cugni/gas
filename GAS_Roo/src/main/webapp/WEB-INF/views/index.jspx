@@ -15,7 +15,8 @@ xmlns:sec="http://www.springframework.org/security/tags">
   <sec:authorize access="!isAuthenticated()">
   <util:panel id="login" title="Login or Register">
   	<p><a href="login">Log in</a></p>
-	<p>or <a href="users/register">Register!</a></p>
+	<p><a href="register?form">Register</a></p>
+    <p><a href="registerProducer">Register as Producer</a></p>
   </util:panel>
   </sec:authorize>
 </div>

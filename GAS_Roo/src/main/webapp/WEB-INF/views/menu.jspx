@@ -2,6 +2,8 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:sec="http://www.springframework.org/security/tags" id="menu" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+
+    <!-- Per tutti -->
     <!-- <sec:authorize access="!isAuthenticated()">
             <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?register" z="user-managed"/>
     </sec:authorize> -->
@@ -13,7 +15,11 @@
             </menu:category>
         </menu:menu>
     </sec:authorize>
+
+
+
     <!--   Solo per gli users -->
+
     <sec:authorize ifAnyGranted="ROLE_USER">
         <menu:menu id="menu_user" z="user-managed">
             <menu:category id="user_p_request" label="Azioni utente"   z="user-managed">
@@ -41,7 +47,10 @@
         </menu:menu>
     </sec:authorize>
 
+
+
     <!--   Solo per i delegate -->
+
     <sec:authorize ifAnyGranted="ROLE_DELEGATE">
         <menu:menu id="menu_delegate" z="user-managed">
             <menu:category id="d_proposal" label="Schede di acquisto delegato" z="user-managed">
@@ -53,10 +62,15 @@
 
 
 
+    <!--   Solo per i producers -->
+    <sec:authorize ifAnyGranted="ROLE_PRODUCER">
+    <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
+        <menu:item id="i_product_new" messageCode="global_menu_new" url="/producer/products?form" z="user-managed"/>
+        <menu:item id="i_product_list" messageCode="global_menu_list" url="/producer/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+    </menu:category>
+    </sec:authorize>
 
-
-
-
+    <!--   Solo per gli admin -->
 
     <sec:authorize ifAnyGranted="ROLE_ADMIN">
         <menu:menu id="menu_profile" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
@@ -72,9 +86,6 @@
             </sec:authorize>
 
                 <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
-                    <sec:authorize ifAnyGranted="ROLE_PRODUCER">
-                        <menu:item id="i_product_new" messageCode="global_menu_new" url="/admin/products?form" z="user-managed"/>
-                    </sec:authorize>
                     <menu:item id="i_product_list" messageCode="global_menu_list" url="/admin/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
                 </menu:category>
 

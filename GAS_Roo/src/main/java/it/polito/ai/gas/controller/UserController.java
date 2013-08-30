@@ -41,28 +41,5 @@ public class    UserController {
         return "admin/users/approvesuccess";
     }
 
-    @RequestMapping("{id}/success")
-    public String success(@PathVariable("id") Integer id, Model uiModel) {
-        uiModel.addAttribute("user", User.findUser(id));
-        uiModel.addAttribute("itemId", id);
-        return "admin/users/success";
-    }
 
-    @RequestMapping(value = "register", produces = "text/html")
-    public String createRegisterForm(Model uiModel) {
-        populateEditForm(uiModel, new User());
-        return "admin/users/register";
-    }
-
-    @RequestMapping(value = "register", method = RequestMethod.POST, produces = "text/html")
-    public String register(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        user.setApproved(false);
-        user.setRole(UserType.ROLE_USER);
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, user);
-            return "admin/users/register";
-        }
-        user.persist();
-        return "redirect:/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest) + "/success";
-    }
 }
