@@ -33,15 +33,18 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String register(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         user.setApproved(false);
-        user.setRole(UserType.ROLE_USER);    //TO-DO ...e il delegate?
+         user.setRole(UserType.ROLE_USER);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);
             return "/register/form";
         }
-        user.persist();
 
         uiModel.asMap().clear();
+        user.persist();
+
+        uiModel.addAttribute("user", user);
         uiModel.addAttribute("itemId", user.getId());
+
         return "/success";
     }
 
