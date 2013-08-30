@@ -223,28 +223,28 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`event` (
   CONSTRAINT `fk_event_user1`
     FOREIGN KEY (`user` )
     REFERENCES `GAS`.`user` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE ,
   CONSTRAINT `fk_event_proposal1`
     FOREIGN KEY (`proposal` )
     REFERENCES `GAS`.`proposal` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_event_delivery_withdrawal1`
     FOREIGN KEY (`delivery_withdrawal` )
     REFERENCES `GAS`.`delivery_withdrawal` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_event_message1`
     FOREIGN KEY (`message` )
     REFERENCES `GAS`.`message` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_event_product1`
     FOREIGN KEY (`product` )
     REFERENCES `GAS`.`product` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -267,8 +267,8 @@ CREATE  TABLE IF NOT EXISTS `GAS`.`notification` (
   CONSTRAINT `fk_notification_user1`
     FOREIGN KEY (`user_id` )
     REFERENCES `GAS`.`user` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
