@@ -36,7 +36,17 @@ public class RegisterProducerController {
             return "/registerProducer/form";
         }
 
+        /* CHECK */
+        if (!User.findUsersByUsernameEquals(producer.getUsername()).getResultList().isEmpty())
+        {
+            uiModel.addAttribute("error", "Username already taken");
+            populateEditForm(uiModel, producer);
+            return "/registerProducer/form";
+        }
+
+
         producer.setRole(UserType.ROLE_PRODUCER);
+        producer.setApproved(false);
         producer.persist();
 
         User user = User.findUser(producer.getId());
@@ -61,7 +71,7 @@ public class RegisterProducerController {
     }
 
     void addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("user_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("producer_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
 
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

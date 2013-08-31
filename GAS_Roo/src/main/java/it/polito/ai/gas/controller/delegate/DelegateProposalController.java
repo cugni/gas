@@ -18,16 +18,18 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequestMapping("/delegate/proposals")
 @Controller
 @RooWebScaffold(path = "delegate/proposals", formBackingObject = Proposal.class)
-public class DelegateProposal {
+public class DelegateProposalController {
     public Proposal checkRights(Proposal proposal){
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(!user.equals(proposal.getDelegate()))
-            throw new SecurityException("A delegate  can only modify his own proposal");
+            throw new SecurityException("A delegate can modify only his own proposals");
         return proposal;
     }
 
@@ -63,9 +65,21 @@ public class DelegateProposal {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("messages", Message.findAllMessages());
-        uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("products", findMyProducts());
 
     }
+
+    private List<Product> findMyProducts() {
+        User  user  =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        for(Producer producer : Producer.findProducersByDelegate(user).getResultList())
+            products.addAll(producer.getProducts());
+
+        return products;
+    }
+
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         checkRights(proposal);
@@ -86,7 +100,7 @@ public class DelegateProposal {
         checkRights(proposal);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
-            return "delegate/proposals/update";
+            return "delegate/proposals/create";
         }
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

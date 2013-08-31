@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_Product" modelAttribute="product" path="/admin/products" render="${empty dependencies}" z="7ASxMbe3bHx5l/acO4UhuN2M0lQ=">
-        <field:select field="producer" id="c_it_polito_ai_gas_business_Product_producer" itemValue="id" items="${users}" path="/admin/users" z="IQrdXH9FTNjj50UNvh+RedyWrzw="/>
+       <field:select field="producer" id="c_it_polito_ai_gas_business_Product_producer" itemValue="id" items="${producers}" path="/admin/producers" z="3Aoiv8wC+ybDoXePYO6tDEjtpGw="/>
         <field:input field="name" id="c_it_polito_ai_gas_business_Product_name" required="true" z="rdLP6NAfGDC2+e2L1F8CwpjJXrU="/>
         <field:input field="cost" id="c_it_polito_ai_gas_business_Product_cost" required="true" validationMessageCode="field_invalid_number" z="fFymewZS4RDus8qqMoGMTjzuuqM="/>
         <field:input field="units" id="c_it_polito_ai_gas_business_Product_units" required="true" z="Q5Jj1Z4AysZuU4AfKr3qpl6kUsI="/>
@@ -17,8 +17,6 @@
         <field:datetime dateTimePattern="${product_availablefrom_date_format}" field="availableFrom" id="c_it_polito_ai_gas_business_Product_availableFrom" z="plARCfRAbVv+Mc4/etYj/HWqKz4="/>
         <field:datetime dateTimePattern="${product_availableto_date_format}" field="availableTo" id="c_it_polito_ai_gas_business_Product_availableTo" z="9zpmgNPdJUPkuYhkxaKmeNvjEH4="/>
         <field:textarea field="description" id="c_it_polito_ai_gas_business_Product_description" z="U7ABUx5Emyogrj9wDoDt4/TyqpU="/>
-        <field:simple field="events" id="c_it_polito_ai_gas_business_Product_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="mkV2WjHWa0BWrR8CCqX4dCcE2gY="/>
-        <field:simple field="proposals" id="c_it_polito_ai_gas_business_Product_proposals" messageCode="entity_reference_not_managed" messageCodeAttribute="Proposal" z="fwmRbM7Q27tTzqF/dSh+tVxzRao="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_Product" render="${not empty dependencies}" z="oWxPQ2yLeItvGoS+hzkQH+CRBWs="/>
 </div>
