@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @RequestMapping("/user/purchaserequest")
 @Controller
 @RooWebScaffold(path = "user/purchaserequest", formBackingObject = PurchaseRequest.class)
-public class UserPurchaseRequest {
+public class UserPurchaseRequestController {
     public PurchaseRequest checkRights(PurchaseRequest purchaseRequest){
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -43,7 +43,7 @@ public class UserPurchaseRequest {
             float nrOfPages = (float) PurchaseRequest.countPurchaseRequests() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
+            uiModel.addAttribute("purchaserequests", PurchaseRequest.findPurchaseRequestsByAcquirer(getcu));
         }
         return "user/purchaserequest/list";
     }
