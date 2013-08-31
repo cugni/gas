@@ -97,13 +97,14 @@ public class DelegateProposalController {
     }
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        checkRights(proposal);
+       // checkRights(proposal);   !No, se la stai creando, ovvio non è lui l'il proposers
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
         }
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         proposal.setDelegate(user);
         uiModel.asMap().clear();
         proposal.persist();

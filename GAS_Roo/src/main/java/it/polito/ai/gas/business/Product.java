@@ -1,5 +1,7 @@
 package it.polito.ai.gas.business;
 import javax.persistence.EntityManager;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
 import org.springframework.roo.addon.dbre.RooDbManaged;
@@ -14,6 +16,13 @@ import java.util.List;
 @RooJson
 @RooJpaActiveRecord(versionField = "", table = "product", finders = { "findProductsByProducer" })
 public class Product implements InterceptPersist {
+    @ManyToOne
+    @JoinColumn(name = "producer", referencedColumnName = "id", nullable = false)
+    private Producer producer;
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
 
     @Size(max = 500)
     private String description;

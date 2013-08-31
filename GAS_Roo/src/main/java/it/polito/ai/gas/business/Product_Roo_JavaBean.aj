@@ -3,9 +3,14 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
 
 privileged aspect Product_Roo_JavaBean {
+    
+    public Producer Product.getProducer() {
+        return this.producer;
+    }
     
     public String Product.getDescription() {
         return this.description;

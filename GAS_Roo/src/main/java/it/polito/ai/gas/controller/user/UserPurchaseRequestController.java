@@ -70,11 +70,12 @@ if(!user.equals(purchaseRequest.getAcquirer()))
 
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid PurchaseRequest purchaseRequest, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        checkRights(purchaseRequest);
+      //  checkRights(purchaseRequest);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, purchaseRequest);
             return "user/purchaserequest/create";
         }
+        purchaseRequest.setAcquirer(getCurrentUser());
         uiModel.asMap().clear();
         purchaseRequest.persist();
         return "redirect:/user/purchaserequest/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);

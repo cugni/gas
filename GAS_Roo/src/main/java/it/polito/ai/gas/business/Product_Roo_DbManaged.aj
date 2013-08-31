@@ -6,12 +6,9 @@ package it.polito.ai.gas.business;
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,10 +22,6 @@ privileged aspect Product_Roo_DbManaged {
     
     @OneToMany(mappedBy = "product")
     private Set<Proposal> Product.proposals;
-    
-    @ManyToOne
-    @JoinColumn(name = "producer", referencedColumnName = "id", nullable = false)
-    private User Product.producer;
     
     @Column(name = "name", length = 30)
     @NotNull
@@ -93,14 +86,6 @@ privileged aspect Product_Roo_DbManaged {
     
     public void Product.setProposals(Set<Proposal> proposals) {
         this.proposals = proposals;
-    }
-    
-    public User Product.getProducer() {
-        return producer;
-    }
-    
-    public void Product.setProducer(User producer) {
-        this.producer = producer;
     }
     
     public String Product.getName() {

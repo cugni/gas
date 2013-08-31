@@ -3,8 +3,8 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
-import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.ProductController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -84,7 +84,7 @@ privileged aspect ProductController_Roo_Controller_Json {
     
     @RequestMapping(params = "find=ByProducer", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> ProductController.jsonFindProductsByProducer(@RequestParam("producer") User producer) {
+    public ResponseEntity<String> ProductController.jsonFindProductsByProducer(@RequestParam("producer") Producer producer) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         return new ResponseEntity<String>(Product.toJsonArray(Product.findProductsByProducer(producer).getResultList()), headers, HttpStatus.OK);
