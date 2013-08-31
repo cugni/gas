@@ -3,6 +3,7 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.controller.ProductController;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect ProductController_Roo_Controller_Json {
@@ -78,6 +80,14 @@ privileged aspect ProductController_Roo_Controller_Json {
         }
         product.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(params = "find=ByProducer", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> ProductController.jsonFindProductsByProducer(@RequestParam("producer") Producer producer) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(Product.toJsonArray(Product.findProductsByProducer(producer).getResultList()), headers, HttpStatus.OK);
     }
     
 }

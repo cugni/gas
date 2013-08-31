@@ -29,6 +29,13 @@ import java.util.Arrays;
 @RooWebJson(jsonObject = Product.class)
 public class ProducerProductController {
 
+    public Product checkRights(Product product){
+        User  user  =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!user.equals(product.getProducer()))
+            throw new SecurityException("A producer can modify only his own products");
+        return product;
+    }
 
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -82,7 +89,7 @@ public class ProducerProductController {
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid Product product, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, product);
+            populateEditForm(uiModel, checkRights( product));
             return "producer/products/update";
         }
         uiModel.asMap().clear();
@@ -92,13 +99,13 @@ public class ProducerProductController {
 
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
-        populateEditForm(uiModel, Product.findProduct(id));
+        populateEditForm(uiModel, checkRights(Product.findProduct(id)));
         return "producer/products/update";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Product product = Product.findProduct(id);
+        Product product = checkRights(Product.findProduct(id));
         product.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());

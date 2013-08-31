@@ -3,6 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_it_polito_ai_gas_business_Product" object="${product}" path="/admin/products" z="tZOOZUoQ4TXparSPiJ9Z7pCEA4I=">
+        <field:display field="description" id="s_it_polito_ai_gas_business_Product_description" object="${product}" z="TGYNP47OReHYB4fkcwFmvpB5Kjc="/>
         <field:display field="producer" id="s_it_polito_ai_gas_business_Product_producer" object="${product}" z="+o7iWMPOnQgFK1LnbL2vPRJhcIo="/>
         <field:display field="name" id="s_it_polito_ai_gas_business_Product_name" object="${product}" z="xQ1TEW3B/zJTTzR0XR9r8eLRZDc="/>
         <field:display field="cost" id="s_it_polito_ai_gas_business_Product_cost" object="${product}" z="YGPIkVExZZAezwnnGGmKZSkJaZM="/>
@@ -16,6 +17,5 @@
         <field:display field="maxToBuyUser" id="s_it_polito_ai_gas_business_Product_maxToBuyUser" object="${product}" z="Nwd+A8FuwqQeHPtBrx0p+ZNWyV8="/>
         <field:display date="true" dateTimePattern="${product_availablefrom_date_format}" field="availableFrom" id="s_it_polito_ai_gas_business_Product_availableFrom" object="${product}" z="jOYq5ZpYhFbE3vGOJ/2/0rCHz3k="/>
         <field:display date="true" dateTimePattern="${product_availableto_date_format}" field="availableTo" id="s_it_polito_ai_gas_business_Product_availableTo" object="${product}" z="l0S3i/048DMw+a3fxL/EMepCaxA="/>
-        <field:display field="description" id="s_it_polito_ai_gas_business_Product_description" object="${product}" z="TGYNP47OReHYB4fkcwFmvpB5Kjc="/>
     </page:show>
 </div>
