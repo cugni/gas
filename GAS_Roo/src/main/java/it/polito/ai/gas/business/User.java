@@ -40,7 +40,7 @@ public class User implements InterceptPersist, UserDetails {
 
     public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-        switch(((((this.getRole()))))) {
+        switch((((this.getRole())))) {
             case ROLE_DELEGATE:
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
             case ROLE_USER:

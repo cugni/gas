@@ -4,9 +4,9 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Event;
-import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
@@ -28,7 +28,7 @@ privileged aspect Product_Roo_DbManaged {
     
     @ManyToOne
     @JoinColumn(name = "producer", referencedColumnName = "id", nullable = false)
-    private Producer Product.producer;
+    private User Product.producer;
     
     @Column(name = "name", length = 30)
     @NotNull
@@ -95,11 +95,11 @@ privileged aspect Product_Roo_DbManaged {
         this.proposals = proposals;
     }
     
-    public Producer Product.getProducer() {
+    public User Product.getProducer() {
         return producer;
     }
     
-    public void Product.setProducer(Producer producer) {
+    public void Product.setProducer(User producer) {
         this.producer = producer;
     }
     

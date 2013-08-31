@@ -26,50 +26,53 @@
 			Entity: PRODUCT
 		-->
         <intercept-url pattern="/admin.*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/user.*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/producer.*" access="hasRole('ROLE_PRODUCER')"/>
 
 
-   <!--     &lt;!&ndash; create &ndash;&gt;
-		<intercept-url pattern="/products\?form" access="hasRole('ROLE_PRODUCER')"/>
-        <intercept-url pattern="/products" method="POST" access="hasRole('ROLE_PRODUCER')"/>
-        &lt;!&ndash; read/list &ndash;&gt;
-        <intercept-url pattern="/products/.*" method="GET" access="hasAnyRole('ROLE_PRODUCER', 'ROLE_DELEGATE', 'ROLE_ADMIN')"/>
-        &lt;!&ndash; update &ndash;&gt;
-        <intercept-url pattern="/products/[0-9]+\?form" access="hasRole('ROLE_PRODUCER')"/>
-        <intercept-url pattern="/products/[0-9]+" method="PUT" access="hasRole('ROLE_PRODUCER')"/>
-        &lt;!&ndash; delete? &ndash;&gt;
-        
-        &lt;!&ndash;
-			Entity: PROPOSAL
-		&ndash;&gt;
-		&lt;!&ndash; create &ndash;&gt;
-        <intercept-url pattern="/proposals.+"   access="hasRole('ROLE_DELEGATE')"/>
-		<intercept-url pattern="/proposals\?form" access="hasRole('ROLE_DELEGATE')"/>
 
-        &lt;!&ndash; read/list (tutti?) &ndash;&gt;
-        &lt;!&ndash; update &ndash;&gt;
-        <intercept-url pattern="/proposals/[0-9]+\?form" access="hasRole('ROLE_DELEGATE')"/>
-        <intercept-url pattern="/proposals/[0-9]+" method="PUT" access="hasRole('ROLE_DELEGATE')"/>
-        &lt;!&ndash; delete &ndash;&gt;
-        <intercept-url pattern="/proposals/[0-9]+" method="DELETE" access="hasRole('ROLE_DELEGATE')"/>
-        
-        &lt;!&ndash;
-			Entity: PURCHASE REQUEST
-		&ndash;&gt;
-		&lt;!&ndash; create &ndash;&gt;
-		<intercept-url pattern="/purchaserequests\?form" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/purchaserequests" method="POST" access="hasRole('ROLE_USER')"/>
-        &lt;!&ndash; read/list &ndash;&gt;
-        <intercept-url pattern="/purchaserequests/.*" method="GET" access="hasAnyRole('ROLE_USER', 'ROLE_DELEGATE')"/>
-        &lt;!&ndash; update &ndash;&gt;
-        <intercept-url pattern="/purchaserequests/[0-9]+\?form" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/purchaserequests/[0-9]+" method="PUT" access="hasRole('ROLE_USER')"/>
-        &lt;!&ndash; delete &ndash;&gt;
-        <intercept-url pattern="/purchaserequests/[0-9]+" method="DELETE" access="hasRole('ROLE_USER')"/>
-        
-        &lt;!&ndash;
-			Entity: USER
-		&ndash;&gt;
-        <intercept-url pattern="/profile.*" access="isAuthenticated()" />-->
+        <!--     &lt;!&ndash; create &ndash;&gt;
+             <intercept-url pattern="/products\?form" access="hasRole('ROLE_PRODUCER')"/>
+             <intercept-url pattern="/products" method="POST" access="hasRole('ROLE_PRODUCER')"/>
+             &lt;!&ndash; read/list &ndash;&gt;
+             <intercept-url pattern="/products/.*" method="GET" access="hasAnyRole('ROLE_PRODUCER', 'ROLE_DELEGATE', 'ROLE_ADMIN')"/>
+             &lt;!&ndash; update &ndash;&gt;
+             <intercept-url pattern="/products/[0-9]+\?form" access="hasRole('ROLE_PRODUCER')"/>
+             <intercept-url pattern="/products/[0-9]+" method="PUT" access="hasRole('ROLE_PRODUCER')"/>
+             &lt;!&ndash; delete? &ndash;&gt;
+
+             &lt;!&ndash;
+                 Entity: PROPOSAL
+             &ndash;&gt;
+             &lt;!&ndash; create &ndash;&gt;
+             <intercept-url pattern="/proposals.+"   access="hasRole('ROLE_DELEGATE')"/>
+             <intercept-url pattern="/proposals\?form" access="hasRole('ROLE_DELEGATE')"/>
+
+             &lt;!&ndash; read/list (tutti?) &ndash;&gt;
+             &lt;!&ndash; update &ndash;&gt;
+             <intercept-url pattern="/proposals/[0-9]+\?form" access="hasRole('ROLE_DELEGATE')"/>
+             <intercept-url pattern="/proposals/[0-9]+" method="PUT" access="hasRole('ROLE_DELEGATE')"/>
+             &lt;!&ndash; delete &ndash;&gt;
+             <intercept-url pattern="/proposals/[0-9]+" method="DELETE" access="hasRole('ROLE_DELEGATE')"/>
+
+             &lt;!&ndash;
+                 Entity: PURCHASE REQUEST
+             &ndash;&gt;
+             &lt;!&ndash; create &ndash;&gt;
+             <intercept-url pattern="/purchaserequests\?form" access="hasRole('ROLE_USER')"/>
+             <intercept-url pattern="/purchaserequests" method="POST" access="hasRole('ROLE_USER')"/>
+             &lt;!&ndash; read/list &ndash;&gt;
+             <intercept-url pattern="/purchaserequests/.*" method="GET" access="hasAnyRole('ROLE_USER', 'ROLE_DELEGATE')"/>
+             &lt;!&ndash; update &ndash;&gt;
+             <intercept-url pattern="/purchaserequests/[0-9]+\?form" access="hasRole('ROLE_USER')"/>
+             <intercept-url pattern="/purchaserequests/[0-9]+" method="PUT" access="hasRole('ROLE_USER')"/>
+             &lt;!&ndash; delete &ndash;&gt;
+             <intercept-url pattern="/purchaserequests/[0-9]+" method="DELETE" access="hasRole('ROLE_USER')"/>
+
+             &lt;!&ndash;
+                 Entity: USER
+             &ndash;&gt;
+             <intercept-url pattern="/profile.*" access="isAuthenticated()" />-->
 
       <!--  <intercept-url pattern="/users" method="POST" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         &lt;!&ndash; read/list &ndash;&gt;

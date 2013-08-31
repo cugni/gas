@@ -3,14 +3,14 @@
 
 package it.polito.ai.gas.business;
 
-import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.PurchaseRequestPart;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect PurchaseRequest_Roo_ToString {
+privileged aspect PurchaseRequestPart_Roo_ToString {
     
-    public String PurchaseRequest.toString() {
-        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("proposal", "acquirer", "purchaseRequestParts").toString();
+    public String PurchaseRequestPart.toString() {
+        return new ReflectionToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).setExcludeFieldNames("purchaseRequest", "acquirer").toString();
     }
     
 }

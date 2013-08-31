@@ -24,12 +24,12 @@ privileged aspect Message_Roo_DbManaged {
     private Set<Event> Message.events;
     
     @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
-    private User Message.user;
-    
-    @ManyToOne
     @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
     private Proposal Message.order;
+    
+    @ManyToOne
+    @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
+    private User Message.user;
     
     @Column(name = "date")
     @NotNull
@@ -45,20 +45,20 @@ privileged aspect Message_Roo_DbManaged {
         this.events = events;
     }
     
-    public User Message.getUser() {
-        return user;
-    }
-    
-    public void Message.setUser(User user) {
-        this.user = user;
-    }
-    
     public Proposal Message.getOrder() {
         return order;
     }
     
     public void Message.setOrder(Proposal order) {
         this.order = order;
+    }
+    
+    public User Message.getUser() {
+        return user;
+    }
+    
+    public void Message.setUser(User user) {
+        this.user = user;
     }
     
     public Date Message.getDate() {

@@ -5,12 +5,13 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+import javax.validation.constraints.NotNull;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @RooJpaActiveRecord(versionField = "", table = "purchase_request", finders = { "findPurchaseRequestsByAcquirer" })
-@RooToString(excludeFields = { "proposal", "acquirer" })
+@RooToString(excludeFields = { "proposal", "acquirer", "purchaseRequestParts" })
 public class PurchaseRequest {
 
     @ManyToOne
@@ -18,4 +19,9 @@ public class PurchaseRequest {
 
     @ManyToOne
     private User acquirer;
+
+    /**
+     */
+    @NotNull
+    private Boolean completed;
 }

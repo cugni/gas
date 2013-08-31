@@ -578,30 +578,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-        <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <id>VerifyRequestFactoryInterfaces</id>
-                            <executable>java</executable>
-                            <arguments>
-                                <argument>-cp</argument>
-                                <classpath/>
-                                <argument>com.google.web.bindery.requestfactory.apt.ValidationTool</argument>
-                                <argument>${project.build.outputDirectory}</argument>
-                                <argument>${project.groupId}.client.managed.request.ApplicationRequestFactory</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
     </build>
