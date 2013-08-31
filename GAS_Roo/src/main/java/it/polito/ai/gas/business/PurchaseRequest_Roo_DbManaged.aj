@@ -4,10 +4,17 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.PurchaseRequestPart;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 privileged aspect PurchaseRequest_Roo_DbManaged {
+    
+    @OneToMany(mappedBy = "purchaseRequest", cascade = CascadeType.ALL)
+    private Set<PurchaseRequestPart> PurchaseRequest.purchaseRequestParts;
     
     @Column(name = "quantity")
     @NotNull
@@ -15,6 +22,14 @@ privileged aspect PurchaseRequest_Roo_DbManaged {
     
     @Column(name = "received")
     private Boolean PurchaseRequest.received;
+    
+    public Set<PurchaseRequestPart> PurchaseRequest.getPurchaseRequestParts() {
+        return purchaseRequestParts;
+    }
+    
+    public void PurchaseRequest.setPurchaseRequestParts(Set<PurchaseRequestPart> purchaseRequestParts) {
+        this.purchaseRequestParts = purchaseRequestParts;
+    }
     
     public Float PurchaseRequest.getQuantity() {
         return quantity;

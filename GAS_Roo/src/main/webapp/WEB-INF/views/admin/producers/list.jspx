@@ -6,6 +6,7 @@
         <table:table data="${producers}" id="l_it_polito_ai_gas_business_Producer" path="/admin/producers" z="user-managed">
             <table:column id="c_it_polito_ai_gas_business_Producer_companyname" property="companyName" z="user-managed"/>
             <table:column id="c_it_polito_ai_gas_business_Producer_username" property="username" z="user-managed"/>
+            <table:column id="c_it_polito_ai_gas_business_Producer_events" property="events" z="Rp2wscR6eMzsf/W+lybpYVyL0s8="/>
         </table:table>
     </page:list>
 </div>

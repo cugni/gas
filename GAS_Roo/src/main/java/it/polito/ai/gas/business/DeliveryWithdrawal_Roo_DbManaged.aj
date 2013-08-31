@@ -23,12 +23,12 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     private Set<Event> DeliveryWithdrawal.events;
     
     @ManyToOne
-    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
-    private Proposal DeliveryWithdrawal.order;
-    
-    @ManyToOne
     @JoinColumn(name = "collector", referencedColumnName = "id")
     private User DeliveryWithdrawal.collector;
+    
+    @ManyToOne
+    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
+    private Proposal DeliveryWithdrawal.order;
     
     @Column(name = "delivery_date")
     @Temporal(TemporalType.DATE)
@@ -48,20 +48,20 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
         this.events = events;
     }
     
-    public Proposal DeliveryWithdrawal.getOrder() {
-        return order;
-    }
-    
-    public void DeliveryWithdrawal.setOrder(Proposal order) {
-        this.order = order;
-    }
-    
     public User DeliveryWithdrawal.getCollector() {
         return collector;
     }
     
     public void DeliveryWithdrawal.setCollector(User collector) {
         this.collector = collector;
+    }
+    
+    public Proposal DeliveryWithdrawal.getOrder() {
+        return order;
+    }
+    
+    public void DeliveryWithdrawal.setOrder(Proposal order) {
+        this.order = order;
     }
     
     public Date DeliveryWithdrawal.getDeliveryDate() {

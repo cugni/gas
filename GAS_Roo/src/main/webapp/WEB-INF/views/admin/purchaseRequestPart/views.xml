@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="admin/purchaseRequestPart/list">
+        <put-attribute name="body" value="/WEB-INF/views/admin/purchaseRequestPart/list.jspx"/>
+    </definition>
+<definition extends="default" name="admin/purchaseRequestPart/show">
+        <put-attribute name="body" value="/WEB-INF/views/admin/purchaseRequestPart/show.jspx"/>
+    </definition>
+<definition extends="default" name="admin/purchaseRequestPart/create">
+        <put-attribute name="body" value="/WEB-INF/views/admin/purchaseRequestPart/create.jspx"/>
+    </definition>
+<definition extends="default" name="admin/purchaseRequestPart/update">
+        <put-attribute name="body" value="/WEB-INF/views/admin/purchaseRequestPart/update.jspx"/>
+    </definition>
+</tiles-definitions>

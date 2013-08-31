@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_it_polito_ai_gas_business_PurchaseRequestPart" object="${purchaserequestpart}" path="/user/purchaseRequestPart" z="8oJPtBbgmzALvO7pogbRRry6viM=">
+        <field:display field="acquirer" id="s_it_polito_ai_gas_business_PurchaseRequestPart_acquirer" object="${purchaserequestpart}" z="DwsckNB/tY1xlWxY6CmGHrYodq0="/>
+        <field:display field="purchaseRequest" id="s_it_polito_ai_gas_business_PurchaseRequestPart_purchaseRequest" object="${purchaserequestpart}" z="k2w1wT5ZzZfZfC+AOkh6MlwD+To="/>
+        <field:display field="id" id="s_it_polito_ai_gas_business_PurchaseRequestPart_id" object="${purchaserequestpart}" z="9LCc4BTotR7SqvFbNsgajdxXOpo="/>
+    </page:show>
+</div>

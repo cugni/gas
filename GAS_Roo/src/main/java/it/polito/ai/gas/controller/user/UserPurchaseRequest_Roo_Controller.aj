@@ -5,6 +5,7 @@ package it.polito.ai.gas.controller.user;
 
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.user.UserPurchaseRequest;
 import java.io.UnsupportedEncodingException;
@@ -25,6 +26,7 @@ privileged aspect UserPurchaseRequest_Roo_Controller {
     void UserPurchaseRequest.populateEditForm(Model uiModel, PurchaseRequest purchaseRequest) {
         uiModel.addAttribute("purchaseRequest", purchaseRequest);
         uiModel.addAttribute("proposals", Proposal.findAllProposals());
+        uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findAllPurchaseRequestParts());
         uiModel.addAttribute("users", User.findAllUsers());
     }
     

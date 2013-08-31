@@ -7,7 +7,10 @@ import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Producer;
+import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
@@ -36,8 +39,17 @@ privileged aspect User_Roo_DbManaged {
     @OneToMany(mappedBy = "delegate")
     private Set<Producer> User.producers;
     
+    @OneToMany(mappedBy = "producer")
+    private Set<Product> User.products;
+    
+    @OneToMany(mappedBy = "delegate")
+    private Set<Proposal> User.proposals;
+    
     @OneToMany(mappedBy = "acquirer")
     private Set<PurchaseRequest> User.purchaseRequests;
+    
+    @OneToMany(mappedBy = "acquirer")
+    private Set<PurchaseRequestPart> User.purchaseRequestParts;
     
     @Column(name = "username", length = 45, unique = true)
     @NotNull
@@ -104,12 +116,36 @@ privileged aspect User_Roo_DbManaged {
         this.producers = producers;
     }
     
+    public Set<Product> User.getProducts() {
+        return products;
+    }
+    
+    public void User.setProducts(Set<Product> products) {
+        this.products = products;
+    }
+    
+    public Set<Proposal> User.getProposals() {
+        return proposals;
+    }
+    
+    public void User.setProposals(Set<Proposal> proposals) {
+        this.proposals = proposals;
+    }
+    
     public Set<PurchaseRequest> User.getPurchaseRequests() {
         return purchaseRequests;
     }
     
     public void User.setPurchaseRequests(Set<PurchaseRequest> purchaseRequests) {
         this.purchaseRequests = purchaseRequests;
+    }
+    
+    public Set<PurchaseRequestPart> User.getPurchaseRequestParts() {
+        return purchaseRequestParts;
+    }
+    
+    public void User.setPurchaseRequestParts(Set<PurchaseRequestPart> purchaseRequestParts) {
+        this.purchaseRequestParts = purchaseRequestParts;
     }
     
     public String User.getUsername() {

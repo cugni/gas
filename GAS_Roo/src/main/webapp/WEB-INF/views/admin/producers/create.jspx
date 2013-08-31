@@ -10,7 +10,6 @@
         <field:datetime dateTimePattern="${producer_birthdate_date_format}" field="birthDate" id="c_it_polito_ai_gas_business_Producer_birthDate" required="true" z="B482gO4yMNetm8UaQvWsoygEItg="/>
         <field:checkbox field="approved" id="c_it_polito_ai_gas_business_Producer_approved" z="SDJBkLiGbUGOtXQmXHmT3QmvAMc="/>
         <field:select field="role" id="c_it_polito_ai_gas_business_Producer_role" items="${usertypes}" path="usertypes" z="VN8tTXzWWov9DLHXIenV89XbljM="/>
-        <field:simple field="products" id="c_it_polito_ai_gas_business_Producer_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="9gfQMd/FKySpmmiV8ALQLOW0dsY="/>
         <field:select field="delegate" id="c_it_polito_ai_gas_business_Producer_delegate" itemValue="id" items="${users}" path="/admin/users" z="bE11X9fWo3tgX34Z00rVj7Xusuo="/>
         <field:input field="companyName" id="c_it_polito_ai_gas_business_Producer_companyName" z="rAL7X1/tLFMo4VrDCNTwzDG5ae0="/>
         <field:input field="description" id="c_it_polito_ai_gas_business_Producer_description" z="zGQpjWdS5UclQazwyIZ3DaNF9ys="/>
@@ -20,6 +19,15 @@
         <field:input field="faxNumber" id="c_it_polito_ai_gas_business_Producer_faxNumber" z="2u1GSEoffY6sebl89Hsq27TADEQ="/>
         <field:input field="email" id="c_it_polito_ai_gas_business_Producer_email" validationMessageCode="field_invalid_email" z="4TtFIsXaAzcWhia7yP4fZg2vH3I="/>
         <field:input field="paymentMode" id="c_it_polito_ai_gas_business_Producer_paymentMode" z="rKoJ2kVdUFWeua+EqDUpz1MEGAE="/>
+        <field:select field="events" id="c_it_polito_ai_gas_business_Producer_events" itemValue="id" items="${events}" multiple="true" path="/admin/events" z="uMLv/aGBmCGKq1TDvWsUL66HhNE="/>
+        <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_Producer_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" z="/flHVSVIxgDuiOP3EEWdspi2Vqc="/>
+        <field:simple field="events_" id="c_it_polito_ai_gas_business_Producer_events_" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="WZNZVe+JV61AOcvSFdsq00rg/84="/>
+        <field:simple field="messages" id="c_it_polito_ai_gas_business_Producer_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="jsUgvRsJ+lLyMBxy83p93d/iCms="/>
+        <field:simple field="producers" id="c_it_polito_ai_gas_business_Producer_producers" messageCode="entity_reference_not_managed" messageCodeAttribute="Producer" z="bsTMMCP2/lrH7XXFejNloEebP8M="/>
+        <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_Producer_purchaseRequests" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request" z="lJku1FhIl/13TBZNUIDQIr6YyQg="/>
+        <field:simple field="products" id="c_it_polito_ai_gas_business_Producer_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="9gfQMd/FKySpmmiV8ALQLOW0dsY="/>
+        <field:simple field="proposals" id="c_it_polito_ai_gas_business_Producer_proposals" messageCode="entity_reference_not_managed" messageCodeAttribute="Proposal" z="3B/XtsTw9H3sNDGy8lj6g3ngyXk="/>
+        <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_Producer_purchaseRequestParts" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request Part" z="ifRCC8B8gQR0SbatDV13i3WuC0E="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_Producer" render="${not empty dependencies}" z="78smchxJYKq4+qjMoF4qrc90D/4="/>
 </div>

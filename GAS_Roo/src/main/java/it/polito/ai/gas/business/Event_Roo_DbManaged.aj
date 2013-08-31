@@ -28,14 +28,6 @@ privileged aspect Event_Roo_DbManaged {
     private Set<User> Event.users;
     
     @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id")
-    private User Event.user;
-    
-    @ManyToOne
-    @JoinColumn(name = "proposal", referencedColumnName = "id")
-    private Proposal Event.proposal;
-    
-    @ManyToOne
     @JoinColumn(name = "delivery_withdrawal", referencedColumnName = "id")
     private DeliveryWithdrawal Event.deliveryWithdrawal;
     
@@ -46,6 +38,14 @@ privileged aspect Event_Roo_DbManaged {
     @ManyToOne
     @JoinColumn(name = "product", referencedColumnName = "id")
     private Product Event.product;
+    
+    @ManyToOne
+    @JoinColumn(name = "proposal", referencedColumnName = "id")
+    private Proposal Event.proposal;
+    
+    @ManyToOne
+    @JoinColumn(name = "user", referencedColumnName = "id")
+    private User Event.user;
     
     @Column(name = "date")
     @NotNull
@@ -59,22 +59,6 @@ privileged aspect Event_Roo_DbManaged {
     
     public void Event.setUsers(Set<User> users) {
         this.users = users;
-    }
-    
-    public User Event.getUser() {
-        return user;
-    }
-    
-    public void Event.setUser(User user) {
-        this.user = user;
-    }
-    
-    public Proposal Event.getProposal() {
-        return proposal;
-    }
-    
-    public void Event.setProposal(Proposal proposal) {
-        this.proposal = proposal;
     }
     
     public DeliveryWithdrawal Event.getDeliveryWithdrawal() {
@@ -99,6 +83,22 @@ privileged aspect Event_Roo_DbManaged {
     
     public void Event.setProduct(Product product) {
         this.product = product;
+    }
+    
+    public Proposal Event.getProposal() {
+        return proposal;
+    }
+    
+    public void Event.setProposal(Proposal proposal) {
+        this.proposal = proposal;
+    }
+    
+    public User Event.getUser() {
+        return user;
+    }
+    
+    public void Event.setUser(User user) {
+        this.user = user;
     }
     
     public Calendar Event.getDate() {

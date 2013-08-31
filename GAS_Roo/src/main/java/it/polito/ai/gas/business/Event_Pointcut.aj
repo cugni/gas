@@ -103,7 +103,7 @@ public aspect Event_Pointcut {
         	PurchaseRequest pr = (PurchaseRequest) obj;
             
             e.setUsers(Utils.merge(e.getUsers()));
-        	e.getUsers().add(pr.getProposal().getProduct().getProducer().getDelegate());
+        	e.getUsers().add(pr.getProposal().getDelegate());
         	
         	e.setType(NEW_PURCHASE_REQUEST);
         }
