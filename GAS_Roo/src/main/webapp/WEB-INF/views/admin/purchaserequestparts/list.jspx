@@ -3,10 +3,10 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_it_polito_ai_gas_business_PurchaseRequestPart" items="${purchaserequestparts}" z="DK0sTTQZOebzzpmvnRZJnmhZrwU=">
-        <table:table data="${purchaserequestparts}" id="l_it_polito_ai_gas_business_PurchaseRequestPart" path="/admin/purchaseRequestPart" typeIdFieldName="id_" z="8ezIfPv+SRdVhQXPPSvqCDGbmPM=">
-            <table:column id="c_it_polito_ai_gas_business_PurchaseRequestPart_acquirer" property="acquirer" z="y+KMVLx+XP7JzvXvZxid+f32e6U="/>
+        <table:table data="${purchaserequestparts}" id="l_it_polito_ai_gas_business_PurchaseRequestPart" path="/admin/purchaserequestparts" z="3z0e6ciLKCJrbkaIPld6W9qWrLc=">
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequestPart_purchaseRequest" property="purchaseRequest" z="lbvRavI3vU/9ZihQFdNqmMuiE1A="/>
-            <table:column id="c_it_polito_ai_gas_business_PurchaseRequestPart_id" property="id" z="JPsuR2JsYxTflODsKL/fDs8ikAs="/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequestPart_acquirer" property="acquirer" z="y+KMVLx+XP7JzvXvZxid+f32e6U="/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequestPart_quantity" property="quantity" z="TKSu89/Pbx/gAsZYACrbxudOTYI="/>
         </table:table>
     </page:list>
 </div>

@@ -9,4 +9,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooDbManaged(automaticallyDelete = true)
 @RooToString(excludeFields = { "purchaseRequest", "acquirer" })
 public class PurchaseRequestPart {
+
+    /**
+     */
+    private float quantity;
 }

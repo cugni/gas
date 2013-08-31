@@ -6,10 +6,8 @@ package it.polito.ai.gas.business;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
-import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 privileged aspect PurchaseRequestPart_Roo_DbManaged {
     
@@ -20,10 +18,6 @@ privileged aspect PurchaseRequestPart_Roo_DbManaged {
     @ManyToOne
     @JoinColumn(name = "acquirer", referencedColumnName = "id", nullable = false)
     private User PurchaseRequestPart.acquirer;
-    
-    @Column(name = "quantity")
-    @NotNull
-    private Float PurchaseRequestPart.quantity;
     
     public PurchaseRequest PurchaseRequestPart.getPurchaseRequest() {
         return purchaseRequest;
@@ -39,14 +33,6 @@ privileged aspect PurchaseRequestPart_Roo_DbManaged {
     
     public void PurchaseRequestPart.setAcquirer(User acquirer) {
         this.acquirer = acquirer;
-    }
-    
-    public Float PurchaseRequestPart.getQuantity() {
-        return quantity;
-    }
-    
-    public void PurchaseRequestPart.setQuantity(Float quantity) {
-        this.quantity = quantity;
     }
     
 }

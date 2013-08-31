@@ -10,6 +10,7 @@ import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
+import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -188,6 +189,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<PurchaseRequestPart, String> ApplicationConversionServiceFactoryBean.getPurchaseRequestPartToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.PurchaseRequestPart, java.lang.String>() {
+            public String convert(PurchaseRequestPart purchaseRequestPart) {
+                return new StringBuilder().append(purchaseRequestPart.getQuantity()).toString();
+            }
+        };
+    }
+    
+    public Converter<Integer, PurchaseRequestPart> ApplicationConversionServiceFactoryBean.getIdToPurchaseRequestPartConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.PurchaseRequestPart>() {
+            public it.polito.ai.gas.business.PurchaseRequestPart convert(java.lang.Integer id) {
+                return PurchaseRequestPart.findPurchaseRequestPart(id);
+            }
+        };
+    }
+    
+    public Converter<String, PurchaseRequestPart> ApplicationConversionServiceFactoryBean.getStringToPurchaseRequestPartConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.PurchaseRequestPart>() {
+            public it.polito.ai.gas.business.PurchaseRequestPart convert(String id) {
+                return getObject().convert(getObject().convert(id, Integer.class), PurchaseRequestPart.class);
+            }
+        };
+    }
+    
     public Converter<User, String> ApplicationConversionServiceFactoryBean.getUserToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.User, java.lang.String>() {
             public String convert(User user) {
@@ -234,6 +259,9 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getPurchaseRequestToStringConverter());
         registry.addConverter(getIdToPurchaseRequestConverter());
         registry.addConverter(getStringToPurchaseRequestConverter());
+        registry.addConverter(getPurchaseRequestPartToStringConverter());
+        registry.addConverter(getIdToPurchaseRequestPartConverter());
+        registry.addConverter(getStringToPurchaseRequestPartConverter());
         registry.addConverter(getUserToStringConverter());
         registry.addConverter(getIdToUserConverter());
         registry.addConverter(getStringToUserConverter());

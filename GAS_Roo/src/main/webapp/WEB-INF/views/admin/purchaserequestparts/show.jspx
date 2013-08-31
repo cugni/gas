@@ -2,8 +2,9 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_it_polito_ai_gas_business_PurchaseRequestPart" object="${purchaserequestpart}" path="/admin/purchaseRequestPart" z="r4G6jz3zZLTnkdtzcRO8aMXgJ+U=">
-        <field:display field="acquirer" id="s_it_polito_ai_gas_business_PurchaseRequestPart_acquirer" object="${purchaserequestpart}" z="DwsckNB/tY1xlWxY6CmGHrYodq0="/>
+    <page:show id="ps_it_polito_ai_gas_business_PurchaseRequestPart" object="${purchaserequestpart}" path="/admin/purchaserequestparts" z="0y3YBHSSwbT166G/VwBeAxh58mg=">
         <field:display field="purchaseRequest" id="s_it_polito_ai_gas_business_PurchaseRequestPart_purchaseRequest" object="${purchaserequestpart}" z="k2w1wT5ZzZfZfC+AOkh6MlwD+To="/>
+        <field:display field="acquirer" id="s_it_polito_ai_gas_business_PurchaseRequestPart_acquirer" object="${purchaserequestpart}" z="DwsckNB/tY1xlWxY6CmGHrYodq0="/>
+        <field:display field="quantity" id="s_it_polito_ai_gas_business_PurchaseRequestPart_quantity" object="${purchaserequestpart}" z="qOZtfBfXEzfT2sSVbMOIUDicCPk="/>
     </page:show>
 </div>
