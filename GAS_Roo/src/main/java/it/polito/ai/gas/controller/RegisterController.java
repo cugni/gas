@@ -40,6 +40,14 @@ public class RegisterController {
             return "/register/form";
         }
 
+        /* CHECK */
+        if (!User.findUsersByUsernameEquals(user.getUsername()).getResultList().isEmpty())
+        {
+            uiModel.addAttribute("error", "Username already taken");
+            populateEditForm(uiModel, user);
+            return "/register/form";
+        }
+
         uiModel.asMap().clear();
         user.persist();
 

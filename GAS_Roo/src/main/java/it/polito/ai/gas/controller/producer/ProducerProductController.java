@@ -60,14 +60,20 @@ public class ProducerProductController {
 
     @RequestMapping(produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+        User currentUser =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Producer currentProducer = Producer.findProducer(currentUser.getId());
+
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("products", Product.findProductEntries(firstResult, sizeNo));
+            uiModel.addAttribute("products", Product.findProductEntriesByProducer(currentProducer, firstResult, sizeNo));
             float nrOfPages = (float) Product.countProducts() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("products", Product.findAllProducts());
+            //uiModel.addAttribute("products", Product.findAllProducts());
+
+            uiModel.addAttribute("products", Product.findProductsByProducer(currentProducer));
         }
         addDateTimeFormatPatterns(uiModel);
         return "producer/products/list";

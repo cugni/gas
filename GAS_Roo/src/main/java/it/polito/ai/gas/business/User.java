@@ -73,7 +73,7 @@ public class User implements InterceptPersist, UserDetails {
     }
 
     public boolean isEnabled() {
-        return this.getApproved();
+            return this.getApproved();
     }
 
     @Override
