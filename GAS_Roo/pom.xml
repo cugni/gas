@@ -346,26 +346,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.18</version>
         </dependency>
-    <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>2.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>2.4.0</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20090211</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt.inject</groupId>
-            <artifactId>gin</artifactId>
-            <version>1.5.0</version>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -505,15 +490,12 @@
                         <buildCommand>
                             <name>org.springframework.ide.eclipse.core.springbuilder</name>
                         </buildCommand>
-                    <buildCommand>
-                            <name>com.google.gwt.eclipse.core.gwtProjectValidator</name>
-                        </buildCommand>
+
                     </additionalBuildcommands>
                     <additionalProjectnatures>
                         <projectnature>org.eclipse.ajdt.ui.ajnature</projectnature>
                         <projectnature>com.springsource.sts.roo.core.nature</projectnature>
                         <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                    <projectnature>com.google.gwt.eclipse.core.gwtNature</projectnature>
                     </additionalProjectnatures>
                 </configuration>
             </plugin>
@@ -542,42 +524,6 @@
                 </configuration>
                 </plugin>
 				 
-         <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.2.0</version>
-                <configuration>
-                    <logLevel>INFO</logLevel>
-                    <style>PRETTY</style>
-                    <runTarget>/ApplicationScaffold.html</runTarget>
-                    <hostedWebapp>${project.build.directory}/${project.build.finalName}</hostedWebapp>
-                    <modules>
-                        <module>${project.groupId}.ApplicationScaffold</module>
-                    </modules>
-                    <copyWebapp>true</copyWebapp>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>gwtcompile</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.google.gwt</groupId>
-                        <artifactId>gwt-dev</artifactId>
-                        <version>2.4.0</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.google.gwt</groupId>
-                        <artifactId>gwt-user</artifactId>
-                        <version>2.4.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
 
         </plugins>
     <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>

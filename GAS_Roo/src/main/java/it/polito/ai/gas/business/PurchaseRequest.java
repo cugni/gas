@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
-@RooJpaActiveRecord(versionField = "", table = "purchase_request", finders = { "findPurchaseRequestsByAcquirer" })
 @RooToString(excludeFields = { "proposal", "acquirer", "purchaseRequestParts" })
+@RooJpaActiveRecord(versionField = "", table = "purchase_request", finders = { "findPurchaseRequestsByAcquirer", "findPurchaseRequestsByCompletedNot" })
 public class PurchaseRequest {
 
     @ManyToOne

@@ -7,5 +7,6 @@
         <field:display field="received" id="s_it_polito_ai_gas_business_PurchaseRequest_received" object="${purchaserequest}" z="7GaAUzfpRE6ckg5ghlzK8H48WCA="/>
         <field:display field="proposal" id="s_it_polito_ai_gas_business_PurchaseRequest_proposal" object="${purchaserequest}" z="PE0tAZhzFmvVObXpkLEoYkFsm2U="/>
         <field:display field="acquirer" id="s_it_polito_ai_gas_business_PurchaseRequest_acquirer" object="${purchaserequest}" z="MRbtiMqo+wWRKBiLli8hWbr1/8s="/>
+        <field:display field="completed" id="s_it_polito_ai_gas_business_PurchaseRequest_completed" object="${purchaserequest}" z="kcMCv3NCNY05eE1DT+iSHSFKMsw="/>
     </page:show>
 </div>

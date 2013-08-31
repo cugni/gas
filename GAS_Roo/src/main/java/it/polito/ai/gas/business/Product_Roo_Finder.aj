@@ -3,14 +3,14 @@
 
 package it.polito.ai.gas.business;
 
-import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.User;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect Product_Roo_Finder {
     
-    public static TypedQuery<Product> Product.findProductsByProducer(Producer producer) {
+    public static TypedQuery<Product> Product.findProductsByProducer(User producer) {
         if (producer == null) throw new IllegalArgumentException("The producer argument is required");
         EntityManager em = Product.entityManager();
         TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE o.producer = :producer", Product.class);

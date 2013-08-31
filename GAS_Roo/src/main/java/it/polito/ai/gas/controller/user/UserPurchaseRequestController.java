@@ -22,12 +22,17 @@ import javax.validation.Valid;
 @RooWebScaffold(path = "user/purchaserequest", formBackingObject = PurchaseRequest.class)
 public class UserPurchaseRequestController {
     public PurchaseRequest checkRights(PurchaseRequest purchaseRequest){
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User  user  =    getCurrentUser();
+
         if(!user.equals(purchaseRequest.getAcquirer()))
             throw new SecurityException("An user can modify only his own purchase requests");
         return purchaseRequest;
     }
+
+    private User getCurrentUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+
     @RequestMapping(produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
        User  user  =
@@ -43,7 +48,7 @@ public class UserPurchaseRequestController {
             float nrOfPages = (float) PurchaseRequest.countPurchaseRequests() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("purchaserequests", PurchaseRequest.findPurchaseRequestsByAcquirer(getcu));
+            uiModel.addAttribute("purchaserequests", PurchaseRequest.findPurchaseRequestsByAcquirer(getCurrentUser()));
         }
         return "user/purchaserequest/list";
     }

@@ -5,6 +5,6 @@
     <form:update id="fu_it_polito_ai_gas_business_PurchaseRequestPart" modelAttribute="purchaseRequestPart" path="/user/purchaserequestparts" versionField="none" z="DyJxMeU15K7Shsa7b0SXNNq4cUQ=">
         <field:select field="purchaseRequest" id="c_it_polito_ai_gas_business_PurchaseRequestPart_purchaseRequest" itemValue="id" items="${purchaserequests}" path="/admin/purchaserequests" z="5H3aYP7S2xW5BXsimjD2f5ALAU8="/>
         <field:select field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequestPart_acquirer" itemValue="id" items="${users}" path="/admin/users" z="lNHc+riDRXCCZqoSOultIGyvOss="/>
-        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequestPart_quantity" z="KF7do2mBub5LLJhwi3+ueos9gjg="/>
+        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequestPart_quantity" required="true" validationMessageCode="field_invalid_number" z="4C6+IeeYuU3LtMuKqS5b+hcVtc8="/>
     </form:update>
 </div>

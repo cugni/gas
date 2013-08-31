@@ -90,4 +90,12 @@ privileged aspect PurchaseRequestController_Roo_Controller_Json {
         return new ResponseEntity<String>(PurchaseRequest.toJsonArray(PurchaseRequest.findPurchaseRequestsByAcquirer(acquirer).getResultList()), headers, HttpStatus.OK);
     }
     
+    @RequestMapping(params = "find=ByCompletedNot", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> PurchaseRequestController.jsonFindPurchaseRequestsByCompletedNot(@RequestParam(value = "completed", required = false) Boolean completed) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(PurchaseRequest.toJsonArray(PurchaseRequest.findPurchaseRequestsByCompletedNot(completed == null ? Boolean.FALSE : completed).getResultList()), headers, HttpStatus.OK);
+    }
+    
 }

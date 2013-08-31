@@ -18,4 +18,12 @@ privileged aspect PurchaseRequest_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<PurchaseRequest> PurchaseRequest.findPurchaseRequestsByCompletedNot(Boolean completed) {
+        if (completed == null) throw new IllegalArgumentException("The completed argument is required");
+        EntityManager em = PurchaseRequest.entityManager();
+        TypedQuery<PurchaseRequest> q = em.createQuery("SELECT o FROM PurchaseRequest AS o WHERE o.completed IS NOT :completed", PurchaseRequest.class);
+        q.setParameter("completed", completed);
+        return q;
+    }
+    
 }
