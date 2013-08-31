@@ -25,4 +25,12 @@ privileged aspect PurchaseRequest_Roo_JavaBean {
         this.acquirer = acquirer;
     }
     
+    public Boolean PurchaseRequest.getCompleted() {
+        return this.completed;
+    }
+    
+    public void PurchaseRequest.setCompleted(Boolean completed) {
+        this.completed = completed;
+    }
+    
 }

@@ -149,28 +149,36 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `GAS`.`purchase_request` ;
 
-CREATE  TABLE IF NOT EXISTS `GAS`.`purchase_request` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `proposal` INT(11) NOT NULL ,
-  `acquirer` INT NOT NULL ,
-  `quantity` FLOAT NOT NULL ,
-  `received` TINYINT(1) NULL DEFAULT false ,
-  PRIMARY KEY (`id`) ,
-  INDEX `FKC307E7E3894EE92E` (`acquirer` ASC) ,
-  INDEX `fk_purchase_orders_orders1_idx` (`proposal` ASC) ,
-  INDEX `diobono_idx` (`acquirer` ASC) ,
-  CONSTRAINT `fk_purchase_orders_orders1`
-    FOREIGN KEY (`proposal` )
-    REFERENCES `GAS`.`proposal` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `diamine`
-    FOREIGN KEY (`acquirer` )
-    REFERENCES `GAS`.`user` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+
+CREATE TABLE `purchase_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `proposal` int(11) NOT NULL,
+  `acquirer` int(11) NOT NULL,
+  `quantity` float NOT NULL,
+  `received` tinyint(1) NOT NULL DEFAULT '0',
+  `completed` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKC307E7E3894EE92E` (`acquirer`),
+  KEY `fk_purchase_orders_orders1_idx` (`proposal`),
+  KEY `diobono_idx` (`acquirer`),
+  CONSTRAINT `diamine` FOREIGN KEY (`acquirer`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_purchase_orders_orders1` FOREIGN KEY (`proposal`) REFERENCES `proposal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `purchase_request_part`;
+
+CREATE TABLE `purchase_request_part` (
+  `id` int(11) NOT NULL,
+  `quantity` float NOT NULL,
+  `acquirer` int(11) NOT NULL,
+  `purchaseRequest` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_prurchasepart_purchase_idx` (`purchaseRequest`),
+  KEY `fk_purchasepart_user_idx` (`acquirer`),
+  CONSTRAINT `fk_prurchasepart_purchase` FOREIGN KEY (`purchaseRequest`) REFERENCES `purchase_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_purchasepart_user` FOREIGN KEY (`acquirer`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 
 -- -----------------------------------------------------

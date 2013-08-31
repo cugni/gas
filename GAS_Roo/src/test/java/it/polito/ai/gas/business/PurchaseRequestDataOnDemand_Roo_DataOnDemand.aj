@@ -27,6 +27,7 @@ privileged aspect PurchaseRequestDataOnDemand_Roo_DataOnDemand {
     public PurchaseRequest PurchaseRequestDataOnDemand.getNewTransientPurchaseRequest(int index) {
         PurchaseRequest obj = new PurchaseRequest();
         setAcquirer(obj, index);
+        setCompleted(obj, index);
         setProposal(obj, index);
         setQuantity(obj, index);
         setReceived(obj, index);
@@ -36,6 +37,11 @@ privileged aspect PurchaseRequestDataOnDemand_Roo_DataOnDemand {
     public void PurchaseRequestDataOnDemand.setAcquirer(PurchaseRequest obj, int index) {
         User acquirer = null;
         obj.setAcquirer(acquirer);
+    }
+    
+    public void PurchaseRequestDataOnDemand.setCompleted(PurchaseRequest obj, int index) {
+        Boolean completed = Boolean.TRUE;
+        obj.setCompleted(completed);
     }
     
     public void PurchaseRequestDataOnDemand.setProposal(PurchaseRequest obj, int index) {

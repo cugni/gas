@@ -5,6 +5,7 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
+import javax.validation.constraints.NotNull;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
@@ -18,4 +19,9 @@ public class PurchaseRequest {
 
     @ManyToOne
     private User acquirer;
+
+    /**
+     */
+    @NotNull
+    private Boolean completed;
 }

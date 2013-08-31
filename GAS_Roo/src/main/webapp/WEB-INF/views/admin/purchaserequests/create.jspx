@@ -8,6 +8,7 @@
         <field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="zwBNHAJfFO0Xjbd86WsA+8L9fj8="/>
         <field:select field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" itemValue="id" items="${users}" path="/admin/users" z="p8DA7DBBQM6jazzaP1xdBFYQKQs="/>
         <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_PurchaseRequest_purchaseRequestParts" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request Part" z="//nmqHIL3PA+ILUxNaTo4y9N8VY="/>
+        <field:checkbox field="completed" id="c_it_polito_ai_gas_business_PurchaseRequest_completed" z="CEg0JjZYjvKOF24lGpFqGS/7Ylc="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_PurchaseRequest" render="${not empty dependencies}" z="GVUGrOJY7g2fdrFq6viGusjVl4E="/>
 </div>

@@ -8,6 +8,7 @@
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_received" property="received" z="ytSV/g4lqThuEzDyixblENt+Lq8="/>
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" property="proposal" z="P+7CMc8tp9TQ0k0dBs5vm68vgMc="/>
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" property="acquirer" z="OY0hYhaO9bXCD+FHE3ooMDgIwHA="/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_completed" property="completed" z="Yuo1mfH565GPm2m4GDRUrWGNVXI="/>
         </table:table>
     </page:list>
 </div>
