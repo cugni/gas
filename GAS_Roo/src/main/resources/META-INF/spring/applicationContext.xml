@@ -68,4 +68,8 @@
         <property name="persistenceUnitName" value="persistenceUnit"/>
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <bean class="it.polito.ai.gas.InitDB" id="initDB">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
 </beans>

@@ -9,7 +9,7 @@
 <body>
         <div align="center">
             <h1>403 ERROR</h1>  <br><br>
-        <img src="http://userserve-ak.last.fm/serve/252/5664248.jpg">
+            <a href="/">Home</a>
         </div>
 </body>
 </html>

@@ -43,7 +43,13 @@ public class RegisterProducerController {
             populateEditForm(uiModel, producer);
             return "/registerProducer/form";
         }
-
+        /* CHECK */
+        if (producer.getDelegate() == null)
+        {
+            uiModel.addAttribute("error", "Producer must have a delegate");
+            populateEditForm(uiModel, producer);
+            return "/registerProducer/form";
+        }
 
         producer.setRole(UserType.ROLE_PRODUCER);
         producer.setApproved(false);

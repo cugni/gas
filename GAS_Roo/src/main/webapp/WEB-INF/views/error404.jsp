@@ -8,8 +8,8 @@
 </head>
 <body>
     <div align="center">
-        <h1>404 ERROR</h1> <br><br>
-        <img src="http://bluefaqs.com/wp-content/uploads/2009/11/css-tricks-404.jpg">
+        <h1>404 ERROR - Not Found</h1> <br><br>
+        <a href="/">Home</a>
     </div>
 </body>
 </html>

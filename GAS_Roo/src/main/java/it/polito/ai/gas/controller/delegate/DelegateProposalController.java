@@ -38,7 +38,7 @@ public class DelegateProposalController {
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("proposal", Proposal.findProposalsByDelegate(user).getResultList());
+        uiModel.addAttribute("proposal", Proposal.findProposal(id));
         uiModel.addAttribute("itemId", id);
         return "delegate/proposals/show";
     }
@@ -55,13 +55,22 @@ public class DelegateProposalController {
             float nrOfPages = (float) Proposal.countProposals() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("proposals", Proposal.findAllProposals());
+            User  user  =
+                    (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            uiModel.addAttribute("proposals", Proposal.findProposalsByDelegate(user).getResultList());
         }
         addDateTimeFormatPatterns(uiModel);
         return "delegate/proposals/list";
     }
     void populateEditForm(Model uiModel, Proposal proposal) {
+        User  user  =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ArrayList<User> delegate = new ArrayList<User>();
+        delegate.add(user);
+        uiModel.addAttribute("users", delegate);
+
         uiModel.addAttribute("proposal", proposal);
+
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("events", Event.findAllEvents());
         uiModel.addAttribute("messages", Message.findAllMessages());
@@ -97,7 +106,7 @@ public class DelegateProposalController {
     }
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-       // checkRights(proposal);   !No, se la stai creando, ovvio non è lui l'il proposers
+       // checkRights(proposal);   !No, se la stai creando, ovvio non è lui l'il proposers <- parlar en català?
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
@@ -108,8 +117,10 @@ public class DelegateProposalController {
         proposal.setDelegate(user);
         uiModel.asMap().clear();
         proposal.persist();
+
         return "redirect:/delegate/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
+
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel,checkRights(Proposal.findProposal(id)));
