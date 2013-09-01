@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,8 +36,7 @@ public class DelegateProposalController {
 
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposal(id));
         uiModel.addAttribute("itemId", id);
@@ -65,11 +65,7 @@ public class DelegateProposalController {
         return "delegate/proposals/list";
     }
     void populateEditForm(Model uiModel, Proposal proposal) {
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ArrayList<User> delegate = new ArrayList<User>();
-        delegate.add(user);
-        uiModel.addAttribute("users", delegate);
+
 
         uiModel.addAttribute("proposal", proposal);
 
@@ -90,6 +86,9 @@ public class DelegateProposalController {
 
         return products;
     }
+    private User getCurrentUser(){
+        return(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
 
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -98,34 +97,40 @@ public class DelegateProposalController {
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/update";
         }
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        proposal.setDelegate(user);
+
+        if (proposal.getStartDate().after(proposal.getEndDate()))
+        {
+            uiModel.addAttribute("error", "A proposal can not start after its ends");
+
+            populateEditForm(uiModel, proposal);
+            return "delegate/proposals/create";
+        }
+
+        proposal.setDelegate(getCurrentUser());
 
         uiModel.asMap().clear();
         proposal.merge();
         return "redirect:/delegate/proposals/" + encodeUrlPathSegment(proposal.getId().toString(), httpServletRequest);
     }
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String create( Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
        // checkRights(proposal);   !No, se la stai creando, ovvio non è lui l'il proposers <- parlar en català?
+        proposal.setDelegate(getCurrentUser());
         if (bindingResult.hasErrors()) {
+
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
         }
 
         /* CHECK */
-        if (!Proposal.findProposalsByProduct(proposal.getProduct()).getResultList().isEmpty())
+        if (proposal.getStartDate().after(proposal.getEndDate()))
         {
-            uiModel.addAttribute("error", "A proposal for that product already exists");
+            uiModel.addAttribute("error", "A proposal can not start after its end");
 
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
         }
-
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        proposal.setDelegate(user);
+        proposal.setDelegate(getCurrentUser());
         uiModel.asMap().clear();
         proposal.persist();
 
