@@ -10,10 +10,7 @@
     </div>
 
     <form:create id="fc_it_polito_ai_gas_business_Proposal" modelAttribute="proposal" path="/delegate/proposals" render="${empty dependencies}" z="user-managed">
-
-        <div style="visibility:collapse"> <!-- Dio perdonami -->
-         <field:single-select field="delegate" id="c_it_polito_ai_gas_business_Proposal_delegate" itemValue="id" items="${users}" path="/delegate/users" required="true" z="user-managed"/>
-        </div>
+          <field:single-select render="false" field="delegate" id="c_it_polito_ai_gas_business_Proposal_delegate" itemValue="id" items="${users}" path="/delegate/users" required="true" z="user-managed"/>
           <field:select field="product" id="c_it_polito_ai_gas_business_Proposal_product" itemValue="id" items="${products}" path="/delegate/products" z="RkzKoLw/mXgEAsIu2y/vJNO4A5o="/>
           <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="c_it_polito_ai_gas_business_Proposal_startDate" required="true" z="nINGIAMKmTOgFJpozmEfv2XDKeg="/>
           <field:datetime dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="c_it_polito_ai_gas_business_Proposal_endDate" required="true" z="VvtsT5saLLDRsue3Nx8m5ekBG2A="/>
