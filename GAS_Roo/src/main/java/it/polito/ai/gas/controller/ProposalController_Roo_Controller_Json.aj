@@ -3,6 +3,7 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.ProposalController;
@@ -88,6 +89,14 @@ privileged aspect ProposalController_Roo_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         return new ResponseEntity<String>(Proposal.toJsonArray(Proposal.findProposalsByDelegate(delegate).getResultList()), headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(params = "find=ByProduct", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> ProposalController.jsonFindProposalsByProduct(@RequestParam("product") Product product) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(Proposal.toJsonArray(Proposal.findProposalsByProduct(product).getResultList()), headers, HttpStatus.OK);
     }
     
 }

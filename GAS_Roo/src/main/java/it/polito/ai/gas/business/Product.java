@@ -16,6 +16,7 @@ import java.util.List;
 @RooJson
 @RooJpaActiveRecord(versionField = "", table = "product", finders = { "findProductsByProducer" })
 public class Product implements InterceptPersist {
+
     @ManyToOne
     @JoinColumn(name = "producer", referencedColumnName = "id", nullable = false)
     private Producer producer;

@@ -3,6 +3,7 @@
 
 package it.polito.ai.gas.business;
 
+import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import javax.persistence.EntityManager;
@@ -15,6 +16,14 @@ privileged aspect Proposal_Roo_Finder {
         EntityManager em = Proposal.entityManager();
         TypedQuery<Proposal> q = em.createQuery("SELECT o FROM Proposal AS o WHERE o.delegate = :delegate", Proposal.class);
         q.setParameter("delegate", delegate);
+        return q;
+    }
+    
+    public static TypedQuery<Proposal> Proposal.findProposalsByProduct(Product product) {
+        if (product == null) throw new IllegalArgumentException("The product argument is required");
+        EntityManager em = Proposal.entityManager();
+        TypedQuery<Proposal> q = em.createQuery("SELECT o FROM Proposal AS o WHERE o.product = :product", Proposal.class);
+        q.setParameter("product", product);
         return q;
     }
     

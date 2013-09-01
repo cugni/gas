@@ -48,15 +48,17 @@ public class DelegateProposalController {
     }
     @RequestMapping(produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
+        User  user  =
+                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("proposals", Proposal.findProposalEntries(firstResult, sizeNo));
+            uiModel.addAttribute("proposals", Proposal.findProposalEntriesByDelegate(user, firstResult, sizeNo));
             float nrOfPages = (float) Proposal.countProposals() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            User  user  =
-                    (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
             uiModel.addAttribute("proposals", Proposal.findProposalsByDelegate(user).getResultList());
         }
         addDateTimeFormatPatterns(uiModel);
@@ -111,9 +113,18 @@ public class DelegateProposalController {
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
         }
+
+        /* CHECK */
+        if (!Proposal.findProposalsByProduct(proposal.getProduct()).getResultList().isEmpty())
+        {
+            uiModel.addAttribute("error", "A proposal for that product already exists");
+
+            populateEditForm(uiModel, proposal);
+            return "delegate/proposals/create";
+        }
+
         User  user  =
                 (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         proposal.setDelegate(user);
         uiModel.asMap().clear();
         proposal.persist();
