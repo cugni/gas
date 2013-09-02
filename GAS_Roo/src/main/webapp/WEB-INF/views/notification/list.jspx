@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<div xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+     xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+     version="2.0">
+
+<page:list id="pl_it_polito_ai_gas_business_Event" items="${events}" z="user-managed">
+        <table:table data="${events}" delete="false" id="l_it_polito_ai_gas_business_Event" path="/notification" update="false" z="user-managed">
+            <table:column id="c_it_polito_ai_gas_business_Event_type" property="type" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>
+            <!-- <table:column date="true" dateTimePattern="${event_date_format}" id="c_it_polito_ai_gas_business_Event_date" property="date" z="P6HutKXugIutHXmGNJ3GvCGmCZE="/> -->
+        </table:table>
+    </page:list>
+
+    </div>

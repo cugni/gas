@@ -11,8 +11,8 @@ import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooJpaActiveRecord(versionField = "", table = "event")
 @RooDbManaged(automaticallyDelete = true)
+@RooJpaActiveRecord(versionField = "", table = "event", finders = { "findEventsByUser", "findEventsByUsers" })
 public class Event {
 
     @Column(name = "type")

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="pl_it_polito_ai_gas_business_Event" object="${event}" path="/notification" z="user-managed">
+        <field:display field="type" id="c_it_polito_ai_gas_business_Event_type" object="${event}" z="+o7iWMPOnQgFK1LnbL2vPRJhcIo="/>
+        <field:display field="${view_parameter}"  id="${view_id}" object="${event}" z="xQ1TEW3B/zJTTzR0XR9r8eLRZDc="/>
+
+    </page:show>
+</div>

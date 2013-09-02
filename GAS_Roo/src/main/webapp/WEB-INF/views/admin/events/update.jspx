@@ -3,13 +3,13 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_it_polito_ai_gas_business_Event" modelAttribute="event" path="/admin/events" versionField="none" z="Y2l2PisK/rIQgEbujaiXXUcjUV8=">
+        <field:select field="type" id="c_it_polito_ai_gas_business_Event_type" items="${eventtypes}" path="eventtypes" required="true" z="mparea3XIPzYVpcJb/YyYpmH9cE="/>
         <field:select field="users" id="c_it_polito_ai_gas_business_Event_users" itemValue="id" items="${users}" multiple="true" path="/admin/users" z="sTu9uS4tqLV6Zk9pzWY+ih7HgpA="/>
-        <field:select field="user" id="c_it_polito_ai_gas_business_Event_user" itemValue="id" items="${users}" path="/admin/users" z="JUxiP1gOOjhJoaAStDRXUNUO8Fs="/>
-        <field:select field="proposal" id="c_it_polito_ai_gas_business_Event_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="uusGcntIIwaM8u6hzyQULgKQ76w="/>
         <field:select field="deliveryWithdrawal" id="c_it_polito_ai_gas_business_Event_deliveryWithdrawal" itemValue="id" items="${deliverywithdrawals}" path="/admin/deliverywithdrawals" z="MG+bu46hfBwC2Tqt+R2U1RwWfHk="/>
         <field:select field="message" id="c_it_polito_ai_gas_business_Event_message" itemValue="id" items="${messages}" path="/messages" z="UFG4jkTkE2yFH1UJlXWHVW8ehTc="/>
         <field:select field="product" id="c_it_polito_ai_gas_business_Event_product" itemValue="id" items="${products}" path="/admin/products" z="fcwI6FY/R75TeHAUsgpBBTbQzow="/>
+        <field:select field="proposal" id="c_it_polito_ai_gas_business_Event_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="uusGcntIIwaM8u6hzyQULgKQ76w="/>
+        <field:select field="user" id="c_it_polito_ai_gas_business_Event_user" itemValue="id" items="${users}" path="/admin/users" z="JUxiP1gOOjhJoaAStDRXUNUO8Fs="/>
         <field:datetime dateTimePattern="${event_date_date_format}" field="date" id="c_it_polito_ai_gas_business_Event_date" required="true" z="xfoyJWVgBLqjiz1axZVU+mKBWww="/>
-        <field:select field="type" id="c_it_polito_ai_gas_business_Event_type" items="${eventtypes}" path="eventtypes" required="true" z="mparea3XIPzYVpcJb/YyYpmH9cE="/>
     </form:update>
 </div>

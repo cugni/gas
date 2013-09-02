@@ -3,10 +3,10 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_it_polito_ai_gas_business_Proposal" object="${proposal}" path="/admin/proposals" z="cNOfs8aHxxugAUWMxRU2CA3tNho=">
+        <field:display field="delegate" id="s_it_polito_ai_gas_business_Proposal_delegate" object="${proposal}" z="BDWKwAZJzLdZpAufShLPLeDakr0="/>
         <field:display field="product" id="s_it_polito_ai_gas_business_Proposal_product" object="${proposal}" z="0VvUQkFK1ckjPNh956oTixKEUJU="/>
         <field:display date="true" dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="s_it_polito_ai_gas_business_Proposal_startDate" object="${proposal}" z="1seON7xjKvcz9B8Aya938CfjsuI="/>
         <field:display date="true" dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="s_it_polito_ai_gas_business_Proposal_endDate" object="${proposal}" z="T3QpXolont9nojUDiCBuVhQSYxI="/>
         <field:display field="minReached" id="s_it_polito_ai_gas_business_Proposal_minReached" object="${proposal}" z="/G4ONcjmfOgrN6ineb/ILsB0cPA="/>
-        <field:display field="delegate" id="s_it_polito_ai_gas_business_Proposal_delegate" object="${proposal}" z="BDWKwAZJzLdZpAufShLPLeDakr0="/>
     </page:show>
 </div>

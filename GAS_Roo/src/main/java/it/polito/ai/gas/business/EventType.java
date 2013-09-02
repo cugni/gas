@@ -65,7 +65,6 @@ public enum EventType {
 	/**
 	 * Allarme generico
 	 */
-	ADMIN_ALERT 
-	
-	
+	ADMIN_ALERT  ;
+
 }

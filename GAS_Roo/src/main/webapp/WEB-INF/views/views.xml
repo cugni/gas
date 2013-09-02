@@ -42,4 +42,5 @@
     <definition extends="public" name="/success">
         <put-attribute name="body" value="/WEB-INF/views/success.jspx"/>
     </definition>
+
 </tiles-definitions>

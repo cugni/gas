@@ -5,11 +5,11 @@
     <page:list id="pl_it_polito_ai_gas_business_Event" items="${events}" z="PtYDn8BDjGgQeqSALl9oKaRTOBo=">
         <table:table data="${events}" id="l_it_polito_ai_gas_business_Event" path="/admin/events" z="wEO585YCiDTG1um8uUWyup6rA7I=">
             <table:column id="c_it_polito_ai_gas_business_Event_users" property="users" z="dIHK15xjUWJbj7jM/sHdNpVRhww="/>
-            <table:column id="c_it_polito_ai_gas_business_Event_user" property="user" z="JxYwf8uvQCUWk0Lz+4YaprQdMdU="/>
-            <table:column id="c_it_polito_ai_gas_business_Event_proposal" property="proposal" z="WJeOVLFZqmfSUk7eHtoyuxjKnQo="/>
             <table:column id="c_it_polito_ai_gas_business_Event_deliveryWithdrawal" property="deliveryWithdrawal" z="dGiCxFi7JrxE8+6yiwp/wdUMpBc="/>
             <table:column id="c_it_polito_ai_gas_business_Event_message" property="message" z="+xvGunnUsB9k9wqTcod/tocmVBg="/>
             <table:column id="c_it_polito_ai_gas_business_Event_product" property="product" z="zXP7v5fxA5tJKpL7vNBS/moE5mo="/>
+            <table:column id="c_it_polito_ai_gas_business_Event_proposal" property="proposal" z="WJeOVLFZqmfSUk7eHtoyuxjKnQo="/>
+            <table:column id="c_it_polito_ai_gas_business_Event_user" property="user" z="JxYwf8uvQCUWk0Lz+4YaprQdMdU="/>
         </table:table>
     </page:list>
 </div>
