@@ -1,6 +1,7 @@
 package it.polito.ai.gas.controller.user;
 
 import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -16,16 +17,34 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @RequestMapping("/user/purchaserequest")
 @Controller
 @RooWebScaffold(path = "user/purchaserequest", formBackingObject = PurchaseRequest.class)
 public class UserPurchaseRequestController {
+
+    @RequestMapping(value = "/purchase/{id}", produces = "text/html")
+    public String purchase(@PathVariable("id") Integer id, Model uiModel) {
+        uiModel.asMap().clear();
+        /*
+        ArrayList<Proposal> mock = new ArrayList<Proposal>();
+        mock.add(Proposal.findProposal(id));
+        uiModel.addAttribute("proposals", mock );
+         */
+        uiModel.addAttribute("proposal", Proposal.findProposal(id) );
+        uiModel.addAttribute("proposal_id", id );
+
+        uiModel.addAttribute("purchaseRequest", new PurchaseRequest());
+        return "user/purchaserequest/purchase";
+
+    }
+
     public PurchaseRequest checkRights(PurchaseRequest purchaseRequest){
         User  user  =    getCurrentUser();
 
         if(!user.equals(purchaseRequest.getAcquirer()))
-            throw new SecurityException("An user can modify only his own purchase requests");
+            throw new SecurityException("A user can modify only his own purchase requests");
         return purchaseRequest;
     }
 
@@ -69,14 +88,23 @@ if(!user.equals(purchaseRequest.getAcquirer()))
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid PurchaseRequest purchaseRequest, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+    public String create(PurchaseRequest purchaseRequest, BindingResult bindingResult, Model uiModel,
+                         HttpServletRequest httpServletRequest,
+                         @RequestParam(required = false)Integer proposal) {
       //  checkRights(purchaseRequest);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, purchaseRequest);
             return "user/purchaserequest/create";
         }
+
         purchaseRequest.setAcquirer(getCurrentUser());
+        /* TO-DO: qua mettiamo il check per vedere se è completa o se dobbiamo fare delle parti... */
+        purchaseRequest.setCompleted(true);
+
+        purchaseRequest.setReceived(false);
+
         uiModel.asMap().clear();
+
         purchaseRequest.persist();
         return "redirect:/user/purchaserequest/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
     }

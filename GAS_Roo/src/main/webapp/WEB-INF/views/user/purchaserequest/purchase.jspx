@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+     xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+     xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="purchaseRequest" path="/user/purchaserequest?proposal=${proposal_id}" render="${empty dependencies}" z="user-managed">
+
+        <field:display id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" object="${purchaseRequest}" field="proposal"/>
+
+        <field:display field="product" id="s_it_polito_ai_gas_business_Proposal_product" object="${proposal}" z="0VvUQkFK1ckjPNh956oTixKEUJU="/>
+        <field:display field="delegate" id="s_it_polito_ai_gas_business_Proposal_delegate" object="${proposal}" z="BDWKwAZJzLdZpAufShLPLeDakr0="/>
+        <field:display date="true" dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="s_it_polito_ai_gas_business_Proposal_startDate" object="${proposal}" z="1seON7xjKvcz9B8Aya938CfjsuI="/>
+        <field:display date="true" dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="s_it_polito_ai_gas_business_Proposal_endDate" object="${proposal}" z="T3QpXolont9nojUDiCBuVhQSYxI="/>
+
+        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="v3l/+NVnP1eoLrfrXh32zGQdX7E="/>
+
+        <!--<field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="zwBNHAJfFO0Xjbd86WsA+8L9fj8="/>-->
+
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_PurchaseRequest" render="${not empty dependencies}" z="GVUGrOJY7g2fdrFq6viGusjVl4E="/>
+</div>

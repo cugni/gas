@@ -130,7 +130,7 @@ public class DelegateProposalController {
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
         }
-        proposal.setDelegate(getCurrentUser());
+
         uiModel.asMap().clear();
         proposal.persist();
 
