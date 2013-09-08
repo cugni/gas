@@ -81,8 +81,4 @@ public class User implements InterceptPersist, UserDetails {
         return this.getUsername();
     }
 
-    @Override
-    public boolean equals(Object u ) {
-        return (((User)u).getId() == this.getId());
-    }
 }

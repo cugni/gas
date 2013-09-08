@@ -1,9 +1,7 @@
 package it.polito.ai.gas.controller.user;
 
-import it.polito.ai.gas.business.Product;
-import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.PurchaseRequest;
-import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.Utils;
+import it.polito.ai.gas.business.*;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,11 +25,7 @@ public class UserPurchaseRequestController {
     @RequestMapping(value = "/purchase/{id}", produces = "text/html")
     public String purchase(@PathVariable("id") Integer id, Model uiModel) {
         uiModel.asMap().clear();
-        /*
-        ArrayList<Proposal> mock = new ArrayList<Proposal>();
-        mock.add(Proposal.findProposal(id));
-        uiModel.addAttribute("proposals", mock );
-         */
+
         uiModel.addAttribute("proposal", Proposal.findProposal(id) );
         uiModel.addAttribute("proposal_id", id );
 
@@ -40,22 +34,9 @@ public class UserPurchaseRequestController {
 
     }
 
-    public PurchaseRequest checkRights(PurchaseRequest purchaseRequest){
-        User  user  =    getCurrentUser();
-
-        if(!user.equals(purchaseRequest.getAcquirer()))
-            throw new SecurityException("A user can modify only his own purchase requests");
-        return purchaseRequest;
-    }
-
-    private User getCurrentUser() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
-
     @RequestMapping(produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-       User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       User  user  = Utils.getCurrentUser();
 
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
@@ -67,17 +48,37 @@ public class UserPurchaseRequestController {
             float nrOfPages = (float) PurchaseRequest.countPurchaseRequests() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("purchaserequests", PurchaseRequest.findPurchaseRequestsByAcquirer(getCurrentUser()));
+            uiModel.addAttribute("purchaserequests", PurchaseRequest.findPurchaseRequestsByAcquirer(Utils.getCurrentUser()));
         }
         return "user/purchaserequest/list";
+    }
+
+    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
+    public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
+
+        PurchaseRequest pr =  Utils.checkRights(PurchaseRequest.findPurchaseRequest(id));
+        uiModel.addAttribute("purchaseRequest", pr);
+
+        ArrayList<Proposal> mockProposal = new ArrayList<Proposal>();
+        mockProposal.add(pr.getProposal());
+        uiModel.addAttribute("proposals", mockProposal);
+
+        uiModel.addAttribute("purchaserequestparts", pr.getPurchaseRequestParts());
+
+        ArrayList<User> mockUser = new ArrayList<User>();
+        mockUser.add(pr.getAcquirer());
+        uiModel.addAttribute("users", mockUser);
+
+        uiModel.addAttribute("completed", pr.getCompleted());
+
+        return "user/purchaserequest/update";
     }
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid PurchaseRequest purchaseRequest,
                          BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-if(!user.equals(purchaseRequest.getAcquirer()))
-    throw new SecurityException("An user can modify only his own purchase requests");
+
+        Utils.checkRights(purchaseRequest);
+
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, purchaseRequest);
             return "user/purchaserequest/update";
@@ -97,7 +98,7 @@ if(!user.equals(purchaseRequest.getAcquirer()))
             return "user/purchaserequest/create";
         }
 
-        purchaseRequest.setAcquirer(getCurrentUser());
+        purchaseRequest.setAcquirer(Utils.getCurrentUser());
         /* TO-DO: qua mettiamo il check per vedere se è completa o se dobbiamo fare delle parti... */
         purchaseRequest.setCompleted(true);
 
@@ -110,19 +111,14 @@ if(!user.equals(purchaseRequest.getAcquirer()))
     }
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
-        uiModel.addAttribute("purchaserequest", checkRights(PurchaseRequest.findPurchaseRequest(id)));
+        uiModel.addAttribute("purchaserequest", Utils.checkRights(PurchaseRequest.findPurchaseRequest(id)));
         uiModel.addAttribute("itemId", id);
         return "user/purchaserequest/show";
-    }
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
-        populateEditForm(uiModel, checkRights(PurchaseRequest.findPurchaseRequest(id)));
-        return "user/purchaserequest/update";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        PurchaseRequest purchaseRequest = checkRights(PurchaseRequest.findPurchaseRequest(id));
+        PurchaseRequest purchaseRequest = Utils.checkRights(PurchaseRequest.findPurchaseRequest(id));
         purchaseRequest.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());

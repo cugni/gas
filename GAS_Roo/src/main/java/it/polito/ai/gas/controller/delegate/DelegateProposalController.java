@@ -1,5 +1,6 @@
 package it.polito.ai.gas.controller.delegate;
 
+import it.polito.ai.gas.Utils;
 import it.polito.ai.gas.business.*;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -26,13 +27,6 @@ import java.util.List;
 @Controller
 @RooWebScaffold(path = "delegate/proposals", formBackingObject = Proposal.class)
 public class DelegateProposalController {
-    public Proposal checkRights(Proposal proposal){
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!user.equals(proposal.getDelegate()))
-            throw new SecurityException("A delegate can modify only his own proposals");
-        return proposal;
-    }
 
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
@@ -86,13 +80,10 @@ public class DelegateProposalController {
 
         return products;
     }
-    private User getCurrentUser(){
-        return(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
 
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        checkRights(proposal);
+        Utils.checkRights(proposal);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/update";
@@ -100,13 +91,13 @@ public class DelegateProposalController {
 
         if (proposal.getStartDate().after(proposal.getEndDate()))
         {
-            uiModel.addAttribute("error", "A proposal can not start after its ends");
+            uiModel.addAttribute("error", "A proposal can not start after its end");
 
             populateEditForm(uiModel, proposal);
             return "delegate/proposals/create";
         }
 
-        proposal.setDelegate(getCurrentUser());
+        proposal.setDelegate(Utils.getCurrentUser());
 
         uiModel.asMap().clear();
         proposal.merge();
@@ -115,7 +106,7 @@ public class DelegateProposalController {
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create( Proposal proposal, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
        // checkRights(proposal);   !No, se la stai creando, ovvio non è lui l'il proposers <- parlar en català?
-        proposal.setDelegate(getCurrentUser());
+        proposal.setDelegate(Utils.getCurrentUser());
         if (bindingResult.hasErrors()) {
 
             populateEditForm(uiModel, proposal);
@@ -139,7 +130,7 @@ public class DelegateProposalController {
 
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
-        populateEditForm(uiModel,checkRights(Proposal.findProposal(id)));
+        populateEditForm(uiModel,Utils.checkRights(Proposal.findProposal(id)));
         return "delegate/proposals/update";
     }
     @RequestMapping(params = "form", produces = "text/html")
@@ -150,7 +141,7 @@ public class DelegateProposalController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String delete(@PathVariable("id") Integer id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Proposal proposal = checkRights(Proposal.findProposal(id));
+        Proposal proposal = Utils.checkRights(Proposal.findProposal(id));
         proposal.remove();
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
