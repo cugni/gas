@@ -6,14 +6,6 @@
         <field:input field="password" id="c_it_polito_ai_gas_business_User_password" required="true" type="password" z="user-managed"/>
         <field:select field="role" id="c_it_polito_ai_gas_business_User_role" items="${usertypes}" path="usertypes" z="fZr67+GcShvk0ju8KE2uWBxRa+I="/>
         <field:select field="events" id="c_it_polito_ai_gas_business_User_events" itemValue="id" items="${events}" multiple="true" path="/events" render="false" z="user-managed"/>
-        <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_User_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" render="false" z="user-managed"/>
-        <field:simple field="events_" id="c_it_polito_ai_gas_business_User_events_" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" render="false" z="user-managed"/>
-        <field:simple field="messages" id="c_it_polito_ai_gas_business_User_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" render="false" z="user-managed"/>
-        <field:simple field="producers" id="c_it_polito_ai_gas_business_User_producers" messageCode="entity_reference_not_managed" messageCodeAttribute="Producer" render="false" z="user-managed"/>
-        <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_User_purchaseRequests" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request" render="false" z="user-managed"/>
-        <field:simple field="products" id="c_it_polito_ai_gas_business_User_products" messageCode="entity_reference_not_managed" messageCodeAttribute="Product" z="lXL6+wiof55bTXTXRevOLufGkHU="/>
-        <field:simple field="proposals" id="c_it_polito_ai_gas_business_User_proposals" messageCode="entity_reference_not_managed" messageCodeAttribute="Proposal" z="sFDduiyPIppzL9Uy84ECsPB/XoU="/>
-        <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_User_purchaseRequestParts" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request Part" z="jMUEbOKNH21GvX1RRihlG04YYds="/>
         <field:input field="username" id="c_it_polito_ai_gas_business_User_username" required="true" z="6QO2uQk2hNhRwRalFQ+E3gvtC7k="/>
         <field:input field="name" id="c_it_polito_ai_gas_business_User_name" required="true" z="Qd0STxJsC8qbikimVCtHnu913aA="/>
         <field:input field="surname" id="c_it_polito_ai_gas_business_User_surname" required="true" z="6RZ0vG9oj8ZJ1mubyNU6BlrqeAQ="/>

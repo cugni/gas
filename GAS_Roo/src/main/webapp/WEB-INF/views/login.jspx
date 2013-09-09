@@ -25,12 +25,15 @@
         </label>
         <input id="j_username" type='text' name='j_username' style="width:150px" />
         <spring:message code="security_login_form_name_message" var="name_msg" htmlEscape="false" />
-        <script type="text/javascript">
+          <c:if test="${empty springdec or springdec}">
+          <script type="text/javascript">
           <c:set var="sec_name_msg">
             <spring:escapeBody javaScriptEscape="true">${name_msg}</spring:escapeBody>
           </c:set>
+
           Spring.addDecoration(new Spring.ElementDecoration({elementId : "j_username", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {promptMessage: "${sec_name_msg}", required : true}})); 
         </script>
+          </c:if>
       </div>
       <br />
       <div>
@@ -39,17 +42,20 @@
         </label>
         <input id="j_password" type='password' name='j_password' style="width:150px" />
         <spring:message code="security_login_form_password_message" var="pwd_msg" htmlEscape="false" />
+          <c:if test="${empty springdec or springdec}">
         <script type="text/javascript">
           <c:set var="sec_pwd_msg">
             <spring:escapeBody javaScriptEscape="true">${pwd_msg}</spring:escapeBody>
           </c:set>
           Spring.addDecoration(new Spring.ElementDecoration({elementId : "j_password", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {promptMessage: "${sec_pwd_msg}", required : true}})); 
         </script>
+          </c:if>
       </div>
       <br />
       <div class="submit">
+          <c:if test="${empty springdec or springdec}">
         <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-
+                                                       </c:if>
           <label for="proceed">
               <spring:message code="button_submit" var="submit_label" htmlEscape="false" /></label>
 

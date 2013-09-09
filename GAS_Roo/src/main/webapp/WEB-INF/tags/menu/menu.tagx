@@ -5,15 +5,25 @@
                              required="true" rtexprvalue="true"
                              description="The identifier for this tag (do not change!)"/>
 	<jsp:directive.attribute name="render" type="java.lang.Boolean"
-                             required="false" rtexprvalue="true"
-                             description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+                            required="false" rtexprvalue="true"
+                            description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
+    	<jsp:directive.attribute name="menu_label" type="java.lang.String"
+                                required="false" rtexprvalue="true"
+                                description="Indicate an optional string could be set to identify the menu" />
+
+
 	<jsp:directive.attribute name="z" type="java.lang.String"
                              required="false"
                              description="Used for checking if element has been modified (to recalculate simply provide empty string value)"/>
 	
 	<c:if test="${empty render or render}">
+        <div class="c_menu">
+            	<c:if test="${!empty menu_label}">
+                        <h3>${menu_label}</h3>
+                 </c:if>
 		<ul data-role="collapsible-set" id="${fn:escapeXml(id)}">
 			<jsp:doBody />
 		</ul>
+        </div>
 	</c:if>
 </jsp:root>

@@ -33,6 +33,8 @@
         <form:errors cssClass="errors" delimiter="&lt;p/&gt;"/>
         <c:if test="${not empty compositePkField}">
           <form:hidden id="_${fn:escapeXml(compositePkField)}_id" path="${fn:escapeXml(compositePkField)}" />
+          <c:if test="${empty springdec or springdec}">
+
           <script type="text/javascript">
           <![CDATA[
             dojo.require("dojox.encoding.base64");
@@ -51,11 +53,14 @@
             }
           ]]>
           </script>
+              </c:if>
         </c:if>
         <jsp:doBody />
         <div class="submit" id="${fn:escapeXml(id)}_submit">
           <spring:message code="button_save" var="save_button" htmlEscape="false" />
-          <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+            <c:if test="${empty springdec or springdec}">
+            <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+            </c:if>
           <input id="proceed" type="submit" value="${fn:escapeXml(save_button)}"/>
         </div>
       </form:form>

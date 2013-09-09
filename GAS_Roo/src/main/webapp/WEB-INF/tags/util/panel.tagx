@@ -23,11 +23,15 @@
     <c:set var="sec_title">
       <spring:escapeBody javaScriptEscape="true" >${title}</spring:escapeBody>
     </c:set>
-    
+
+    <c:if test="${empty springdec or springdec}">
     <script type="text/javascript">dojo.require('dijit.TitlePane');</script>
+        </c:if>
     <div id="_title_${sec_id}_id">
-      <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_${sec_id}_id', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${sec_title}', open: ${sec_openPane}}})); </script>
-      <jsp:doBody />
+        <c:if test="${empty springdec or springdec}">
+             <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_${sec_id}_id', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${sec_title}', open: ${sec_openPane}}})); </script>
+        </c:if>
+        <jsp:doBody />
     </div>
   </c:if>
 </jsp:root>

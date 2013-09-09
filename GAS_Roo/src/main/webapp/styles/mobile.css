@@ -1,5 +1,14 @@
 /* main elements */
 
+.c_menu{
+    margin-bottom: 150px;
+}
+#menu{
+    max-width: 80%;
+}
+.menu lh{
+
+}
 
 #footer a:link {color: #7db223;}
 

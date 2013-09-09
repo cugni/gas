@@ -34,7 +34,7 @@
     <!--   Solo per gli users -->
 
     <sec:authorize ifAnyGranted="ROLE_USER">
-        <menu:menu id="menu_user" z="user-managed">
+        <menu:menu id="menu_user" z="user-managed" menu_label="user menu">
 
             <menu:category id="c_purchaserequest"  z="user-managed">
                 <menu:item id="c_purchaserequest_list" messageCode="global_menu_list" url="/user/purchaserequest?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
@@ -83,7 +83,7 @@
     <!--   Solo per gli admin -->
 
     <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        <menu:menu id="menu_profile" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:menu id="menu_admin" menu_label="admin menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=" >
         <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
                     <!--
                         <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="user-managed"/>

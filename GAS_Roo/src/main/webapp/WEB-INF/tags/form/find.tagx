@@ -22,7 +22,10 @@
         <jsp:doBody />
         <div class="submit" id="${fn:escapeXml(id)}_${fn:escapeXml(finderName)}_submit">
           <spring:message code="button_find" var="find_button" htmlEscape="false" />
-          <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+            <c:if test="${empty springdec or springdec}">
+
+            <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
+            </c:if>
           <input id="proceed" type="submit" value="${fn:escapeXml(find_button)}"/>
         </div>
       </form:form>

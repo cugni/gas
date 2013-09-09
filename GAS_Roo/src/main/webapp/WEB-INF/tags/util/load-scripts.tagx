@@ -9,19 +9,27 @@
   <spring:url value="/resources/dojo/dojo.js" var="dojo_url" />
   <spring:url value="/resources/dijit/themes/tundra/tundra.css" var="tundra_url" />
   <spring:url value="/resources/spring/Spring.js" var="spring_url" />
+    <spring:url value="/resources/styles/gas_mobile.css" var="spring_mobile" />
+
+
   <spring:url value="/resources/spring/Spring-Dojo.js" var="spring_dojo_url" />
   <spring:url value="/resources/images/favicon.ico" var="favicon" />
   <spring:url value="/resources/js/jquery.js" var="jquery_url" />
 
   <spring:url value="/resources/js/jquerymobile.js" var="jsmobile" />
 
+   <!-- If the device is mobile, I prefer to use jquery instead of Dojo. So it disable all dojo stuff -->
+    <c:set scope="page" var="springdec" value="${!currentDevice.mobile}" />
+    <c:set scope="request" var="springdec" value="${!currentDevice.mobile}" />
+    <c:set scope="application" var="springdec" value="${!currentDevice.mobile}" />
   <spring:url value="/resources/js/notificationPuller.js" var="notificationPuller_url" />
 
 
   <link rel="SHORTCUT ICON" href="${favicon}" />
     <c:if test="${currentDevice.mobile}">
+
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <link rel="stylesheet" type="text/css" href="resources/styles/gas_mobile.css" />
+      <link rel="stylesheet" type="text/css" href="${gas_mobile}" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
 
         <link rel="stylesheet" type="text/css" media="mobile" href="${roo_css_mobile_url}" />
@@ -30,6 +38,7 @@
         <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}" />
 
     </c:if>
+    <link rel="stylesheet" type="text/css" href="${tundra_url}" />
 
 
     <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
@@ -40,13 +49,16 @@
  <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
  <script src="${dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
  <script src="${spring_url}" type="text/javascript"><!-- /required for FF3 and Opera --></script>
- <script src="${spring_dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
  <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
  <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
  <script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
-    <link rel="stylesheet" type="text/css" href="${tundra_url}" />
+    <c:if test="${!currentDevice.mobile}">
+        <script src="${spring_dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+    </c:if>
+
     <c:if test="${currentDevice.mobile}">
-         <script src="${jsmobile}" type="text/javascript" ></script>
+
+        <script src="${jsmobile}" type="text/javascript" ></script>
     </c:if>
 
     <script src="${notificationPuller_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
