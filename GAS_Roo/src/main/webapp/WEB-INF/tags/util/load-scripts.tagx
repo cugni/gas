@@ -3,31 +3,51 @@
   <jsp:output omit-xml-declaration="yes" />
 
   <spring:theme code="styleSheet" var="roo_css" />
-  <spring:url value="/${roo_css}" var="roo_css_url" />
+   <spring:theme code="styleSheetMobile" var="roo_css_mobile" />
+   <spring:url value="/${roo_css_mobile}" var="roo_css_mobile_url" />
+   <spring:url value="/${roo_css}" var="roo_css_url" />
   <spring:url value="/resources/dojo/dojo.js" var="dojo_url" />
   <spring:url value="/resources/dijit/themes/tundra/tundra.css" var="tundra_url" />
   <spring:url value="/resources/spring/Spring.js" var="spring_url" />
   <spring:url value="/resources/spring/Spring-Dojo.js" var="spring_dojo_url" />
   <spring:url value="/resources/images/favicon.ico" var="favicon" />
+  <spring:url value="/resources/js/jquery.js" var="jquery_url" />
 
-    <spring:url value="/resources/notificationPuller.js" var="notificationPuller_url" />
+  <spring:url value="/resources/js/jquerymobile.js" var="jsmobile" />
 
-  <link rel="stylesheet" type="text/css" href="${tundra_url}" />
-  <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}" />
+  <spring:url value="/resources/js/notificationPuller.js" var="notificationPuller_url" />
+
+
   <link rel="SHORTCUT ICON" href="${favicon}" />
+    <c:if test="${currentDevice.mobile}">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" type="text/css" href="resources/styles/gas_mobile.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
 
-  <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
+        <link rel="stylesheet" type="text/css" media="mobile" href="${roo_css_mobile_url}" />
+    </c:if>
+    <c:if test="${!currentDevice.mobile}">
+        <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}" />
+
+    </c:if>
+
+
+    <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
   <c:set var="userLocale">
     <c:set var="plocale">${pageContext.response.locale}</c:set>
     <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
   </c:set>
-
-  <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
-
-  <script src="${dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
-  <script src="${spring_url}" type="text/javascript"><!-- /required for FF3 and Opera --></script>
-  <script src="${spring_dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
-  <script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
+ <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
+ <script src="${dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+ <script src="${spring_url}" type="text/javascript"><!-- /required for FF3 and Opera --></script>
+ <script src="${spring_dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+ <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+ <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+ <script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
+    <link rel="stylesheet" type="text/css" href="${tundra_url}" />
+    <c:if test="${currentDevice.mobile}">
+         <script src="${jsmobile}" type="text/javascript" ></script>
+    </c:if>
 
     <script src="${notificationPuller_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
 

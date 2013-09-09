@@ -8,7 +8,14 @@
     
     <!-- Turns on support for mapping requests to Spring MVC @Controller methods
          Also registers default Formatters and Validators for use across all @Controllers -->
-    <mvc:annotation-driven conversion-service="applicationConversionService"/>
+    <mvc:annotation-driven conversion-service="applicationConversionService">
+        <mvc:argument-resolvers>
+            <!-- On pre-handle, resolve the device that originated the web request -->
+
+            <bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
+            <bean class="org.springframework.mobile.device.site.SitePreferenceWebArgumentResolver" />
+        </mvc:argument-resolvers>
+     </mvc:annotation-driven>
     
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources -->
@@ -20,7 +27,11 @@
 
     <!-- Register "global" interceptor beans to apply to all registered HandlerMappings -->
     <mvc:interceptors>
-        <bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor"/>
+         <bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
+        <bean class="org.springframework.mobile.device.site.SitePreferenceHandlerInterceptor" />
+        <bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
+                <property name="paramName" value="theme" />
+        </bean>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang"/>
     </mvc:interceptors>
 
@@ -78,6 +89,7 @@
         <value>/WEB-INF/layouts/layouts.xml</value>
         <!-- Scan views directory for Tiles configurations -->
         <value>/WEB-INF/views/**/views.xml</value>
+
           <value>/WEB-INF/views/admin/**/views.xml</value>
           <value>/WEB-INF/views/user/**/views.xml</value>
           <value>/WEB-INF/views/delegate/**/views.xml</value>
@@ -88,4 +100,9 @@
     </property>
   </bean>
 <bean class="it.polito.ai.gas.controller.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
+
+
+
+
+
 </beans>

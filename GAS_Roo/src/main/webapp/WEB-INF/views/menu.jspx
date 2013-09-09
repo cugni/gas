@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page"
+<div data-role="panel"
+     xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu"
      xmlns:sec="http://www.springframework.org/security/tags"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
@@ -8,137 +9,167 @@
     <jsp:output omit-xml-declaration="yes"/>
 
 
-    <!-- Per tutti -->
-    <!-- <sec:authorize access="!isAuthenticated()">
-            <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?register" z="user-managed"/>
-    </sec:authorize> -->
-    <sec:authorize access="isAuthenticated()">
+    <div>
+        <!-- Per tutti -->
+        <!-- <sec:authorize access="!isAuthenticated()">
+                <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?register" z="user-managed"/>
+        </sec:authorize> -->
 
-        <menu:menu id="menu_profile" z="user-managed">
-            <menu:category id="p_profile" z="user-managed">
-                <menu:item id="p_show_profile" messageCode="global_menu_show" url="/profile" z="user-managed"/>
-                <menu:item id="p_edit_profile" messageCode="global_menu_edit" url="/profile/?form" z="user-managed"/>
+        <sec:authorize access="isAuthenticated()">
+
+            <menu:menu id="menu_profile" z="user-managed">
+                <menu:category id="p_profile" z="user-managed">
+                    <menu:item id="p_show_profile" messageCode="global_menu_show" url="/profile" z="user-managed"/>
+                    <menu:item id="p_edit_profile" messageCode="global_menu_edit" url="/profile/?form"
+                               z="user-managed"/>
+                </menu:category>
+            </menu:menu>
+
+            <menu:menu id="menu_notifications" z="user-managed">
+                <menu:category id="menu_notification" label="Notifications"></menu:category>
+
+                <p id="notification_area"></p>
+                <a href="javascript:loadNotifications();">Load</a>
+            </menu:menu>
+
+        </sec:authorize>
+
+
+        <!--   Solo per gli users -->
+
+        <sec:authorize ifAnyGranted="ROLE_USER">
+            <menu:menu id="menu_user" z="user-managed">
+
+                <menu:category id="c_purchaserequest" z="user-managed">
+                    <menu:item id="c_purchaserequest_list" messageCode="global_menu_list"
+                               url="/user/purchaserequest?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
+                    <menu:item id="c_purchaserequest_new" messageCode="global_menu_new" url="/user/purchaserequest?form"
+                               z="user-managed"/>
+                </menu:category>
+
+                <menu:category id="u_proposal" z="user-managed">
+                    <menu:item id="u_proposal_list" messageCode="global_menu_list"
+                               url="/user/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
+                </menu:category>
+            </menu:menu>
+
+        </sec:authorize>
+
+
+        <!--   Solo per i delegate -->
+
+        <sec:authorize ifAnyGranted="ROLE_DELEGATE">
+            <menu:menu id="menu_delegate" z="user-managed">
+
+                <menu:category id="d_proposal" z="user-managed">
+                    <menu:item id="d_proposal_new" messageCode="global_menu_new" url="/delegate/proposals?form"
+                               z="user-managed"/>
+                    <menu:item id="d_proposal_list" messageCode="global_menu_list"
+                               url="/delegate/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
+                </menu:category>
+
+            </menu:menu>
+        </sec:authorize>
+
+
+        <!--   Solo per i producers -->
+        <sec:authorize ifAnyGranted="ROLE_PRODUCER">
+            <menu:menu id="menu_producer" z="user-managed">
+
+            <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
+                <menu:item id="i_product_new" messageCode="global_menu_new" url="/producer/products?form"
+                           z="user-managed"/>
+                <menu:item id="i_product_list" messageCode="global_menu_list"
+                           url="/producer/products?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                           z="user-managed"/>
             </menu:category>
-        </menu:menu>
+            </menu:menu>
+        </sec:authorize>
 
-        <menu:menu id="menu_notifications" z="user-managed">
-            <menu:category id="menu_notification" label="Notifications"></menu:category>
-            <p id="notification_area"></p>
-            <a href="javascript:loadNotifications();">Load</a>
-        </menu:menu>
+        <!--   Solo per gli admin -->
 
-    </sec:authorize>
-
-
-
-    <!--   Solo per gli users -->
-
-    <sec:authorize ifAnyGranted="ROLE_USER">
-        <menu:menu id="menu_user" z="user-managed">
-
-            <menu:category id="c_purchaserequest"  z="user-managed">
-                <menu:item id="c_purchaserequest_list" messageCode="global_menu_list" url="/user/purchaserequest?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-                <menu:item id="c_purchaserequest_new" messageCode="global_menu_new" url="/user/purchaserequest?form" z="user-managed"/>
-            </menu:category>
-
-            <menu:category id="u_proposal" z="user-managed">
-                <menu:item id="u_proposal_list" messageCode="global_menu_list" url="/user/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            </menu:category>
-        </menu:menu>
-
-    </sec:authorize>
-
-
-
-    <!--   Solo per i delegate -->
-
-    <sec:authorize ifAnyGranted="ROLE_DELEGATE">
-    <menu:menu id="menu_delegate" z="user-managed">
-
-        <menu:category id="d_proposal" z="user-managed">
-            <menu:item id="d_proposal_new" messageCode="global_menu_new" url="/delegate/proposals?form" z="user-managed"/>
-            <menu:item id="d_proposal_list" messageCode="global_menu_list" url="/delegate/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-        </menu:category>
-
-    </menu:menu>
-    </sec:authorize>
-
-
-
-    <!--   Solo per i producers -->
-    <sec:authorize ifAnyGranted="ROLE_PRODUCER">
-    <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
-        <menu:item id="i_product_new" messageCode="global_menu_new" url="/producer/products?form" z="user-managed"/>
-        <menu:item id="i_product_list" messageCode="global_menu_list" url="/producer/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-    </menu:category>
-    </sec:authorize>
-
-    <!--   Solo per gli admin -->
-
-    <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        <menu:menu id="menu_profile" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-        <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
+        <sec:authorize ifAnyGranted="ROLE_ADMIN">
+            <menu:menu id="menu_admin" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+                <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
                     <!--
                         <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="user-managed"/>
                     -->
-                    <menu:item id="i_user_list" messageCode="global_menu_list" url="/admin/users?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                    <menu:item id="i_user_list" messageCode="global_menu_list"
+                               url="/admin/users?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
                     <menu:item id="i_user_approve" messageCode="global_menu_approve" url="/admin/users/approve"/>
                     <menu:item id="i_user_new" messageCode="global_menu_new" url="/admin/users?form" z="user-managed"/>
                 </menu:category>
 
                 <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
-                    <menu:item id="i_product_new" messageCode="global_menu_new" url="/admin/products?form" z="user-managed"/>
-                    <menu:item id="i_product_list" messageCode="global_menu_list" url="/admin/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                    <menu:item id="i_product_new" messageCode="global_menu_new" url="/admin/products?form"
+                               z="user-managed"/>
+                    <menu:item id="i_product_list" messageCode="global_menu_list"
+                               url="/admin/products?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
                 </menu:category>
 
-            <menu:category id="c_proposal" z="suzPKqOAINWcaCELmLNnlmO5HIM=">
-                <menu:item id="i_proposal_new" messageCode="global_menu_new" url="/admin/proposals?form" z="user-managed"/>
-                <menu:item id="i_proposal_list" messageCode="global_menu_list" url="/admin/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            </menu:category>
+                <menu:category id="c_proposal" z="suzPKqOAINWcaCELmLNnlmO5HIM=">
+                    <menu:item id="i_proposal_new" messageCode="global_menu_new" url="/admin/proposals?form"
+                               z="user-managed"/>
+                    <menu:item id="i_proposal_list" messageCode="global_menu_list"
+                               url="/admin/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
+                </menu:category>
 
                 <menu:category id="c_purchaserequest" z="XBOLdVNVLUzW6xxe6OxC3MCcDYA=">
-                    <menu:item id="i_purchaserequest_new" messageCode="global_menu_new" url="/admin/purchaserequests?form" z="user-managed"/>
-                    <menu:item id="i_purchaserequest_list" messageCode="global_menu_list" url="/admin/purchaserequests?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                    <menu:item id="i_purchaserequest_new" messageCode="global_menu_new"
+                               url="/admin/purchaserequests?form" z="user-managed"/>
+                    <menu:item id="i_purchaserequest_list" messageCode="global_menu_list"
+                               url="/admin/purchaserequests?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
                 </menu:category>
 
-            <!--
+                <menu:category id="c_producer" z="KeWK2wm/jJeEIu2+gOkYbZDbXr8=">
+                    <menu:item id="i_producer_new" messageCode="global_menu_new" url="/admin/producers?form"
+                               z="user-managed"/>
+                    <menu:item id="i_producer_list" messageCode="global_menu_list"
+                               url="/admin/producers?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
+                </menu:category>
                 <menu:category id="c_deliverywithdrawal" z="pfzMi+rrfaZJBFKaIBIceKa95jw=">
-                    <menu:item id="i_deliverywithdrawal_new" messageCode="global_menu_new" url="/admin/deliverywithdrawals?form" z="BJocOTOtZbwWNEVU06eKLNESIng="/>
-                    <menu:item id="i_deliverywithdrawal_list" messageCode="global_menu_list" url="/admin/deliverywithdrawals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="4J0C0mBWyKRdNuuUDn1YDtx2zZA="/>
+                    <menu:item id="i_deliverywithdrawal_new" messageCode="global_menu_new"
+                               url="/admin/deliverywithdrawals?form" z="user-managed"/>
+                    <menu:item id="i_deliverywithdrawal_list" messageCode="global_menu_list"
+                               url="/admin/deliverywithdrawals?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
                 </menu:category>
                 <menu:category id="c_message" z="2mg8OfqheWP/rnVu0slpEU516Yk=">
-                    <menu:item id="i_message_new" messageCode="global_menu_new" url="/admin/messages?form" z="6ME+t1wCXxIe0ueapV28lZ5YUi0="/>
-                    <menu:item id="i_message_list" messageCode="global_menu_list" url="/admin/messages?page=1&amp;size=${empty param.size ? 10 : param.size}" z="eGv0nXC/JpwInH30nZdjM2e3PxE="/>
+                    <menu:item id="i_message_new" messageCode="global_menu_new" url="/admin/messages?form"
+                               z="user-managed"/>
+                    <menu:item id="i_message_list" messageCode="global_menu_list"
+                               url="/admin/messages?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
                 </menu:category>
-                <menu:category id="c_producer" z="user-managed">
-                    <menu:item id="i_producer_new" messageCode="global_menu_new" url="/admin/producers?form" z="user-managed"/>
-                    <menu:item id="i_producer_list" messageCode="global_menu_list" url="/admin/producers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
+                <menu:category id="c_event" z="AURyeKTmOObIARXqfI9DXukJNIE=">
+                    <menu:item id="i_event_new" messageCode="global_menu_new" url="/admin/events?form"
+                               z="user-managed"/>
+                    <menu:item id="i_event_list" messageCode="global_menu_list"
+                               url="/admin/events?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
                 </menu:category>
-			-->
-            <menu:category id="c_producer" z="KeWK2wm/jJeEIu2+gOkYbZDbXr8=">
-                <menu:item id="i_producer_new" messageCode="global_menu_new" url="/admin/producers?form" z="user-managed"/>
-                <menu:item id="i_producer_list" messageCode="global_menu_list" url="/admin/producers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            </menu:category>
-            <menu:category id="c_deliverywithdrawal" z="pfzMi+rrfaZJBFKaIBIceKa95jw=">
-                <menu:item id="i_deliverywithdrawal_new" messageCode="global_menu_new" url="/admin/deliverywithdrawals?form" z="user-managed"/>
-                <menu:item id="i_deliverywithdrawal_list" messageCode="global_menu_list" url="/admin/deliverywithdrawals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            </menu:category>
-            <menu:category id="c_message" z="2mg8OfqheWP/rnVu0slpEU516Yk=">
-                <menu:item id="i_message_new" messageCode="global_menu_new" url="/admin/messages?form" z="user-managed"/>
-                <menu:item id="i_message_list" messageCode="global_menu_list" url="/admin/messages?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            </menu:category>
-            <menu:category id="c_event" z="AURyeKTmOObIARXqfI9DXukJNIE=">
-                <menu:item id="i_event_new" messageCode="global_menu_new" url="/admin/events?form" z="user-managed"/>
-                <menu:item id="i_event_list" messageCode="global_menu_list" url="/admin/events?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-            </menu:category>
-        </menu:menu>
-        <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-            <menu:category id="c_purchaserequestpart" z="uda4dL3LvaIA6MJaieBGUWe2RC0=">
-                <menu:item id="i_purchaserequestpart_new" messageCode="global_menu_new" url="/user/purchaserequestparts?form" z="l89KuytaQFT7ape5ynUixtmp7V0="/>
-                <menu:item id="i_purchaserequestpart_list" messageCode="global_menu_list" url="/user/purchaserequestparts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="WKoze8T55jfCBN0Tbd78QvhVsKU="/>
-            </menu:category>
-        </menu:menu>
+                <menu:category id="c_purchaserequestpart" z="uda4dL3LvaIA6MJaieBGUWe2RC0=">
+                    <menu:item id="i_purchaserequestpart_new" messageCode="global_menu_new"
+                               url="/user/purchaserequestparts?form" z="l89KuytaQFT7ape5ynUixtmp7V0="/>
+                    <menu:item id="i_purchaserequestpart_list" messageCode="global_menu_list"
+                               url="/user/purchaserequestparts?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="WKoze8T55jfCBN0Tbd78QvhVsKU="/>
+                </menu:category>
+            </menu:menu>
 
-    </sec:authorize>
+        </sec:authorize>
 
+        <c:if test="${currentDevice.mobile}">
+            <a href="#demo-links"
+               data-rel="close" data-role="button" data-icon="delete" data-inline="true">Close menu</a>
+        </c:if>
+    </div>
 </div>
