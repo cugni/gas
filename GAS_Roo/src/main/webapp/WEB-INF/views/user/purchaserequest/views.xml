@@ -13,4 +13,8 @@
 <definition extends="default" name="user/purchaserequest/update">
         <put-attribute name="body" value="/WEB-INF/views/user/purchaserequest/update.jspx"/>
     </definition>
+
+<definition extends="default" name="user/purchaserequest/purchase">
+        <put-attribute name="body" value="/WEB-INF/views/user/purchaserequest/purchase.jspx"/>
+    </definition>
 </tiles-definitions>

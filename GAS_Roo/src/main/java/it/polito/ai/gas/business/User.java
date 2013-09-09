@@ -80,4 +80,5 @@ public class User implements InterceptPersist, UserDetails {
     public String toString() {
         return this.getUsername();
     }
+
 }

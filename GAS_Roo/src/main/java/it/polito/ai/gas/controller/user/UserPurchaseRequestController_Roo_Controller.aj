@@ -25,7 +25,9 @@ privileged aspect UserPurchaseRequestController_Roo_Controller {
     
     void UserPurchaseRequestController.populateEditForm(Model uiModel, PurchaseRequest purchaseRequest) {
         uiModel.addAttribute("purchaseRequest", purchaseRequest);
-        uiModel.addAttribute("proposals", Proposal.findAllProposals());
+
+         uiModel.addAttribute("proposals", Proposal.findAllProposals());
+
         uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findAllPurchaseRequestParts());
         uiModel.addAttribute("users", User.findAllUsers());
     }

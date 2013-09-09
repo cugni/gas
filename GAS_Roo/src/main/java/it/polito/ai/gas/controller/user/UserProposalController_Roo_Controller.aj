@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+
 privileged aspect UserProposalController_Roo_Controller {
-    
-    @RequestMapping(value = "/{id}", produces = "text/html")
+
+        @RequestMapping(value = "/{id}", produces = "text/html")
     public String UserProposalController.show(@PathVariable("id") Integer id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposal(id));
