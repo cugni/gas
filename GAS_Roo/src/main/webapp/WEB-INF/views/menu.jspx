@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page"
+<div data-role="panel"
+     position="left"
+     dismissible="true"
+     xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu"
      xmlns:sec="http://www.springframework.org/security/tags"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
@@ -148,4 +151,8 @@
 
     </sec:authorize>
 
+        <c:if test="${currentDevice.mobile}">
+            <a href="#wrapper"
+               data-rel="close" data-role="button" data-icon="delete" data-inline="true">Close menu</a>
+        </c:if>
 </div>
