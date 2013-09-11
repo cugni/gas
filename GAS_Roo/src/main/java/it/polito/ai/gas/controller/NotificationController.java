@@ -1,5 +1,7 @@
 package it.polito.ai.gas.controller;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 @RequestMapping("/notification")
@@ -21,15 +24,18 @@ public class NotificationController {
 
     @RequestMapping(produces = "text/html")
     public String list(Model uiModel) {
+   Object u= SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(u instanceof User)   {
         User user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        HashSet<User> onlyme = new HashSet<User>();
-        onlyme.add(user);
-
-        uiModel.addAttribute("events", Event.findEventsByUsers(onlyme).getResultList());
+                (User) u;
+   uiModel.addAttribute("events", Event.findEventsByUsers(Sets.newHashSet(user)).getResultList());
 
         addDateTimeFormatPatterns(uiModel);
+        }else{
+            uiModel.addAttribute("events", Lists.newArrayList());
+            addDateTimeFormatPatterns(uiModel);
+
+        }
         return "/notification/list";
     }
 

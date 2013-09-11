@@ -1,4 +1,7 @@
-<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:spring="http://www.springframework.org/tags" version="2.0">
 	<jsp:output omit-xml-declaration="yes"/>
 	
 	<jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="The identifier for this tag (do not change!)"/>
@@ -12,7 +15,7 @@
 			<spring:message code="menu_category_${fn:toLowerCase(fn:substringAfter(id,'_'))}_label" var="label" htmlEscape="false"/>
 		</c:if>
 		
-		<li id="${fn:escapeXml(id)}">
+		<li data-role="collapsible" id="${fn:escapeXml(id)}">
 			<h2>
 				<c:out value="${label}" />
 			</h2>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page"
+<div data-role="panel"
+     position="left"
+     dismissible="true"
+     xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu"
      xmlns:sec="http://www.springframework.org/security/tags"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
@@ -34,7 +37,7 @@
     <!--   Solo per gli users -->
 
     <sec:authorize ifAnyGranted="ROLE_USER">
-        <menu:menu id="menu_user" z="user-managed">
+        <menu:menu id="menu_user" z="user-managed" menu_label="user menu">
 
             <menu:category id="c_purchaserequest"  z="user-managed">
                 <menu:item id="c_purchaserequest_list" messageCode="global_menu_mylist" url="/user/purchaserequest?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
@@ -55,28 +58,35 @@
     <sec:authorize ifAnyGranted="ROLE_DELEGATE">
     <menu:menu id="menu_delegate" z="user-managed">
 
-        <menu:category id="d_proposal" z="user-managed">
-            <menu:item id="d_proposal_new" messageCode="global_menu_new" url="/delegate/proposals?form" z="user-managed"/>
-            <menu:item id="d_proposal_list" messageCode="global_menu_mylist" url="/delegate/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-        </menu:category>
+                <menu:category id="d_proposal" z="user-managed">
+                    <menu:item id="d_proposal_new" messageCode="global_menu_new" url="/delegate/proposals?form"
+                               z="user-managed"/>
+                    <menu:item id="d_proposal_list" messageCode="global_menu_list"
+                               url="/delegate/proposals?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                               z="user-managed"/>
+                </menu:category>
 
     </menu:menu>
     </sec:authorize>
 
 
+    <sec:authorize ifAnyGranted="ROLE_DELEGATE">
+        <menu:menu id="menu_delegate" z="user-managed">
 
-    <!--   Solo per i producers -->
-    <sec:authorize ifAnyGranted="ROLE_PRODUCER">
-    <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
-        <menu:item id="i_product_new" messageCode="global_menu_new" url="/producer/products?form" z="user-managed"/>
-        <menu:item id="i_product_list" messageCode="global_menu_mylist" url="/producer/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-    </menu:category>
-    </sec:authorize>
+        <menu:category id="c_product" z="vJ6efqiSxFssuvqFTsXpvZ3AvA8=">
+                <menu:item id="i_product_new" messageCode="global_menu_new" url="/producer/products?form"
+                           z="user-managed"/>
+                <menu:item id="i_product_list" messageCode="global_menu_list"
+                           url="/producer/products?page=1&amp;size=${empty param.size ? 10 : param.size}"
+                           z="user-managed"/>
+            </menu:category>
+            </menu:menu>
+        </sec:authorize>
 
     <!--   Solo per gli admin -->
 
     <sec:authorize ifAnyGranted="ROLE_ADMIN">
-        <menu:menu id="menu_profile" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+        <menu:menu id="menu_admin" menu_label="admin menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=" >
         <menu:category id="c_user" z="uoTSf/uIZ821ZppidzS9aO776yk=">
                     <!--
                         <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?form" z="user-managed"/>
@@ -141,4 +151,8 @@
 
     </sec:authorize>
 
+        <c:if test="${currentDevice.mobile}">
+            <a href="#wrapper"
+               data-rel="close" data-role="button" data-icon="delete" data-inline="true">Close menu</a>
+        </c:if>
 </div>

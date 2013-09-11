@@ -1,28 +1,38 @@
-<div id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
+<div data-role="header" id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
      xmlns:c="http://java.sun.com/jsp/jstl/core"
      xmlns:spring="http://www.springframework.org/tags"
      xmlns:sec="http://www.springframework.org/security/tags"
      version="2.0">
-  <jsp:directive.page contentType="text/html;charset=UTF-8" />
-  <jsp:output omit-xml-declaration="yes" />
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
 
-  <spring:url var="banner" value="/resources/images/banner-graphic.png" />
-  <spring:url var="home" value="/" />
-  <spring:message code="button_home" var="home_label" htmlEscape="false" />
-  <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
-    <img src="${banner}" />
-  </a>
+    <spring:url var="banner" value="/resources/images/banner-graphic.png"/>
+    <spring:url var="home" value="/"/>
+    <spring:message code="button_home" var="home_label" htmlEscape="false"/>
+    <sec:authorize access="isAuthenticated()">
+        <c:if test="${currentDevice.mobile}">
+            <a href="#menu" data-role="button" data-inline="true" data-icon="bars">Menu</a>
+        </c:if>
+    </sec:authorize>
+    <c:if test="${!currentDevice.mobile}">
+        <a href="${home}" name="${fn:escapeXml(home_label)}" title="${fn:escapeXml(home_label)}">
+            <img src="${banner}"/>
+        </a>
+    </c:if>
 
 
- <sec:authorize access="isAuthenticated()">
-        <sec:authentication var="principal" property="principal" />
-       <div>
-              <h3>
-        <spring:message code="welcome_msg_foruser" text="Welcome!" arguments="${principal.username},${principal.role.toString()}"
+    <sec:authorize access="isAuthenticated()">
+        <sec:authentication var="principal" property="principal"/>
 
-                />
-              </h3>
-       </div>
+        <h3>
+            <spring:message code="welcome_msg_foruser" text="Welcome!"
+                            arguments="${principal.username},${principal.role}"/>
+        </h3>
+    </sec:authorize>
+    <sec:authorize access="!isAuthenticated()">
+        <h3>
+            <spring:message code="application_name" text="Welcome!"/>
+        </h3>
     </sec:authorize>
 </div> 

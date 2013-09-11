@@ -32,7 +32,9 @@
       <c:set value="false" var="required" />
     </c:if>
 
-    <script type="text/javascript">dojo.require('dijit.form.DateTextBox')</script>
+    <c:if test="${empty springdec or springdec}">
+        <script type="text/javascript">dojo.require('dijit.form.DateTextBox')</script>
+        </c:if>
     <div id="_${sec_id}_id">
       <label for="_${sec_field}_id">
         <c:out value="${label}" />
@@ -40,10 +42,10 @@
       </label>
       <c:choose>
         <c:when test="${disableFormBinding}">
-          <input id="_${sec_field}_id" name="${sec_field}" />
+          <input type="date" id="_${sec_field}_id" name="${sec_field}" />
         </c:when>
         <c:otherwise>
-          <form:input id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
+          <form:input type="date" id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
           <br />
           <form:errors cssClass="errors" id="_${sec_field}_error_id" path="${sec_field}" />
         </c:otherwise>
@@ -58,6 +60,7 @@
           <spring:message argumentSeparator="," arguments="${label}, " code="field_simple_validation" var="field_validation" htmlEscape="false" />
         </c:otherwise>
       </c:choose>
+        <c:if test="${empty springdec or springdec}">
       <script type="text/javascript">
         <c:set var="sec_field_validation">
           <spring:escapeBody javaScriptEscape="true">${field_validation}</spring:escapeBody>
@@ -69,6 +72,8 @@
           <spring:escapeBody javaScriptEscape="true">${dateTimePattern}</spring:escapeBody>
         </c:set>
         Spring.addDecoration(new Spring.ElementDecoration({elementId : '_${sec_field}_id', widgetType : 'dijit.form.DateTextBox', widgetAttrs : {promptMessage: '${sec_field_validation}', invalidMessage: '${sec_field_invalid}', required: ${required}, constraints: {datePattern : '${sec_dateTimePattern}', required : ${required}}, datePattern : '${sec_dateTimePattern}'}})); </script>
+
+      </c:if>
     </div>
     <br />
   </c:if>
