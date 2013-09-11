@@ -3,7 +3,6 @@
 
 package it.polito.ai.gas.controller.user;
 
-import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.controller.user.UserProposalController;
 import org.joda.time.format.DateTimeFormat;
@@ -20,8 +19,6 @@ privileged aspect UserProposalController_Roo_Controller {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposal(id));
         uiModel.addAttribute("itemId", id);
-        uiModel.addAttribute("message", new Message());
-
         return "user/proposals/show";
     }
     

@@ -14,6 +14,7 @@ import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -24,16 +25,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect User_Roo_DbManaged {
     
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", cascade = CascadeType.ALL)
     private Set<Event> User.events;
     
-    @OneToMany(mappedBy = "collector")
+    @OneToMany(mappedBy = "collector", cascade = CascadeType.ALL)
     private Set<DeliveryWithdrawal> User.deliveryWithdrawals;
     
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Event> User.events_;
     
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Message> User.messages;
     
     @OneToMany(mappedBy = "delegate")
@@ -48,7 +49,7 @@ privileged aspect User_Roo_DbManaged {
     @OneToMany(mappedBy = "acquirer")
     private Set<PurchaseRequest> User.purchaseRequests;
     
-    @OneToMany(mappedBy = "acquirer")
+    @OneToMany(mappedBy = "acquirer", cascade = CascadeType.ALL)
     private Set<PurchaseRequestPart> User.purchaseRequestParts;
     
     @Column(name = "username", length = 45, unique = true)

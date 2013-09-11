@@ -11,6 +11,7 @@ import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,13 +23,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Proposal_Roo_DbManaged {
     
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<DeliveryWithdrawal> Proposal.deliveryWithdrawals;
     
-    @OneToMany(mappedBy = "proposal")
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     private Set<Event> Proposal.events;
     
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     private Set<Message> Proposal.messages;
     
     @OneToMany(mappedBy = "proposal")

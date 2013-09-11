@@ -14,24 +14,16 @@ import javax.validation.constraints.NotNull;
 privileged aspect PurchaseRequestPart_Roo_DbManaged {
     
     @ManyToOne
-    @JoinColumn(name = "purchaseRequest", referencedColumnName = "id", nullable = false)
-    private PurchaseRequest PurchaseRequestPart.purchaseRequest;
-    
-    @ManyToOne
     @JoinColumn(name = "acquirer", referencedColumnName = "id", nullable = false)
     private User PurchaseRequestPart.acquirer;
+    
+    @ManyToOne
+    @JoinColumn(name = "purchaseRequest", referencedColumnName = "id", nullable = false)
+    private PurchaseRequest PurchaseRequestPart.purchaseRequest;
     
     @Column(name = "quantity")
     @NotNull
     private Float PurchaseRequestPart.quantity;
-    
-    public PurchaseRequest PurchaseRequestPart.getPurchaseRequest() {
-        return purchaseRequest;
-    }
-    
-    public void PurchaseRequestPart.setPurchaseRequest(PurchaseRequest purchaseRequest) {
-        this.purchaseRequest = purchaseRequest;
-    }
     
     public User PurchaseRequestPart.getAcquirer() {
         return acquirer;
@@ -39,6 +31,14 @@ privileged aspect PurchaseRequestPart_Roo_DbManaged {
     
     public void PurchaseRequestPart.setAcquirer(User acquirer) {
         this.acquirer = acquirer;
+    }
+    
+    public PurchaseRequest PurchaseRequestPart.getPurchaseRequest() {
+        return purchaseRequest;
+    }
+    
+    public void PurchaseRequestPart.setPurchaseRequest(PurchaseRequest purchaseRequest) {
+        this.purchaseRequest = purchaseRequest;
     }
     
     public Float PurchaseRequestPart.getQuantity() {

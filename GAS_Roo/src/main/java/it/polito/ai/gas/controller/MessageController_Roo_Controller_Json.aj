@@ -4,7 +4,6 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.controller.MessageController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect MessageController_Roo_Controller_Json {
@@ -80,14 +78,6 @@ privileged aspect MessageController_Roo_Controller_Json {
         }
         message.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
-    }
-    
-    @RequestMapping(params = "find=ByOrder", headers = "Accept=application/json")
-    @ResponseBody
-    public ResponseEntity<String> MessageController.jsonFindMessagesByOrder(@RequestParam("order") Proposal order) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
-        return new ResponseEntity<String>(Message.toJsonArray(Message.findMessagesByOrder(order).getResultList()), headers, HttpStatus.OK);
     }
     
 }

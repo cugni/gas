@@ -9,6 +9,7 @@ import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     
-    @OneToMany(mappedBy = "deliveryWithdrawal")
+    @OneToMany(mappedBy = "deliveryWithdrawal", cascade = CascadeType.ALL)
     private Set<Event> DeliveryWithdrawal.events;
     
     @ManyToOne

@@ -4,8 +4,8 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_it_polito_ai_gas_business_Message" object="${message}" path="/messages" z="T6TN0IFFZZebHWSWmpmY1nTc4Ck=">
         <field:display field="text" id="s_it_polito_ai_gas_business_Message_text" object="${message}" z="I6sYjPxUJoZEAlOEGXzxCqSuGfg="/>
-        <field:display field="order" id="s_it_polito_ai_gas_business_Message_order" object="${message}" z="6cpbawps8U37MHI/agId0YeYsAo="/>
+        <field:display field="proposal" id="s_it_polito_ai_gas_business_Message_proposal" object="${message}" z="pRrPpFXf0GkI7/p+m6Udh9VKj8w="/>
         <field:display field="user" id="s_it_polito_ai_gas_business_Message_user" object="${message}" z="XrU/S34MXJWRHKRq8flJotlif4Q="/>
-        <field:display date="true" dateTimePattern="${message_date_date_format}" field="date" id="s_it_polito_ai_gas_business_Message_date" object="${message}" z="lyneSKtVFUfpWwMVnkn3r6ckwVg="/>
+        <field:display calendar="true" dateTimePattern="${message_date_date_format}" field="date" id="s_it_polito_ai_gas_business_Message_date" object="${message}" z="EY5t9grlbhNczmqTOgbfiWKJXYc="/>
     </page:show>
 </div>
