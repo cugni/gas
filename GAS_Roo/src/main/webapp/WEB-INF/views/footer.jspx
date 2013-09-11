@@ -13,7 +13,7 @@
     <c:out value=" | "/>
     <span>
       <spring:url value="/resources/j_spring_security_logout" var="logout"/>
-      <a href="${logout}">
+      <a data-ajax="false" href="${logout}">
         <spring:message code="security_logout"/>
       </a>
     </span>
@@ -29,6 +29,6 @@
     </span>
   <util:theme/>
   <div id="change_device">
-        Site: <a href="${currentUrl}?site_preference=normal">Normal</a> | <a href="${currentUrl}?site_preference=mobile">Mobile</a>
+        Site: <a data-ajax="false" href="${currentUrl}?site_preference=normal">Normal</a> | <a data-ajax="false" href="${currentUrl}?site_preference=mobile">Mobile</a>
    </div>
 </div>
