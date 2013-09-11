@@ -1,8 +1,12 @@
-CREATE DATABASE  IF NOT EXISTS `gas` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `gas`;
+DELIMITER ;
+DROP SCHEMA IF EXISTS  GAS;
+CREATE DATABASE  IF NOT EXISTS GAS ;
+USE GAS ;
+GRANT ALL PRIVILEGES ON GAS.* TO gas@`%` IDENTIFIED BY 'gas';
+
 -- MySQL dump 10.13  Distrib 5.6.12, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: gas
+--                                                                    ß
+-- Host: 127.0.0.1    Database: GAS
 -- ------------------------------------------------------
 -- Server version	5.6.12
 
@@ -251,6 +255,8 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
+  values ('admin','admin',3,'admin','admin','2000/01/01',1);
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
