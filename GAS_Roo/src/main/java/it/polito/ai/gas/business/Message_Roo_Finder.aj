@@ -10,11 +10,11 @@ import javax.persistence.TypedQuery;
 
 privileged aspect Message_Roo_Finder {
     
-    public static TypedQuery<Message> Message.findMessagesByOrder(Proposal order) {
-        if (order == null) throw new IllegalArgumentException("The order argument is required");
+    public static TypedQuery<Message> Message.findMessagesByProposal(Proposal proposal) {
+        if (proposal == null) throw new IllegalArgumentException("The proposal argument is required");
         EntityManager em = Message.entityManager();
-        TypedQuery<Message> q = em.createQuery("SELECT o FROM Message AS o WHERE o.order = :order", Message.class);
-        q.setParameter("order", order);
+        TypedQuery<Message> q = em.createQuery("SELECT o FROM Message AS o WHERE o.proposal = :proposal", Message.class);
+        q.setParameter("proposal", proposal);
         return q;
     }
     

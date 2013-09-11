@@ -82,12 +82,12 @@ privileged aspect MessageController_Roo_Controller_Json {
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
     
-    @RequestMapping(params = "find=ByOrder", headers = "Accept=application/json")
+    @RequestMapping(params = "find=ByProposal", headers = "Accept=application/json")
     @ResponseBody
-    public ResponseEntity<String> MessageController.jsonFindMessagesByOrder(@RequestParam("order") Proposal order) {
+    public ResponseEntity<String> MessageController.jsonFindMessagesByProposal(@RequestParam("proposal") Proposal proposal) {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
-        return new ResponseEntity<String>(Message.toJsonArray(Message.findMessagesByOrder(order).getResultList()), headers, HttpStatus.OK);
+        return new ResponseEntity<String>(Message.toJsonArray(Message.findMessagesByProposal(proposal).getResultList()), headers, HttpStatus.OK);
     }
     
 }

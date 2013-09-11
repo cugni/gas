@@ -24,6 +24,7 @@ import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 
 @RequestMapping("/messages")
 @Controller
@@ -36,8 +37,7 @@ public class MessageController {
                                            @RequestParam(value = "proposal", required = true) Integer proposalId,
                                            HttpServletRequest httpServletRequest)
     {
-        message.setOrder(Proposal.findProposal(proposalId));
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("M-");
+        message.setProposal(Proposal.findProposal(proposalId));
 
         message.setDate(Calendar.getInstance());
         message.setUser(Utils.getCurrentUser());
@@ -69,7 +69,7 @@ public class MessageController {
             Model uiModel) {
 
         uiModel.addAttribute("messages",
-                Message.findMessagesByOrder(Proposal.findProposal(proposalId)).setMaxResults(10).getResultList());
+                Message.findMessagesByProposal(Proposal.findProposal(proposalId)).setMaxResults(10).getResultList());
 
         addDateTimeFormatPatterns(uiModel);
         return "messages/list";

@@ -47,9 +47,9 @@ public class ProposalController {
 
     private String createChatForm(Integer id, Model uiModel) {
         Proposal p = Proposal.findProposal(id);
-        uiModel.addAttribute("old_messages", Message.findMessagesByOrder(p));
+        uiModel.addAttribute("old_messages", Message.findMessagesByProposal(p));
         Message msg = new Message();
-        msg.setOrder(p);
+        msg.setProposal(p);
         msg.setUser(User.findAllUsers().get(0));
         msg.setDate(Calendar.getInstance());
         uiModel.addAttribute("message", msg);

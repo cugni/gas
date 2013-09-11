@@ -29,7 +29,7 @@ privileged aspect Proposal_Roo_DbManaged {
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     private Set<Event> Proposal.events;
     
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "proposal", cascade = CascadeType.ALL)
     private Set<Message> Proposal.messages;
     
     @OneToMany(mappedBy = "proposal")

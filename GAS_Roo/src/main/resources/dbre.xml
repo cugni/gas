@@ -95,11 +95,11 @@
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
         <column name="date" primaryKey="false" required="true" scale="0" size="19" type="93,DATETIME"/>
         <column name="user" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
-        <column name="order" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
+        <column name="proposal" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="text" primaryKey="false" required="false" scale="0" size="255" type="12,VARCHAR"/>
         <foreign-key foreignTable="proposal" name="fk_order" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="false"/>
-            <reference foreign="id" local="order"/>
+            <reference foreign="id" local="proposal"/>
         </foreign-key>
         <foreign-key foreignTable="user" name="fk_user" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="false"/>
@@ -116,7 +116,7 @@
             <index-column name="user"/>
         </index>
         <index name="fk_order_idx">
-            <index-column name="order"/>
+            <index-column name="proposal"/>
         </index>
     </table>
     <table name="notification">
@@ -238,7 +238,7 @@
         </foreign-key>
         <foreign-key foreignTable="message" name="fk_order" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="true"/>
-            <reference foreign="order" local="id"/>
+            <reference foreign="proposal" local="id"/>
         </foreign-key>
         <foreign-key foreignTable="purchase_request" name="fk_purchase_orders_orders1" onDelete="none" onUpdate="none">
             <option key="exported" value="true"/>

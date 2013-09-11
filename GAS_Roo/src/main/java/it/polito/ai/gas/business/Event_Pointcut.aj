@@ -77,9 +77,9 @@ public aspect Event_Pointcut {
         	e.setMessage((Message) obj);
             
             //e.setUsers(Utils.merge(e.getUsers()));
-        	if (m.getOrder() != null)
-        	if (m.getOrder().getPurchaseRequests() != null)
-	            for(PurchaseRequest p : m.getOrder().getPurchaseRequests())
+        	if (m.getProposal() != null)
+        	if (m.getProposal().getPurchaseRequests() != null)
+	            for(PurchaseRequest p : m.getProposal().getPurchaseRequests())
 	            	e.setUsers(Utils.merge(e.getUsers(), p.getAcquirer()));
             
             e.setType(NEW_MESSAGE);

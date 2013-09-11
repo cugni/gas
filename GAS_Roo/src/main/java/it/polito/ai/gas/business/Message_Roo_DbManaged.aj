@@ -25,8 +25,8 @@ privileged aspect Message_Roo_DbManaged {
     private Set<Event> Message.events;
     
     @ManyToOne
-    @JoinColumn(name = "order", referencedColumnName = "id", nullable = false)
-    private Proposal Message.order;
+    @JoinColumn(name = "proposal", referencedColumnName = "id", nullable = false)
+    private Proposal Message.proposal;
     
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
@@ -46,12 +46,12 @@ privileged aspect Message_Roo_DbManaged {
         this.events = events;
     }
     
-    public Proposal Message.getOrder() {
-        return order;
+    public Proposal Message.getProposal() {
+        return proposal;
     }
     
-    public void Message.setOrder(Proposal order) {
-        this.order = order;
+    public void Message.setProposal(Proposal proposal) {
+        this.proposal = proposal;
     }
     
     public User Message.getUser() {
