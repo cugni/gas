@@ -15,7 +15,7 @@
         <field:display date="true" dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="s_it_polito_ai_gas_business_Proposal_startDate" object="${proposal}" z="1seON7xjKvcz9B8Aya938CfjsuI="/>
         <field:display date="true" dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="s_it_polito_ai_gas_business_Proposal_endDate" object="${proposal}" z="T3QpXolont9nojUDiCBuVhQSYxI="/>
 
-        <field:input type="Number" field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="v3l/+NVnP1eoLrfrXh32zGQdX7E="/>
+        <field:input type="Number" field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="user-managed" type="number"/>
 
         <!--<field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="zwBNHAJfFO0Xjbd86WsA+8L9fj8="/>-->
 

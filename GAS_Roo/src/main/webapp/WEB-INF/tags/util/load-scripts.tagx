@@ -29,7 +29,6 @@
     <link rel="SHORTCUT ICON" href="${favicon}"/>
     <!-- Stylesheets to load for the mobile version-->
     <c:if test="${currentDevice.mobile}">
-
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" type="text/css" href="${gas_mobile}"/>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
@@ -66,14 +65,14 @@
     for FF3 and
     Opera --></script>
     <script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
-    <c:if test="${!currentDevice.mobile}">
+    <!--<c:if test="${!currentDevice.mobile}">-->
         <script src="${spring_dojo_url}" type="text/javascript"><!--
         required
         for FF3 and
         Opera --></script>
-    </c:if>
+    <!--</c:if>-->
 
-    <c:if test="${currentDevice.mobile}">
+<c:if test="${currentDevice.mobile}">
         <script src="${jsmobile}" type="text/javascript"></script>
  
         <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>

@@ -3,12 +3,12 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="purchaseRequest" path="/admin/purchaserequests" render="${empty dependencies}" z="user-managed">
-        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="v3l/+NVnP1eoLrfrXh32zGQdX7E="/>
+        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="user-managed" type="number"/>
         <field:checkbox field="received" id="c_it_polito_ai_gas_business_PurchaseRequest_received" z="lT9FWm5UdQQedbYFRPVGO4a48/A="/>
         <field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="zwBNHAJfFO0Xjbd86WsA+8L9fj8="/>
         <field:select field="acquirer" id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" itemValue="id" items="${users}" path="/admin/users" z="p8DA7DBBQM6jazzaP1xdBFYQKQs="/>
         <field:checkbox field="completed" id="c_it_polito_ai_gas_business_PurchaseRequest_completed" z="CEg0JjZYjvKOF24lGpFqGS/7Ylc="/>
-        <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_PurchaseRequest_purchaseRequestParts" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request Part" z="//nmqHIL3PA+ILUxNaTo4y9N8VY="/>
+        <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_PurchaseRequest_purchaseRequestParts" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_PurchaseRequest" render="${not empty dependencies}" z="GVUGrOJY7g2fdrFq6viGusjVl4E="/>
 </div>

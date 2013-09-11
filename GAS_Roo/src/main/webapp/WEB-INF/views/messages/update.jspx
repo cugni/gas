@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages" versionField="none" z="user-managed">
         <field:textarea field="text" id="c_it_polito_ai_gas_business_Message_text" z="F7mkglZIAnJx97u8ciTfiCCl2R8="/>
-        <field:simple field="events" id="c_it_polito_ai_gas_business_Message_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="ndaCXnVbJ15vK+A8Gf+trLqc3VE="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Message_events" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
         <field:select field="proposal" id="c_it_polito_ai_gas_business_Message_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="FgrZ+gRRAeiV9fLFApP+g5M7W/A="/>
         <field:select field="user" id="c_it_polito_ai_gas_business_Message_user" itemValue="id" items="${users}" path="/admin/users" z="MSXBDUpfSfDYvQuMmiHFcHKkbHM="/>
         <field:datetime dateTimePattern="${message_date_date_format}" field="date" id="c_it_polito_ai_gas_business_Message_date" required="true" z="6als+ifCXjzXw25b8bnM270HccU="/>
