@@ -2,6 +2,16 @@
 <div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:sec="http://www.springframework.org/security/tags" data-role="panel" dismissible="true" id="menu" position="left" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+
+
+    <!-- Script stuff -->
+    <script type="text/javascript">
+        $(
+                loadNotifications()
+        )
+    </script>
+
+
     <!-- Per tutti -->
     <!-- <sec:authorize access="!isAuthenticated()">
             <menu:item id="i_user_new" messageCode="global_menu_new" url="/users?register" z="user-managed"/>
@@ -112,4 +122,7 @@
     <c:if test="${currentDevice.mobile}">
         <a data-icon="delete" data-inline="true" data-rel="close" data-role="button" href="#wrapper">Close menu</a>
     </c:if>
+
+
+
 </div>

@@ -31,10 +31,7 @@ public class DelegateProposalController {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
 
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("proposal", Proposal.findProposal(id));
-        uiModel.addAttribute("itemId", id);
-        return "delegate/proposals/show";
+        return "redirect:/user/proposals/"+ id;
     }
     void addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("proposal_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));

@@ -23,9 +23,11 @@
     <c:set scope="request" var="springdec" value="${!currentDevice.mobile}" />
     <c:set scope="application" var="springdec" value="${!currentDevice.mobile}" />
   <spring:url value="/resources/js/notificationPuller.js" var="notificationPuller_url" />
+    <spring:url value="/resources/js/chatReload.js" var="chatReload_url" />
 
 
-  <link rel="SHORTCUT ICON" href="${favicon}" />
+
+    <link rel="SHORTCUT ICON" href="${favicon}" />
     <c:if test="${currentDevice.mobile}">
 
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -62,5 +64,7 @@
     </c:if>
 
     <script src="${notificationPuller_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+    <script src="${chatReload_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+
 
 </jsp:root>

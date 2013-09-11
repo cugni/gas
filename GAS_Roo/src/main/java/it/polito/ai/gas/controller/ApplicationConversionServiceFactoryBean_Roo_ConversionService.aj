@@ -5,7 +5,6 @@ package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Event;
-import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Producer;
 import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
@@ -65,30 +64,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.Event>() {
             public it.polito.ai.gas.business.Event convert(String id) {
                 return getObject().convert(getObject().convert(id, Integer.class), Event.class);
-            }
-        };
-    }
-    
-    public Converter<Message, String> ApplicationConversionServiceFactoryBean.getMessageToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Message, java.lang.String>() {
-            public String convert(Message message) {
-                return new StringBuilder().append(message.getDate()).append(' ').append(message.getText()).toString();
-            }
-        };
-    }
-    
-    public Converter<Integer, Message> ApplicationConversionServiceFactoryBean.getIdToMessageConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.Message>() {
-            public it.polito.ai.gas.business.Message convert(java.lang.Integer id) {
-                return Message.findMessage(id);
-            }
-        };
-    }
-    
-    public Converter<String, Message> ApplicationConversionServiceFactoryBean.getStringToMessageConverter() {
-        return new org.springframework.core.convert.converter.Converter<java.lang.String, it.polito.ai.gas.business.Message>() {
-            public it.polito.ai.gas.business.Message convert(String id) {
-                return getObject().convert(getObject().convert(id, Integer.class), Message.class);
             }
         };
     }
@@ -244,9 +219,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getEventToStringConverter());
         registry.addConverter(getIdToEventConverter());
         registry.addConverter(getStringToEventConverter());
-        registry.addConverter(getMessageToStringConverter());
-        registry.addConverter(getIdToMessageConverter());
-        registry.addConverter(getStringToMessageConverter());
         registry.addConverter(getProducerToStringConverter());
         registry.addConverter(getIdToProducerConverter());
         registry.addConverter(getStringToProducerConverter());

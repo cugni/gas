@@ -22,6 +22,8 @@ public class UserProposalController {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposal(id));
         uiModel.addAttribute("itemId", id);
+
+
         uiModel.addAttribute("message", new Message());
         return "user/proposals/show";
     }
