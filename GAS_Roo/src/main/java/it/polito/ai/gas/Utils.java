@@ -73,7 +73,7 @@ public class Utils {
             checkId = ((Proposal) checkThis).getDelegate().getId();
 
         if(getCurrentUser().getId().intValue() != checkId.intValue())
-            throw new SecurityException("A user can modify only his own purchase requests");
+            throw new SecurityException("Cause: "+checkThis.toString());
 
         return checkThis;
     }

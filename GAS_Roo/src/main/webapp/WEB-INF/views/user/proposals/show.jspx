@@ -2,8 +2,9 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
      xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+     xmlns:form_create="urn:jsptagdir:/WEB-INF/tags/form"
      xmlns:c="http://java.sun.com/jsp/jstl/core"
-     version="2.0">
+     version="2.0" xmlns:form="http://www.springframework.org/tags/form">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show create="false" delete="false" id="ps_it_polito_ai_gas_business_Proposal" object="${proposal}" path="/user/proposals" update="false" z="user-managed">
@@ -12,7 +13,28 @@
         <field:display date="true" dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="s_it_polito_ai_gas_business_Proposal_startDate" object="${proposal}" z="1seON7xjKvcz9B8Aya938CfjsuI="/>
         <field:display date="true" dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="s_it_polito_ai_gas_business_Proposal_endDate" object="${proposal}" z="T3QpXolont9nojUDiCBuVhQSYxI="/>
         <field:display field="minReached" id="s_it_polito_ai_gas_business_Proposal_minReached" object="${proposal}" z="/G4ONcjmfOgrN6ineb/ILsB0cPA="/>
+
+        <a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a>
+
     </page:show>
-    <a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a>
+
+    <script type="text/javascript">
+        $.ajax({
+            url:"/messages?proposal=${itemId}",
+            type:"GET",
+            dataType: "xml",
+            success: function(response){
+                $('#chat_area').html(response);
+            }
+
+        });
+    </script>
+
+    <p id="chat_area"></p>
+
+    <form_create:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="pMDYQ0QLt9DxDT4uleVAfp2mqsQ=">
+        <field:textarea field="text" id="c_it_polito_ai_gas_business_Message_text" z="F7mkglZIAnJx97u8ciTfiCCl2R8="/>
+    </form_create:create>
+
 
         </div>

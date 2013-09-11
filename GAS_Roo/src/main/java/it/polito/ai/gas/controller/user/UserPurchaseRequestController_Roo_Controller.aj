@@ -16,22 +16,22 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 privileged aspect UserPurchaseRequestController_Roo_Controller {
-    
+
     @RequestMapping(params = "form", produces = "text/html")
     public String UserPurchaseRequestController.createForm(Model uiModel) {
         populateEditForm(uiModel, new PurchaseRequest());
         return "user/purchaserequest/create";
     }
-    
+
     void UserPurchaseRequestController.populateEditForm(Model uiModel, PurchaseRequest purchaseRequest) {
         uiModel.addAttribute("purchaseRequest", purchaseRequest);
 
-         uiModel.addAttribute("proposals", Proposal.findAllProposals());
+        uiModel.addAttribute("proposals", Proposal.findAllProposals());
 
         uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findAllPurchaseRequestParts());
         uiModel.addAttribute("users", User.findAllUsers());
     }
-    
+
     String UserPurchaseRequestController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {
@@ -42,5 +42,5 @@ privileged aspect UserPurchaseRequestController_Roo_Controller {
         } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
-    
+
 }

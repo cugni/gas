@@ -3,15 +3,20 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.Utils;
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.MessageController;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +29,17 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect MessageController_Roo_Controller {
     
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String MessageController.create(@Valid Message message, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, message);
-            return "messages/create";
-        }
+    @RequestMapping( method = RequestMethod.POST, produces = "text/html")
+    public String MessageController.create(Message message, BindingResult bindingResult, Model uiModel,
+           @RequestParam(value = "proposal", required = true) Integer proposalId,
+           HttpServletRequest httpServletRequest)
+    {
+        message.setOrder(Proposal.findProposal(proposalId));
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("M-");
+
+        message.setDate(new java.sql.Date(new Date().getTime()));
+        message.setUser(Utils.getCurrentUser());
+
         uiModel.asMap().clear();
         message.persist();
         return "redirect:/messages/" + encodeUrlPathSegment(message.getId().toString(), httpServletRequest);
@@ -48,18 +58,17 @@ privileged aspect MessageController_Roo_Controller {
         uiModel.addAttribute("itemId", id);
         return "messages/show";
     }
-    
+
+
+
     @RequestMapping(produces = "text/html")
-    public String MessageController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("messages", Message.findMessageEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Message.countMessages() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("messages", Message.findAllMessages());
-        }
+    public String MessageController.list(
+            @RequestParam(value = "proposal", required = true) Integer proposalId,
+            Model uiModel) {
+
+        uiModel.addAttribute("messages",
+                Message.findMessagesByOrder(Proposal.findProposal(proposalId)).setMaxResults(10).getResultList());
+
         addDateTimeFormatPatterns(uiModel);
         return "messages/list";
     }
