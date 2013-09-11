@@ -26,39 +26,57 @@
     <spring:url value="/resources/js/chatReload.js" var="chatReload_url" />
 
 
-
-    <link rel="SHORTCUT ICON" href="${favicon}" />
+  <link rel="SHORTCUT ICON" href="${favicon}" />
     <c:if test="${currentDevice.mobile}">
-
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <link rel="stylesheet" type="text/css" href="${gas_mobile}" />
+        <link rel="stylesheet" type="text/css" href="${gas_mobile}"/>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css"/>
 
         <link rel="stylesheet" type="text/css" media="mobile" href="${roo_css_mobile_url}" />
     </c:if>
     <c:if test="${!currentDevice.mobile}">
-        <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="${roo_css_url}"/>
 
     </c:if>
-    <link rel="stylesheet" type="text/css" href="${tundra_url}" />
+    <link rel="stylesheet" type="text/css" href="${tundra_url}"/>
 
 
     <!-- Get the user local from the page context (it was set by Spring MVC's locale resolver) -->
-  <c:set var="userLocale">
-    <c:set var="plocale">${pageContext.response.locale}</c:set>
-    <c:out value="${fn:replace(plocale, '_', '-')}" default="en" />
-  </c:set>
- <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
- <script src="${dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
- <script src="${spring_url}" type="text/javascript"><!-- /required for FF3 and Opera --></script>
- <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
- <script src="${jquery_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
- <script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
-    <c:if test="${!currentDevice.mobile}">
-        <script src="${spring_dojo_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
-    </c:if>
+    <c:set var="userLocale">
+        <c:set var="plocale">${pageContext.response.locale}</c:set>
+        <c:out value="${fn:replace(plocale, '_', '-')}" default="en"/>
+    </c:set>
+    <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
+    <script src="${dojo_url}" type="text/javascript"><!--
+    required
+    for FF3 and
+    Opera --></script>
+    <script src="${spring_url}" type="text/javascript"><!--
+    /required for FF3 and Opera --></script>
+    <script src="${jquery_url}" type="text/javascript"><!--
+    required
+    for FF3 and
+    Opera --></script>
+    <script src="${jquery_url}" type="text/javascript"><!--
+    required
+    for FF3 and
+    Opera --></script>
+    <script language="JavaScript" type="text/javascript">dojo.require("dojo.parser");</script>
+    <!--<c:if test="${!currentDevice.mobile}">-->
+        <script src="${spring_dojo_url}" type="text/javascript"><!--
+        required
+        for FF3 and
+        Opera --></script>
+    <!--</c:if>-->
 
-    <c:if test="${currentDevice.mobile}">
+<c:if test="${currentDevice.mobile}">
+        <script src="${jsmobile}" type="text/javascript"></script>
+ 
+        <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+        <script type="text/javascript"
+                src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+        <script type="text/javascript"
+                src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>
 
         <script src="${jsmobile}" type="text/javascript" ></script>
     </c:if>

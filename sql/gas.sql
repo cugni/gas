@@ -1,8 +1,12 @@
-CREATE DATABASE  IF NOT EXISTS `gas` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `gas`;
+DELIMITER ;
+DROP SCHEMA IF EXISTS  GAS;
+CREATE DATABASE  IF NOT EXISTS GAS ;
+USE GAS ;
+GRANT ALL PRIVILEGES ON GAS.* TO gas@`%` IDENTIFIED BY 'gas';
+
 -- MySQL dump 10.13  Distrib 5.6.12, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: gas
+--                                                                    ß
+-- Host: 127.0.0.1    Database: GAS
 -- ------------------------------------------------------
 -- Server version	5.6.12
 
@@ -80,12 +84,12 @@ CREATE TABLE `message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` datetime NOT NULL,
   `user` int(20) NOT NULL,
-  `order` int(11) NOT NULL,
+  `proposal` int(11) NOT NULL,
   `text` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user`),
-  KEY `fk_order_idx` (`order`),
-  CONSTRAINT `fk_order` FOREIGN KEY (`order`) REFERENCES `proposal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `fk_order_idx` (`proposal`),
+  CONSTRAINT `fk_order` FOREIGN KEY (`proposal`) REFERENCES `proposal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_user` FOREIGN KEY (`user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -117,14 +121,14 @@ DROP TABLE IF EXISTS `producer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `producer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(40) DEFAULT NULL,
+  `company_name` varchar(40) NOT NULL,
   `description` varchar(40) DEFAULT NULL,
   `contact` varchar(20) DEFAULT NULL,
   `address` varchar(40) DEFAULT NULL,
   `phone_number` varchar(15) DEFAULT NULL,
   `fax_number` varchar(15) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
-  `delegate` int(11) NOT NULL,
+  `delegate` int(11) DEFAULT NULL,
   `payment_mode` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK586D393B3F42C404` (`delegate`),
@@ -133,6 +137,7 @@ CREATE TABLE `producer` (
   CONSTRAINT `fk_producer_info_users1` FOREIGN KEY (`delegate`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
 
 --
 -- Table structure for table `product`
@@ -251,6 +256,12 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
+  values ('admin','admin',3,'admin','admin','2000/01/01',1);
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
+  values ('user','user',0,'user','user','2000/01/01',1);
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
+  values ('delegate','delegate',1,'delagate','delegate','2000/01/01',1);
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

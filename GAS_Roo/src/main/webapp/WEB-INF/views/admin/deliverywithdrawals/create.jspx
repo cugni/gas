@@ -7,7 +7,7 @@
         <field:select field="collector" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_collector" itemValue="id" items="${users}" path="/admin/users" z="u2Hmgedt1GFt9nTN4ECQmVxPalI="/>
         <field:datetime dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" z="7P5tp8JJdjlbKxr5kcV2pzLTiXg="/>
         <field:datetime dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" z="+nGKCFcohFBoEYeXU8OaSzxrq0k="/>
-        <field:simple field="events" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="JfAaEkHhNHKtDh1+caLENhmdn14="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_events" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_it_polito_ai_gas_business_DeliveryWithdrawal" render="${not empty dependencies}" z="FvrMOPfBxz2I2gXQ8oshOydcCes="/>
 </div>

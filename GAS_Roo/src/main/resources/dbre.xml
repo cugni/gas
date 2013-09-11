@@ -143,14 +143,14 @@
     </table>
     <table name="producer">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
-        <column name="company_name" primaryKey="false" required="false" scale="0" size="40" type="12,VARCHAR"/>
+        <column name="company_name" primaryKey="false" required="true" scale="0" size="40" type="12,VARCHAR"/>
         <column name="description" primaryKey="false" required="false" scale="0" size="40" type="12,VARCHAR"/>
         <column name="contact" primaryKey="false" required="false" scale="0" size="20" type="12,VARCHAR"/>
         <column name="address" primaryKey="false" required="false" scale="0" size="40" type="12,VARCHAR"/>
         <column name="phone_number" primaryKey="false" required="false" scale="0" size="15" type="12,VARCHAR"/>
         <column name="fax_number" primaryKey="false" required="false" scale="0" size="15" type="12,VARCHAR"/>
         <column name="email" primaryKey="false" required="false" scale="0" size="30" type="12,VARCHAR"/>
-        <column name="delegate" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
+        <column name="delegate" primaryKey="false" required="false" scale="0" size="10" type="4,INT"/>
         <column name="payment_mode" primaryKey="false" required="false" scale="0" size="20" type="12,VARCHAR"/>
         <foreign-key foreignTable="user" name="fk_producer_info_users1" onDelete="none" onUpdate="none">
             <option key="exported" value="false"/>

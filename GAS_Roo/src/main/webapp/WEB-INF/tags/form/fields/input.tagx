@@ -1,4 +1,6 @@
-<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+          xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
   <jsp:output omit-xml-declaration="yes" />
 
   <jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="The identifier for this tag (do not change!)" />
@@ -63,15 +65,19 @@
       </label>
       <c:choose>
         <c:when test="${disableFormBinding}">
-          <input id="_${sec_field}_id" name="${sec_field}" type="${fn:escapeXml(type)}" />
+          <input  id="_${sec_field}_id" name="${sec_field}" type="${fn:escapeXml(type)}" />
         </c:when>
         <c:otherwise>
           <c:choose>
             <c:when test="${type eq 'password'}">
               <form:password id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
             </c:when>
+            <c:when test="${type eq 'date'}">
+                 <form:input type="date" data-role="datebox" data-options='{"mode":"datebox", "useNewStyle":true}'
+                              id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
+              </c:when>
             <c:otherwise>
-              <form:input id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
+              <form:input type="${type}" id="_${sec_field}_id" path="${sec_field}" disabled="${disabled}" />
             </c:otherwise>
           </c:choose>
           <br />
