@@ -58,17 +58,6 @@ public class DelegateProposalController {
         addDateTimeFormatPatterns(uiModel);
         return "delegate/proposals/list";
     }
-    void populateEditForm(Model uiModel, Proposal proposal) {
-
-
-        uiModel.addAttribute("proposal", proposal);
-
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("events", Event.findAllEvents());
-        uiModel.addAttribute("messages", Message.findAllMessages());
-        uiModel.addAttribute("products", findMyProducts());
-
-    }
 
     private List<Product> findMyProducts() {
         User  user  =
@@ -131,6 +120,9 @@ public class DelegateProposalController {
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel,Utils.checkRights(Proposal.findProposal(id)));
+        ArrayList<User> mockUser = new ArrayList<User>();
+        mockUser.add(Utils.getCurrentUser());
+        uiModel.addAttribute("users", mockUser);
         return "delegate/proposals/update";
     }
     @RequestMapping(params = "form", produces = "text/html")
@@ -148,6 +140,21 @@ public class DelegateProposalController {
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
         return "redirect:/delegate/proposal";
     }
+
+
+    void populateEditForm(Model uiModel, Proposal proposal) {
+
+
+        uiModel.addAttribute("proposal", proposal);
+
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("events", Event.findAllEvents());
+        uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("products", findMyProducts());
+
+    }
+
+
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();
         if (enc == null) {

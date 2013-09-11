@@ -8,6 +8,15 @@
 </head>
 <body>
 <b><h2>Permission denied</h2></b>
+
+<c:if test="${not empty exception}">
+
+    <spring:message var="message" code="exception_message" htmlEscape="false" />
+
+        <c:out value="${exception.localizedMessage}" />
+
+</c:if>
+
 </body>
 
 </html>
