@@ -51,7 +51,7 @@ public class ProposalController {
         Message msg = new Message();
         msg.setOrder(p);
         msg.setUser(User.findAllUsers().get(0));
-        msg.setDate(Calendar.getInstance().getTime());
+        msg.setDate(Calendar.getInstance());
         uiModel.addAttribute("message", msg);
         return "admin/proposals/chat";
     }

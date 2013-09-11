@@ -55,7 +55,7 @@ privileged aspect PurchaseRequestDataOnDemand_Roo_DataOnDemand {
     }
     
     public void PurchaseRequestDataOnDemand.setReceived(PurchaseRequest obj, int index) {
-        Boolean received = Boolean.TRUE;
+        Boolean received = true;
         obj.setReceived(received);
     }
     

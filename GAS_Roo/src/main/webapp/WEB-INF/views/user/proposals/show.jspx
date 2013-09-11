@@ -32,9 +32,9 @@
 
     <p id="chat_area"></p>
 
-    <form_create:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="pMDYQ0QLt9DxDT4uleVAfp2mqsQ=">
+    <form_create:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="user-managed">
         <field:textarea field="text" id="c_it_polito_ai_gas_business_Message_text" z="F7mkglZIAnJx97u8ciTfiCCl2R8="/>
     </form_create:create>
 
 
-        </div>
+   </div>

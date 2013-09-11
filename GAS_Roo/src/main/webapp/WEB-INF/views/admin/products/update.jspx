@@ -8,14 +8,16 @@
         <field:input field="cost" id="c_it_polito_ai_gas_business_Product_cost" required="true" validationMessageCode="field_invalid_number" z="fFymewZS4RDus8qqMoGMTjzuuqM="/>
         <field:input field="units" id="c_it_polito_ai_gas_business_Product_units" required="true" z="Q5Jj1Z4AysZuU4AfKr3qpl6kUsI="/>
         <field:input field="quantity" id="c_it_polito_ai_gas_business_Product_quantity" required="true" validationMessageCode="field_invalid_number" z="8/HT2S+5Ul9eQ6CaP3QpwfEd4CM="/>
-        <field:input field="dimensions" id="c_it_polito_ai_gas_business_Product_dimensions" required="true" z="FZXUlZwoIdoi1HfQe9Q5iUQr9Hw="/>
-        <field:input field="transportCost" id="c_it_polito_ai_gas_business_Product_transportCost" required="true" validationMessageCode="field_invalid_number" z="dYHaF5Bth8zBp035bqT0HW/l04Y="/>
+        <field:input field="dimensions" id="c_it_polito_ai_gas_business_Product_dimensions" z="DIBHP5K+pCkreYI2LEY3Y5M0GV4="/>
+        <field:input field="transportCost" id="c_it_polito_ai_gas_business_Product_transportCost" validationMessageCode="field_invalid_number" z="LHbkSoWL6LDBnU5IRaYW7EUbP/o="/>
         <field:input field="stockQuantity" id="c_it_polito_ai_gas_business_Product_stockQuantity" required="true" validationMessageCode="field_invalid_number" z="tCCb8ZHPcPXXm+eKUwkwtJWUeYE="/>
         <field:input field="minToBuyOrder" id="c_it_polito_ai_gas_business_Product_minToBuyOrder" validationMessageCode="field_invalid_number" z="43lxCVbDKRcFaeOhb7OI3S3YwZI="/>
-        <field:input field="minToBuyUser" id="c_it_polito_ai_gas_business_Product_minToBuyUser" required="true" validationMessageCode="field_invalid_number" z="5Nu1jb9j95fFQeYFRm8UXyiB7RM="/>
-        <field:input field="maxToBuyUser" id="c_it_polito_ai_gas_business_Product_maxToBuyUser" required="true" validationMessageCode="field_invalid_number" z="IVypnJ8iSxmjYstHG96hBk74bEk="/>
+        <field:input field="minToBuyUser" id="c_it_polito_ai_gas_business_Product_minToBuyUser" validationMessageCode="field_invalid_number" z="9n+pEpqJcg+hvND0l6/nFZdEL3w="/>
+        <field:input field="maxToBuyUser" id="c_it_polito_ai_gas_business_Product_maxToBuyUser" validationMessageCode="field_invalid_number" z="jKqEsBp4x0u7+/6E5/lI51PAubw="/>
         <field:datetime dateTimePattern="${product_availablefrom_date_format}" field="availableFrom" id="c_it_polito_ai_gas_business_Product_availableFrom" z="plARCfRAbVv+Mc4/etYj/HWqKz4="/>
         <field:datetime dateTimePattern="${product_availableto_date_format}" field="availableTo" id="c_it_polito_ai_gas_business_Product_availableTo" z="9zpmgNPdJUPkuYhkxaKmeNvjEH4="/>
         <field:select field="producer" id="c_it_polito_ai_gas_business_Product_producer" itemValue="id" items="${producers}" path="/admin/producers" z="3Aoiv8wC+ybDoXePYO6tDEjtpGw="/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Product_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="mkV2WjHWa0BWrR8CCqX4dCcE2gY="/>
+        <field:simple field="proposals" id="c_it_polito_ai_gas_business_Product_proposals" messageCode="entity_reference_not_managed" messageCodeAttribute="Proposal" z="fwmRbM7Q27tTzqF/dSh+tVxzRao="/>
     </form:update>
 </div>

@@ -8,6 +8,7 @@ import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -17,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Product_Roo_DbManaged {
     
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<Event> Product.events;
     
     @OneToMany(mappedBy = "product")
@@ -40,11 +41,9 @@ privileged aspect Product_Roo_DbManaged {
     private Float Product.quantity;
     
     @Column(name = "dimensions", length = 10)
-    @NotNull
     private String Product.dimensions;
     
     @Column(name = "transport_cost")
-    @NotNull
     private Float Product.transportCost;
     
     @Column(name = "stock_quantity")
@@ -55,11 +54,9 @@ privileged aspect Product_Roo_DbManaged {
     private Float Product.minToBuyOrder;
     
     @Column(name = "min_to_buy_user")
-    @NotNull
     private Float Product.minToBuyUser;
     
     @Column(name = "max_to_buy_user")
-    @NotNull
     private Float Product.maxToBuyUser;
     
     @Column(name = "available_from")

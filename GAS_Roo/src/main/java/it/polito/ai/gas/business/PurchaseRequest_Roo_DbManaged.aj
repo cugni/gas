@@ -21,7 +21,8 @@ privileged aspect PurchaseRequest_Roo_DbManaged {
     private Float PurchaseRequest.quantity;
     
     @Column(name = "received")
-    private Boolean PurchaseRequest.received;
+    @NotNull
+    private boolean PurchaseRequest.received;
     
     public Set<PurchaseRequestPart> PurchaseRequest.getPurchaseRequestParts() {
         return purchaseRequestParts;
@@ -39,11 +40,11 @@ privileged aspect PurchaseRequest_Roo_DbManaged {
         this.quantity = quantity;
     }
     
-    public Boolean PurchaseRequest.getReceived() {
+    public boolean PurchaseRequest.isReceived() {
         return received;
     }
     
-    public void PurchaseRequest.setReceived(Boolean received) {
+    public void PurchaseRequest.setReceived(boolean received) {
         this.received = received;
     }
     
