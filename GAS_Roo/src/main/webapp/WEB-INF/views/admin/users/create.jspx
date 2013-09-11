@@ -5,7 +5,7 @@
     <form:create id="fc_it_polito_ai_gas_business_User" modelAttribute="user" path="/admin/users" render="${empty dependencies}" z="user-managed">
         <field:input field="password" id="c_it_polito_ai_gas_business_User_password" required="true" type="password" z="user-managed"/>
         <field:select field="role" id="c_it_polito_ai_gas_business_User_role" items="${usertypes}" path="usertypes" z="fZr67+GcShvk0ju8KE2uWBxRa+I="/>
-        <field:select disabled="true" field="events" id="c_it_polito_ai_gas_business_User_events" itemValue="id" items="${events}" multiple="true" path="/events" render="false" z="user-managed"/>
+        <field:select field="events" id="c_it_polito_ai_gas_business_User_events" itemValue="id" items="${events}" multiple="true" path="/events" render="false" z="user-managed"/>
         <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_User_deliveryWithdrawals" messageCode="entity_reference_not_managed" messageCodeAttribute="Delivery Withdrawal" z="C8Nnht+XtgPBV3QlXQztjRGBh3k="/>
         <field:simple field="events_" id="c_it_polito_ai_gas_business_User_events_" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="A7yTjERYitydWfm+hjagWY5ZDoM="/>
         <field:simple field="messages" id="c_it_polito_ai_gas_business_User_messages" messageCode="entity_reference_not_managed" messageCodeAttribute="Message" z="O0TNGe5HeAPMh6A82bRhCeWgje0="/>

@@ -20,7 +20,7 @@
         <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_Producer_purchaseRequests" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request" z="lJku1FhIl/13TBZNUIDQIr6YyQg="/>
         <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_Producer_purchaseRequestParts" messageCode="entity_reference_not_managed" messageCodeAttribute="Purchase Request Part" z="ifRCC8B8gQR0SbatDV13i3WuC0E="/>
         <field:select field="delegate" id="c_it_polito_ai_gas_business_Producer_delegate" itemValue="id" items="${users}" path="/admin/users" z="bE11X9fWo3tgX34Z00rVj7Xusuo="/>
-        <field:input field="companyName" id="c_it_polito_ai_gas_business_Producer_companyName" required="true" z="C4k540KFjCWDCqXEruxmWBdZKb8="/>
+        <field:input field="companyName" id="c_it_polito_ai_gas_business_Producer_companyName" z="rAL7X1/tLFMo4VrDCNTwzDG5ae0="/>
         <field:input field="description" id="c_it_polito_ai_gas_business_Producer_description" z="zGQpjWdS5UclQazwyIZ3DaNF9ys="/>
         <field:input field="contact" id="c_it_polito_ai_gas_business_Producer_contact" z="Atfl2vDiPOn3JY4tXUQkbEFxZNs="/>
         <field:input field="address" id="c_it_polito_ai_gas_business_Producer_address" z="9spfF3TsRcHf290R/Q4HJCvZI8E="/>

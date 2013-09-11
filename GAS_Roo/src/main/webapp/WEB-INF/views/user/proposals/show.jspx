@@ -4,12 +4,12 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show create="false" delete="false" id="ps_it_polito_ai_gas_business_Proposal" object="${proposal}" path="/user/proposals" update="false" z="user-managed">
         <field:display field="delegate" id="s_it_polito_ai_gas_business_Proposal_delegate" object="${proposal}" z="BDWKwAZJzLdZpAufShLPLeDakr0="/>
-        <a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a>
         <field:display field="product" id="s_it_polito_ai_gas_business_Proposal_product" object="${proposal}" z="0VvUQkFK1ckjPNh956oTixKEUJU="/>
         <field:display date="true" dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="s_it_polito_ai_gas_business_Proposal_startDate" object="${proposal}" z="1seON7xjKvcz9B8Aya938CfjsuI="/>
         <field:display date="true" dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="s_it_polito_ai_gas_business_Proposal_endDate" object="${proposal}" z="T3QpXolont9nojUDiCBuVhQSYxI="/>
         <field:display field="minReached" id="s_it_polito_ai_gas_business_Proposal_minReached" object="${proposal}" z="/G4ONcjmfOgrN6ineb/ILsB0cPA="/>
     </page:show>
+    <a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a>
     <script type="text/javascript">
         $.ajax({
             url:"/messages?proposal=${itemId}",
@@ -21,6 +21,13 @@
 
         });
     </script>
-    <p id="chat_area"/>
-    <form_create:create id="fc_it_polito_ai_gas_business_Message" modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="pMDYQ0QLt9DxDT4uleVAfp2mqsQ="/>
-</div>
+
+    <p id="chat_area"></p>
+
+    <form_create:create id="fc_it_polito_ai_gas_business_Message"
+                        modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="user-managed">
+        <field:textarea field="text" id="c_it_polito_ai_gas_business_Message_text" z="user-managed"/>
+    </form_create:create>
+
+
+   </div>
