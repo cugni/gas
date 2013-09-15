@@ -18,6 +18,8 @@
     <spring:url value="/resources/js/jquery.js" var="jquery_url"/>
 
     <spring:url value="/resources/js/jquerymobile.js" var="jsmobile"/>
+    <spring:url value="/resources/javascript/atmosphere.js" var="atmosphere" />
+    <spring:url value="/resources/js/notifications.js" var="nots"/>
 
     <!-- If the device is mobile, I prefer to use jquery instead of Dojo. So it disable all dojo stuff -->
     <c:set scope="page" var="springdec" value="${!currentDevice.mobile}"/>
@@ -49,6 +51,20 @@
         <c:set var="plocale">${pageContext.response.locale}</c:set>
         <c:out value="${fn:replace(plocale, '_', '-')}" default="en"/>
     </c:set>
+    <script src="${jquery_url}" type="text/javascript"><!--
+    required
+    for FF3 and
+    Opera --></script>
+    <script src="${atmosphere}" type="text/javascript">
+        <!--
+        required
+        for FF3 and
+        Opera -->
+    </script>
+    <script src="${nots}"  type="text/javascript"><!--
+    required
+    for FF3 and
+    Opera --></script>
     <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
     <script src="${dojo_url}" type="text/javascript"><!--
     required
@@ -56,10 +72,7 @@
     Opera --></script>
     <script src="${spring_url}" type="text/javascript"><!--
     /required for FF3 and Opera --></script>
-    <script src="${jquery_url}" type="text/javascript"><!--
-    required
-    for FF3 and
-    Opera --></script>
+
     <script src="${jquery_url}" type="text/javascript"><!--
     required
     for FF3 and
@@ -72,7 +85,8 @@
         Opera --></script>
     <!--</c:if>-->
 
-<c:if test="${currentDevice.mobile}">
+
+    <c:if test="${currentDevice.mobile}">
         <script src="${jsmobile}" type="text/javascript"></script>
  
         <script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
