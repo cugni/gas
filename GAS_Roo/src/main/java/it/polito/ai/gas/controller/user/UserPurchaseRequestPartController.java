@@ -1,4 +1,5 @@
 package it.polito.ai.gas.controller.user;
+import it.polito.ai.gas.Utils;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
@@ -15,17 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-@RequestMapping("/user/purchaserequestparts")
+@RequestMapping("/purchaserequestparts")
 @Controller
 @RooWebScaffold(path = "user/purchaserequestparts", formBackingObject = PurchaseRequestPart.class)
 public class UserPurchaseRequestPartController {
-    private User getCurrentUser(){
-        return
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    }
+
     public PurchaseRequestPart checkRights(PurchaseRequestPart purchaseRequestPart){
-        User user  =
-                getCurrentUser();
+        User user  = Utils.getCurrentUser();
         if(!user.equals(purchaseRequestPart.getAcquirer()))
             throw new SecurityException("An user can modify only his own purchase requests");
         return purchaseRequestPart;
@@ -37,7 +34,7 @@ public class UserPurchaseRequestPartController {
             return "user/purchaserequestparts/create";
         }
         uiModel.asMap().clear();
-        purchaseRequestPart.setAcquirer(getCurrentUser());
+        purchaseRequestPart.setAcquirer(Utils.getCurrentUser());
         purchaseRequestPart.persist();
         return "redirect:/user/purchaserequestparts/" + encodeUrlPathSegment(purchaseRequestPart.getId().toString(), httpServletRequest);
     }
@@ -45,7 +42,8 @@ public class UserPurchaseRequestPartController {
 
 
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String show(@PathVariable("id") Integer id, Model uiModel) {
+    public String show(@PathVariable("id") Integer id,
+                       Model uiModel) {
         uiModel.addAttribute("purchaserequestpart", checkRights(PurchaseRequestPart.findPurchaseRequestPart(id)));
         uiModel.addAttribute("itemId", id);
         return "user/purchaserequestparts/show";
@@ -58,12 +56,12 @@ public class UserPurchaseRequestPartController {
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
 
             uiModel.addAttribute("purchaserequestparts",
-                    PurchaseRequestPart.findPurchaseRequestPartsByAcquirer(getCurrentUser()).setFirstResult(firstResult)
+                    PurchaseRequestPart.findPurchaseRequestPartsByAcquirer(Utils.getCurrentUser()).setFirstResult(firstResult)
                     .setMaxResults(sizeNo));
             float nrOfPages = (float) PurchaseRequestPart.countPurchaseRequestParts() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findPurchaseRequestPartsByAcquirer(getCurrentUser()).getResultList());
+            uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findPurchaseRequestPartsByAcquirer(Utils.getCurrentUser()).getResultList());
         }
         return "user/purchaserequestparts/list";
     }

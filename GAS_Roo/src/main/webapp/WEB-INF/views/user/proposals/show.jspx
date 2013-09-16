@@ -4,6 +4,7 @@
      xmlns:form="http://www.springframework.org/tags/form"
      xmlns:form_create="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0"
+     xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
         >
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -16,6 +17,14 @@
     </page:show>
 
     <h2><a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a></h2>
+
+    <page:list id="pl_it_polito_ai_gas_business_PurchaseRequest" items="${incomplete}" z="user-managed" label="incomplete requests">
+        <table:tablepurchase data="${incomplete}" id="l_it_polito_ai_gas_business_PurchaseRequest" path="/user/purchaserequest" z="user-managed"
+                update="false" delete="false" create="false">
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" property="acquirer" z="user-managed"/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" property="quantity" z="user-managed"/>
+        </table:tablepurchase>
+    </page:list>
 
     <p id="chat_area"></p>
 

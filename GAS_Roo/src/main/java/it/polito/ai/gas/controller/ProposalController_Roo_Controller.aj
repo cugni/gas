@@ -50,7 +50,7 @@ privileged aspect ProposalController_Roo_Controller {
         uiModel.addAttribute("dependencies", dependencies);
         return "admin/proposals/create";
     }
-    
+
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ProposalController.show(@PathVariable("id") Integer id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);

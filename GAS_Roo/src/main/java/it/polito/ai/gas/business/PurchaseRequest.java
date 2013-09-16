@@ -24,4 +24,19 @@ public class PurchaseRequest {
      */
     @NotNull
     private Boolean completed;
+
+    public Double getToMin(){
+        Product p=this.getProposal().getProduct();
+        double stock=p.getStockQuantity();
+        double min=p.getMinToBuyUser();
+        double rem=0;
+        if(min>this.getQuantity()){
+            rem=min-this.getQuantity();
+        }
+
+        if((this.getQuantity()+rem)%stock!=0){
+              rem+= stock-(this.getQuantity()+rem)%stock;
+        }
+        return rem;
+    }
 }

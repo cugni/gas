@@ -30,4 +30,6 @@ public class Proposal implements InterceptPersist {
         q.setParameter("delegate", delegate);
         return q.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
+
+
 }

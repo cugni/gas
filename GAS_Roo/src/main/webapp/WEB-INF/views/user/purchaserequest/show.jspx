@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+     xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+     xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_it_polito_ai_gas_business_PurchaseRequest" object="${purchaserequest}" path="/user/purchaserequest" z="c6Z6EV94JP58+2pxFFKMYggW3lM=">
@@ -11,4 +15,23 @@
 
         <field:display field="completed" id="s_it_polito_ai_gas_business_PurchaseRequest_completed" object="${purchaserequest}" z="kcMCv3NCNY05eE1DT+iSHSFKMsw="/>
     </page:show>
+
+    <c:if test="${incomplete}">
+        <h2>This purchase request is incomplete.<br/><b>${toMin}</b> units left.
+            <br/>Wanna buy some shit?</h2>
+
+    <form:create id="fc_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="newpurchaserequest" path="/user/purchaserequest?addTo=${addTo}" render="${empty dependencies}" z="user-managed">
+        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="user-managed" type="number"/>
+         <!--
+        <field:checkbox field="received"
+                        id="c_it_polito_ai_gas_business_PurchaseRequest_received" z="lT9FWm5UdQQedbYFRPVGO4a48/A="/>
+        <field:display field="username" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" object="${producer}"/>
+        -->
+        <div style="visibility: collapse">
+        <field:select field="proposal" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="user-managed"/>
+        </div>
+    </form:create>
+
+    </c:if>
+
 </div>
