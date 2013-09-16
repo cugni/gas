@@ -25,15 +25,5 @@ privileged aspect PurchaseRequest_Roo_Finder {
         q.setParameter("completed", completed);
         return q;
     }
-
-    public static TypedQuery<PurchaseRequest> PurchaseRequest.findIncompletePurchaseRequests(Proposal proposal) {
-        if (proposal == null) throw new IllegalArgumentException("The proposal argument is required");
-        EntityManager em = PurchaseRequest.entityManager();
-        TypedQuery<PurchaseRequest> q = em.createQuery("SELECT o FROM PurchaseRequest AS o WHERE (o.completed IS NOT :completed AND o.proposal = :proposal)", PurchaseRequest.class);
-        q.setParameter("completed", true);
-        q.setParameter("proposal", proposal);
-
-
-        return q;
-    }
+    
 }

@@ -102,6 +102,8 @@ public class UserPurchaseRequestController {
             return "user/purchaserequest/create";
         }
 
+        int pag_id = 0;
+
         purchaseRequest.setAcquirer(Utils.getCurrentUser());
         purchaseRequest.setReceived(false);
 
@@ -110,21 +112,27 @@ public class UserPurchaseRequestController {
         if (addTo != null) // se la sto aggiungendo ad una gia' esistente!
         {
             PurchaseRequest pr = PurchaseRequest.findPurchaseRequest(addTo); //aggiungo a questa
-            if (pr.getQuantity() + purchaseRequest.getQuantity() ==
-                    pr.getProposal().getProduct().getStockQuantity())
+            pr.setQuantity(pr.getQuantity() + purchaseRequest.getQuantity());
+
+            if ( pr.getToMin() == 0)
             {
                 pr.setCompleted(true);
-                pr.merge();
+
+                checkProposalMinReached(pr.getProposal());
             }
+
+            pr.merge();
 
             //ignoro la mia "purchaserequest" e memorizzo la parte
 
             PurchaseRequestPart part = new PurchaseRequestPart();
-            part.setPurchaseRequest(purchaseRequest);
+            part.setPurchaseRequest(PurchaseRequest.findPurchaseRequest(addTo));
             part.setAcquirer(purchaseRequest.getAcquirer());
             part.setQuantity(purchaseRequest.getQuantity());
 
             part.persist();
+
+            pag_id = pr.getProposal().getId();
         }
          else
         {
@@ -133,6 +141,8 @@ public class UserPurchaseRequestController {
             {
                 purchaseRequest.setCompleted(true);
                 purchaseRequest.persist();
+
+                checkProposalMinReached(purchaseRequest.getProposal());
             }
             else // non e' completa
             {
@@ -145,12 +155,31 @@ public class UserPurchaseRequestController {
                 part.setQuantity(purchaseRequest.getQuantity());
 
                 part.persist();
+
+
             }
+            pag_id = purchaseRequest.getProposal().getId();
         }
         uiModel.asMap().clear();
 
-        return "redirect:/user/purchaserequest/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
+        return "redirect:/user/proposals/" + pag_id;
     }
+
+    private void checkProposalMinReached(Proposal proposal) {
+
+        int tot = 0;
+        for(PurchaseRequest pr : proposal.getPurchaseRequests())
+        {
+             tot += pr.getQuantity();
+        }
+
+        if (tot >= proposal.getProduct().getMinToBuyOrder())
+        {
+            proposal.setMinReached(true);
+            proposal.merge();
+        }
+    }
+
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id,
                        @RequestParam(value = "incomplete", required = false) String incomplete,
