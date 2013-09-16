@@ -106,13 +106,6 @@ public class MessageController {
         uiModel.addAttribute("message_date_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
     }
 
-    void populateEditForm(Model uiModel, Message message) {
-        uiModel.addAttribute("message", message);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("events", Event.findAllEvents());
-        uiModel.addAttribute("proposals", Proposal.findAllProposals());
-        uiModel.addAttribute("users", User.findAllUsers());
-    }
 
     String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
         String enc = httpServletRequest.getCharacterEncoding();

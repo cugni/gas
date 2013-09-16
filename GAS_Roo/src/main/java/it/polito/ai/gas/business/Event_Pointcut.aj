@@ -9,12 +9,18 @@ import static it.polito.ai.gas.business.EventType.NEW_USER;
 
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import javax.persistence.Query;
 
 import javax.persistence.TypedQuery;
 
+import it.polito.ai.gas.atmosphere.AtmosphereUtils;
+import org.atmosphere.cpr.BroadcasterFactory;
+import org.atmosphere.cpr.MetaBroadcaster;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.polito.ai.gas.Utils;
@@ -24,6 +30,7 @@ import com.google.common.collect.Sets;
 
 
 public aspect Event_Pointcut {
+    private final static Logger l= Logger.getLogger(Event_Pointcut.class.getSimpleName());
 	
 	pointcut interceptPersist(InterceptPersist obj) : 
 		execution(void InterceptPersist.persist()) && this(obj);
@@ -115,6 +122,9 @@ public aspect Event_Pointcut {
         
         e.setDate(Calendar.getInstance());
         e.persist();
-	}
+        MetaBroadcaster.getDefault().broadcastTo("/","{message:" + e.toString() + "}");
+        Future<String> broadcast = AtmosphereUtils.lookupBroadcaster().broadcast("{message:" + e.toString() + "}");
+        l.log(Level.INFO, "Broadcasted event {0} with status code={1}", new Object[]{e, broadcast.isDone()});
+    }
 
 }
