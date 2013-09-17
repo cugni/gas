@@ -24,6 +24,10 @@
     <spring:url value="/resources/js/notifications.js" var="nots"/>
     <spring:url value="/" var="baseURL"/>
 
+    <!-- era sparito chatReload (?) -->
+    <spring:url value="/resources/js/chatReload.js" var="chat"/>
+
+
     <!-- If the device is mobile, I prefer to use jquery instead of Dojo. So it disable all dojo stuff -->
     <c:set scope="page" var="springdec" value="${!currentDevice.mobile}"/>
     <c:set scope="request" var="springdec" value="${!currentDevice.mobile}"/>
@@ -76,8 +80,15 @@
     Opera --></script>
         </c:if>
 
+        <!-- era sparito chatReload (?) -->
+        <script src="${chat}"  type="text/javascript"><!--
+        required
+        for FF3 and
+        Opera --></script>
 
-    </sec:authorize>
+
+
+</sec:authorize>
     <script type="text/javascript">var djConfig = {parseOnLoad: false, isDebug: false, locale: '${fn:toLowerCase(userLocale)}'};</script>
     <script src="${dojo_url}" type="text/javascript"><!--
     required

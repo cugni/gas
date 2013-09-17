@@ -86,6 +86,31 @@ public class UserPurchaseRequestController {
             populateEditForm(uiModel, purchaseRequest);
             return "user/purchaserequest/update";
         }
+
+
+        if (purchaseRequest.getToMin() == 0)    // e' completa. Molt Ben!
+        {
+            purchaseRequest.setCompleted(true);
+            purchaseRequest.merge();
+
+        }
+        else // non e' completa
+        {
+            purchaseRequest.setCompleted(false);
+            purchaseRequest.merge();
+
+            PurchaseRequestPart part = new PurchaseRequestPart();
+            part.setPurchaseRequest(purchaseRequest);
+            part.setAcquirer(purchaseRequest.getAcquirer());
+            part.setQuantity(purchaseRequest.getQuantity());
+
+            part.persist();
+
+
+        }
+
+        checkProposalMinReached(purchaseRequest.getProposal());
+
         uiModel.asMap().clear();
         purchaseRequest.merge();
         return "redirect:/user/purchaserequest/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
@@ -142,7 +167,6 @@ public class UserPurchaseRequestController {
                 purchaseRequest.setCompleted(true);
                 purchaseRequest.persist();
 
-                checkProposalMinReached(purchaseRequest.getProposal());
             }
             else // non e' completa
             {
@@ -158,6 +182,8 @@ public class UserPurchaseRequestController {
 
 
             }
+
+            checkProposalMinReached(purchaseRequest.getProposal());
             pag_id = purchaseRequest.getProposal().getId();
         }
         uiModel.asMap().clear();
@@ -174,10 +200,12 @@ public class UserPurchaseRequestController {
         }
 
         if (tot >= proposal.getProduct().getMinToBuyOrder())
-        {
             proposal.setMinReached(true);
-            proposal.merge();
-        }
+        else
+            proposal.setMinReached(false);
+
+        proposal.merge();
+
     }
 
     @RequestMapping(value = "/{id}", produces = "text/html")
@@ -211,6 +239,9 @@ public class UserPurchaseRequestController {
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+
+        checkProposalMinReached(purchaseRequest.getProposal());
+
         return "redirect:/user/purchaserequest";
     }
 
