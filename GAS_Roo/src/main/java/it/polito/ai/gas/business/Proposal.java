@@ -3,6 +3,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
+
+import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -29,5 +31,10 @@ public class Proposal implements InterceptPersist {
         TypedQuery<Proposal> q = em.createQuery("SELECT o FROM Proposal o WHERE o.delegate = :delegate", Proposal.class);
         q.setParameter("delegate", delegate);
         return q.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+    public String toJson(){
+        return new JSONSerializer().include("id","product").exclude("class").serialize(this);
+
+
     }
 }

@@ -3,9 +3,11 @@ $(function(){
         var socket = atmosphere;
         var subSocket;
         var transport = 'websocket';
+        var not_area=$('#notification_area');
+        if($(not_area).length==0)return;
 
         // We are now ready to cut the request
-        var request = { url: "http://localhost:8080/not",
+        var request = { url: location.origin+"/not/"+window.userId,
             contentType : "application/json",
          //   trackMessageSize: true,
             logLevel:'debug',
@@ -30,11 +32,28 @@ $(function(){
             console.log('Atmosphere Chat. Default transport is WebSocket, fallback is ' + request.fallbackTransport );
         };
 
+        request.parseMessage=function(event){
+            if(json.type=="NEW_USER") {
+                $(not_area).append("<p><a href='/notification/"+json.id+"'>"+json.type+": "+json.user.username+"</a></p>") ;
+            }
+        }
+    $.ajax("/not/list").done(function(msg){
+        var m=jQuery.parseJSON(msg);
+        for(var i=0;i< m.length;i++){
+            request.parseMessage(m[i]);
+        }
+
+
+    });
         request.onMessage = function (response) {
 
             var message = response.responseBody;
+           // $(not_area).append("<p>",message);
+
             try {
                 var json = jQuery.parseJSON(message);
+                request.parseMessage(json);
+               console.log(json);
             } catch (e) {
                 console.log(e);
                 console.log('This doesn\'t look like a valid JSON: ', message.data);

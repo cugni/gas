@@ -1,4 +1,5 @@
 package it.polito.ai.gas.business;
+import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -11,4 +12,8 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJson
 @RooToString(excludeFields = { "events", "order", "collector" })
 public class DeliveryWithdrawal implements InterceptPersist {
+
+    public String toJson() {
+        return new JSONSerializer().include("id", "order", "deliveryWithdrawals").exclude("class").serialize(this);
+    }
 }

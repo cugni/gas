@@ -41,7 +41,7 @@ public final class AtmosphereUtils {
     public static Meteor getMeteor(HttpServletRequest request) {
         return Meteor.build(request);
     }
-    public static void suspend(final AtmosphereResource resource) {
+    public static Broadcaster suspend(final AtmosphereResource resource) {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         resource.addEventListener(new AtmosphereResourceEventListenerAdapter() {
@@ -66,10 +66,12 @@ public final class AtmosphereUtils {
 
         });
 
-        AtmosphereUtils.lookupBroadcaster().addAtmosphereResource(resource);
+        Broadcaster b = BroadcasterFactory.getDefault().lookup(resource.getRequest().getRequestURI(), true);
+        b.addAtmosphereResource(resource);
+        //AtmosphereUtils.lookupBroadcaster().addAtmosphereResource(resource);
 
         if (AtmosphereResource.TRANSPORT.LONG_POLLING.equals(resource.transport())) {
-            resource.resumeOnBroadcast(true).suspend(-1, false);
+            resource.resumeOnBroadcast(true).suspend();
         } else {
             resource.suspend(-1);
         }
@@ -79,11 +81,12 @@ public final class AtmosphereUtils {
         } catch (InterruptedException e) {
             LOG.error("Interrupted while trying to suspend resource {}", resource);
         }
-    }
-
-    public static Broadcaster lookupBroadcaster() {
-        Broadcaster b = BroadcasterFactory.getDefault().get();
         return b;
     }
+
+//    public static Broadcaster lookupBroadcaster() {
+//        Broadcaster b = BroadcasterFactory.getDefault().get();
+//        return b;
+//    }
 
 }

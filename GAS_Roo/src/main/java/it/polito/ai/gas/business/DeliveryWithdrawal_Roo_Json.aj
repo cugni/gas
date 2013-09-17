@@ -12,14 +12,6 @@ import java.util.List;
 
 privileged aspect DeliveryWithdrawal_Roo_Json {
     
-    public String DeliveryWithdrawal.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
-    public String DeliveryWithdrawal.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
-    }
-    
     public static DeliveryWithdrawal DeliveryWithdrawal.fromJsonToDeliveryWithdrawal(String json) {
         return new JSONDeserializer<DeliveryWithdrawal>().use(null, DeliveryWithdrawal.class).deserialize(json);
     }
