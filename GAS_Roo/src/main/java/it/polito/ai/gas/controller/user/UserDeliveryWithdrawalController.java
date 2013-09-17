@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 public class UserDeliveryWithdrawalController {
 
-    @RequestMapping(produces = "text/html")
+    @RequestMapping(value = "/addCollector", produces = "text/html")
     public String addCollector(@RequestParam(value = "proposal", required = true) Integer proposal,
                                Model uiModel) {
 
@@ -51,6 +51,85 @@ public class UserDeliveryWithdrawalController {
         uiModel.asMap().clear();
         return "redirect:/user/proposals/" + proposal;
     }
+
+    @RequestMapping(value = "/removeCollector", produces = "text/html")
+    public String removeCollector(@RequestParam(value = "proposal", required = true) Integer proposal,
+                               Model uiModel) {
+
+        // rapporto 1 : 1   DW <-> Proposal
+
+        if (DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
+                Proposal.findProposal(proposal)).getResultList().isEmpty()) // non esiste ancora
+        {
+            return "redirect:/user/proposals/" + proposal;
+        }
+        else // esiste tuttora
+        {
+            DeliveryWithdrawal dw = DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
+                    Proposal.findProposal(proposal)).getSingleResult();
+
+            if (dw.getCollector().getId().equals(Utils.getCurrentUser().getId()))
+            {
+                dw.setCollector(null);
+                dw.setWithdrawalDate(null);
+            }
+
+            dw.merge();
+        }
+
+        uiModel.asMap().clear();
+        return "redirect:/user/proposals/" + proposal;
+    }
+
+    @RequestMapping(value = "/update", produces = "text/html")
+    public String update(DeliveryWithdrawal deliveryWithdrawal, Model uiModel,
+                                  @RequestParam(value = "proposal", required = true) Integer proposal,
+                                  HttpServletRequest httpServletRequest) {
+
+        // L'unica modifica che puo' fare il delegate e' settare la DELIVERY DATE
+
+        if (DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
+                Proposal.findProposal(proposal)).getResultList().isEmpty()) // non esiste ancora
+        {
+            DeliveryWithdrawal dw = new DeliveryWithdrawal();
+
+            dw.setWithdrawalDate(deliveryWithdrawal.getWithdrawalDate());
+            dw.setAddress(deliveryWithdrawal.getAddress());
+
+            dw.setProposal(Proposal.findProposal(proposal));
+
+            dw.persist();
+        }
+        else // esiste tuttora
+        {
+            DeliveryWithdrawal dw = DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
+                    Proposal.findProposal(proposal)).getSingleResult();
+
+            dw.setAddress(deliveryWithdrawal.getAddress());
+            dw.merge();
+
+            if (dw.getDeliveryDate() == null)
+            {
+                uiModel.asMap().clear();
+                uiModel.addAttribute("error",
+                        "Can't set withdrawal date if delivery date has not been set by delegate!");
+            } else if (dw.getDeliveryDate().after(deliveryWithdrawal.getWithdrawalDate()))
+            {
+                uiModel.asMap().clear();
+                uiModel.addAttribute("error",
+                        "Can't set withdrawal before delivery date");
+            } else {
+                // ok
+                dw.setWithdrawalDate(deliveryWithdrawal.getWithdrawalDate());
+
+                uiModel.asMap().clear();
+                dw.merge();
+            }
+        }
+
+        return "redirect:/user/proposals/" + proposal;
+    }
+
 
     public String list() {
         return "perche' Roo rompe?";

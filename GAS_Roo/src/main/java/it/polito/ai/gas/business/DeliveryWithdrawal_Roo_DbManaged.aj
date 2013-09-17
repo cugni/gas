@@ -24,12 +24,12 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     private Set<Event> DeliveryWithdrawal.events;
     
     @ManyToOne
-    @JoinColumn(name = "proposal", referencedColumnName = "id", nullable = false)
-    private Proposal DeliveryWithdrawal.proposal;
-    
-    @ManyToOne
     @JoinColumn(name = "collector", referencedColumnName = "id")
     private User DeliveryWithdrawal.collector;
+    
+    @ManyToOne
+    @JoinColumn(name = "proposal", referencedColumnName = "id", nullable = false)
+    private Proposal DeliveryWithdrawal.proposal;
     
     @Column(name = "delivery_date")
     @Temporal(TemporalType.DATE)
@@ -41,6 +41,9 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     @DateTimeFormat(style = "M-")
     private Date DeliveryWithdrawal.withdrawalDate;
     
+    @Column(name = "address", length = 90)
+    private String DeliveryWithdrawal.address;
+    
     public Set<Event> DeliveryWithdrawal.getEvents() {
         return events;
     }
@@ -49,20 +52,20 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
         this.events = events;
     }
     
-    public Proposal DeliveryWithdrawal.getProposal() {
-        return proposal;
-    }
-    
-    public void DeliveryWithdrawal.setProposal(Proposal proposal) {
-        this.proposal = proposal;
-    }
-    
     public User DeliveryWithdrawal.getCollector() {
         return collector;
     }
     
     public void DeliveryWithdrawal.setCollector(User collector) {
         this.collector = collector;
+    }
+    
+    public Proposal DeliveryWithdrawal.getProposal() {
+        return proposal;
+    }
+    
+    public void DeliveryWithdrawal.setProposal(Proposal proposal) {
+        this.proposal = proposal;
     }
     
     public Date DeliveryWithdrawal.getDeliveryDate() {
@@ -79,6 +82,14 @@ privileged aspect DeliveryWithdrawal_Roo_DbManaged {
     
     public void DeliveryWithdrawal.setWithdrawalDate(Date withdrawalDate) {
         this.withdrawalDate = withdrawalDate;
+    }
+    
+    public String DeliveryWithdrawal.getAddress() {
+        return address;
+    }
+    
+    public void DeliveryWithdrawal.setAddress(String address) {
+        this.address = address;
     }
     
 }

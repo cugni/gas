@@ -33,14 +33,18 @@
             <h3>No one is assigend to withdraw the order, yet.</h3>
         </c:if>
         <c:if test="${not empty dw.collector}">
-            <h3>User ${collector.username} is assigned to pick shit up</h3>
+            <h3>User ${collector.username} is assigned to withdraw the order.</h3>
+
+            <c:if test="${not empty dw.withdrawalDate}">
+                <h3>Date set for withdrawal: <c:out value="${dw.withdrawalDate}"/></h3>
+            </c:if>
+
         </c:if>
 
-        <c:if test="${not empty dw}">
-            <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="deliveryWithdrawal" path="/delegate/deliverywithdrawals" versionField="none" z="user-managed">
-                <field:datetime dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" z="user-managed"/>
-            </form:update>
-        </c:if>
+
+        <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="dw" path="/delegate/deliverywithdrawals?proposal=${itemId}" versionField="none" z="user-managed">
+            <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="deliveryDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" z="user-managed"/>
+        </form:update>
 
     </p>
 

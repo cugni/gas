@@ -23,7 +23,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<DeliveryWithdrawal, String> ApplicationConversionServiceFactoryBean.getDeliveryWithdrawalToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.DeliveryWithdrawal, java.lang.String>() {
             public String convert(DeliveryWithdrawal deliveryWithdrawal) {
-                return new StringBuilder().append(deliveryWithdrawal.getDeliveryDate()).append(' ').append(deliveryWithdrawal.getWithdrawalDate()).toString();
+                return new StringBuilder().append(deliveryWithdrawal.getDeliveryDate()).append(' ').append(deliveryWithdrawal.getWithdrawalDate()).append(' ').append(deliveryWithdrawal.getAddress()).toString();
             }
         };
     }

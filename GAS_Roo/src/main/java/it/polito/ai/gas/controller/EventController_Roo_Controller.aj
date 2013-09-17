@@ -3,13 +3,20 @@
 
 package it.polito.ai.gas.controller;
 
+import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.EventType;
+import it.polito.ai.gas.business.Message;
+import it.polito.ai.gas.business.Product;
+import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.controller.EventController;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.joda.time.format.DateTimeFormat;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +47,7 @@ privileged aspect EventController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String EventController.show(@PathVariable("id") Integer id, Model uiModel) {
+        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("event", Event.findEvent(id));
         uiModel.addAttribute("itemId", id);
         return "admin/events/show";
@@ -56,6 +64,7 @@ privileged aspect EventController_Roo_Controller {
         } else {
             uiModel.addAttribute("events", Event.findAllEvents());
         }
+        addDateTimeFormatPatterns(uiModel);
         return "admin/events/list";
     }
     
@@ -86,9 +95,19 @@ privileged aspect EventController_Roo_Controller {
         return "redirect:/admin/events";
     }
     
+    void EventController.addDateTimeFormatPatterns(Model uiModel) {
+        uiModel.addAttribute("event_date_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
+    }
+    
     void EventController.populateEditForm(Model uiModel, Event event) {
         uiModel.addAttribute("event", event);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
         uiModel.addAttribute("eventtypes", Arrays.asList(EventType.values()));
+        uiModel.addAttribute("messages", Message.findAllMessages());
+        uiModel.addAttribute("products", Product.findAllProducts());
+        uiModel.addAttribute("proposals", Proposal.findAllProposals());
+        uiModel.addAttribute("users", User.findAllUsers());
     }
     
     String EventController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

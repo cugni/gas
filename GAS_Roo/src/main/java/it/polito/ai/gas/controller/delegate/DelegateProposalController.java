@@ -40,8 +40,9 @@ public class DelegateProposalController {
         uiModel.addAttribute("message", new Message());
 
         // se ancora non abbiamo creato una DW o c'e' ma non ha ancora un collector assegnato
-        if (Proposal.findProposal(id).getDeliveryWithdrawals() == null)
-            uiModel.addAttribute("dw", null);
+        if (Proposal.findProposal(id).getDeliveryWithdrawals().isEmpty() ||
+                !Proposal.findProposal(id).getDeliveryWithdrawals().iterator().hasNext())
+            uiModel.addAttribute("dw", new DeliveryWithdrawal());
         else
             uiModel.addAttribute("dw", Proposal.findProposal(id).getDeliveryWithdrawals().iterator().next());
 

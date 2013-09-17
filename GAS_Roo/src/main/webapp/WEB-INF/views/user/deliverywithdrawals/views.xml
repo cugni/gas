@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="user/deliverywithdrawals/list">
+        <put-attribute name="body" value="/WEB-INF/views/user/deliverywithdrawals/list.jspx"/>
+    </definition>
+<definition extends="default" name="user/deliverywithdrawals/show">
+        <put-attribute name="body" value="/WEB-INF/views/user/deliverywithdrawals/show.jspx"/>
+    </definition>
+<definition extends="default" name="user/deliverywithdrawals/create">
+        <put-attribute name="body" value="/WEB-INF/views/user/deliverywithdrawals/create.jspx"/>
+    </definition>
+<definition extends="default" name="user/deliverywithdrawals/update">
+        <put-attribute name="body" value="/WEB-INF/views/user/deliverywithdrawals/update.jspx"/>
+    </definition>
+</tiles-definitions>

@@ -1,9 +1,7 @@
 package it.polito.ai.gas.controller.user;
 
-import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.PurchaseRequest;
-import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.Utils;
+import it.polito.ai.gas.business.*;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
@@ -29,11 +27,17 @@ public class UserProposalController {
         uiModel.addAttribute("message", new Message());
 
         // se ancora non abbiamo creato una DW o c'e' ma non ha ancora un collector assegnato
-        if (Proposal.findProposal(id).getDeliveryWithdrawals() == null ||
+        if (Proposal.findProposal(id).getDeliveryWithdrawals().isEmpty() ||
                 !Proposal.findProposal(id).getDeliveryWithdrawals().iterator().hasNext())
-            uiModel.addAttribute("collector", null);
+            uiModel.addAttribute("dw", new DeliveryWithdrawal());
         else
-            uiModel.addAttribute("collector", Proposal.findProposal(id).getDeliveryWithdrawals().iterator().next().getCollector());
+        {
+            DeliveryWithdrawal dw = Proposal.findProposal(id).getDeliveryWithdrawals().iterator().next();
+            uiModel.addAttribute("dw", dw);
+            if (dw.getCollector() != null &&
+                    dw.getCollector().getId().equals(Utils.getCurrentUser().getId()))
+                uiModel.addAttribute("owner", true);
+        }
 
         return "user/proposals/show";
     }

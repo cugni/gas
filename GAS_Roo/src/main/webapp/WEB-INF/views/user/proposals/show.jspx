@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div
      xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
-     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
      xmlns:form_create="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0"
      xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
      xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
         >
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -17,6 +18,9 @@
         <field:display field="minReached" id="s_it_polito_ai_gas_business_Proposal_minReached" object="${proposal}" z="/G4ONcjmfOgrN6ineb/ILsB0cPA="/>
     </page:show>
 
+
+    <util:panel id="menu_purchase" title="PURCHASE ACTIONS" openPane="false">
+
     <h2><a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a></h2>
 
     <page:list id="pl_it_polito_ai_gas_business_PurchaseRequest" items="${incomplete}" z="user-managed" label="incomplete requests">
@@ -27,16 +31,48 @@
         </table:tablepurchase>
     </page:list>
 
-      <p>
-          <c:if test="${ empty collector}">
+    </util:panel>
+
+
+    <util:panel id="menu_dw" title="DELIVERY AND WITHDRAWAL INFO" openPane="false">
+          <c:if test="${ empty dw.collector}">
               <h3>No one is assigend to withdraw the order.
-                  <a href="/user/deliverywithdrawals?proposal=${itemId}">Would you be the one?</a></h3>
+                  <a href="/user/deliverywithdrawals/addCollector?proposal=${itemId}">ADD ME</a></h3>
           </c:if>
-          <c:if test="${not empty collector}">
-              <h3>User ${collector.username} is assigned to pick shit up</h3>
+          <c:if test="${not empty dw.collector}">
+              <h3>User ${dw.collector.username} is assigned to withdraw the order.</h3>
+
+              <c:if test="${not empty owner}">
+                  <h3><a href="/user/deliverywithdrawals/removeCollector?proposal=${itemId}">REMOVE ME.</a></h3>
+                  <div class="errors">
+                      <p>
+                          <c:out value="${error}" />
+                      </p>
+                  </div>
+                  <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="dw" path="/user/deliverywithdrawals/update?proposal=${itemId}" versionField="none" z="user-managed">
+                      <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="withdrawalDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" z="user-managed"/>
+                      <field:input field="address" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_address" z="user-managed"/>
+                  </form:update>
+
+                  <div style="width:320px;height:200px">
+                      <iframe width="320" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                              src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=${dw.address}&amp;ie=UTF8&amp;z=12&amp;t=m&amp;iwloc=near&amp;output=embed">
+                      </iframe><br/>
+                      <table width="320" cellpadding="0" cellspacing="0" border="0">
+                          <tr><td align="left"><small>
+                              <a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=${dw.address}&amp;ie=UTF8&amp;z=12&amp;t=m&amp;iwloc=near">View Larger Map</a></small>
+                          </td>
+                          </tr></table></div>
+
+
+                </c:if>
           </c:if>
 
-    </p>
+    </util:panel>
+
+
+
+    <util:panel id="menu_chat" title="CHAT">
 
     <p id="chat_area"></p>
 
@@ -50,6 +86,8 @@
                         modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="user-managed">
         <field:textarea field="text" id="c_it_polito_ai_gas_business_Message_text" z="user-managed"/>
     </form_create:create>
+
+   </util:panel>
 
 
    </div>

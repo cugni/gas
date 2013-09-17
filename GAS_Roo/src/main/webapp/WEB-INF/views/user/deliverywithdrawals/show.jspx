@@ -2,10 +2,11 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_it_polito_ai_gas_business_DeliveryWithdrawal" object="${deliverywithdrawal}" path="/admin/deliverywithdrawals" z="yo/MtUxm1wUT9YvhgPXOp8B/6/g=">
+    <page:show id="ps_it_polito_ai_gas_business_DeliveryWithdrawal" object="${deliverywithdrawal}" path="/user/deliverywithdrawals" z="nHy/lkpWJRhs0yFl+hujEcT4Lmk=">
         <field:display field="collector" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_collector" object="${deliverywithdrawal}" z="NyI0lv4RVYFsUBoRO0eLBgktfuI="/>
         <field:display date="true" dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" object="${deliverywithdrawal}" z="SMapKO9c0diNAUg1YDkk6Mm4Azo="/>
         <field:display date="true" dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" object="${deliverywithdrawal}" z="gesaUu499AijsN8veVchRTqdrB4="/>
         <field:display field="proposal" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_proposal" object="${deliverywithdrawal}" z="3IspUlCj61+BWlDxjcylrTRX/xk="/>
+        <field:display field="address" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_address" object="${deliverywithdrawal}" z="NdHvLKXlL2B6PNDrwh6DwMAy0lE="/>
     </page:show>
 </div>

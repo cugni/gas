@@ -14,13 +14,14 @@
         <column name="delivery_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="withdrawal_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="collector" primaryKey="false" required="false" scale="0" size="10" type="4,INT"/>
-        <foreign-key foreignTable="proposal" name="order" onDelete="cascade" onUpdate="cascade">
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="proposal"/>
-        </foreign-key>
+        <column name="address" primaryKey="false" required="false" scale="0" size="90" type="12,VARCHAR"/>
         <foreign-key foreignTable="user" name="collector" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="false"/>
             <reference foreign="id" local="collector"/>
+        </foreign-key>
+        <foreign-key foreignTable="proposal" name="order" onDelete="cascade" onUpdate="cascade">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="proposal"/>
         </foreign-key>
         <foreign-key foreignTable="event" name="fk_event_delivery_withdrawal1" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="true"/>
