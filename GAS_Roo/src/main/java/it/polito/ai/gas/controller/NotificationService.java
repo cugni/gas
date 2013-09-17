@@ -57,7 +57,7 @@ public class NotificationService
                  for(Event e:evs){
                  sb.append(e.toJson()+",");
                  }
-                 sb.setCharAt(sb.length()-1,'+');
+                 sb.setCharAt(sb.length()-1,']');
 
                  return sb.toString();
              }
