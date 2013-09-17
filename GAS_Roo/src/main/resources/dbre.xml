@@ -10,17 +10,17 @@
     <option key="testAutomatically" value="false"/>
     <table name="delivery_withdrawal">
         <column name="id" primaryKey="true" required="true" scale="0" size="10" type="4,INT"/>
-        <column name="order" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
+        <column name="proposal" primaryKey="false" required="true" scale="0" size="10" type="4,INT"/>
         <column name="delivery_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="withdrawal_date" primaryKey="false" required="false" scale="0" size="10" type="91,DATE"/>
         <column name="collector" primaryKey="false" required="false" scale="0" size="10" type="4,INT"/>
+        <foreign-key foreignTable="proposal" name="order" onDelete="cascade" onUpdate="cascade">
+            <option key="exported" value="false"/>
+            <reference foreign="id" local="proposal"/>
+        </foreign-key>
         <foreign-key foreignTable="user" name="collector" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="false"/>
             <reference foreign="id" local="collector"/>
-        </foreign-key>
-        <foreign-key foreignTable="proposal" name="order" onDelete="cascade" onUpdate="cascade">
-            <option key="exported" value="false"/>
-            <reference foreign="id" local="order"/>
         </foreign-key>
         <foreign-key foreignTable="event" name="fk_event_delivery_withdrawal1" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="true"/>
@@ -33,7 +33,7 @@
             <index-column name="collector"/>
         </index>
         <index name="order_idx">
-            <index-column name="order"/>
+            <index-column name="proposal"/>
         </index>
         <index name="collector_idx">
             <index-column name="collector"/>
@@ -230,7 +230,7 @@
         </foreign-key>
         <foreign-key foreignTable="delivery_withdrawal" name="order" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="true"/>
-            <reference foreign="order" local="id"/>
+            <reference foreign="proposal" local="id"/>
         </foreign-key>
         <foreign-key foreignTable="event" name="fk_event_proposal1" onDelete="cascade" onUpdate="cascade">
             <option key="exported" value="true"/>

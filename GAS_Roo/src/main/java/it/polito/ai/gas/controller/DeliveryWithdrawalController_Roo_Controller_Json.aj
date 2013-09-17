@@ -4,6 +4,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.business.DeliveryWithdrawal;
+import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.controller.DeliveryWithdrawalController;
 import java.util.List;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 privileged aspect DeliveryWithdrawalController_Roo_Controller_Json {
@@ -78,6 +80,14 @@ privileged aspect DeliveryWithdrawalController_Roo_Controller_Json {
         }
         deliveryWithdrawal.remove();
         return new ResponseEntity<String>(headers, HttpStatus.OK);
+    }
+    
+    @RequestMapping(params = "find=ByProposal", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> DeliveryWithdrawalController.jsonFindDeliveryWithdrawalsByProposal(@RequestParam("proposal") Proposal proposal) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(DeliveryWithdrawal.toJsonArray(DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(proposal).getResultList()), headers, HttpStatus.OK);
     }
     
 }

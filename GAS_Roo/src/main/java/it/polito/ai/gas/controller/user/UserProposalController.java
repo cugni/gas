@@ -27,6 +27,14 @@ public class UserProposalController {
                 Proposal.findProposal(id)).getResultList());
 
         uiModel.addAttribute("message", new Message());
+
+        // se ancora non abbiamo creato una DW o c'e' ma non ha ancora un collector assegnato
+        if (Proposal.findProposal(id).getDeliveryWithdrawals() == null ||
+                !Proposal.findProposal(id).getDeliveryWithdrawals().iterator().hasNext())
+            uiModel.addAttribute("collector", null);
+        else
+            uiModel.addAttribute("collector", Proposal.findProposal(id).getDeliveryWithdrawals().iterator().next().getCollector());
+
         return "user/proposals/show";
     }
 

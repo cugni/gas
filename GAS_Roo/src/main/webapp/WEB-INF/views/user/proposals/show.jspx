@@ -5,6 +5,7 @@
      xmlns:form_create="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page"
      xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0"
      xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
         >
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
@@ -25,6 +26,17 @@
             <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" property="quantity" z="user-managed"/>
         </table:tablepurchase>
     </page:list>
+
+      <p>
+          <c:if test="${ empty collector}">
+              <h3>No one is assigend to withdraw the order.
+                  <a href="/user/deliverywithdrawals?proposal=${itemId}">Would you be the one?</a></h3>
+          </c:if>
+          <c:if test="${not empty collector}">
+              <h3>User ${collector.username} is assigned to pick shit up</h3>
+          </c:if>
+
+    </p>
 
     <p id="chat_area"></p>
 

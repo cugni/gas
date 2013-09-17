@@ -31,7 +31,22 @@ public class DelegateProposalController {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
 
-        return "redirect:/user/proposals/"+ id;
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("proposal", Proposal.findProposal(id));
+        uiModel.addAttribute("itemId", id);
+        uiModel.addAttribute("incomplete", PurchaseRequest.findIncompletePurchaseRequests(
+                Proposal.findProposal(id)).getResultList());
+
+        uiModel.addAttribute("message", new Message());
+
+        // se ancora non abbiamo creato una DW o c'e' ma non ha ancora un collector assegnato
+        if (Proposal.findProposal(id).getDeliveryWithdrawals() == null)
+            uiModel.addAttribute("dw", null);
+        else
+            uiModel.addAttribute("dw", Proposal.findProposal(id).getDeliveryWithdrawals().iterator().next());
+
+
+        return "delegate/proposals/show";
     }
     void addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("proposal_startdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
