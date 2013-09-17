@@ -33,12 +33,34 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </repository>
+        <repository>
+            <id>spring-repo</id>
+            <name>Spring Repository</name>
+            <url>http://repo.springsource.org/release</url>
+        </repository>
 
     <repository>
+            <id>spring-milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>http://repo.springsource.org/milestone</url>
+        </repository>
+
+        <repository>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>http://repo.springsource.org/snapshot</url>
+        </repository>
+        <repository>
             <id>maven.springframework.org.external</id>
             <url>http://maven.springframework.org/external</url>
             <name>SpringSource Maven Repository - External Releases</name>
         </repository>
+        <repository>
+            <id>springsource-milestone</id>
+            <name>SpringSource Milestone Repository</name>
+            <url>http://repo.springsource.org/milestone</url>
+        </repository>
+
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -74,6 +96,11 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.mobile</groupId>
+            <artifactId>spring-mobile-device</artifactId>
+            <version>1.0.2.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
