@@ -21,14 +21,12 @@ GRANT ALL PRIVILEGES ON GAS.* TO gas@`%` IDENTIFIED BY 'gas';
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `delivery_withdrawal`
---
+
 
 DROP TABLE IF EXISTS `delivery_withdrawal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-delimiter $$
+
 
 CREATE TABLE `delivery_withdrawal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -43,8 +41,7 @@ CREATE TABLE `delivery_withdrawal` (
   KEY `collector_idx` (`collector`),
   CONSTRAINT `collector` FOREIGN KEY (`collector`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order` FOREIGN KEY (`proposal`) REFERENCES `proposal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1$$
-
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,7 +139,6 @@ CREATE TABLE `producer` (
   CONSTRAINT `fk_producer_info_users1` FOREIGN KEY (`delegate`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
 
 --
 -- Table structure for table `product`
@@ -151,6 +147,7 @@ INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
 DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
