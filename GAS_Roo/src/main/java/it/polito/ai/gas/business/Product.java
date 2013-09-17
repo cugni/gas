@@ -4,6 +4,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
+import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -37,5 +38,9 @@ public class Product implements InterceptPersist {
         TypedQuery<Product> q = em.createQuery("SELECT o FROM Product AS o WHERE o.producer = :producer", Product.class);
         q.setParameter("producer", producer);
         return q.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    }
+
+    public String toJson() {
+        return new JSONSerializer().include("id", "name").exclude("*.class").serialize(this);
     }
 }

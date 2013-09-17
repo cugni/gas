@@ -51,7 +51,8 @@ public class NotificationService
              @ResponseBody
              public String getLastNotification() throws JSONException {
                  List<Event> evs = Event.findEventsByUsers(Sets.newHashSet(Utils.getCurrentUser())).setMaxResults(5).getResultList();
-
+                 if(evs.isEmpty())
+                     return "[]";
                  StringBuilder sb=new StringBuilder("[");
 
                  for(Event e:evs){

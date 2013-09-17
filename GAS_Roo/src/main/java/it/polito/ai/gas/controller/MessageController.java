@@ -47,11 +47,7 @@ public class MessageController {
         return "redirect:/user/proposals/"+proposalId;
     }
 
-    @RequestMapping(params = "form", produces = "text/html")
-    public String createForm(Model uiModel) {
-        populateEditForm(uiModel, new Message());
-        return "messages/create";
-    }
+
 
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
@@ -100,6 +96,14 @@ public class MessageController {
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
         populateEditForm(uiModel, Message.findMessage(id));
         return "messages/update";
+    }
+
+    void populateEditForm(Model uiModel, Message message) {
+        uiModel.addAttribute("message", message);
+        addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("events", Event.findAllEvents());
+        uiModel.addAttribute("proposals", Proposal.findAllProposals());
+        uiModel.addAttribute("users", User.findAllUsers());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")

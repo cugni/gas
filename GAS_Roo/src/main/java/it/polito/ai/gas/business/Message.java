@@ -2,6 +2,7 @@ package it.polito.ai.gas.business;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
+import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -24,5 +25,9 @@ public class Message implements InterceptPersist {
         TypedQuery<Message> q = em.createQuery("SELECT o FROM Message AS o WHERE o.proposal = :proposal ORDER BY o.date DESC", Message.class);
         q.setParameter("proposal", proposal);
         return q;
+    }
+
+    public String toJson() {
+        return new JSONSerializer().include("id", "user", "proposal", "text").exclude("*.class").serialize(this);
     }
 }

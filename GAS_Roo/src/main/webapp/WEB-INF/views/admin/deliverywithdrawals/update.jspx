@@ -8,5 +8,6 @@
         <field:datetime dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" z="+nGKCFcohFBoEYeXU8OaSzxrq0k="/>
         <field:simple field="events" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_events" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:select field="proposal" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="ZcoZ+lcGec2IQwb459bBLdDTeBE="/>
+        <field:input field="address" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_address" z="/3icZ2CB0lAh8c5F++p3cCSW6/Q="/>
     </form:update>
 </div>

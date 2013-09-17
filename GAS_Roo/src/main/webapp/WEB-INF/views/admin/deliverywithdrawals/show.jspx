@@ -7,5 +7,6 @@
         <field:display date="true" dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" object="${deliverywithdrawal}" z="SMapKO9c0diNAUg1YDkk6Mm4Azo="/>
         <field:display date="true" dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" object="${deliverywithdrawal}" z="gesaUu499AijsN8veVchRTqdrB4="/>
         <field:display field="proposal" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_proposal" object="${deliverywithdrawal}" z="3IspUlCj61+BWlDxjcylrTRX/xk="/>
+        <field:display field="address" id="s_it_polito_ai_gas_business_DeliveryWithdrawal_address" object="${deliverywithdrawal}" z="NdHvLKXlL2B6PNDrwh6DwMAy0lE="/>
     </page:show>
 </div>

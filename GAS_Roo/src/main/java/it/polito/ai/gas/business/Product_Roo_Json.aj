@@ -12,14 +12,6 @@ import java.util.List;
 
 privileged aspect Product_Roo_Json {
     
-    public String Product.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
-    public String Product.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
-    }
-    
     public static Product Product.fromJsonToProduct(String json) {
         return new JSONDeserializer<Product>().use(null, Product.class).deserialize(json);
     }

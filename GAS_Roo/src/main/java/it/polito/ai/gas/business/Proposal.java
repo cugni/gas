@@ -3,7 +3,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-
 import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -32,9 +31,8 @@ public class Proposal implements InterceptPersist {
         q.setParameter("delegate", delegate);
         return q.setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
-    public String toJson(){
-        return new JSONSerializer().include("id","product").exclude("class").serialize(this);
 
-
+    public String toJson() {
+        return new JSONSerializer().include("id", "product").exclude("class").serialize(this);
     }
 }

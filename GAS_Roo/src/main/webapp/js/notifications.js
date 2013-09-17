@@ -34,7 +34,19 @@ $(function(){
 
         request.parseMessage=function(json){
             if(json.type=="NEW_USER") {
-                $(not_area).append("<p><a href='/notification/"+json.id+"'>"+json.type+": "+json.user.username+"</a></p>") ;
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.user.username+"</a></p>") ;
+            } else if (json.type=="NEW_PRODUCT") {
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.product.name+"</a></p>") ;
+
+            } else if (json.type=="NEW_PROPOSAL") {
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.proposal.product.name+"</a></p>") ;
+
+            }  else if (json.type=="NEW_MESSAGE") {
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.message.product.name+"</a></p>") ;
+
+            }else {
+                $(not_area).prepend("<p class='not_gen not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b></a></p>") ;
+
             }
         }
     $.ajax("/not/lasts").done(function(msg){
