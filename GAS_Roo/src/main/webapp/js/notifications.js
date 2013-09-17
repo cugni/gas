@@ -7,7 +7,7 @@ $(function(){
         if($(not_area).length==0)return;
 
         // We are now ready to cut the request
-        var request = { url: location.origin+"/not/"+window.userId,
+        var request = { url:window.baseURL+"not/"+window.userId,
             contentType : "application/json",
          //   trackMessageSize: true,
             logLevel:'debug',
@@ -33,23 +33,24 @@ $(function(){
         };
 
         request.parseMessage=function(json){
+            var url= window.baseURL+"notification/"
             if(json.type=="NEW_USER") {
-                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.user.username+"</a></p>") ;
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='"+url+json.id+"'><b>"+json.type+"</b>: "+json.user.username+"</a></p>") ;
             } else if (json.type=="NEW_PRODUCT") {
-                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.product.name+"</a></p>") ;
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='"+url+json.id+"'><b>"+json.type+"</b>: "+json.product.name+"</a></p>") ;
 
             } else if (json.type=="NEW_PROPOSAL") {
-                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.proposal.product.name+"</a></p>") ;
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='"+url+json.id+"'><b>"+json.type+"</b>: "+json.proposal.product.name+"</a></p>") ;
 
             }  else if (json.type=="NEW_MESSAGE") {
-                $(not_area).prepend("<p class='not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b>: "+json.message.product.name+"</a></p>") ;
+                $(not_area).prepend("<p class='not_"+json.type+"'><a href='"+url+json.id+"'><b>"+json.type+"</b>: "+json.message.product.name+"</a></p>") ;
 
             }else {
-                $(not_area).prepend("<p class='not_gen not_"+json.type+"'><a href='/notification/"+json.id+"'><b>"+json.type+"</b></a></p>") ;
+                $(not_area).prepend("<p class='not_gen not_"+json.type+"'><a href='"+url+json.id+"'><b>"+json.type+"</b></a></p>") ;
 
             }
         }
-    $.ajax("/not/lasts").done(function(msg){
+    $.ajax(window.baseURL+"not/lasts").done(function(msg){
         var m=$.parseJSON(msg);
         for(var i=0;i< m.length;i++){
             request.parseMessage(m[i]);

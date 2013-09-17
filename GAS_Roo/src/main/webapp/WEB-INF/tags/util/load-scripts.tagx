@@ -22,6 +22,7 @@
     <spring:url value="/resources/js/jquerymobile.js" var="jsmobile"/>
     <spring:url value="/resources/js/atmosphere.js" var="atmosphere" />
     <spring:url value="/resources/js/notifications.js" var="nots"/>
+    <spring:url value="/" var="baseURL"/>
 
     <!-- If the device is mobile, I prefer to use jquery instead of Dojo. So it disable all dojo stuff -->
     <c:set scope="page" var="springdec" value="${!currentDevice.mobile}"/>
@@ -65,7 +66,8 @@
     </script>
     <sec:authorize access="isAuthenticated()">
         <sec:authentication var="principal" property="principal"/>
-        <script type="text/javascript">window.userId=${principal.id};</script>
+        <script type="text/javascript">window.userId=${principal.id};
+        window.baseURL="${baseURL}";</script>
         <c:if test="${!currentDevice.mobile}">
 
         <script src="${nots}"  type="text/javascript"><!--
