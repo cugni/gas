@@ -2,6 +2,7 @@
           xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0"
           xmlns:sec="http://www.springframework.org/security/tags">
 
+
     <jsp:output omit-xml-declaration="yes"/>
 
     <spring:theme code="styleSheet" var="roo_css"/>
@@ -16,10 +17,10 @@
 
     <spring:url value="/resources/spring/Spring-Dojo.js" var="spring_dojo_url"/>
     <spring:url value="/resources/images/favicon.ico" var="favicon"/>
-    <spring:url value="/resources/js/jquery.js" var="jquery_url"/>
+    <spring:url value="/resources/js/jquery-1.10.2.js" var="jquery_url"/>
 
     <spring:url value="/resources/js/jquerymobile.js" var="jsmobile"/>
-    <spring:url value="/resources/js/jquery.atmosphere.js" var="atmosphere" />
+    <spring:url value="/resources/javascript/atmosphere.js" var="atmosphere" />
     <spring:url value="/resources/js/notifications.js" var="nots"/>
 
     <!-- If the device is mobile, I prefer to use jquery instead of Dojo. So it disable all dojo stuff -->

@@ -1,6 +1,6 @@
 $(function(){
         "use strict";
-        var socket = $.atmosphere;
+        var socket = atmosphere;
         var subSocket;
         var transport = 'websocket';
         var not_area=$('#notification_area');
@@ -24,7 +24,7 @@ $(function(){
         };
 
         request.onTransportFailure = function(errorMsg, request) {
-            $.atmosphere.info(errorMsg);
+            atmosphere.info(errorMsg);
             if (window.EventSource) {
                 request.fallbackTransport = "sse";
                 transport = "see";
@@ -37,8 +37,8 @@ $(function(){
                 $(not_area).append("<p><a href='/notification/"+json.id+"'>"+json.type+": "+json.user.username+"</a></p>") ;
             }
         }
-    $.ajax("/not/list").done(function(msg){
-        var m=jQuery.parseJSON(msg);
+    $.ajax("/not/lasts").done(function(msg){
+        var m=$.parseJSON(msg);
         for(var i=0;i< m.length;i++){
             request.parseMessage(m[i]);
         }
