@@ -5,6 +5,7 @@ package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.EventType;
+import java.util.Calendar;
 
 privileged aspect Event_Roo_JavaBean {
     
@@ -14,6 +15,14 @@ privileged aspect Event_Roo_JavaBean {
     
     public void Event.setType(EventType type) {
         this.type = type;
+    }
+    
+    public Calendar Event.getDate() {
+        return this.date;
+    }
+    
+    public void Event.setDate(Calendar date) {
+        this.date = date;
     }
     
 }

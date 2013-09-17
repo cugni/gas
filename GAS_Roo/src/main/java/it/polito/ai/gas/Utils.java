@@ -63,7 +63,7 @@ public class Utils {
 
     public static <T> T checkRights(T checkThis) {
 
-        Integer checkId = new Integer(-1);
+        Integer checkId = -1;
 
         if (checkThis instanceof PurchaseRequest)
             checkId = ((PurchaseRequest) checkThis).getAcquirer().getId();

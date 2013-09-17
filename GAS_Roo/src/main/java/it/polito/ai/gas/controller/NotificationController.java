@@ -55,6 +55,7 @@ public class NotificationController {
         Event event = Event.findEvent(id);
         String view_parameter = "";
 
+
         if (event.getUser() != null)
             view_parameter = "user";
          else if (event.getProposal() != null)

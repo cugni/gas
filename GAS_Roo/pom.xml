@@ -80,6 +80,7 @@
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
+
         <!-- General dependencies for standard applications -->
         <dependency>
             <groupId>junit</groupId>
@@ -162,6 +163,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>4.0.0.WEBSOCKET-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -394,6 +401,29 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.0.0.GA</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.atmosphere</groupId>-->
+            <!--<artifactId>atmosphere-compat-tomcat7</artifactId>-->
+            <!--<version>2.0.0.RC5</version>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.atmosphere</groupId>
+            <artifactId>atmosphere-runtime</artifactId>
+            <version>2.0.0.RC5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.atmosphere</groupId>
+            <artifactId>atmosphere-compat-jbossweb</artifactId>
+            <version>1.0.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.atmosphere.client</groupId>
+            <artifactId>javascript</artifactId>
+            <version>2.0.0</version>
+            <type>war</type>
         </dependency>
     </dependencies>
     <build>

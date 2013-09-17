@@ -12,14 +12,6 @@ import java.util.List;
 
 privileged aspect Proposal_Roo_Json {
     
-    public String Proposal.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
-    public String Proposal.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
-    }
-    
     public static Proposal Proposal.fromJsonToProposal(String json) {
         return new JSONDeserializer<Proposal>().use(null, Proposal.class).deserialize(json);
     }

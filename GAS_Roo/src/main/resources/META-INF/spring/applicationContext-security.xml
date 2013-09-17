@@ -28,6 +28,7 @@
         <intercept-url pattern="/admin.*" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/user.*" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/producer.*" access="hasRole('ROLE_PRODUCER')"/>
+        <intercept-url pattern="/not/.*" access="isAuthenticated()"/>
 
 
 
