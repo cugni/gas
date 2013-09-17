@@ -40,9 +40,9 @@ public class DelegateDeliveryWithdrawalController {
         {
             DeliveryWithdrawal dw = new DeliveryWithdrawal();
 
-            dw.setDeliveryDate(deliveryWithdrawal.getDeliveryDate());
-
             dw.setProposal(Proposal.findProposal(proposal));
+
+            dw.setDeliveryDate(Utils.checkRights(deliveryWithdrawal).getDeliveryDate());
 
             dw.persist();
         }
@@ -51,7 +51,7 @@ public class DelegateDeliveryWithdrawalController {
             DeliveryWithdrawal dw = DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
                     Proposal.findProposal(proposal)).getSingleResult();
 
-            dw.setDeliveryDate(deliveryWithdrawal.getDeliveryDate());
+            dw.setDeliveryDate(Utils.checkRights(deliveryWithdrawal).getDeliveryDate());
 
             dw.merge();
         }
