@@ -1,10 +1,7 @@
 package it.polito.ai.gas.controller;
 
 import it.polito.ai.gas.Utils;
-import it.polito.ai.gas.business.Event;
-import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.*;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
@@ -19,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
@@ -44,7 +43,8 @@ public class MessageController {
 
         uiModel.asMap().clear();
         message.persist();
-        return "redirect:/messages/" + encodeUrlPathSegment(message.getId().toString(), httpServletRequest);
+
+        return "redirect:/user/proposals/"+proposalId;
     }
 
     @RequestMapping(params = "form", produces = "text/html")
@@ -64,16 +64,26 @@ public class MessageController {
 
 
     @RequestMapping(produces = "text/html")
-    public String list(
-            @RequestParam(value = "proposal", required = true) Integer proposalId,
+    public String list(@RequestParam(value = "proposal", required = true) Integer proposalId,
+                       @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size,
             Model uiModel) {
+        if (page != null || size != null) {
+            int sizeNo = size == null ? 10 : size.intValue();
+            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
+            uiModel.addAttribute("messages", Message.findMessagesByProposalOrderedByDate(Proposal.findProposal(proposalId))
+                        .setFirstResult(firstResult).setMaxResults(sizeNo).getResultList());
+            float nrOfPages = (float) Proposal.countProposals() / sizeNo;
+            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
+        }
 
-        uiModel.addAttribute("messages",
-                Message.findMessagesByProposal(Proposal.findProposal(proposalId)).setMaxResults(10).getResultList());
+        else
+            uiModel.addAttribute("messages",
+                Message.findMessagesByProposalOrderedByDate(Proposal.findProposal(proposalId)).setMaxResults(10).getResultList());
 
         addDateTimeFormatPatterns(uiModel);
         return "messages/list";
     }
+
 
     @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String update(@Valid Message message, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {

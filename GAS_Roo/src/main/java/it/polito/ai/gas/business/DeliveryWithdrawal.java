@@ -7,10 +7,10 @@ import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
-@RooJpaActiveRecord(versionField = "", table = "delivery_withdrawal")
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
-@RooToString(excludeFields = { "events", "order", "collector" })
+@RooToString(excludeFields = { "events", "order", "collector", "proposal" })
+@RooJpaActiveRecord(versionField = "", table = "delivery_withdrawal", finders = { "findDeliveryWithdrawalsByOrder", "findDeliveryWithdrawalsByProposal" })
 public class DeliveryWithdrawal implements InterceptPersist {
 
     public String toJson() {

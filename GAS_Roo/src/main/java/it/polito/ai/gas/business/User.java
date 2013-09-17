@@ -7,8 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.TypedQuery;
-
-import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -42,7 +40,7 @@ public class User implements InterceptPersist, UserDetails {
 
     public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-        switch(((this.getRole()))) {
+        switch (this.getRole()) {
             case ROLE_DELEGATE:
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
             case ROLE_USER:
@@ -81,10 +79,5 @@ public class User implements InterceptPersist, UserDetails {
     @Override
     public String toString() {
         return this.getUsername();
-    }
-    public String toJson(){
-        return new JSONSerializer().include("id","role","username").exclude("class").serialize(this);
-
-
     }
 }

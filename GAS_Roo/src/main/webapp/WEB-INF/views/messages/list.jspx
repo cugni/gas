@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
-    <page:list id="pl_it_polito_ai_gas_business_Message" items="${messages}" z="rhgYxUQk1DryRM6CRs87Gubaahw=">
-        <table:table data="${messages}" id="l_it_polito_ai_gas_business_Message" path="/messages" z="gaY4cxVjHBlXpuggK4s143w98D4=">
-            <table:column id="c_it_polito_ai_gas_business_Message_text" property="text" z="IOPwSCtXyO6tmZA0V161wWmaZrM="/>
-            <table:column id="c_it_polito_ai_gas_business_Message_proposal" property="proposal" z="UVxoRmtKGI/t/X3gwtmzT0CplDQ="/>
-            <table:column id="c_it_polito_ai_gas_business_Message_user" property="user" z="2SBbm755Hg+w9rWbrn2QJhJ24m8="/>
-            <table:column calendar="true" dateTimePattern="${message_date_date_format}" id="c_it_polito_ai_gas_business_Message_date" property="date" z="SfITXdSSM5rjrnSbRm2Ila7IXdk="/>
+<div
+        xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+        xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+        version="2.0">
+    <page:list id="pl_it_polito_ai_gas_business_Message" items="${messages}" z="user-managed" label="Last messages on this chat">
+        <table:table data="${messages}" id="l_it_polito_ai_gas_business_Message" path="/messages" z="user-managed"
+                     update="false" delete="false" create="false">
+            <table:column calendar="true" dateTimePattern="${message_date_date_format}" id="c_it_polito_ai_gas_business_Message_date" property="date" z="user-managed"/>
+            <table:column id="c_it_polito_ai_gas_business_Message_user" property="user" z="user-managed"/>
+            <table:column id="c_it_polito_ai_gas_business_Message_text" property="text" z="user-managed"/>
+            <!-- table:column id="c_it_polito_ai_gas_business_Message_proposal" property="proposal" z="UVxoRmtKGI/t/X3gwtmzT0CplDQ="/> -->
         </table:table>
     </page:list>
 </div>

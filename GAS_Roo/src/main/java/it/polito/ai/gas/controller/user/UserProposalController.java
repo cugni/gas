@@ -2,6 +2,7 @@ package it.polito.ai.gas.controller.user;
 
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
+import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.User;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -22,7 +23,18 @@ public class UserProposalController {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("proposal", Proposal.findProposal(id));
         uiModel.addAttribute("itemId", id);
+        uiModel.addAttribute("incomplete", PurchaseRequest.findIncompletePurchaseRequests(
+                Proposal.findProposal(id)).getResultList());
+
         uiModel.addAttribute("message", new Message());
+
+        // se ancora non abbiamo creato una DW o c'e' ma non ha ancora un collector assegnato
+        if (Proposal.findProposal(id).getDeliveryWithdrawals() == null ||
+                !Proposal.findProposal(id).getDeliveryWithdrawals().iterator().hasNext())
+            uiModel.addAttribute("collector", null);
+        else
+            uiModel.addAttribute("collector", Proposal.findProposal(id).getDeliveryWithdrawals().iterator().next().getCollector());
+
         return "user/proposals/show";
     }
 

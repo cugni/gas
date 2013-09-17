@@ -5,7 +5,8 @@
     <page:list id="pl_it_polito_ai_gas_business_Proposal" items="${proposals}" z="/ga5JrnIkiDlHz1HCxrFaTjbl0o=">
         <table:table data="${proposals}" id="l_it_polito_ai_gas_business_Proposal" path="/delegate/proposals" z="E7n2yMyIhq6HZbMUPKbfGXg7QOo=">
             <table:column id="c_it_polito_ai_gas_business_Proposal_product" property="product" z="aDMTFOxb6Z4RvMM4XUzec1rCj6w="/>
-            <table:column date="true" dateTimePattern="${proposal_startdate_date_format}" id="c_it_polito_ai_gas_business_Proposal_startDate" property="startDate" z="P6HutKXugIutHXmGNJ3GvCGmCZE="/>
+            <table:column date="true" dateTimePattern="${proposal_startdate_date_format}"
+                          id="c_it_polito_ai_gas_business_Proposal_startDate" property="startDate" z="P6HutKXugIutHXmGNJ3GvCGmCZE="/>
         </table:table>
     </page:list>
 </div>

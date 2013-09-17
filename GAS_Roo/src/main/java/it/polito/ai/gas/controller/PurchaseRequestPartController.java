@@ -8,4 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RooWebScaffold(path = "admin/purchaserequestparts", formBackingObject = PurchaseRequestPart.class)
 public class PurchaseRequestPartController {
+
+
+
 }

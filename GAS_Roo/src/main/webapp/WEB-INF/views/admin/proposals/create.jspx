@@ -4,10 +4,10 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_Proposal" modelAttribute="proposal" path="/admin/proposals" render="${empty dependencies}" z="oW2mgCjX27oFNT3XP+3z/Yj1yK8=">
         <field:select field="delegate" id="c_it_polito_ai_gas_business_Proposal_delegate" itemValue="id" items="${users}" path="/admin/users" required="true" z="2nGmWif5sBg1QXAYMS/G//tkJn4="/>
-        <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_Proposal_deliveryWithdrawals" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
-        <field:simple field="events" id="c_it_polito_ai_gas_business_Proposal_events" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
-        <field:simple field="messages" id="c_it_polito_ai_gas_business_Proposal_messages" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
-        <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_Proposal_purchaseRequests" messageCode="entity_reference_not_managed"  render="false"  z="user-managed"/>
+        <field:simple field="deliveryWithdrawals" id="c_it_polito_ai_gas_business_Proposal_deliveryWithdrawals" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
+        <field:simple field="events" id="c_it_polito_ai_gas_business_Proposal_events" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
+        <field:simple field="messages" id="c_it_polito_ai_gas_business_Proposal_messages" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
+        <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_Proposal_purchaseRequests" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:select field="product" id="c_it_polito_ai_gas_business_Proposal_product" itemValue="id" items="${products}" path="/admin/products" z="RkzKoLw/mXgEAsIu2y/vJNO4A5o="/>
         <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="startDate" id="c_it_polito_ai_gas_business_Proposal_startDate" required="true" z="nINGIAMKmTOgFJpozmEfv2XDKeg="/>
         <field:datetime dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="c_it_polito_ai_gas_business_Proposal_endDate" required="true" z="VvtsT5saLLDRsue3Nx8m5ekBG2A="/>

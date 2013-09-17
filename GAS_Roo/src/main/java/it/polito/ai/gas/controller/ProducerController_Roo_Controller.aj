@@ -11,7 +11,6 @@ import it.polito.ai.gas.business.Product;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.PurchaseRequestPart;
-import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.business.UserType;
 import it.polito.ai.gas.controller.ProducerController;
 import java.io.UnsupportedEncodingException;
@@ -113,7 +112,6 @@ privileged aspect ProducerController_Roo_Controller {
         uiModel.addAttribute("proposals", Proposal.findAllProposals());
         uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
         uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findAllPurchaseRequestParts());
-        uiModel.addAttribute("users", User.findAllUsers());
         uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }
     

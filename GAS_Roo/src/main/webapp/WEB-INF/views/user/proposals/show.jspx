@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="http://www.springframework.org/tags/form" xmlns:form_create="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div
+     xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+     xmlns:form="http://www.springframework.org/tags/form"
+     xmlns:form_create="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0"
+     xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+        >
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show create="false" delete="false" id="ps_it_polito_ai_gas_business_Proposal" object="${proposal}" path="/user/proposals" update="false" z="user-managed">
@@ -9,20 +16,35 @@
         <field:display date="true" dateTimePattern="${proposal_enddate_date_format}" field="endDate" id="s_it_polito_ai_gas_business_Proposal_endDate" object="${proposal}" z="T3QpXolont9nojUDiCBuVhQSYxI="/>
         <field:display field="minReached" id="s_it_polito_ai_gas_business_Proposal_minReached" object="${proposal}" z="/G4ONcjmfOgrN6ineb/ILsB0cPA="/>
     </page:show>
-    <a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a>
-    <script type="text/javascript">
-        $.ajax({
-            url:"/messages?proposal=${itemId}",
-            type:"GET",
-            dataType: "xml",
-            success: function(response){
-                $('#chat_area').html(response);
-            }
 
-        });
-    </script>
+    <h2><a href="/user/purchaserequest/purchase/${itemId}">PURCHASE</a></h2>
+
+    <page:list id="pl_it_polito_ai_gas_business_PurchaseRequest" items="${incomplete}" z="user-managed" label="incomplete requests">
+        <table:tablepurchase data="${incomplete}" id="l_it_polito_ai_gas_business_PurchaseRequest" path="/user/purchaserequest" z="user-managed"
+                update="false" delete="false" create="false">
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_acquirer" property="acquirer" z="user-managed"/>
+            <table:column id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" property="quantity" z="user-managed"/>
+        </table:tablepurchase>
+    </page:list>
+
+      <p>
+          <c:if test="${ empty collector}">
+              <h3>No one is assigend to withdraw the order.
+                  <a href="/user/deliverywithdrawals?proposal=${itemId}">Would you be the one?</a></h3>
+          </c:if>
+          <c:if test="${not empty collector}">
+              <h3>User ${collector.username} is assigned to pick shit up</h3>
+          </c:if>
+
+    </p>
 
     <p id="chat_area"></p>
+
+    <script type="text/javascript">
+      $(
+            chatReload(${itemId})
+      )
+    </script>
 
     <form_create:create id="fc_it_polito_ai_gas_business_Message"
                         modelAttribute="message" path="/messages?proposal=${itemId}" render="${empty dependencies}" z="user-managed">

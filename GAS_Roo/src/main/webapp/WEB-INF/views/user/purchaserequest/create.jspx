@@ -5,7 +5,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="purchaseRequest" path="/user/purchaserequest" render="${empty dependencies}" z="5Y5dAiGE7jpLLXXPiuaw83prneU=">
-        <field:input type="number" field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="user-managed" type="number"/>
+        <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="user-managed" type="number"/>
         <field:checkbox field="received"
                         id="c_it_polito_ai_gas_business_PurchaseRequest_received" z="lT9FWm5UdQQedbYFRPVGO4a48/A="/>
      <field:display field="username" id="c_it_polito_ai_gas_business_PurchaseRequest_proposal" object="${producer}"/>

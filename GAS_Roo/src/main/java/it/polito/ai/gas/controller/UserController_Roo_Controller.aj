@@ -3,14 +3,6 @@
 
 package it.polito.ai.gas.controller;
 
-import it.polito.ai.gas.business.DeliveryWithdrawal;
-import it.polito.ai.gas.business.Event;
-import it.polito.ai.gas.business.Message;
-import it.polito.ai.gas.business.Producer;
-import it.polito.ai.gas.business.Product;
-import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.PurchaseRequest;
-import it.polito.ai.gas.business.PurchaseRequestPart;
 import it.polito.ai.gas.business.User;
 import it.polito.ai.gas.business.UserType;
 import it.polito.ai.gas.controller.UserController;
@@ -18,8 +10,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,7 +40,6 @@ privileged aspect UserController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String UserController.show(@PathVariable("id") Integer id, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("user", User.findUser(id));
         uiModel.addAttribute("itemId", id);
         return "admin/users/show";
@@ -67,7 +56,6 @@ privileged aspect UserController_Roo_Controller {
         } else {
             uiModel.addAttribute("users", User.findAllUsers());
         }
-        addDateTimeFormatPatterns(uiModel);
         return "admin/users/list";
     }
     
@@ -98,21 +86,8 @@ privileged aspect UserController_Roo_Controller {
         return "redirect:/admin/users";
     }
     
-    void UserController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("user_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }
-    
     void UserController.populateEditForm(Model uiModel, User user) {
         uiModel.addAttribute("user", user);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("deliverywithdrawals", DeliveryWithdrawal.findAllDeliveryWithdrawals());
-        uiModel.addAttribute("events", Event.findAllEvents());
-        uiModel.addAttribute("messages", Message.findAllMessages());
-        uiModel.addAttribute("producers", Producer.findAllProducers());
-        uiModel.addAttribute("products", Product.findAllProducts());
-        uiModel.addAttribute("proposals", Proposal.findAllProposals());
-        uiModel.addAttribute("purchaserequests", PurchaseRequest.findAllPurchaseRequests());
-        uiModel.addAttribute("purchaserequestparts", PurchaseRequestPart.findAllPurchaseRequestParts());
         uiModel.addAttribute("usertypes", Arrays.asList(UserType.values()));
     }
     

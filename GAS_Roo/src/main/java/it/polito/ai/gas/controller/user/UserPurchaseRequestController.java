@@ -94,28 +94,113 @@ public class UserPurchaseRequestController {
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String create(PurchaseRequest purchaseRequest, BindingResult bindingResult, Model uiModel,
                          HttpServletRequest httpServletRequest,
-                         @RequestParam(required = false)Integer proposal) {
+                         @RequestParam(required = false)Integer proposal,
+                         @RequestParam(required = false)Integer addTo) {
       //  checkRights(purchaseRequest);
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, purchaseRequest);
             return "user/purchaserequest/create";
         }
 
-        purchaseRequest.setAcquirer(Utils.getCurrentUser());
-        /* TO-DO: qua mettiamo il check per vedere se è completa o se dobbiamo fare delle parti... */
-        purchaseRequest.setCompleted(true);
+        int pag_id = 0;
 
+        purchaseRequest.setAcquirer(Utils.getCurrentUser());
         purchaseRequest.setReceived(false);
 
+        /* TO-DO: qua mettiamo il check per vedere se è completa o se dobbiamo fare delle parti... */
+
+        if (addTo != null) // se la sto aggiungendo ad una gia' esistente!
+        {
+            PurchaseRequest pr = PurchaseRequest.findPurchaseRequest(addTo); //aggiungo a questa
+            pr.setQuantity(pr.getQuantity() + purchaseRequest.getQuantity());
+
+            if ( pr.getToMin() == 0)
+            {
+                pr.setCompleted(true);
+
+                checkProposalMinReached(pr.getProposal());
+            }
+
+            pr.merge();
+
+            //ignoro la mia "purchaserequest" e memorizzo la parte
+
+            PurchaseRequestPart part = new PurchaseRequestPart();
+            part.setPurchaseRequest(PurchaseRequest.findPurchaseRequest(addTo));
+            part.setAcquirer(purchaseRequest.getAcquirer());
+            part.setQuantity(purchaseRequest.getQuantity());
+
+            part.persist();
+
+            pag_id = pr.getProposal().getId();
+        }
+         else
+        {
+            // se non sto aggiungendo a niente
+            if (purchaseRequest.getToMin() == 0)    // e' completa. Molt Ben!
+            {
+                purchaseRequest.setCompleted(true);
+                purchaseRequest.persist();
+
+                checkProposalMinReached(purchaseRequest.getProposal());
+            }
+            else // non e' completa
+            {
+                purchaseRequest.setCompleted(false);
+                purchaseRequest.persist();
+
+                PurchaseRequestPart part = new PurchaseRequestPart();
+                part.setPurchaseRequest(purchaseRequest);
+                part.setAcquirer(purchaseRequest.getAcquirer());
+                part.setQuantity(purchaseRequest.getQuantity());
+
+                part.persist();
+
+
+            }
+            pag_id = purchaseRequest.getProposal().getId();
+        }
         uiModel.asMap().clear();
 
-        purchaseRequest.persist();
-        return "redirect:/user/purchaserequest/" + encodeUrlPathSegment(purchaseRequest.getId().toString(), httpServletRequest);
+        return "redirect:/user/proposals/" + pag_id;
     }
+
+    private void checkProposalMinReached(Proposal proposal) {
+
+        int tot = 0;
+        for(PurchaseRequest pr : proposal.getPurchaseRequests())
+        {
+             tot += pr.getQuantity();
+        }
+
+        if (tot >= proposal.getProduct().getMinToBuyOrder())
+        {
+            proposal.setMinReached(true);
+            proposal.merge();
+        }
+    }
+
     @RequestMapping(value = "/{id}", produces = "text/html")
-    public String show(@PathVariable("id") Integer id, Model uiModel) {
+    public String show(@PathVariable("id") Integer id,
+                       @RequestParam(value = "incomplete", required = false) String incomplete,
+                       Model uiModel) {
         uiModel.addAttribute("purchaserequest", Utils.checkRights(PurchaseRequest.findPurchaseRequest(id)));
         uiModel.addAttribute("itemId", id);
+
+        if (incomplete != null)
+        {
+            uiModel.addAttribute("incomplete", true);
+            uiModel.addAttribute("toMin", PurchaseRequest.findPurchaseRequest(id).getToMin());
+
+            uiModel.addAttribute("addTo", id);
+
+            uiModel.addAttribute("newpurchaserequest", new PurchaseRequest());
+            ArrayList<Proposal> mock = new ArrayList<Proposal>();
+            mock.add(PurchaseRequest.findPurchaseRequest(id).getProposal());
+            uiModel.addAttribute("proposals", mock);
+
+        }
+
         return "user/purchaserequest/show";
     }
 

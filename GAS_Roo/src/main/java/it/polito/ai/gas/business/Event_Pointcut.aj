@@ -103,9 +103,13 @@ public aspect Event_Pointcut {
         }
         else if (obj instanceof DeliveryWithdrawal) {
         	DeliveryWithdrawal dw = (DeliveryWithdrawal) obj;
-        	for(PurchaseRequest pr : dw.getOrder().getPurchaseRequests())
+
+            e.setUsers(Utils.merge(e.getUsers()));
+
+        	for(PurchaseRequest pr : dw.getProposal().getPurchaseRequests())
         	{
-        		e.getUsers().add(pr.getAcquirer());
+                if (!e.getUsers().contains(pr.getAcquirer()))
+        		    e.getUsers().add(pr.getAcquirer());
         	}
         	
         	e.setType(NEW_DELIVERY);
