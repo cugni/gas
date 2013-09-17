@@ -32,7 +32,7 @@ $(function(){
             console.log('Atmosphere Chat. Default transport is WebSocket, fallback is ' + request.fallbackTransport );
         };
 
-        request.parseMessage=function(event){
+        request.parseMessage=function(json){
             if(json.type=="NEW_USER") {
                 $(not_area).append("<p><a href='/notification/"+json.id+"'>"+json.type+": "+json.user.username+"</a></p>") ;
             }
