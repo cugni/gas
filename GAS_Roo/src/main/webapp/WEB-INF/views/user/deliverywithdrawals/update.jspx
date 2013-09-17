@@ -2,11 +2,12 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="deliveryWithdrawal" path="/admin/deliverywithdrawals" versionField="none" z="user-managed">
+    <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="deliveryWithdrawal" path="/user/deliverywithdrawals" versionField="none" z="de+6HVnCT600EMMbj5a+4HSKa4M=">
+        <field:simple field="events" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_events" messageCode="entity_reference_not_managed" messageCodeAttribute="Event" z="JfAaEkHhNHKtDh1+caLENhmdn14="/>
         <field:select field="collector" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_collector" itemValue="id" items="${users}" path="/admin/users" z="u2Hmgedt1GFt9nTN4ECQmVxPalI="/>
         <field:datetime dateTimePattern="${deliveryWithdrawal_deliverydate_date_format}" field="deliveryDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_deliveryDate" z="7P5tp8JJdjlbKxr5kcV2pzLTiXg="/>
         <field:datetime dateTimePattern="${deliveryWithdrawal_withdrawaldate_date_format}" field="withdrawalDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" z="+nGKCFcohFBoEYeXU8OaSzxrq0k="/>
-        <field:simple field="events" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_events" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:select field="proposal" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_proposal" itemValue="id" items="${proposals}" path="/admin/proposals" z="ZcoZ+lcGec2IQwb459bBLdDTeBE="/>
+        <field:input field="address" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_address" z="/3icZ2CB0lAh8c5F++p3cCSW6/Q="/>
     </form:update>
 </div>

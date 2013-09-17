@@ -28,19 +28,24 @@ GRANT ALL PRIVILEGES ON GAS.* TO gas@`%` IDENTIFIED BY 'gas';
 DROP TABLE IF EXISTS `delivery_withdrawal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+delimiter $$
+
 CREATE TABLE `delivery_withdrawal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `order` int(11) NOT NULL,
+  `proposal` int(11) NOT NULL,
   `delivery_date` date DEFAULT NULL,
   `withdrawal_date` date DEFAULT NULL,
   `collector` int(11) DEFAULT NULL,
+  `address` varchar(90) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKB14A75E060C1FB5F` (`collector`),
-  KEY `order_idx` (`order`),
+  KEY `order_idx` (`proposal`),
   KEY `collector_idx` (`collector`),
   CONSTRAINT `collector` FOREIGN KEY (`collector`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `order` FOREIGN KEY (`order`) REFERENCES `proposal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `order` FOREIGN KEY (`proposal`) REFERENCES `proposal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1$$
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
