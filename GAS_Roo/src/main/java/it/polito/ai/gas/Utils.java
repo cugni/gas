@@ -1,9 +1,6 @@
 package it.polito.ai.gas;
 
-import it.polito.ai.gas.business.Product;
-import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.PurchaseRequest;
-import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -71,6 +68,8 @@ public class Utils {
             checkId = ((Product) checkThis).getProducer().getId();
         else if (checkThis instanceof Proposal)
             checkId = ((Proposal) checkThis).getDelegate().getId();
+        else if (checkThis instanceof DeliveryWithdrawal)
+             checkId = ((DeliveryWithdrawal) checkThis).getProposal().getDelegate().getId();
 
         if(getCurrentUser().getId().intValue() != checkId.intValue())
             throw new SecurityException("Cause: "+checkThis.toString());

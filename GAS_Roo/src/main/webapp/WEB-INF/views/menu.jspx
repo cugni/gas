@@ -7,13 +7,6 @@
     <jsp:output omit-xml-declaration="yes"/>
 
 
-    <!-- Script stuff -->
-    <script type="text/javascript">
-        $(
-                loadNotifications()
-        )
-    </script>
-
 
     <!-- Per tutti -->
 
