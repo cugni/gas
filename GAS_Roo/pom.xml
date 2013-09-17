@@ -33,34 +33,12 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </repository>
-        <repository>
-            <id>spring-repo</id>
-            <name>Spring Repository</name>
-            <url>http://repo.springsource.org/release</url>
-        </repository>
 
-        <repository>
-            <id>spring-milestone</id>
-            <name>Spring Milestone Repository</name>
-            <url>http://repo.springsource.org/milestone</url>
-        </repository>
-
-        <repository>
-            <id>spring-snapshot</id>
-            <name>Spring Snapshot Repository</name>
-            <url>http://repo.springsource.org/snapshot</url>
-        </repository>
-        <repository>
+    <repository>
             <id>maven.springframework.org.external</id>
             <url>http://maven.springframework.org/external</url>
             <name>SpringSource Maven Repository - External Releases</name>
         </repository>
-        <repository>
-            <id>springsource-milestone</id>
-            <name>SpringSource Milestone Repository</name>
-            <url>http://repo.springsource.org/milestone</url>
-        </repository>
-
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -80,7 +58,6 @@
         </pluginRepository>
     </pluginRepositories>
     <dependencies>
-
         <!-- General dependencies for standard applications -->
         <dependency>
             <groupId>junit</groupId>
@@ -97,11 +74,6 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.mobile</groupId>
-            <artifactId>spring-mobile-device</artifactId>
-            <version>1.1.0.RC1</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -163,12 +135,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>4.0.0.WEBSOCKET-SNAPSHOT</version>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -380,7 +346,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.18</version>
         </dependency>
-
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -402,28 +367,10 @@
             <artifactId>validation-api</artifactId>
             <version>1.0.0.GA</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.atmosphere</groupId>-->
-            <!--<artifactId>atmosphere-compat-tomcat7</artifactId>-->
-            <!--<version>2.0.0.RC5</version>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.atmosphere</groupId>
             <artifactId>atmosphere-runtime</artifactId>
-            <version>2.0.0.RC5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.atmosphere</groupId>
-            <artifactId>atmosphere-compat-jbossweb</artifactId>
             <version>1.0.17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.atmosphere.client</groupId>
-            <artifactId>javascript</artifactId>
-            <version>2.0.0</version>
-            <type>war</type>
         </dependency>
     </dependencies>
     <build>
