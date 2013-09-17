@@ -2,7 +2,7 @@ DELIMITER ;
 DROP SCHEMA IF EXISTS  GAS;
 CREATE DATABASE  IF NOT EXISTS GAS ;
 USE GAS ;
-GRANT ALL PRIVILEGES ON GAS.* TO gas@`%` IDENTIFIED BY 'gas';
+GRANT ALL PRIVILEGES ON GAS.* TO gas@`localhost` IDENTIFIED BY 'gas';
 
 -- MySQL dump 10.13  Distrib 5.6.12, for Win64 (x86_64)
 --                                                                    ß
