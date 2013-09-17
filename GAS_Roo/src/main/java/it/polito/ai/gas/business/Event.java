@@ -59,4 +59,39 @@ public class Event {
         }
         return q;
     }
+
+    public Integer getCauseId() {
+        if(this.getProposal()!=null)
+            return this.getProposal().getId();
+        if(this.getDeliveryWithdrawal()!=null){
+            return this.getDeliveryWithdrawal().getId();
+        }
+        if(this.getMessage()!=null){
+            return this.getMessage().getId();
+        }
+        if(this.getProduct()!=null){
+            return this.getProduct().getId();
+        }
+        if(this.getUser()!=null){
+            return this.getUser().getId();
+        }
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," +
+                " message, product or user should be different from null");
+    }
+    public String  getCauseType() {
+
+
+        if (this.getUser() != null)
+           return "user";
+        else if (this.getProposal() != null)
+           return "proposal";
+        else if (this.getDeliveryWithdrawal() != null)
+           return "deliverywithdrawal";
+        else if (this.getMessage() != null)
+           return "message";
+        else if (this.getProduct() != null)
+           return "product";
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," +
+                " message, product or user should be different from null");
+    }
 }
