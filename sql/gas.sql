@@ -226,18 +226,20 @@ CREATE TABLE `purchase_request` (
 DROP TABLE IF EXISTS `purchase_request_part`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `purchase_request_part` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `quantity` float NOT NULL,
   `acquirer` int(11) NOT NULL,
   `purchaseRequest` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_prurchasepart_purchase_idx` (`purchaseRequest`),
   KEY `fk_purchasepart_user_idx` (`acquirer`),
-  CONSTRAINT `fk_purchasepart_user` FOREIGN KEY (`acquirer`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_prurchasepart_purchase` FOREIGN KEY (`purchaseRequest`) REFERENCES `purchase_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  CONSTRAINT `fk_prurchasepart_purchase` FOREIGN KEY (`purchaseRequest`) REFERENCES `purchase_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_purchasepart_user` FOREIGN KEY (`acquirer`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+
+
 
 --
 -- Table structure for table `user`
