@@ -19,7 +19,7 @@
     <spring:url value="/resources/js/jquery.js" var="jquery_url"/>
 
     <spring:url value="/resources/js/jquerymobile.js" var="jsmobile"/>
-    <spring:url value="/resources/javascript/atmosphere.js" var="atmosphere" />
+    <spring:url value="/resources/js/jquery.atmosphere.js" var="atmosphere" />
     <spring:url value="/resources/js/notifications.js" var="nots"/>
 
     <!-- If the device is mobile, I prefer to use jquery instead of Dojo. So it disable all dojo stuff -->
