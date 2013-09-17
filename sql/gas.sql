@@ -237,7 +237,7 @@ CREATE TABLE `purchase_request_part` (
   KEY `fk_purchasepart_user_idx` (`acquirer`),
   CONSTRAINT `fk_prurchasepart_purchase` FOREIGN KEY (`purchaseRequest`) REFERENCES `purchase_request` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_purchasepart_user` FOREIGN KEY (`acquirer`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1$$
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 
