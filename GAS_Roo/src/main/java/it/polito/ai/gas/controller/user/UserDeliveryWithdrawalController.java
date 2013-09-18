@@ -113,11 +113,19 @@ public class UserDeliveryWithdrawalController {
                 uiModel.asMap().clear();
                 uiModel.addAttribute("error",
                         "Can't set withdrawal date if delivery date has not been set by delegate!");
+
+                uiModel.addAttribute("deliverywithdrawal", dw);
+
+                return "user/deliverywithdrawals/show";
             } else if (dw.getDeliveryDate().after(deliveryWithdrawal.getWithdrawalDate()))
             {
                 uiModel.asMap().clear();
                 uiModel.addAttribute("error",
-                        "Can't set withdrawal before delivery date");
+                        "Can't set withdrawal date before delivery date!");
+
+                uiModel.addAttribute("deliverywithdrawal", dw);
+
+                return "user/deliverywithdrawals/show";
             } else {
                 // ok
                 dw.setWithdrawalDate(deliveryWithdrawal.getWithdrawalDate());

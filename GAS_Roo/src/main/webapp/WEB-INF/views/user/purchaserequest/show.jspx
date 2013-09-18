@@ -18,7 +18,7 @@
 
     <c:if test="${incomplete}">
         <h2>This purchase request is incomplete.<br/><b>${toMin}</b> units left.
-            <br/>Wanna buy some shit?</h2>
+            <br/>Help it reach the right quantity!</h2>
 
     <form:create id="fc_it_polito_ai_gas_business_PurchaseRequest" modelAttribute="newpurchaserequest" path="/user/purchaserequest?addTo=${addTo}" render="${empty dependencies}" z="user-managed">
         <field:input field="quantity" id="c_it_polito_ai_gas_business_PurchaseRequest_quantity" required="true" validationMessageCode="field_invalid_number" z="user-managed" type="number"/>

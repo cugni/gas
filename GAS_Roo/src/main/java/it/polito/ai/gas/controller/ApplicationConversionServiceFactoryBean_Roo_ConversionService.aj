@@ -68,13 +68,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
-    public Converter<Producer, String> ApplicationConversionServiceFactoryBean.getProducerToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Producer, java.lang.String>() {
-            public String convert(Producer producer) {
-                return new StringBuilder().append(producer.getUsername()).append(' ').append(producer.getPassword()).append(' ').append(producer.getName()).append(' ').append(producer.getSurname()).toString();
-            }
-        };
-    }
+
     
     public Converter<Integer, Producer> ApplicationConversionServiceFactoryBean.getIdToProducerConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.Producer>() {
@@ -91,14 +85,8 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
             }
         };
     }
-    
-    public Converter<Product, String> ApplicationConversionServiceFactoryBean.getProductToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Product, java.lang.String>() {
-            public String convert(Product product) {
-                return new StringBuilder().append(product.getName()).append(' ').append(product.getCost()).append(' ').append(product.getUnits()).append(' ').append(product.getQuantity()).toString();
-            }
-        };
-    }
+
+
     
     public Converter<Integer, Product> ApplicationConversionServiceFactoryBean.getIdToProductConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.Product>() {
@@ -115,14 +103,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
             }
         };
     }
-    
-    public Converter<Proposal, String> ApplicationConversionServiceFactoryBean.getProposalToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.Proposal, java.lang.String>() {
-            public String convert(Proposal proposal) {
-                return new StringBuilder().append(proposal.getStartDate()).append(' ').append(proposal.getEndDate()).toString();
-            }
-        };
-    }
+
     
     public Converter<Integer, Proposal> ApplicationConversionServiceFactoryBean.getIdToProposalConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.Proposal>() {
@@ -187,14 +168,8 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
             }
         };
     }
-    
-    public Converter<User, String> ApplicationConversionServiceFactoryBean.getUserToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<it.polito.ai.gas.business.User, java.lang.String>() {
-            public String convert(User user) {
-                return new StringBuilder().append(user.getUsername()).append(' ').append(user.getPassword()).append(' ').append(user.getName()).append(' ').append(user.getSurname()).toString();
-            }
-        };
-    }
+
+
     
     public Converter<Integer, User> ApplicationConversionServiceFactoryBean.getIdToUserConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Integer, it.polito.ai.gas.business.User>() {

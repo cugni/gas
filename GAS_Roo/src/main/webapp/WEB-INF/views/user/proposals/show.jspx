@@ -44,11 +44,7 @@
 
               <c:if test="${not empty owner}">
                   <h3><a href="/user/deliverywithdrawals/removeCollector?proposal=${itemId}">REMOVE ME.</a></h3>
-                  <div class="errors">
-                      <p>
-                          <c:out value="${error}" />
-                      </p>
-                  </div>
+
                   <form:update id="fu_it_polito_ai_gas_business_DeliveryWithdrawal" modelAttribute="dw" path="/user/deliverywithdrawals/update?proposal=${itemId}" versionField="none" z="user-managed">
                       <field:datetime dateTimePattern="${proposal_startdate_date_format}" field="withdrawalDate" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_withdrawalDate" z="user-managed"/>
                       <field:input field="address" id="c_it_polito_ai_gas_business_DeliveryWithdrawal_address" z="user-managed"/>
