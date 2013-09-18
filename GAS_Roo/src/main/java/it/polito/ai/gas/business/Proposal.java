@@ -13,7 +13,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
-@RooJson
 @RooJpaActiveRecord(versionField = "", table = "proposal", finders = { "findProposalsByDelegate", "findProposalsByProduct" })
 public class Proposal implements InterceptPersist {
 

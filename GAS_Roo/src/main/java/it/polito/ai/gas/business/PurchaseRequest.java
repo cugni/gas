@@ -11,7 +11,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
-@RooJson
 @RooToString(excludeFields = { "proposal", "acquirer", "purchaseRequestParts" })
 @RooJpaActiveRecord(versionField = "", table = "purchase_request", finders = { "findPurchaseRequestsByAcquirer", "findPurchaseRequestsByCompletedNot" })
 public class PurchaseRequest {

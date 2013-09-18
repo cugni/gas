@@ -7,7 +7,6 @@ import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
-@RooJson
 @PrimaryKeyJoinColumn(name = "id")
 @RooJpaActiveRecord(versionField = "", table = "producer", finders = { "findProducersByDelegate" })
 public class Producer extends User {

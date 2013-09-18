@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 @SuppressWarnings("serial")
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
-@RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
 @RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole", "findUsersByAuthTokenEquals" })
 public class User implements InterceptPersist, UserDetails {
@@ -40,7 +39,7 @@ public class User implements InterceptPersist, UserDetails {
     public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
         UserType role1 = this.getRole();
-        switch((role1)) {
+        switch(((role1))) {
             case ROLE_DELEGATE:
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
             case ROLE_USER:
