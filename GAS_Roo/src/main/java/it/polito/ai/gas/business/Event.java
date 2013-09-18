@@ -3,7 +3,6 @@ package it.polito.ai.gas.business;
 import flexjson.JSONSerializer;
 import java.util.Calendar;
 import java.util.Set;
-import javax.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.joda.time.format.DateTimeFormat;
@@ -29,10 +28,7 @@ public class Event {
     @org.springframework.format.annotation.DateTimeFormat(style = "MM")
     private Calendar date;
 
-    public String toString() {
-        return type.name() + ":" + this.getMessage() + "-" + this.getDate().toString();
-    }
-
+    
     public String toJson() {
         return new JSONSerializer().include("id", "type",
                 "users",
@@ -85,8 +81,31 @@ public class Event {
         throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
     }
 
+    public Object getCauseObject() {
+        if (this.getProposal() != null) return this.getProposal();
+        if (this.getDeliveryWithdrawal() != null) {
+            return this.getDeliveryWithdrawal();
+        }
+        if (this.getMessage() != null) {
+            return this.getMessage();
+        }
+        if (this.getProduct() != null) {
+            return this.getProduct();
+        }
+        if (this.getUser() != null) {
+            return this.getUser();
+        }
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
+    }
+
     public String getCauseType() {
+        // le S...
         if (this.getUser() != null) return "users"; else if (this.getProposal() != null) return "proposals"; else if (this.getDeliveryWithdrawal() != null) return "deliverywithdrawals"; else if (this.getMessage() != null) return "messages"; else if (this.getProduct() != null) return "products";
         throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
+    }
+
+    @Override
+    public String toString() {
+        return this.getType() + ": " + this.getCauseObject().toString();
     }
 }

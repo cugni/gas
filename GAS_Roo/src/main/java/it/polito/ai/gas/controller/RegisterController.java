@@ -16,12 +16,15 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 @RequestMapping("/register")
 @Controller
 public class RegisterController {
+
 
 
     @RequestMapping(params = "form",produces = "text/html")
@@ -34,6 +37,10 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String register(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         user.setApproved(false);
+
+        user.generateAuthToken();
+
+
 
         if (bindingResult.hasErrors()) {
             populateEditForm(uiModel, user);

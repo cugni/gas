@@ -7,7 +7,7 @@ $(function(){
         if($(not_area).length==0)return;
 
         // We are now ready to cut the request
-        var request = { url:window.baseURL+"not/"+window.userId,
+        var request = { url:window.baseURL+"ws/"+window.userId,
             contentType : "application/json",
             trackMessageSize: true,
             trackMessageLength: true,
@@ -51,7 +51,7 @@ $(function(){
 
             }
         }
-    $.ajax(window.baseURL+"not/lasts").done(function(msg){
+    $.ajax(window.baseURL+"notification/lasts").done(function(msg){
         var m=$.parseJSON(msg);
         for(var i=0;i< m.length;i++){
             request.parseMessage(m[i]);

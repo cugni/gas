@@ -260,15 +260,18 @@ CREATE TABLE `user` (
   `surname` varchar(20) NOT NULL,
   `birth_date` date NOT NULL,
   `approved` tinyint(1) DEFAULT '0',
+  `auth_token` varchar(256) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
-INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
-  values ('admin','admin',3,'admin','admin','2000/01/01',1);
-INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
-  values ('user','user',0,'user','user','2000/01/01',1);
-INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved)
-  values ('delegate','delegate',1,'delagate','delegate','2000/01/01',1);
+  UNIQUE KEY `username_UNIQUE` (`username`),
+   UNIQUE KEY `auth_token_UNIQUE` (`auth_token`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved,auth_token)
+  values ('admin','admin',3,'admin','admin','2000/01/01',1,SUBSTRING(MD5(RAND()) FROM 1 FOR 225) );
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved,auth_token)
+  values ('user','user',0,'user','user','2000/01/01',1,SUBSTRING(MD5(RAND()) FROM 1 FOR 225) );
+INSERT INTO  `user`(username,password,role,name,surname,birth_date,approved,auth_token)
+  values ('delegate','delegate',1,'delagate','delegate','2000/01/01',1,SUBSTRING(MD5(RAND()) FROM 1 FOR 225) );
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

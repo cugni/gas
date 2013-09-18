@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.Random;
+
 @RequestMapping("/admin/users")
 @Controller
 @RooWebScaffold(path = "admin/users", formBackingObject = User.class)
@@ -46,6 +50,20 @@ public class    UserController {
 
     void addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("user_birthdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    }
+    private final ThreadLocal<SecureRandom> tsr=new ThreadLocal<SecureRandom>();
+
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
+    public String create(@Valid User user, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+        if (bindingResult.hasErrors()) {
+            populateEditForm(uiModel, user);
+            return "admin/users/create";
+        }
+        user.generateAuthToken();
+
+        uiModel.asMap().clear();
+        user.persist();
+        return "redirect:/admin/users/" + encodeUrlPathSegment(user.getId().toString(), httpServletRequest);
     }
 
 }
