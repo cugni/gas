@@ -148,8 +148,6 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 
-delimiter $$
-
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
@@ -161,8 +159,8 @@ CREATE TABLE `product` (
   `dimensions` varchar(10) DEFAULT NULL,
   `transport_cost` float DEFAULT NULL,
   `stock_quantity` float NOT NULL,
-  `min_to_buy_order` float NOT NULL,
-  `min_to_buy_user` float NOT NULL,
+  `min_to_buy_order` float DEFAULT NULL,
+  `min_to_buy_user` float DEFAULT NULL,
   `max_to_buy_user` float DEFAULT NULL,
   `available_from` date DEFAULT NULL,
   `available_to` date DEFAULT NULL,
@@ -172,8 +170,7 @@ CREATE TABLE `product` (
   KEY `FKC42BD164B4A9FE64` (`producer`),
   KEY `fk_products_users_idx` (`producer`),
   CONSTRAINT `fk_products_users` FOREIGN KEY (`producer`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1$$
-
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
