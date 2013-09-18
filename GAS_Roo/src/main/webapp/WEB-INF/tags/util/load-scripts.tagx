@@ -73,7 +73,15 @@
     <sec:authorize access="isAuthenticated()">
         <sec:authentication var="principal" property="principal"/>
         <script type="text/javascript">window.userId="${principal.authToken}";
-        window.baseURL="${baseURL}";</script>
+        window.baseURL="${baseURL}";
+        try{
+        if(gasAndroid){
+            gasAndroid.setAuthToken(window.userId);
+        }
+        }catch (msg){
+            console.log(msg);
+        }
+        </script>
         <c:if test="${!currentDevice.mobile}">
 
         <script src="${nots}"  type="text/javascript"><!--
