@@ -1,4 +1,6 @@
 package it.polito.ai.gas.business;
+
+import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,8 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.TypedQuery;
-
-import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -52,9 +52,6 @@ public class User implements InterceptPersist, UserDetails {
                 authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));
                 break;
             case ROLE_ADMIN:
-                /* authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
-                 authorities.add(new SimpleGrantedAuthority("ROLE_PRODUCER"));*/
                 authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
                 break;
             default:
@@ -82,9 +79,8 @@ public class User implements InterceptPersist, UserDetails {
     public String toString() {
         return this.getUsername();
     }
-    public String toJson(){
-        return new JSONSerializer().include("id","role","username").exclude("class").serialize(this);
 
-
+    public String toJson() {
+        return new JSONSerializer().include("id", "role", "username").exclude("class").serialize(this);
     }
 }

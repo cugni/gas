@@ -20,10 +20,6 @@ privileged aspect Message_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
-    public static String Message.toJsonArray(Collection<Message> collection, String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
-    }
-    
     public static Collection<Message> Message.fromJsonArrayToMessages(String json) {
         return new JSONDeserializer<List<Message>>().use(null, ArrayList.class).use("values", Message.class).deserialize(json);
     }

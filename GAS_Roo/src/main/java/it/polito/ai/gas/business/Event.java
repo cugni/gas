@@ -1,7 +1,10 @@
 package it.polito.ai.gas.business;
+
+import flexjson.JSONSerializer;
+import java.util.Calendar;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import flexjson.JSONSerializer;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.roo.addon.dbre.RooDbManaged;
@@ -9,8 +12,6 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
-import java.util.Calendar;
-import java.util.Set;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
@@ -43,7 +44,7 @@ public class Event {
         return q;
     }
 
-    public static TypedQuery<Event> findEventsByUsers(Set<User> users) {
+    public static TypedQuery<it.polito.ai.gas.business.Event> findEventsByUsers(Set<it.polito.ai.gas.business.User> users) {
         if (users == null) throw new IllegalArgumentException("The users argument is required");
         EntityManager em = entityManager();
         StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Event AS o WHERE");
@@ -61,37 +62,25 @@ public class Event {
     }
 
     public Integer getCauseId() {
-        if(this.getProposal()!=null)
-            return this.getProposal().getId();
-        if(this.getDeliveryWithdrawal()!=null){
+        if (this.getProposal() != null) return this.getProposal().getId();
+        if (this.getDeliveryWithdrawal() != null) {
             return this.getDeliveryWithdrawal().getId();
         }
-        if(this.getMessage()!=null){
+        if (this.getMessage() != null) {
             return this.getMessage().getId();
         }
-        if(this.getProduct()!=null){
+        if (this.getProduct() != null) {
             return this.getProduct().getId();
         }
-        if(this.getUser()!=null){
+        if (this.getUser() != null) {
             return this.getUser().getId();
         }
-        throw new IllegalStateException("At least one of proposal,delivery withdrawal," +
-                " message, product or user should be different from null");
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
     }
-    public String  getCauseType() {
 
-
-        if (this.getUser() != null)
-           return "user";
-        else if (this.getProposal() != null)
-           return "proposal";
-        else if (this.getDeliveryWithdrawal() != null)
-           return "deliverywithdrawal";
-        else if (this.getMessage() != null)
-           return "message";
-        else if (this.getProduct() != null)
-           return "product";
-        throw new IllegalStateException("At least one of proposal,delivery withdrawal," +
-                " message, product or user should be different from null");
+    public String getCauseType() {
+        // le S...
+        if (this.getUser() != null) return "users"; else if (this.getProposal() != null) return "proposals"; else if (this.getDeliveryWithdrawal() != null) return "deliverywithdrawals"; else if (this.getMessage() != null) return "messages"; else if (this.getProduct() != null) return "products";
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
     }
 }

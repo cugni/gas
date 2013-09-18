@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -50,6 +51,7 @@ public class NotificationService
              @RequestMapping(value="/not/lasts", method = RequestMethod.GET)
              @ResponseBody
              public String getLastNotification() throws JSONException {
+
                  List<Event> evs = Event.findEventsByUsers(Sets.newHashSet(Utils.getCurrentUser())).setMaxResults(5).getResultList();
                  if(evs.isEmpty())
                      return "[]";

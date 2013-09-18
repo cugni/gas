@@ -16,20 +16,12 @@ privileged aspect PurchaseRequest_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
-    public String PurchaseRequest.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
-    }
-    
     public static PurchaseRequest PurchaseRequest.fromJsonToPurchaseRequest(String json) {
         return new JSONDeserializer<PurchaseRequest>().use(null, PurchaseRequest.class).deserialize(json);
     }
     
     public static String PurchaseRequest.toJsonArray(Collection<PurchaseRequest> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
-    }
-    
-    public static String PurchaseRequest.toJsonArray(Collection<PurchaseRequest> collection, String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<PurchaseRequest> PurchaseRequest.fromJsonArrayToPurchaseRequests(String json) {

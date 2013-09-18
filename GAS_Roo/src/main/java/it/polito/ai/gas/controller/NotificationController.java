@@ -70,7 +70,7 @@ public class NotificationController {
 
         }
 
-        return "redirect:"+sez+"/"+view_parameter+"/"+idCause;
+        return "redirect:/"+sez+"/"+view_parameter+"/"+idCause;
     }
 
 

@@ -51,9 +51,11 @@ privileged aspect Product_Roo_DbManaged {
     private Float Product.stockQuantity;
     
     @Column(name = "min_to_buy_order")
+    @NotNull
     private Float Product.minToBuyOrder;
     
     @Column(name = "min_to_buy_user")
+    @NotNull
     private Float Product.minToBuyUser;
     
     @Column(name = "max_to_buy_user")

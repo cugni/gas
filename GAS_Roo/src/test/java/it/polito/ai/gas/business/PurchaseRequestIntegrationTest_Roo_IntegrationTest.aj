@@ -6,10 +6,7 @@ package it.polito.ai.gas.business;
 import it.polito.ai.gas.business.PurchaseRequest;
 import it.polito.ai.gas.business.PurchaseRequestDataOnDemand;
 import it.polito.ai.gas.business.PurchaseRequestIntegrationTest;
-import java.util.Iterator;
 import java.util.List;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +19,7 @@ privileged aspect PurchaseRequestIntegrationTest_Roo_IntegrationTest {
     
     declare @type: PurchaseRequestIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
-    declare @type: PurchaseRequestIntegrationTest: @ContextConfiguration(locations = "classpath*:/META-INF/spring/applicationContext*.xml");
+    declare @type: PurchaseRequestIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml");
     
     declare @type: PurchaseRequestIntegrationTest: @Transactional;
     
@@ -75,16 +72,7 @@ privileged aspect PurchaseRequestIntegrationTest_Roo_IntegrationTest {
         PurchaseRequest obj = dod.getNewTransientPurchaseRequest(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'PurchaseRequest' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'PurchaseRequest' identifier to be null", obj.getId());
-        try {
-            obj.persist();
-        } catch (final ConstraintViolationException e) {
-            final StringBuilder msg = new StringBuilder();
-            for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
-                final ConstraintViolation<?> cv = iter.next();
-                msg.append("[").append(cv.getRootBean().getClass().getName()).append(".").append(cv.getPropertyPath()).append(": ").append(cv.getMessage()).append(" (invalid value = ").append(cv.getInvalidValue()).append(")").append("]");
-            }
-            throw new IllegalStateException(msg.toString(), e);
-        }
+        obj.persist();
         obj.flush();
         Assert.assertNotNull("Expected 'PurchaseRequest' identifier to no longer be null", obj.getId());
     }

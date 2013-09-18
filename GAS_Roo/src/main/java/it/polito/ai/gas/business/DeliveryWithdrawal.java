@@ -1,4 +1,5 @@
 package it.polito.ai.gas.business;
+
 import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
