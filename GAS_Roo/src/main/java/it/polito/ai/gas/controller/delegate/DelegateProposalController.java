@@ -55,8 +55,7 @@ public class DelegateProposalController {
     }
     @RequestMapping(produces = "text/html")
     public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User  user  = Utils.getCurrentUser();
 
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();

@@ -1,13 +1,14 @@
 package it.polito.ai.gas.business;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ManyToOne;
+import javax.persistence.TypedQuery;
+import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.persistence.TypedQuery;
-import javax.validation.constraints.NotNull;
 
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
@@ -22,8 +23,6 @@ public class PurchaseRequest {
     @ManyToOne
     private User acquirer;
 
-    /**
-     */
     @NotNull
     private Boolean completed;
 
@@ -41,7 +40,7 @@ public class PurchaseRequest {
         return rem;
     }
 
-    public static TypedQuery<PurchaseRequest> findIncompletePurchaseRequests(Proposal proposal) {
+    public static TypedQuery<it.polito.ai.gas.business.PurchaseRequest> findIncompletePurchaseRequests(Proposal proposal) {
         if (proposal == null) throw new IllegalArgumentException("The proposal argument is required");
         EntityManager em = PurchaseRequest.entityManager();
         TypedQuery<PurchaseRequest> q = em.createQuery("SELECT o FROM PurchaseRequest AS o WHERE (o.completed IS NOT :completed AND o.proposal = :proposal)", PurchaseRequest.class);

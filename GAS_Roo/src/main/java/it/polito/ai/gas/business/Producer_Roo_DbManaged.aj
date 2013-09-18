@@ -8,14 +8,16 @@ import it.polito.ai.gas.business.User;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 privileged aspect Producer_Roo_DbManaged {
     
     @ManyToOne
-    @JoinColumn(name = "delegate", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "delegate", referencedColumnName = "id")
     private User Producer.delegate;
     
     @Column(name = "company_name", length = 40)
+    @NotNull
     private String Producer.companyName;
     
     @Column(name = "description", length = 40)

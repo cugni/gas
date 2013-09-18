@@ -1,8 +1,9 @@
 package it.polito.ai.gas.business;
+
+import flexjson.JSONSerializer;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Size;
-import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -19,7 +20,7 @@ public class Message implements InterceptPersist {
     @Size(max = 2500)
     private String text;
 
-    public static TypedQuery<Message> findMessagesByProposalOrderedByDate(Proposal proposal) {
+    public static TypedQuery<it.polito.ai.gas.business.Message> findMessagesByProposalOrderedByDate(Proposal proposal) {
         if (proposal == null) throw new IllegalArgumentException("The proposal argument is required");
         EntityManager em = Message.entityManager();
         TypedQuery<Message> q = em.createQuery("SELECT o FROM Message AS o WHERE o.proposal = :proposal ORDER BY o.date DESC", Message.class);

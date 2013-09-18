@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_it_polito_ai_gas_business_Product" object="${product}" path="/admin/products" z="user-managed"
+            create="false" update="false" delete="false">
+        <field:display field="description" id="s_it_polito_ai_gas_business_Product_description" object="${product}" z="TGYNP47OReHYB4fkcwFmvpB5Kjc="/>
+        <field:display field="name" id="s_it_polito_ai_gas_business_Product_name" object="${product}" z="xQ1TEW3B/zJTTzR0XR9r8eLRZDc="/>
+        <field:display field="cost" id="s_it_polito_ai_gas_business_Product_cost" object="${product}" z="YGPIkVExZZAezwnnGGmKZSkJaZM="/>
+        <field:display field="units" id="s_it_polito_ai_gas_business_Product_units" object="${product}" z="gGPOhXVo2kngvG7DRL00gadaI3w="/>
+        <field:display field="quantity" id="s_it_polito_ai_gas_business_Product_quantity" object="${product}" z="t6PtbvfT5Lp8LSM3V2rsgwnqlHQ="/>
+        <field:display field="dimensions" id="s_it_polito_ai_gas_business_Product_dimensions" object="${product}" z="8cK8b/RLY6zcJ/GNQ80SL3K5K4E="/>
+        <field:display field="transportCost" id="s_it_polito_ai_gas_business_Product_transportCost" object="${product}" z="Q3kSt7teZpqb0o3yfXt/l+H2Z9E="/>
+        <field:display field="stockQuantity" id="s_it_polito_ai_gas_business_Product_stockQuantity" object="${product}" z="VFvhrdJp+XJdufs5bm6m55re5i4="/>
+        <field:display field="minToBuyOrder" id="s_it_polito_ai_gas_business_Product_minToBuyOrder" object="${product}" z="lhpSrv50pHfgbJ6FKuGzrQxiogI="/>
+        <field:display field="minToBuyUser" id="s_it_polito_ai_gas_business_Product_minToBuyUser" object="${product}" z="/AQglYBTzvg3DmrYEaM6tQLdnaQ="/>
+        <field:display field="maxToBuyUser" id="s_it_polito_ai_gas_business_Product_maxToBuyUser" object="${product}" z="Nwd+A8FuwqQeHPtBrx0p+ZNWyV8="/>
+        <field:display date="true" dateTimePattern="${product_availablefrom_date_format}" field="availableFrom" id="s_it_polito_ai_gas_business_Product_availableFrom" object="${product}" z="jOYq5ZpYhFbE3vGOJ/2/0rCHz3k="/>
+        <field:display date="true" dateTimePattern="${product_availableto_date_format}" field="availableTo" id="s_it_polito_ai_gas_business_Product_availableTo" object="${product}" z="l0S3i/048DMw+a3fxL/EMepCaxA="/>
+        <field:display field="producer" id="s_it_polito_ai_gas_business_Product_producer" object="${product}" z="+o7iWMPOnQgFK1LnbL2vPRJhcIo="/>
+    </page:show>
+</div>
