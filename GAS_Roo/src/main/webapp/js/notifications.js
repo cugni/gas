@@ -9,7 +9,8 @@ $(function(){
         // We are now ready to cut the request
         var request = { url:window.baseURL+"not/"+window.userId,
             contentType : "application/json",
-         //   trackMessageSize: true,
+            trackMessageSize: true,
+            trackMessageLength: true,
             logLevel:'debug',
             shared : true,
             transport : transport ,
@@ -24,7 +25,7 @@ $(function(){
         };
 
         request.onTransportFailure = function(errorMsg, request) {
-            atmosphere.info(errorMsg);
+            console.log(errorMsg);
             if (window.EventSource) {
                 request.fallbackTransport = "sse";
                 transport = "see";

@@ -2,10 +2,8 @@ package it.polito.ai.gas.controller;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import it.polito.ai.gas.business.Event;
-import it.polito.ai.gas.business.Product;
-import it.polito.ai.gas.business.Proposal;
-import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.Utils;
+import it.polito.ai.gas.business.*;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,36 +39,38 @@ public class NotificationController {
 
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String show(@PathVariable("id") Integer id, Model uiModel) {
-        User  user  =
-                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("event", Event.findEvent(id));
-        uiModel.addAttribute("itemId", id);
-
-        /* dato che ogni evento puo' essere generato da un oggetto diverso,
-        * nella view mostro solamente il campo settato
-        * e non tutti gli altri messi a null.
-        * view_parameter è la stringa del campo che mostro.
-        * */
         Event event = Event.findEvent(id);
-        String view_parameter = "";
+        String view_parameter = event.getCauseType();
+        UserType u= Utils.getCurrentUser().getRole();
+        String sez;
+        Integer idCause =event.getCauseId();
+        switch (u){
+            case ROLE_ADMIN:
+                if(event.getType().equals(EventType.NEW_USER)){
+                    return "redirect:/admin/users/approve";
+                }
+                sez="admin";
+                break;
+            case ROLE_DELEGATE:
+                if(view_parameter.equals("proposals")
+                        &&event.getProposal()
+                        .getDelegate().equals(Utils.getCurrentUser() )){
+                  return "redirect:/delegate/proposals/"+idCause;
+                }
+                //altrimenti il delegato è come un utente normale.
+            case ROLE_USER:
+                sez="user";
+                break;
+            case ROLE_PRODUCER:
+                sez="producer";
+                break;
+            default:
+                throw new IllegalStateException("That role doesn't exist!");
 
 
-        if (event.getUser() != null)
-            view_parameter = "user";
-         else if (event.getProposal() != null)
-            view_parameter = "proposal";
-        else if (event.getDeliveryWithdrawal() != null)
-            view_parameter = "deliverywithdrawal";
-        else if (event.getMessage() != null)
-            view_parameter = "message";
-        else if (event.getProduct() != null)
-            view_parameter = "product";
+        }
 
-        uiModel.addAttribute("view_parameter", view_parameter);
-        uiModel.addAttribute("view_id", "c_it_polito_ai_gas_business_Event_"+view_parameter);
-
-        return "/notification/show";
+        return "redirect:"+sez+"/"+view_parameter+"/"+idCause;
     }
 
 

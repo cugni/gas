@@ -130,12 +130,12 @@ public aspect Event_Pointcut {
         
         e.setDate(Calendar.getInstance());
         e.persist();
-        sentToUsers(e,e.getUsers());
+        sentToUsers(e);
 
 
     }
-     private void sentToUsers(Event e,Collection<User> list){
-         for(User u:list){
+     private void sentToUsers(Event e){
+         for(User u:e.getUsers()){
          MetaBroadcaster.getDefault().broadcastTo("/not/"+u.getId(),e.toJson());
          //Future<String> broadcast = AtmosphereUtils.lookupBroadcaster().broadcast("{message:" + e.toString() + "}");
          l.log(Level.INFO, "Broadcasted event {0} ",e);
