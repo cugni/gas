@@ -1,8 +1,6 @@
 package it.polito.ai.gas.business;
-
 import flexjson.JSONSerializer;
 import java.util.Calendar;
-import javax.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

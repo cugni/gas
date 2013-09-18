@@ -20,6 +20,10 @@ privileged aspect DeliveryWithdrawal_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
+    public static String DeliveryWithdrawal.toJsonArray(Collection<DeliveryWithdrawal> collection, String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
+    }
+    
     public static Collection<DeliveryWithdrawal> DeliveryWithdrawal.fromJsonArrayToDeliveryWithdrawals(String json) {
         return new JSONDeserializer<List<DeliveryWithdrawal>>().use(null, ArrayList.class).use("values", DeliveryWithdrawal.class).deserialize(json);
     }

@@ -92,9 +92,7 @@
         <init-param>
             <param-name>org.atmosphere.cpr.AtmosphereInterceptor</param-name>
             <!--      org.atmosphere.interceptor.AtmosphereResourceLifecycleInterceptor,-->
-            <param-value>
-         it.polito.ai.gas.atmosphere.MyTrackMessageSizeInterceptor
-            </param-value>
+            <param-value>it.polito.ai.gas.atmosphere.MyTrackMessageSizeInterceptor</param-value>
         </init-param>
         <init-param>
             <param-name>contextConfigLocation</param-name>

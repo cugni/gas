@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import flexjson.JSONSerializer;
 import java.util.Calendar;
 import java.util.Set;
@@ -28,15 +27,8 @@ public class Event {
     @org.springframework.format.annotation.DateTimeFormat(style = "MM")
     private Calendar date;
 
-    
     public String toJson() {
-        return new JSONSerializer().include("id", "type",
-                "users",
-                "deliveryWithdrawal",
-                "message",
-                "product",
-                "proposal",
-                "user").exclude("*").serialize(this);
+        return new JSONSerializer().include("id", "type", "users", "deliveryWithdrawal", "message", "product", "proposal", "user").exclude("*").serialize(this);
     }
 
     public static TypedQuery<Event> findEventsByUser(User user) {
@@ -44,23 +36,6 @@ public class Event {
         EntityManager em = Event.entityManager();
         TypedQuery<Event> q = em.createQuery("SELECT o FROM Event AS o WHERE o.user = :user ORDER BY o.date DESC", Event.class);
         q.setParameter("user", user);
-        return q;
-    }
-
-    public static TypedQuery<it.polito.ai.gas.business.Event> findEventsByUsers(Set<it.polito.ai.gas.business.User> users) {
-        if (users == null) throw new IllegalArgumentException("The users argument is required");
-        EntityManager em = entityManager();
-        StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Event AS o WHERE");
-        for (int i = 0; i < users.size(); i++) {
-            if (i > 0) queryBuilder.append(" AND");
-            queryBuilder.append(" :users_item").append(i).append(" MEMBER OF o.users");
-        }
-        queryBuilder.append(" ORDER BY o.date DESC");
-        TypedQuery<Event> q = em.createQuery(queryBuilder.toString(), Event.class);
-        int usersIndex = 0;
-        for (User _user : users) {
-            q.setParameter("users_item" + usersIndex++, _user);
-        }
         return q;
     }
 
@@ -107,5 +82,22 @@ public class Event {
     @Override
     public String toString() {
         return this.getType() + ": " + this.getCauseObject().toString();
+    }
+
+    public static TypedQuery<Event> findEventsByUsers(Set<User> users) {
+        if (users == null) throw new IllegalArgumentException("The users argument is required");
+        EntityManager em = entityManager();
+        StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Event AS o WHERE");
+        for (int i = 0; i < users.size(); i++) {
+            if (i > 0) queryBuilder.append(" AND");
+            queryBuilder.append(" :users_item").append(i).append(" MEMBER OF o.users");
+        }
+        queryBuilder.append(" ORDER BY o.date DESC");
+        TypedQuery<Event> q = em.createQuery(queryBuilder.toString(), Event.class);
+        int usersIndex = 0;
+        for (User _user : users) {
+            q.setParameter("users_item" + usersIndex++, _user);
+        }
+        return q;
     }
 }

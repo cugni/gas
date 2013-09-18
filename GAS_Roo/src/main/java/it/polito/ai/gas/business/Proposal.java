@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import flexjson.JSONSerializer;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -20,6 +20,10 @@ privileged aspect Product_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }
     
+    public static String Product.toJsonArray(Collection<Product> collection, String[] fields) {
+        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
+    }
+    
     public static Collection<Product> Product.fromJsonArrayToProducts(String json) {
         return new JSONDeserializer<List<Product>>().use(null, ArrayList.class).use("values", Product.class).deserialize(json);
     }

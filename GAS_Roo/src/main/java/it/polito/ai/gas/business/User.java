@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import javax.persistence.*;
-
 import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -40,8 +39,8 @@ public class User implements InterceptPersist, UserDetails {
 
     public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-        UserType role1=this.getRole()  ;
-        switch(role1) {
+        UserType role1 = this.getRole();
+        switch((role1)) {
             case ROLE_DELEGATE:
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
             case ROLE_USER:
@@ -88,9 +87,8 @@ public class User implements InterceptPersist, UserDetails {
 
     /**
      */
-    @Column(name = "auth_token", length = 256,unique = true)
+    @Column(name = "auth_token", length = 256, unique = true)
     private String authToken;
-
 
     public void generateAuthToken() {
         String auth = new BigInteger(130, new SecureRandom()).toString(256);

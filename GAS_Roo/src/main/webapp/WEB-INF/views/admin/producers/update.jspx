@@ -19,6 +19,7 @@
         <field:simple field="proposals" id="c_it_polito_ai_gas_business_Producer_proposals" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_Producer_purchaseRequests" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_Producer_purchaseRequestParts" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
+        <field:input field="authToken" id="c_it_polito_ai_gas_business_Producer_authToken" z="+wdIuUDplOAQhuuGp/vQ5uCCvSE="/>
         <field:select field="delegate" id="c_it_polito_ai_gas_business_Producer_delegate" itemValue="id" items="${users}" path="/admin/users" z="bE11X9fWo3tgX34Z00rVj7Xusuo="/>
         <field:input field="companyName" id="c_it_polito_ai_gas_business_Producer_companyName" required="true" z="C4k540KFjCWDCqXEruxmWBdZKb8="/>
         <field:input field="description" id="c_it_polito_ai_gas_business_Producer_description" z="zGQpjWdS5UclQazwyIZ3DaNF9ys="/>

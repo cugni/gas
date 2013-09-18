@@ -15,6 +15,7 @@
         <field:display field="password" id="s_it_polito_ai_gas_business_Producer_password" object="${producer}" z="B/aztvzaNwVxVyA1uojbJLqD6qk="/>
         <field:display field="approved" id="s_it_polito_ai_gas_business_Producer_approved" object="${producer}" z="Y87iHJHJbnVbjD64VwzVui32JJ4="/>
         <field:display field="role" id="s_it_polito_ai_gas_business_Producer_role" object="${producer}" z="3CPqhOfaaWvAuGdrdDrvGDZGJsk="/>
+        <field:display field="authToken" id="s_it_polito_ai_gas_business_Producer_authToken" object="${producer}" z="2l5vvUrFGtOXTH7L0iqdx5M3I5U="/>
         <field:display field="delegate" id="s_it_polito_ai_gas_business_Producer_delegate" object="${producer}" z="06Rv50r/4YZu1ANopJLxcxR87V0="/>
         <field:display field="companyName" id="s_it_polito_ai_gas_business_Producer_companyName" object="${producer}" z="1HSxLU3OI5M57yIWvxLiLw5hyG8="/>
         <field:display field="description" id="s_it_polito_ai_gas_business_Producer_description" object="${producer}" z="HCIp+RU5Y48PJFm7W6u6Z2wj/fw="/>

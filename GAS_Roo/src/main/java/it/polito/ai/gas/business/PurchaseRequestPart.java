@@ -1,5 +1,4 @@
 package it.polito.ai.gas.business;
-
 import java.util.List;
 import org.springframework.roo.addon.dbre.RooDbManaged;
 import org.springframework.roo.addon.javabean.RooJavaBean;
