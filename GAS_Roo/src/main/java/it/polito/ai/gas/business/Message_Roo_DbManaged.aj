@@ -7,17 +7,11 @@ import it.polito.ai.gas.business.Event;
 import it.polito.ai.gas.business.Message;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
-import java.util.Calendar;
 import java.util.Set;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 privileged aspect Message_Roo_DbManaged {
     
@@ -31,12 +25,6 @@ privileged aspect Message_Roo_DbManaged {
     @ManyToOne
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
     private User Message.user;
-    
-    @Column(name = "date")
-    @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "MM")
-    private Calendar Message.date;
     
     public Set<Event> Message.getEvents() {
         return events;
@@ -60,14 +48,6 @@ privileged aspect Message_Roo_DbManaged {
     
     public void Message.setUser(User user) {
         this.user = user;
-    }
-    
-    public Calendar Message.getDate() {
-        return date;
-    }
-    
-    public void Message.setDate(Calendar date) {
-        this.date = date;
     }
     
 }

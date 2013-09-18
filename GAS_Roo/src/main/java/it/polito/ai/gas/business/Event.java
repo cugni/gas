@@ -3,6 +3,7 @@ package it.polito.ai.gas.business;
 import flexjson.JSONSerializer;
 import java.util.Calendar;
 import java.util.Set;
+import javax.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import org.joda.time.format.DateTimeFormat;
@@ -33,7 +34,13 @@ public class Event {
     }
 
     public String toJson() {
-        return new JSONSerializer().include("id", "type").exclude("date", "class").serialize(this);
+        return new JSONSerializer().include("id", "type",
+                "users",
+                "deliveryWithdrawal",
+                "message",
+                "product",
+                "proposal",
+                "user").exclude("*").serialize(this);
     }
 
     public static TypedQuery<Event> findEventsByUser(User user) {
@@ -79,7 +86,6 @@ public class Event {
     }
 
     public String getCauseType() {
-        // le S...
         if (this.getUser() != null) return "users"; else if (this.getProposal() != null) return "proposals"; else if (this.getDeliveryWithdrawal() != null) return "deliverywithdrawals"; else if (this.getMessage() != null) return "messages"; else if (this.getProduct() != null) return "products";
         throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
     }

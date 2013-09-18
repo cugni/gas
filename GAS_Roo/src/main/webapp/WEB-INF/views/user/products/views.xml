@@ -5,4 +5,13 @@
 <definition extends="default" name="user/products/show">
         <put-attribute name="body" value="/WEB-INF/views/user/products/show.jspx"/>
     </definition>
+<definition extends="default" name="user/products/list">
+        <put-attribute name="body" value="/WEB-INF/views/user/products/list.jspx"/>
+    </definition>
+<definition extends="default" name="user/products/create">
+        <put-attribute name="body" value="/WEB-INF/views/user/products/create.jspx"/>
+    </definition>
+<definition extends="default" name="user/products/update">
+        <put-attribute name="body" value="/WEB-INF/views/user/products/update.jspx"/>
+    </definition>
 </tiles-definitions>

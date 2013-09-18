@@ -4,6 +4,7 @@
 package it.polito.ai.gas.business;
 
 import it.polito.ai.gas.business.Message;
+import java.util.Calendar;
 
 privileged aspect Message_Roo_JavaBean {
     
@@ -13,6 +14,14 @@ privileged aspect Message_Roo_JavaBean {
     
     public void Message.setText(String text) {
         this.text = text;
+    }
+    
+    public Calendar Message.getDate() {
+        return this.date;
+    }
+    
+    public void Message.setDate(Calendar date) {
+        this.date = date;
     }
     
 }

@@ -4,6 +4,7 @@ import it.polito.ai.gas.Utils;
 import it.polito.ai.gas.business.DeliveryWithdrawal;
 import it.polito.ai.gas.business.Proposal;
 import it.polito.ai.gas.business.User;
+import it.polito.ai.gas.business.UserType;
 import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,17 @@ public class UserDeliveryWithdrawalController {
     public String addCollector(@RequestParam(value = "proposal", required = true) Integer proposal,
                                Model uiModel) {
 
+
+        if (Utils.getCurrentUser().getRole() != UserType.ROLE_USER)
+        {
+            uiModel.asMap().clear();
+            uiModel.addAttribute("error",
+                    "Only users can pick orders!");
+
+            uiModel.addAttribute("deliverywithdrawal", new DeliveryWithdrawal());
+
+            return "user/deliverywithdrawals/show";
+        }
         // rapporto 1 : 1   DW <-> Proposal
 
         if (DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
@@ -105,8 +117,16 @@ public class UserDeliveryWithdrawalController {
             DeliveryWithdrawal dw = DeliveryWithdrawal.findDeliveryWithdrawalsByProposal(
                     Proposal.findProposal(proposal)).getSingleResult();
 
-            dw.setAddress(deliveryWithdrawal.getAddress());
-            dw.merge();
+            if (deliveryWithdrawal.getAddress() != null)
+            {
+                dw.setAddress(deliveryWithdrawal.getAddress());
+
+                dw.merge();
+            }
+
+
+            if (deliveryWithdrawal.getWithdrawalDate() == null)
+                return "redirect:/user/proposals/" + proposal;
 
             if (dw.getDeliveryDate() == null)
             {
