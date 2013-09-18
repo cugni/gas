@@ -27,10 +27,6 @@ public class Event {
     @org.springframework.format.annotation.DateTimeFormat(style = "MM")
     private Calendar date;
 
-    public String toString() {
-        return type.name() + ":" + this.getMessage() + "-" + this.getDate().toString();
-    }
-
     public String toJson() {
         return new JSONSerializer().include("id", "type").exclude("date", "class").serialize(this);
     }
@@ -61,37 +57,46 @@ public class Event {
     }
 
     public Integer getCauseId() {
-        if(this.getProposal()!=null)
-            return this.getProposal().getId();
-        if(this.getDeliveryWithdrawal()!=null){
+        if (this.getProposal() != null) return this.getProposal().getId();
+        if (this.getDeliveryWithdrawal() != null) {
             return this.getDeliveryWithdrawal().getId();
         }
-        if(this.getMessage()!=null){
+        if (this.getMessage() != null) {
             return this.getMessage().getId();
         }
-        if(this.getProduct()!=null){
+        if (this.getProduct() != null) {
             return this.getProduct().getId();
         }
-        if(this.getUser()!=null){
+        if (this.getUser() != null) {
             return this.getUser().getId();
         }
-        throw new IllegalStateException("At least one of proposal,delivery withdrawal," +
-                " message, product or user should be different from null");
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
     }
-    public String  getCauseType() {
 
+    public Object getCauseObject() {
+        if (this.getProposal() != null) return this.getProposal();
+        if (this.getDeliveryWithdrawal() != null) {
+            return this.getDeliveryWithdrawal();
+        }
+        if (this.getMessage() != null) {
+            return this.getMessage();
+        }
+        if (this.getProduct() != null) {
+            return this.getProduct();
+        }
+        if (this.getUser() != null) {
+            return this.getUser();
+        }
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
+    }
 
-        if (this.getUser() != null)
-           return "user";
-        else if (this.getProposal() != null)
-           return "proposal";
-        else if (this.getDeliveryWithdrawal() != null)
-           return "deliverywithdrawal";
-        else if (this.getMessage() != null)
-           return "message";
-        else if (this.getProduct() != null)
-           return "product";
-        throw new IllegalStateException("At least one of proposal,delivery withdrawal," +
-                " message, product or user should be different from null");
+    public String getCauseType() {
+        if (this.getUser() != null) return "user"; else if (this.getProposal() != null) return "proposal"; else if (this.getDeliveryWithdrawal() != null) return "deliverywithdrawal"; else if (this.getMessage() != null) return "message"; else if (this.getProduct() != null) return "product";
+        throw new IllegalStateException("At least one of proposal,delivery withdrawal," + " message, product or user should be different from null");
+    }
+
+    @Override
+    public String toString() {
+        return this.getType() + ": " + this.getCauseObject().toString();
     }
 }

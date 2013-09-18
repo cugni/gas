@@ -16,4 +16,12 @@ privileged aspect User_Roo_JavaBean {
         this.role = role;
     }
     
+    public String User.getAuthToken() {
+        return this.authToken;
+    }
+    
+    public void User.setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+    
 }

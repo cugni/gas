@@ -90,6 +90,14 @@ privileged aspect UserController_Roo_Controller_Json {
         return new ResponseEntity<String>(User.toJsonArray(User.findUsersByApprovedNot(approved == null ? Boolean.FALSE : approved).getResultList()), headers, HttpStatus.OK);
     }
     
+    @RequestMapping(params = "find=ByAuthTokenEquals", headers = "Accept=application/json")
+    @ResponseBody
+    public ResponseEntity<String> UserController.jsonFindUsersByAuthTokenEquals(@RequestParam("authToken") String authToken) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        return new ResponseEntity<String>(User.toJsonArray(User.findUsersByAuthTokenEquals(authToken).getResultList()), headers, HttpStatus.OK);
+    }
+    
     @RequestMapping(params = "find=ByRole", headers = "Accept=application/json")
     @ResponseBody
     public ResponseEntity<String> UserController.jsonFindUsersByRole(@RequestParam("role") UserType role) {

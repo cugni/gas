@@ -15,6 +15,7 @@
         <field:simple field="purchaseRequests" id="c_it_polito_ai_gas_business_User_purchaseRequests" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:simple field="purchaseRequestParts" id="c_it_polito_ai_gas_business_User_purchaseRequestParts" messageCode="entity_reference_not_managed" render="false" z="user-managed"/>
         <field:datetime dateTimePattern="${user_birthdate_date_format}" field="birthDate" id="c_it_polito_ai_gas_business_User_birthDate" required="true" z="user-managed"/>
+        <field:input field="authToken" id="c_it_polito_ai_gas_business_User_authToken" z="zQVvNuTXMt3ko6nYK4HrKTNkn5k="/>
         <field:input field="username" id="c_it_polito_ai_gas_business_User_username" required="true" z="6QO2uQk2hNhRwRalFQ+E3gvtC7k="/>
         <field:input field="name" id="c_it_polito_ai_gas_business_User_name" required="true" z="Qd0STxJsC8qbikimVCtHnu913aA="/>
         <field:input field="surname" id="c_it_polito_ai_gas_business_User_surname" required="true" z="6RZ0vG9oj8ZJ1mubyNU6BlrqeAQ="/>

@@ -13,7 +13,7 @@ import org.atmosphere.cpr.AtmosphereResource;
 public class MyTrackMessageSizeInterceptor extends org.atmosphere.client.TrackMessageSizeInterceptor{
     @Override
     public Action inspect(AtmosphereResource r) {
-        if (! r.getRequest().getRequestURI().matches("/not/[0-9][1-9]*")){
+        if (! r.getRequest().getRequestURI().matches("/ws/.+")){
             return    Action.CONTINUE;
         }
         return super.inspect(r);    //To change body of overridden methods use File | Settings | File Templates.

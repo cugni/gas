@@ -5,16 +5,16 @@ import com.google.common.collect.Sets;
 import it.polito.ai.gas.Utils;
 import it.polito.ai.gas.business.*;
 import org.joda.time.format.DateTimeFormat;
+import org.json.JSONException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @RequestMapping("/notification")
 @Controller
@@ -35,6 +35,21 @@ public class NotificationController {
 
         }
         return "/notification/list";
+    }
+    @RequestMapping(value="/lasts", method = RequestMethod.GET)
+    @ResponseBody
+    public String getLastNotification() throws JSONException {
+        List<Event> evs = Event.findEventsByUsers(Sets.newHashSet(Utils.getCurrentUser())).setMaxResults(5).getResultList();
+        if(evs.isEmpty())
+            return "[]";
+        StringBuilder sb=new StringBuilder("[");
+
+        for(Event e:evs){
+            sb.append(e.toJson()+",");
+        }
+        sb.setCharAt(sb.length()-1,']');
+
+        return sb.toString();
     }
 
     @RequestMapping(value = "/{id}", produces = "text/html")

@@ -1,12 +1,10 @@
 package it.polito.ai.gas.business;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.Enumerated;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 
 import flexjson.JSONSerializer;
 import org.springframework.roo.addon.dbre.RooDbManaged;
@@ -21,13 +19,14 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import javax.validation.constraints.NotNull;
 
 @SuppressWarnings("serial")
 @RooJavaBean
 @RooDbManaged(automaticallyDelete = true)
 @RooJson
 @Inheritance(strategy = InheritanceType.JOINED)
-@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole" })
+@RooJpaActiveRecord(versionField = "", table = "user", finders = { "findUsersByUsernameEquals", "findUsersByApprovedNot", "findUsersByRole", "findUsersByAuthTokenEquals" })
 public class User implements InterceptPersist, UserDetails {
 
     @Enumerated
@@ -42,7 +41,8 @@ public class User implements InterceptPersist, UserDetails {
 
     public Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-        switch(this.getRole()) {
+        UserType role1=this.getRole()  ;
+        switch(role1) {
             case ROLE_DELEGATE:
                 authorities.add(new SimpleGrantedAuthority("ROLE_DELEGATE"));
             case ROLE_USER:
@@ -82,9 +82,19 @@ public class User implements InterceptPersist, UserDetails {
     public String toString() {
         return this.getUsername();
     }
-    public String toJson(){
-        return new JSONSerializer().include("id","role","username").exclude("class").serialize(this);
+
+    public String toJson() {
+        return new JSONSerializer().include("id", "role", "username").exclude("class").serialize(this);
+    }
+
+    /**
+     */
+    @Column(name = "auth_token", length = 256,unique = true)
+    private String authToken;
 
 
+    public void generateAuthToken() {
+        String auth = new BigInteger(130, new SecureRandom()).toString(256);
+        this.setAuthToken(auth);
     }
 }

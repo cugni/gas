@@ -5,6 +5,7 @@
     <page:show id="ps_it_polito_ai_gas_business_User" object="${user}" path="/admin/users" z="user-managed">
         <field:display field="role" id="s_it_polito_ai_gas_business_User_role" object="${user}" z="6cpiezJj3B1/4reFZXU67m+fOB0="/>
         <field:display field="password" id="s_it_polito_ai_gas_business_User_password" object="${user}" render="false" z="user-managed"/>
+        <field:display field="authToken" id="s_it_polito_ai_gas_business_User_authToken" object="${user}" z="/HpbA+plZlLSEXIHTONULrky1iY="/>
         <field:display field="events" id="s_it_polito_ai_gas_business_User_events" object="${user}" z="XnF1icCSI0FnPGbvSAtpYMnWtbY="/>
         <field:display field="username" id="s_it_polito_ai_gas_business_User_username" object="${user}" z="Lk/0227RaPKeQRyeW9NcB4pQd2s="/>
         <field:display field="name" id="s_it_polito_ai_gas_business_User_name" object="${user}" z="CIOy90VGUrO36kk/OidDSd/Xy18="/>

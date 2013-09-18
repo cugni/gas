@@ -8,10 +8,10 @@
                 <table:column id="c_it_polito_ai_gas_business_User_username" property="username"/>
                 <table:column id="c_it_polito_ai_gas_business_User_name" property="name" z="user-managed"/>
                 <table:column id="c_it_polito_ai_gas_business_User_role" property="role" z="user-managed"/>
-                <table:column render="false" id="c_it_polito_ai_gas_business_User_events" property="events" z="user-managed"/>
+                <table:column id="c_it_polito_ai_gas_business_User_events" property="events" render="false" z="user-managed"/>
             </table:table>
         </sec:authorize>
-       <!-- <sec:authorize ifNotGranted="ROLE_ADMIN">
+        <!-- <sec:authorize ifNotGranted="ROLE_ADMIN">
             <table:table create="false" data="${users}" delete="false" id="l_it_polito_ai_gas_business_User" path="/users" update="false" z="SMzHymDdfI2+caufHVdU824Phj8=">
                 <table:column id="c_it_polito_ai_gas_business_User_username" property="username"/>
             </table:table>

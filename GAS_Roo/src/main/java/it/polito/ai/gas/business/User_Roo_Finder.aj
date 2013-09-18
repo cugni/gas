@@ -18,6 +18,14 @@ privileged aspect User_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<User> User.findUsersByAuthTokenEquals(String authToken) {
+        if (authToken == null || authToken.length() == 0) throw new IllegalArgumentException("The authToken argument is required");
+        EntityManager em = User.entityManager();
+        TypedQuery<User> q = em.createQuery("SELECT o FROM User AS o WHERE o.authToken = :authToken", User.class);
+        q.setParameter("authToken", authToken);
+        return q;
+    }
+    
     public static TypedQuery<User> User.findUsersByRole(UserType role) {
         if (role == null) throw new IllegalArgumentException("The role argument is required");
         EntityManager em = User.entityManager();
