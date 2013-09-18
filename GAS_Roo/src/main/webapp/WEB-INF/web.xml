@@ -83,7 +83,7 @@
 
 
     <servlet>
-        <servlet-name>GAS_Atmosphere</servlet-name>
+        <servlet-name>GAS_Roo</servlet-name>
         <servlet-class>org.atmosphere.cpr.MeteorServlet</servlet-class>
         <init-param>
             <param-name>org.atmosphere.servlet</param-name>
@@ -91,8 +91,9 @@
         </init-param>
         <init-param>
             <param-name>org.atmosphere.cpr.AtmosphereInterceptor</param-name>
+            <!--      org.atmosphere.interceptor.AtmosphereResourceLifecycleInterceptor,-->
             <param-value>
-                org.atmosphere.interceptor.HeartbeatInterceptor,org.atmosphere.interceptor.AtmosphereResourceLifecycleInterceptor,org.atmosphere.client.TrackMessageSizeInterceptor
+         it.polito.ai.gas.atmosphere.MyTrackMessageSizeInterceptor
             </param-value>
         </init-param>
         <init-param>
@@ -102,7 +103,7 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <servlet>
+  <!--  <servlet>
         <servlet-name>GAS_Roo</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
@@ -110,7 +111,7 @@
             <param-value>WEB-INF/spring/webmvc-config.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
-    </servlet>
+    </servlet>   -->
 
 
     <servlet-mapping>
@@ -118,10 +119,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>GAS_Atmosphere</servlet-name>
-        <url-pattern>/not</url-pattern>
-    </servlet-mapping>
+
 
 
     <session-config>
