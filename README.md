@@ -1,10 +1,9 @@
 GAS
 ===
+Gruppo di acquisto solidale.
+This project was supposed to be a web service for help the coordinations of costumers of an [Ethical purchasing groups](http://en.wikipedia.org/wiki/Ethical_purchasing_groups).
 
-1. ennesimo refactor del SQL (sapevate che "order" è una parola riservata per hibernate?)
-2. dopo aver betemmiato con Roo ho rifatto il progetto dall'inizio e forse sto iniziando a capire come prenderlo...
-3. ho implementato il modulo di sicurezza, a livello di controller (vedere applicationContext-security.xml e la classe it.polito.ai.gas.security.GASAuthenticationProvider) e di interfaccia (vedere annotazioni <sec:authorize …> all'interno delle views, in particolare menu.jspx)
-4. ad ogni ruolo corrisponde un'interfaccia diversa e relative azioni
-5. aggiunto blocco di login/register nella pagina iniziale
+We wrote it for an university course assignment. It  lacks in many aspects: worst of all it is made on Spring Roo, which was supposed to speedup the developing but made our work hell. 
 
-ovviamente non c'è ancora nessun meccanismo di match tra le varie entità...
+Anyway, it can be a (bad) example of how a Spring MVC and Roo projects are made and furthermore it has also a nice implementation of push notification through WebSockets using [Atmosphere](https://github.com/Atmosphere/atmosphere) framework.
+
